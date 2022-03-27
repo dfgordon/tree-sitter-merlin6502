@@ -1,0 +1,2273 @@
+{
+    "adc": {
+        "brief": "add with carry",
+        "desc": "add operand to accumulator with carry bit",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 105,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 109,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 101,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp,x)",
+                "code": 97,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp),y",
+                "code": 113,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 117,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 125,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,y",
+                "code": 121,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp)",
+                "code": 114,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nvzc"
+    },
+    "and": {
+        "brief": "bitwise and",
+        "desc": "and operand with accumulator",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 41,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 45,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 37,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp,x)",
+                "code": 33,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp),y",
+                "code": 49,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 53,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 61,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,y",
+                "code": 57,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp)",
+                "code": 50,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "asl": {
+        "brief": "arithmetic shift left",
+        "desc": "shift bits left with incoming zero and outgoing carry bit",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 14,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 6,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "accum",
+                "code": 10,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 22,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 30,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nzc"
+    },
+    "bcc": {
+        "brief": "branch on carry clear",
+        "desc": "branch on carry clear",
+        "modes": [
+            {
+                "addr_mnemonic": "rel",
+                "code": 144,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "bcs": {
+        "brief": "branch on carry set",
+        "desc": "branch on carry set",
+        "modes": [
+            {
+                "addr_mnemonic": "rel",
+                "code": 176,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "beq": {
+        "brief": "branch on zero",
+        "desc": "branch if the Z status bit is set",
+        "modes": [
+            {
+                "addr_mnemonic": "rel",
+                "code": 240,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "bit": {
+        "brief": "bit comparison",
+        "desc": "set status by bitwise AND of accumulator with memory, without changing accumulator",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 137,
+                "cycles": 2,
+                "processors": [
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 44,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 36,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 52,
+                "cycles": 4,
+                "processors": [
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 60,
+                "cycles": 4,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "m7m6z"
+    },
+    "bmi": {
+        "brief": "branch on minus",
+        "desc": "branch if the N status bit is set",
+        "modes": [
+            {
+                "addr_mnemonic": "rel",
+                "code": 48,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "bne": {
+        "brief": "branch on not zero",
+        "desc": "branch if the Z status bit is not set",
+        "modes": [
+            {
+                "addr_mnemonic": "rel",
+                "code": 208,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "bpl": {
+        "brief": "branch on plus",
+        "desc": "branch if the N status bit is not set",
+        "modes": [
+            {
+                "addr_mnemonic": "rel",
+                "code": 16,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "bra": {
+        "brief": "branch always",
+        "desc": "branch always",
+        "modes": [
+            {
+                "addr_mnemonic": "rel",
+                "code": 128,
+                "cycles": 2,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "65c02"
+        ],
+        "status": "I"
+    },
+    "brk": {
+        "brief": "branch on zero",
+        "desc": "branch if the Z status bit is set",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 0,
+                "cycles": 7,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "bi"
+    },
+    "bvc": {
+        "brief": "branch on overflow clear",
+        "desc": "branch if the V status bit is not set",
+        "modes": [
+            {
+                "addr_mnemonic": "rel",
+                "code": 80,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "bvs": {
+        "brief": "branch on overflow",
+        "desc": "branch if the V status bit is set",
+        "modes": [
+            {
+                "addr_mnemonic": "rel",
+                "code": 112,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "clc": {
+        "brief": "clear carry",
+        "desc": "clear carry bit, C",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 24,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "C"
+    },
+    "cld": {
+        "brief": "clear decimal",
+        "desc": "clear decimal bit, D",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 216,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "D"
+    },
+    "cli": {
+        "brief": "clear interrupt",
+        "desc": "clear interrupt disable status, I",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 88,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "I"
+    },
+    "clv": {
+        "brief": "clear overflow",
+        "desc": "clear overflow status flag, V",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 184,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "V"
+    },
+    "cmp": {
+        "brief": "compare accumulator",
+        "desc": "compare accumulator with memory and set status bits",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 201,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 205,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 197,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp,x)",
+                "code": 193,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp),y",
+                "code": 209,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 213,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 221,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,y",
+                "code": 217,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp)",
+                "code": 210,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nzc"
+    },
+    "cpx": {
+        "brief": "compare X index",
+        "desc": "compare X index with memory and set status bits",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 224,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 236,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 228,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nzc"
+    },
+    "cpy": {
+        "brief": "compare Y index",
+        "desc": "compare Y index with memory and set status bits",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 192,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 204,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 196,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nzc"
+    },
+    "dec": {
+        "brief": "decrement",
+        "desc": "decrement memory or accumulator (65c02) by one",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 206,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 198,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "accum",
+                "code": 58,
+                "cycles": 2,
+                "processors": [
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 214,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 222,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "dex": {
+        "brief": "decrement X",
+        "desc": "decrement X index by one",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 202,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "dey": {
+        "brief": "decrement Y",
+        "desc": "decrement Y index by one",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 136,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "eor": {
+        "brief": "bitwise exclusive or",
+        "desc": "exclusive or operand with accumulator",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 73,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 77,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 69,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp,x)",
+                "code": 65,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp),y",
+                "code": 81,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 85,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 93,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,y",
+                "code": 89,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp)",
+                "code": 82,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "inc": {
+        "brief": "increment",
+        "desc": "increment memory or accumulator (65c02) by one",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 238,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 230,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "accum",
+                "code": 26,
+                "cycles": 2,
+                "processors": [
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 246,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 254,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "inx": {
+        "brief": "increment X",
+        "desc": "increment X index by one",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 232,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "iny": {
+        "brief": "increment Y",
+        "desc": "increment Y index by one",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 200,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "jmp": {
+        "brief": "jump to address",
+        "desc": "jump to address",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 76,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(abs)",
+                "code": 108,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs(ind,x)",
+                "code": 124,
+                "cycles": 6,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "jsr": {
+        "brief": "jump to subroutine",
+        "desc": "jump to subroutine",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 32,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "lda": {
+        "brief": "load accumulator",
+        "desc": "load accumulator",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 169,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 173,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 165,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp,x)",
+                "code": 161,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp),y",
+                "code": 177,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 181,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 141,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,y",
+                "code": 185,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp)",
+                "code": 178,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "ldx": {
+        "brief": "load X index",
+        "desc": "load X index",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 162,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 174,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 166,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,y",
+                "code": 182,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,y",
+                "code": 190,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "ldy": {
+        "brief": "load Y index",
+        "desc": "load Y index",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 160,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 172,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 164,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 180,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 188,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "lsr": {
+        "brief": "logical shift right",
+        "desc": "shift bits right with incoming zero and outgoing carry bit",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 78,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 70,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "accum",
+                "code": 74,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 86,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 94,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nzc"
+    },
+    "nop": {
+        "brief": "no operation",
+        "desc": "no operation",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 234,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "ora": {
+        "brief": "bitwise or",
+        "desc": "or operand with accumulator",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 9,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 13,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 5,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp,x)",
+                "code": 1,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp),y",
+                "code": 17,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 21,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 29,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,y",
+                "code": 25,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp)",
+                "code": 18,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "pha": {
+        "brief": "push accumulator",
+        "desc": "push accumulator on stack",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 72,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "php": {
+        "brief": "push status",
+        "desc": "push processor status on stack",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 8,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "phx": {
+        "brief": "push X index",
+        "desc": "push X index on stack",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 218,
+                "cycles": 3,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "65c02"
+        ],
+        "status": null
+    },
+    "phy": {
+        "brief": "push Y index",
+        "desc": "push Y index on stack",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 90,
+                "cycles": 3,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "65c02"
+        ],
+        "status": null
+    },
+    "pla": {
+        "brief": "pull accumulator",
+        "desc": "pull accumulator from stack",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 104,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "plp": {
+        "brief": "pull status",
+        "desc": "pull processor status from stack",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 40,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nvbdizc"
+    },
+    "plx": {
+        "brief": "pull X index",
+        "desc": "pull X index from stack",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 250,
+                "cycles": 4,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "ply": {
+        "brief": "pull Y index",
+        "desc": "pull Y index from stack",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 122,
+                "cycles": 4,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "rol": {
+        "brief": "rotate bits left",
+        "desc": "rotate bits left, new bit 0 = old carry, new carry = old bit 7",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 46,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 38,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "accum",
+                "code": 42,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 54,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 62,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nzc"
+    },
+    "ror": {
+        "brief": "rotate bits right",
+        "desc": "rotate bits right, new bit 7 = old carry, new carry = old bit 0",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 110,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 102,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "accum",
+                "code": 106,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 118,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 126,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nzc"
+    },
+    "rti": {
+        "brief": "return from interrupt",
+        "desc": "return from interrupt",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 64,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nvbdizc"
+    },
+    "rts": {
+        "brief": "return from subroutine",
+        "desc": "return from subroutine",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 96,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "sbc": {
+        "brief": "subtract with borrow",
+        "desc": "subtract memory from accumulator with borrow",
+        "modes": [
+            {
+                "addr_mnemonic": "imm",
+                "code": 233,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs",
+                "code": 237,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 229,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp,x)",
+                "code": 225,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp),y",
+                "code": 241,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 245,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 253,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,y",
+                "code": 249,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp)",
+                "code": 242,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nvzc"
+    },
+    "sec": {
+        "brief": "set carry",
+        "desc": "set carry bit high",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 56,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "c"
+    },
+    "sed": {
+        "brief": "set decimal",
+        "desc": "set decimal mode",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 248,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "d"
+    },
+    "sei": {
+        "brief": "set interrupt disable",
+        "desc": "set interrupt disable status",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 120,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "i"
+    },
+    "sta": {
+        "brief": "store accumulator",
+        "desc": "store accumulator",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 141,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 133,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp,x)",
+                "code": 129,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp),y",
+                "code": 145,
+                "cycles": 6,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 149,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 157,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,y",
+                "code": 153,
+                "cycles": 5,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "(zp)",
+                "code": 146,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "stx": {
+        "brief": "store X index",
+        "desc": "store X index",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 142,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 134,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,y",
+                "code": 150,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "sty": {
+        "brief": "store Y index",
+        "desc": "store Y index",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 140,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 132,
+                "cycles": 3,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 148,
+                "cycles": 4,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "stz": {
+        "brief": "store zero",
+        "desc": "store zero",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 156,
+                "cycles": 4,
+                "processors": [
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 100,
+                "cycles": 3,
+                "processors": [
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp,x",
+                "code": 116,
+                "cycles": 4,
+                "processors": [
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "abs,x",
+                "code": 158,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "65c02"
+        ],
+        "status": null
+    },
+    "tax": {
+        "brief": "transfer A to X",
+        "desc": "transfer accumulator to X index",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 170,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "tay": {
+        "brief": "transfer A to Y",
+        "desc": "transfer accumulator to Y index",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 168,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "trb": {
+        "brief": "test and reset bits",
+        "desc": "test and reset memory bits with accumulator",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 28,
+                "cycles": 6,
+                "processors": [
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 20,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "65c02"
+        ],
+        "status": "z"
+    },
+    "tsb": {
+        "brief": "test and set bits",
+        "desc": "test and set memory bits with accumulator",
+        "modes": [
+            {
+                "addr_mnemonic": "abs",
+                "code": 12,
+                "cycles": 6,
+                "processors": [
+                    "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "zp",
+                "code": 4,
+                "cycles": 5,
+                "processors": [
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "65c02"
+        ],
+        "status": "z"
+    },
+    "tsx": {
+        "brief": "transfer S to X",
+        "desc": "transfer stack pointer to X index",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 186,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "txa": {
+        "brief": "transfer X to A",
+        "desc": "transfer X index to accumulator",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 138,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    },
+    "txs": {
+        "brief": "transfer X to S",
+        "desc": "transfer X index to stack pointer",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 154,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": null
+    },
+    "tya": {
+        "brief": "transfer Y to A",
+        "desc": "transfer Y index to accumulator",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 152,
+                "cycles": 2,
+                "processors": [
+                    "6502",
+                    "65c02"
+                ]
+            }
+        ],
+        "processors": [
+            "6502",
+            "65c02"
+        ],
+        "status": "nz"
+    }
+}

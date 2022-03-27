@@ -1,0 +1,40 @@
+{
+  "name": "tree-sitter-merlin6502",
+  "version": "1.0.0",
+  "description": "parser for integer basic",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "tree-sitter test",
+    "test-windows": "tree-sitter test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dfgordon/tree-sitter-merlin6502.git"
+  },
+  "keywords": [
+    "parser",
+    "lexer"
+  ],
+  "author": "Daniel Gordon",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/dfgordon/tree-sitter-merlin6502/issues"
+  },
+  "homepage": "https://github.com/dfgordon/tree-sitter-merlin6502#readme",
+  "tree-sitter": [
+    {
+      "scope": "source.S",
+      "file-types": [
+        "S",
+        "asm"
+      ],
+      "first-line-regex": "\\s*ORG\\s*$[0-9A-Fa-f]+"
+    }
+  ],
+  "dependencies": {
+    "nan": "^2.14.2"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.6"
+  }
+}

@@ -1,0 +1,16 @@
+===================
+opcodes in labels
+===================
+
+ INC16 $8000
+ INC $00
+
+---
+
+(source_file
+	(macro_calli
+		(global_label)
+		(macro_args (arg)))
+	(operation
+		(op_inc)
+		(addr (number (hexadecimal)))))

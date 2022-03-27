@@ -1,0 +1,25 @@
+===================
+bare immediate
+===================
+
+ LDA #$00
+
+---
+
+(source_file
+	(operation
+		(op_lda)
+		(imm (imm_prefix) (number (hexadecimal)))))
+
+===================
+expression immediate
+===================
+
+ LDA #>ADDR+5
+
+---
+
+(source_file
+	(operation
+		(op_lda)
+		(imm (imm_prefix) (binary_aexpr (global_label) (eop_plus) (number (decimal))))))

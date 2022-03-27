@@ -1,0 +1,2171 @@
+[
+  {
+    "type": "addr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "addr_x",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "mode_x",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "addr_y",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "mode_y",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "binary",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "binary_aexpr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "eop_and",
+          "named": true
+        },
+        {
+          "type": "eop_div",
+          "named": true
+        },
+        {
+          "type": "eop_minus",
+          "named": true
+        },
+        {
+          "type": "eop_or",
+          "named": true
+        },
+        {
+          "type": "eop_plus",
+          "named": true
+        },
+        {
+          "type": "eop_times",
+          "named": true
+        },
+        {
+          "type": "eop_xor",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "comment_text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "comment_text",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "current_addr",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "decimal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "dstring",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "eop_div",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "eop_minus",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "eop_or",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "eop_times",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "filename",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "hex_data",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "hex_byte",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "hexadecimal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "iaddr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "mode_iclose",
+          "named": true
+        },
+        {
+          "type": "mode_iopen",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "iaddr_ix",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "mode_iix",
+          "named": true
+        },
+        {
+          "type": "mode_iopen",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "iaddr_y",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "mode_iopen",
+          "named": true
+        },
+        {
+          "type": "mode_iy",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "imm",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "imm_prefix",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "imm_prefix",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "macro_args",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arg",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_calli",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "macro_args",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_callx",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "macro_args",
+          "named": true
+        },
+        {
+          "type": "psop_pmc",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_def",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "macro_end",
+          "named": true
+        },
+        {
+          "type": "macro_line",
+          "named": true
+        },
+        {
+          "type": "macro_start",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_end",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "psop_eom",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_line",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "macro_calli",
+          "named": true
+        },
+        {
+          "type": "macro_callx",
+          "named": true
+        },
+        {
+          "type": "macro_start",
+          "named": true
+        },
+        {
+          "type": "main_comment",
+          "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
+        },
+        {
+          "type": "program_counter",
+          "named": true
+        },
+        {
+          "type": "pseudo_operation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_start",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "psop_mac",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "main_comment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_iopen",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "nchar",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "number",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary",
+          "named": true
+        },
+        {
+          "type": "decimal",
+          "named": true
+        },
+        {
+          "type": "hexadecimal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "force",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "op_adc",
+          "named": true
+        },
+        {
+          "type": "op_and",
+          "named": true
+        },
+        {
+          "type": "op_asl",
+          "named": true
+        },
+        {
+          "type": "op_bcc",
+          "named": true
+        },
+        {
+          "type": "op_bcs",
+          "named": true
+        },
+        {
+          "type": "op_beq",
+          "named": true
+        },
+        {
+          "type": "op_bit",
+          "named": true
+        },
+        {
+          "type": "op_bmi",
+          "named": true
+        },
+        {
+          "type": "op_bne",
+          "named": true
+        },
+        {
+          "type": "op_bpl",
+          "named": true
+        },
+        {
+          "type": "op_bra",
+          "named": true
+        },
+        {
+          "type": "op_brk",
+          "named": true
+        },
+        {
+          "type": "op_bvc",
+          "named": true
+        },
+        {
+          "type": "op_bvs",
+          "named": true
+        },
+        {
+          "type": "op_clc",
+          "named": true
+        },
+        {
+          "type": "op_cld",
+          "named": true
+        },
+        {
+          "type": "op_cli",
+          "named": true
+        },
+        {
+          "type": "op_clv",
+          "named": true
+        },
+        {
+          "type": "op_cmp",
+          "named": true
+        },
+        {
+          "type": "op_cpx",
+          "named": true
+        },
+        {
+          "type": "op_cpy",
+          "named": true
+        },
+        {
+          "type": "op_dec",
+          "named": true
+        },
+        {
+          "type": "op_dex",
+          "named": true
+        },
+        {
+          "type": "op_dey",
+          "named": true
+        },
+        {
+          "type": "op_eor",
+          "named": true
+        },
+        {
+          "type": "op_inc",
+          "named": true
+        },
+        {
+          "type": "op_inx",
+          "named": true
+        },
+        {
+          "type": "op_iny",
+          "named": true
+        },
+        {
+          "type": "op_jmp",
+          "named": true
+        },
+        {
+          "type": "op_jsr",
+          "named": true
+        },
+        {
+          "type": "op_lda",
+          "named": true
+        },
+        {
+          "type": "op_ldx",
+          "named": true
+        },
+        {
+          "type": "op_ldy",
+          "named": true
+        },
+        {
+          "type": "op_lsr",
+          "named": true
+        },
+        {
+          "type": "op_nop",
+          "named": true
+        },
+        {
+          "type": "op_ora",
+          "named": true
+        },
+        {
+          "type": "op_pha",
+          "named": true
+        },
+        {
+          "type": "op_php",
+          "named": true
+        },
+        {
+          "type": "op_phx",
+          "named": true
+        },
+        {
+          "type": "op_phy",
+          "named": true
+        },
+        {
+          "type": "op_pla",
+          "named": true
+        },
+        {
+          "type": "op_plp",
+          "named": true
+        },
+        {
+          "type": "op_plx",
+          "named": true
+        },
+        {
+          "type": "op_ply",
+          "named": true
+        },
+        {
+          "type": "op_rol",
+          "named": true
+        },
+        {
+          "type": "op_ror",
+          "named": true
+        },
+        {
+          "type": "op_rti",
+          "named": true
+        },
+        {
+          "type": "op_rts",
+          "named": true
+        },
+        {
+          "type": "op_sbc",
+          "named": true
+        },
+        {
+          "type": "op_sec",
+          "named": true
+        },
+        {
+          "type": "op_sed",
+          "named": true
+        },
+        {
+          "type": "op_sei",
+          "named": true
+        },
+        {
+          "type": "op_sta",
+          "named": true
+        },
+        {
+          "type": "op_stx",
+          "named": true
+        },
+        {
+          "type": "op_sty",
+          "named": true
+        },
+        {
+          "type": "op_stz",
+          "named": true
+        },
+        {
+          "type": "op_tax",
+          "named": true
+        },
+        {
+          "type": "op_tay",
+          "named": true
+        },
+        {
+          "type": "op_trb",
+          "named": true
+        },
+        {
+          "type": "op_tsb",
+          "named": true
+        },
+        {
+          "type": "op_tsx",
+          "named": true
+        },
+        {
+          "type": "op_txa",
+          "named": true
+        },
+        {
+          "type": "op_txs",
+          "named": true
+        },
+        {
+          "type": "op_tya",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pchar",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "program_counter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "pseudo_operation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "dstring",
+          "named": true
+        },
+        {
+          "type": "filename",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "hex_data",
+          "named": true
+        },
+        {
+          "type": "imm_prefix",
+          "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "psop_adr",
+          "named": true
+        },
+        {
+          "type": "psop_adrl",
+          "named": true
+        },
+        {
+          "type": "psop_asc",
+          "named": true
+        },
+        {
+          "type": "psop_ast",
+          "named": true
+        },
+        {
+          "type": "psop_chk",
+          "named": true
+        },
+        {
+          "type": "psop_cyc",
+          "named": true
+        },
+        {
+          "type": "psop_da",
+          "named": true
+        },
+        {
+          "type": "psop_dat",
+          "named": true
+        },
+        {
+          "type": "psop_dci",
+          "named": true
+        },
+        {
+          "type": "psop_ddb",
+          "named": true
+        },
+        {
+          "type": "psop_dend",
+          "named": true
+        },
+        {
+          "type": "psop_dfb",
+          "named": true
+        },
+        {
+          "type": "psop_do",
+          "named": true
+        },
+        {
+          "type": "psop_ds",
+          "named": true
+        },
+        {
+          "type": "psop_dsk",
+          "named": true
+        },
+        {
+          "type": "psop_dum",
+          "named": true
+        },
+        {
+          "type": "psop_else",
+          "named": true
+        },
+        {
+          "type": "psop_end",
+          "named": true
+        },
+        {
+          "type": "psop_end_lup",
+          "named": true
+        },
+        {
+          "type": "psop_ent",
+          "named": true
+        },
+        {
+          "type": "psop_equ",
+          "named": true
+        },
+        {
+          "type": "psop_err",
+          "named": true
+        },
+        {
+          "type": "psop_exp",
+          "named": true
+        },
+        {
+          "type": "psop_ext",
+          "named": true
+        },
+        {
+          "type": "psop_fin",
+          "named": true
+        },
+        {
+          "type": "psop_fls",
+          "named": true
+        },
+        {
+          "type": "psop_hex",
+          "named": true
+        },
+        {
+          "type": "psop_if",
+          "named": true
+        },
+        {
+          "type": "psop_inv",
+          "named": true
+        },
+        {
+          "type": "psop_kbd",
+          "named": true
+        },
+        {
+          "type": "psop_lst",
+          "named": true
+        },
+        {
+          "type": "psop_lstdo",
+          "named": true
+        },
+        {
+          "type": "psop_lup",
+          "named": true
+        },
+        {
+          "type": "psop_mx",
+          "named": true
+        },
+        {
+          "type": "psop_obj",
+          "named": true
+        },
+        {
+          "type": "psop_org",
+          "named": true
+        },
+        {
+          "type": "psop_pag",
+          "named": true
+        },
+        {
+          "type": "psop_pau",
+          "named": true
+        },
+        {
+          "type": "psop_put",
+          "named": true
+        },
+        {
+          "type": "psop_rel",
+          "named": true
+        },
+        {
+          "type": "psop_rev",
+          "named": true
+        },
+        {
+          "type": "psop_sav",
+          "named": true
+        },
+        {
+          "type": "psop_skp",
+          "named": true
+        },
+        {
+          "type": "psop_str",
+          "named": true
+        },
+        {
+          "type": "psop_sw",
+          "named": true
+        },
+        {
+          "type": "psop_tr",
+          "named": true
+        },
+        {
+          "type": "psop_ttl",
+          "named": true
+        },
+        {
+          "type": "psop_typ",
+          "named": true
+        },
+        {
+          "type": "psop_use",
+          "named": true
+        },
+        {
+          "type": "psop_usr",
+          "named": true
+        },
+        {
+          "type": "psop_var",
+          "named": true
+        },
+        {
+          "type": "psop_xc",
+          "named": true
+        },
+        {
+          "type": "schar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "psop_da",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_dfb",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_eom",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_equ",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_pmc",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "schar",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "macro_calli",
+          "named": true
+        },
+        {
+          "type": "macro_callx",
+          "named": true
+        },
+        {
+          "type": "macro_def",
+          "named": true
+        },
+        {
+          "type": "main_comment",
+          "named": true
+        },
+        {
+          "type": "operation",
+          "named": true
+        },
+        {
+          "type": "program_counter",
+          "named": true
+        },
+        {
+          "type": "pseudo_operation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unary_aexpr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "eop_minus",
+          "named": true
+        },
+        {
+          "type": "eop_plus",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": " ",
+    "named": false
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "#<",
+    "named": false
+  },
+  {
+    "type": "#>",
+    "named": false
+  },
+  {
+    "type": "#^",
+    "named": false
+  },
+  {
+    "type": "$",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "<<<",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">>>",
+    "named": false
+  },
+  {
+    "type": "AVE",
+    "named": false
+  },
+  {
+    "type": "DA",
+    "named": false
+  },
+  {
+    "type": "DB",
+    "named": false
+  },
+  {
+    "type": "DFB",
+    "named": false
+  },
+  {
+    "type": "DW",
+    "named": false
+  },
+  {
+    "type": "EOM",
+    "named": false
+  },
+  {
+    "type": "EQU",
+    "named": false
+  },
+  {
+    "type": "OFF",
+    "named": false
+  },
+  {
+    "type": "ON",
+    "named": false
+  },
+  {
+    "type": "ONLY",
+    "named": false
+  },
+  {
+    "type": "PMC",
+    "named": false
+  },
+  {
+    "type": "\\",
+    "named": false
+  },
+  {
+    "type": "eop_and",
+    "named": true
+  },
+  {
+    "type": "eop_plus",
+    "named": true
+  },
+  {
+    "type": "eop_xor",
+    "named": true
+  },
+  {
+    "type": "force",
+    "named": true
+  },
+  {
+    "type": "global_label",
+    "named": true
+  },
+  {
+    "type": "hex_byte",
+    "named": true
+  },
+  {
+    "type": "local_label",
+    "named": true
+  },
+  {
+    "type": "mode_iclose",
+    "named": true
+  },
+  {
+    "type": "mode_iix",
+    "named": true
+  },
+  {
+    "type": "mode_iy",
+    "named": true
+  },
+  {
+    "type": "mode_x",
+    "named": true
+  },
+  {
+    "type": "mode_y",
+    "named": true
+  },
+  {
+    "type": "op_adc",
+    "named": true
+  },
+  {
+    "type": "op_and",
+    "named": true
+  },
+  {
+    "type": "op_asl",
+    "named": true
+  },
+  {
+    "type": "op_bcc",
+    "named": true
+  },
+  {
+    "type": "op_bcs",
+    "named": true
+  },
+  {
+    "type": "op_beq",
+    "named": true
+  },
+  {
+    "type": "op_bit",
+    "named": true
+  },
+  {
+    "type": "op_bmi",
+    "named": true
+  },
+  {
+    "type": "op_bne",
+    "named": true
+  },
+  {
+    "type": "op_bpl",
+    "named": true
+  },
+  {
+    "type": "op_bra",
+    "named": true
+  },
+  {
+    "type": "op_brk",
+    "named": true
+  },
+  {
+    "type": "op_bvc",
+    "named": true
+  },
+  {
+    "type": "op_bvs",
+    "named": true
+  },
+  {
+    "type": "op_clc",
+    "named": true
+  },
+  {
+    "type": "op_cld",
+    "named": true
+  },
+  {
+    "type": "op_cli",
+    "named": true
+  },
+  {
+    "type": "op_clv",
+    "named": true
+  },
+  {
+    "type": "op_cmp",
+    "named": true
+  },
+  {
+    "type": "op_cpx",
+    "named": true
+  },
+  {
+    "type": "op_cpy",
+    "named": true
+  },
+  {
+    "type": "op_dec",
+    "named": true
+  },
+  {
+    "type": "op_dex",
+    "named": true
+  },
+  {
+    "type": "op_dey",
+    "named": true
+  },
+  {
+    "type": "op_eor",
+    "named": true
+  },
+  {
+    "type": "op_inc",
+    "named": true
+  },
+  {
+    "type": "op_inx",
+    "named": true
+  },
+  {
+    "type": "op_iny",
+    "named": true
+  },
+  {
+    "type": "op_jmp",
+    "named": true
+  },
+  {
+    "type": "op_jsr",
+    "named": true
+  },
+  {
+    "type": "op_lda",
+    "named": true
+  },
+  {
+    "type": "op_ldx",
+    "named": true
+  },
+  {
+    "type": "op_ldy",
+    "named": true
+  },
+  {
+    "type": "op_lsr",
+    "named": true
+  },
+  {
+    "type": "op_nop",
+    "named": true
+  },
+  {
+    "type": "op_ora",
+    "named": true
+  },
+  {
+    "type": "op_pha",
+    "named": true
+  },
+  {
+    "type": "op_php",
+    "named": true
+  },
+  {
+    "type": "op_phx",
+    "named": true
+  },
+  {
+    "type": "op_phy",
+    "named": true
+  },
+  {
+    "type": "op_pla",
+    "named": true
+  },
+  {
+    "type": "op_plp",
+    "named": true
+  },
+  {
+    "type": "op_plx",
+    "named": true
+  },
+  {
+    "type": "op_ply",
+    "named": true
+  },
+  {
+    "type": "op_rol",
+    "named": true
+  },
+  {
+    "type": "op_ror",
+    "named": true
+  },
+  {
+    "type": "op_rti",
+    "named": true
+  },
+  {
+    "type": "op_rts",
+    "named": true
+  },
+  {
+    "type": "op_sbc",
+    "named": true
+  },
+  {
+    "type": "op_sec",
+    "named": true
+  },
+  {
+    "type": "op_sed",
+    "named": true
+  },
+  {
+    "type": "op_sei",
+    "named": true
+  },
+  {
+    "type": "op_sta",
+    "named": true
+  },
+  {
+    "type": "op_stx",
+    "named": true
+  },
+  {
+    "type": "op_sty",
+    "named": true
+  },
+  {
+    "type": "op_stz",
+    "named": true
+  },
+  {
+    "type": "op_tax",
+    "named": true
+  },
+  {
+    "type": "op_tay",
+    "named": true
+  },
+  {
+    "type": "op_trb",
+    "named": true
+  },
+  {
+    "type": "op_tsb",
+    "named": true
+  },
+  {
+    "type": "op_tsx",
+    "named": true
+  },
+  {
+    "type": "op_txa",
+    "named": true
+  },
+  {
+    "type": "op_txs",
+    "named": true
+  },
+  {
+    "type": "op_tya",
+    "named": true
+  },
+  {
+    "type": "psop_adr",
+    "named": true
+  },
+  {
+    "type": "psop_adrl",
+    "named": true
+  },
+  {
+    "type": "psop_asc",
+    "named": true
+  },
+  {
+    "type": "psop_ast",
+    "named": true
+  },
+  {
+    "type": "psop_chk",
+    "named": true
+  },
+  {
+    "type": "psop_cyc",
+    "named": true
+  },
+  {
+    "type": "psop_dat",
+    "named": true
+  },
+  {
+    "type": "psop_dci",
+    "named": true
+  },
+  {
+    "type": "psop_ddb",
+    "named": true
+  },
+  {
+    "type": "psop_dend",
+    "named": true
+  },
+  {
+    "type": "psop_do",
+    "named": true
+  },
+  {
+    "type": "psop_ds",
+    "named": true
+  },
+  {
+    "type": "psop_dsk",
+    "named": true
+  },
+  {
+    "type": "psop_dum",
+    "named": true
+  },
+  {
+    "type": "psop_else",
+    "named": true
+  },
+  {
+    "type": "psop_end",
+    "named": true
+  },
+  {
+    "type": "psop_end_lup",
+    "named": true
+  },
+  {
+    "type": "psop_ent",
+    "named": true
+  },
+  {
+    "type": "psop_err",
+    "named": true
+  },
+  {
+    "type": "psop_exp",
+    "named": true
+  },
+  {
+    "type": "psop_ext",
+    "named": true
+  },
+  {
+    "type": "psop_fin",
+    "named": true
+  },
+  {
+    "type": "psop_fls",
+    "named": true
+  },
+  {
+    "type": "psop_hex",
+    "named": true
+  },
+  {
+    "type": "psop_if",
+    "named": true
+  },
+  {
+    "type": "psop_inv",
+    "named": true
+  },
+  {
+    "type": "psop_kbd",
+    "named": true
+  },
+  {
+    "type": "psop_lst",
+    "named": true
+  },
+  {
+    "type": "psop_lstdo",
+    "named": true
+  },
+  {
+    "type": "psop_lup",
+    "named": true
+  },
+  {
+    "type": "psop_mac",
+    "named": true
+  },
+  {
+    "type": "psop_mx",
+    "named": true
+  },
+  {
+    "type": "psop_obj",
+    "named": true
+  },
+  {
+    "type": "psop_org",
+    "named": true
+  },
+  {
+    "type": "psop_pag",
+    "named": true
+  },
+  {
+    "type": "psop_pau",
+    "named": true
+  },
+  {
+    "type": "psop_put",
+    "named": true
+  },
+  {
+    "type": "psop_rel",
+    "named": true
+  },
+  {
+    "type": "psop_rev",
+    "named": true
+  },
+  {
+    "type": "psop_sav",
+    "named": true
+  },
+  {
+    "type": "psop_skp",
+    "named": true
+  },
+  {
+    "type": "psop_str",
+    "named": true
+  },
+  {
+    "type": "psop_sw",
+    "named": true
+  },
+  {
+    "type": "psop_tr",
+    "named": true
+  },
+  {
+    "type": "psop_ttl",
+    "named": true
+  },
+  {
+    "type": "psop_typ",
+    "named": true
+  },
+  {
+    "type": "psop_use",
+    "named": true
+  },
+  {
+    "type": "psop_usr",
+    "named": true
+  },
+  {
+    "type": "psop_var",
+    "named": true
+  },
+  {
+    "type": "psop_xc",
+    "named": true
+  },
+  {
+    "type": "var_label",
+    "named": true
+  }
+]
