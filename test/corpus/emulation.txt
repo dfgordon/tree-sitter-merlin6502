@@ -2,7 +2,7 @@
 opcodes in labels
 ===================
 
- INC16 $8000
+ INC16 10
  INC $00
 
 ---
@@ -10,7 +10,7 @@ opcodes in labels
 (source_file
 	(macro_calli
 		(global_label)
-		(macro_args (arg)))
+		(macro_args (addr (number (decimal)))))
 	(operation
 		(op_inc)
 		(addr (number (hexadecimal)))))

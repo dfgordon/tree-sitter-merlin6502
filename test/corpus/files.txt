@@ -1,0 +1,16 @@
+===================
+filenames
+===================
+
+ PUT MY.FILE
+ PUT MY_DOS33_FILE!
+
+---
+
+(source_file
+	(pseudo_operation
+		(psop_put)
+		(filename (prodos)))
+	(pseudo_operation
+		(psop_put)
+		(filename (dos33))))

@@ -16,4 +16,4 @@ CONT
         JMP     ($1000)
 *                ^ number
         INC16   $2000
-*               ^ variable.parameter
+*               ^ number

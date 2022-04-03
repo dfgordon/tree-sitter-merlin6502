@@ -346,7 +346,7 @@
     "ent": {
         "alt": [],
         "args": null,
-        "args16": null,
+        "args16": "optional(seq($._label,repeat(seq(',',$._label))))",
         "brief": "entry label",
         "category": "assembler",
         "caveat": null,
@@ -437,7 +437,7 @@
     "ext": {
         "alt": [],
         "args": null,
-        "args16": null,
+        "args16": "optional(seq($._label,repeat(seq(',',$._label))))",
         "brief": "external label",
         "category": "assembler",
         "caveat": null,
@@ -507,7 +507,7 @@
     },
     "if": {
         "alt": [],
-        "args": "$.schar,$.schar,$.var_label",
+        "args": "ANYCHAR,ANYCHAR,$.var_label",
         "args16": "$._aexpr",
         "brief": "test first character",
         "category": "conditionals",

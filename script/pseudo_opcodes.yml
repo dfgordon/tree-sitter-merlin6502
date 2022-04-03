@@ -14,7 +14,7 @@ ext:
   desc: defines label as external for use by linker
   caveat: null
   args: null
-  args16: null
+  args16: optional(seq($._label,repeat(seq(',',$._label))))
   label: [var,global]
   version: [8,16]
   category: assembler
@@ -24,7 +24,7 @@ ent:
   desc: defines label as referenceable to an external label by another REL module
   caveat: null
   args: null
-  args16: null
+  args16: optional(seq($._label,repeat(seq(',',$._label))))
   label: [var,global]
   version: [8,16]
   category: assembler
@@ -403,7 +403,7 @@ if:
   brief: test first character
   desc: if first character of variable then assemble
   caveat: expression starts with MX for 16 bit case
-  args: $.schar,$.schar,$.var_label
+  args: ANYCHAR,ANYCHAR,$.var_label
   args16: $._aexpr
   label: [var,global,local]
   version: [8,16]

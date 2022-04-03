@@ -1,9 +1,40 @@
 import yaml
 import json
 import pathlib
+import sys
 import re
 
-addr_modes = ['imm','abs','zp','accum','impl','(zp,x)','(zp),y','zp,x','zp,y','abs,x','abs,y','rel','(abs)','abs(ind,x)','(zp)']
+def Usage():
+    print('Usage: python script/opcode_processor.py --allow-lower-case <bool> [--help]')
+    print('<bool> = 0 : build parser to forbid lower case in opcode mnemonics')
+    print('<bool> = 1 : build parser to allow lower case in opcode mnemonics')
+
+flags = ['--allow-lower-case','--help']
+allow_lower_case = None
+arg_idx = 1
+while (arg_idx<len(sys.argv)):
+    if sys.argv[arg_idx] not in flags:
+        raise ValueError('unrecognized argument '+sys.argv[arg_idx])
+    if sys.argv[arg_idx]=='--help':
+        Usage()
+        exit(0)
+    if sys.argv[arg_idx]=='--allow-lower-case':
+        arg_idx += 1
+        allow_lower_case = bool(int(sys.argv[arg_idx]))
+    arg_idx += 1
+
+if allow_lower_case==None:
+    raise ValueError('--allow-lower-case flag was not set')
+
+proj_path = pathlib.Path.cwd()
+script_path = proj_path / 'script'
+query_path = proj_path / 'queries'
+test_path = proj_path / 'test' / 'corpus'
+
+# 65C02 modes
+addr_modes = ['imm','abs','zp','accum','impl','(zp,x)','(zp),y','zp,x','zp,y','abs,x','abs,y','rel','(abs)','(abs,x)','(zp)']
+# 65C816 modes - re-using 65C02 modes with equivalence zp=d
+addr_modes += ['rell','s','[d]','[d],y','absl','absl,x','d,s','(d,s),y','xyc']
 
 reduction_map = {
     'imm':'imm',
@@ -19,17 +50,26 @@ reduction_map = {
     'abs,y':'addr_y',
     'rel':'addr',
     '(abs)':'iaddr',
-    'abs(ind,x)':'iaddr_ix',
-    '(zp)':'iaddr'
+    '(abs,x)':'iaddr_ix',
+    '(zp)':'iaddr',
+    'rell':'addr',
+    's':'',
+    '[d]':'daddr',
+    '[d],y':'daddr_y',
+    'absl':'addr',
+    'absl,x':'addr_x',
+    'd,s':'addr_s',
+    '(d,s),y':'iaddr_is_y',
+    'xyc':'xyc'
 }
 
-with open('opcodes.yml','r') as f:
+with open(script_path / 'opcodes.yml','r') as f:
     obj = yaml.safe_load(f)
-with open('opcodes.json','w') as f:
+with open(script_path / 'opcodes.json','w') as f:
     f.write(json.dumps(obj,indent=4,sort_keys=True))
-with open('pseudo_opcodes.yml','r') as f:
+with open(script_path / 'pseudo_opcodes.yml','r') as f:
     pobj = yaml.safe_load(f)
-with open('pseudo_opcodes.json','w') as f:
+with open(script_path / 'pseudo_opcodes.json','w') as f:
     f.write(json.dumps(pobj,indent=4,sort_keys=True))
 
 # Build a nice markdown table of opcodes
@@ -56,22 +96,42 @@ for op in obj:
             tableString += '||'
     tableString += '\n'
 
-with open('opcodes.md','w') as f:
+with open(script_path / 'opcodes.md','w') as f:
     f.write(tableString)
 
-# Build the reduced syntactic opcodes for a 65C02.
-# These do not distinguish zero-page, relative, or absolute, and also treat impl and accum the same.
+# Build the reduced syntactic opcodes for a 65C816.
+# These do not distinguish {d, zp, relative, absolute}, or {impl, accum, s}.
+# The 65C02 and 6502 opcodes are a syntactic subset.
 reduced = {}
 for op in obj:
     reduced[op] = set()
     for am in obj[op]['modes']:
         reduced[op].add(reduction_map[am['addr_mnemonic']])
 
-# Prepare the opcode string for insertion
+# How to lex the opcodes
+def opcode_lexeme(op,alt):
+    lst = [op] + alt
+    variants = set()
+    for it in lst:
+        variants.add(it.upper())
+        if allow_lower_case:
+            variants.add(it.lower())
+    lx = ""
+    if len(variants)>1:
+        lx += "choice("
+    for it in variants:
+        lx += "'" + it + "',"
+    lx = lx[:-1]
+    if len(variants)>1:
+        lx += ")"
+    return lx
+
+# Rules for just the opcode column
 op_str = ''
 for op in reduced:
-    op_str += "\t\top_" + op + ": $ => '"+op.upper()+"',\n"
+    op_str += "\t\top_" + op + ": $ => "+opcode_lexeme(op,obj[op]['alt'])+",\n"
 
+# Rules for the entire operation line
 op_str += "\t\toperation: $ => choice(\n"
 for op in reduced:
     addr_modes = [am for am in reduced[op]]
@@ -80,8 +140,6 @@ for op in reduced:
     addr_choices = len(addr_modes) > 1 + int(addr_optional)
     addr_required = '' not in addr_modes
     op_str += "\t\t\tseq(optional($._label), $._sep, $.op_" + op
-    if 'addr' in addr_modes:
-        op_str += ", optional($.force)"
     if not addr_none:
         if addr_optional:
             op_str += ", optional(seq($._sep,"
@@ -111,27 +169,27 @@ def psop_rule(psop):
 psop_str = ''
 for psop in pobj:
     psop_str += "\t\t" + psop_rule(psop) + ": $ => "
-    if len(pobj[psop]['alt'])>0:
-        psop_str += "choice('" + psop.upper() + "'"
-        for alt in pobj[psop]['alt']:
-            psop_str += ",'" + alt.upper() + "'"
-        psop_str += "),\n"
-    else:
-        psop_str += "'"+psop.upper()+"',\n"
+    psop_str += opcode_lexeme(psop,pobj[psop]['alt'])
+    psop_str += ",\n"
 
 psop_str += "\t\tpseudo_operation: $ => choice(\n"
 for psop in pobj:
-    if psop in ['mac','eom','pmc']:
-        continue
+    args = pobj[psop]['args']
+    args16 = pobj[psop]['args16']
     psop_str += "\t\t\tseq(optional($._label), $._sep, "
-    if pobj[psop]['args']==None:
-        psop_str += "$." + psop_rule(psop)
+    if args!=None:
+        psop_str += "$." + psop_rule(psop) + ", $._sep, " + args
+    elif args16!=None:
+        psop_str += "$." + psop_rule(psop) + ", $._sep, " + args16
     else:
-        psop_str += "$." + psop_rule(psop) + ", $._sep, " + pobj[psop]['args']
+        psop_str += "$." + psop_rule(psop)
     psop_str += ", optional(seq($._sep,$.comment)), $._newline),\n"
 psop_str =  psop_str[:-2] + "\n\t\t),\n"
 
 # Build character context regex
+# We forbid square brackets in labels due to the direct indirect long addressing mode
+# of the 65C816.  Semicolons are forbidden due to their use as separators in macro arguments.
+# In contrast Merlin has contextual relaxation of these restrictions.
 
 escaped = '/-^[]\\'
 anychar = [chr(i) for i in range(32,127,1)]
@@ -139,8 +197,9 @@ negchar = [c for c in anychar if c!='"']
 poschar = [c for c in anychar if c!="'"]
 spchar = [c for c in anychar if not c.isalnum() and c!=' ']
 arg = [c for c in anychar if c!=";" and c!=" "]
-glob_lab_beg = [chr(i) for i in range(ord(':')+1,ord(']'),1)] + [chr(i) for i in range(ord(']')+1,127,1)]
-lab_char = [chr(i) for i in range(ord('0'),127,1)]
+glob_lab_beg = [chr(i) for i in range(ord(':')+1,127,1) if chr(i)!='[' and chr(i)!=']' and chr(i)!=';']
+lab_char = [chr(i) for i in range(ord('0'),127,1) if chr(i)!='[' and chr(i)!=']' and chr(i)!=';']
+dos33_char = [chr(i) for i in range(32,127,1) if chr(i)!=',']
 
 def build_char_regex(lst):
     ans = '/['
@@ -150,35 +209,66 @@ def build_char_regex(lst):
         ans += c
     return ans + ']/;\n'
 
+def build_char_ts(lst):
+    ans = '"'
+    for c in lst:
+        if c=='"' or c=='\\':
+            ans += '\\'
+        ans += c
+    return ans + '";\n'
+
 char_regex = ''
 char_regex += 'const ANYCHAR = ' + build_char_regex(anychar)
 char_regex += 'const NCHAR = ' + build_char_regex(negchar)
 char_regex += 'const PCHAR = ' + build_char_regex(poschar)
 char_regex += 'const SPCHAR = ' + build_char_regex(spchar)
-char_regex += 'const ARG = ' + build_char_regex(arg)
+char_regex += 'const ARG = ' + build_char_ts(arg)
 char_regex += 'const GLOB_LAB_BEG = ' + build_char_regex(glob_lab_beg)
 char_regex += 'const LAB_CHAR = ' + build_char_regex(lab_char)
- 
+char_regex += 'const DOS33_CHARS = ' + build_char_regex(dos33_char)[:-3] + '{0,29}/;\n'
+
+# Build dstring
+
+dstring_rule = ''
+dstring_rule += '\t\tdstring: $ => choice(\n'
+for i in range(33,127,1):
+    if chr(i).isnumeric() or chr(i)=='/' or chr(i)==',':
+        continue
+    elif chr(i)=='"':
+        dstring_rule += "\t\t\tseq('"+chr(i)+"',repeat(ANYCHAR),'"+chr(i)+"'),\n"
+    elif chr(i)=='\\':
+        dstring_rule += "\t\t\tseq('\\"+chr(i)+"',repeat(ANYCHAR),'\\"+chr(i)+"'),\n"
+    else:
+        dstring_rule += '\t\t\tseq("'+chr(i)+'",repeat(ANYCHAR),"'+chr(i)+'"),\n'
+dstring_rule += '\t\t),\n'
+
 # Save the full grammar
 
-with open('grammar-src.js','r') as f:
+with open(script_path / 'grammar-src.js','r') as f:
     grammar = f.read()
 
 grammar = grammar.replace('Define constants DO NOT EDIT','Define constants\n\n'+char_regex)
 grammar = grammar.replace('Operations DO NOT EDIT','Operations\n\n'+op_str)
 grammar = grammar.replace('Pseudo-operations DO NOT EDIT','Pseudo-operations\n\n'+psop_str)
-with open(pathlib.Path.cwd().parent / 'grammar.js','w') as f:
+grammar = grammar.replace('dstring DO NOT EDIT','dstring\n\n'+dstring_rule)
+grammar = re.sub('allow_lower_case\s*=\s*\w+','allow_lower_case = '+str(allow_lower_case).lower(),grammar)
+with open(proj_path / 'grammar.js','w') as f:
     f.write(grammar)
 
 # Save the highlights
 
 highlights = '(global_label) @type\n'
+highlights += '(current_addr) @type\n'
 highlights += '(local_label) @variable.parameter\n'
 highlights += '(var_label) @variable.builtin\n'
 highlights += '(number) @number\n'
+highlights += '(dstring) @string\n'
+highlights += '(literal_arg) @string\n'
+highlights += '(pchar) @string\n'
+highlights += '(nchar) @string\n'
+highlights += '(literal) @string\n'
 highlights += '(main_comment) @comment\n'
 highlights += '(comment) @comment\n'
-highlights += '(arg) @variable.parameter\n'
 highlights += '(eop_plus) @operator\n'
 highlights += '(eop_minus) @operator\n'
 highlights += '(eop_times) @operator\n'
@@ -198,5 +288,5 @@ for op in obj:
 for psop in pobj:
     highlights += '(' + psop_rule(psop) + ') @function.builtin\n'
 
-with open(pathlib.Path.cwd().parent / 'queries' / 'highlights.scm','w') as f:
+with open(query_path / 'highlights.scm','w') as f:
     f.write(highlights)

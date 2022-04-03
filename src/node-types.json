@@ -47,6 +47,57 @@
     }
   },
   {
+    "type": "addr_s",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "mode_s",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "addr_x",
     "named": true,
     "fields": {},
@@ -147,11 +198,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "arg",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "binary",
@@ -259,12 +305,132 @@
     "fields": {}
   },
   {
+    "type": "daddr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "mode_dclose",
+          "named": true
+        },
+        {
+          "type": "mode_dopen",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "daddr_y",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "mode_dopen",
+          "named": true
+        },
+        {
+          "type": "mode_dy",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "decimal",
     "named": true,
     "fields": {}
   },
   {
+    "type": "dos33",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "dstring",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "eop_and",
     "named": true,
     "fields": {}
   },
@@ -284,14 +450,38 @@
     "fields": {}
   },
   {
+    "type": "eop_plus",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "eop_times",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "eop_xor",
     "named": true,
     "fields": {}
   },
   {
     "type": "filename",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dos33",
+          "named": true
+        },
+        {
+          "type": "prodos",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "hex_data",
@@ -343,6 +533,61 @@
         },
         {
           "type": "mode_iopen",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "iaddr_is_y",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "mode_iopen",
+          "named": true
+        },
+        {
+          "type": "mode_is_y",
           "named": true
         },
         {
@@ -540,6 +785,11 @@
     "fields": {}
   },
   {
+    "type": "literal_arg",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "macro_args",
     "named": true,
     "fields": {},
@@ -548,7 +798,55 @@
       "required": true,
       "types": [
         {
-          "type": "arg",
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        },
+        {
+          "type": "literal_arg",
+          "named": true
+        },
+        {
+          "type": "xyc",
           "named": true
         }
       ]
@@ -586,171 +884,62 @@
     }
   },
   {
-    "type": "macro_callx",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
-          "named": true
-        },
-        {
-          "type": "macro_args",
-          "named": true
-        },
-        {
-          "type": "psop_pmc",
-          "named": true
-        },
-        {
-          "type": "var_label",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "macro_def",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "macro_end",
-          "named": true
-        },
-        {
-          "type": "macro_line",
-          "named": true
-        },
-        {
-          "type": "macro_start",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "macro_end",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
-          "named": true
-        },
-        {
-          "type": "psop_eom",
-          "named": true
-        },
-        {
-          "type": "var_label",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "macro_line",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "macro_calli",
-          "named": true
-        },
-        {
-          "type": "macro_callx",
-          "named": true
-        },
-        {
-          "type": "macro_start",
-          "named": true
-        },
-        {
-          "type": "main_comment",
-          "named": true
-        },
-        {
-          "type": "operation",
-          "named": true
-        },
-        {
-          "type": "program_counter",
-          "named": true
-        },
-        {
-          "type": "pseudo_operation",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "macro_start",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "comment",
-          "named": true
-        },
-        {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
-          "named": true
-        },
-        {
-          "type": "psop_mac",
-          "named": true
-        },
-        {
-          "type": "var_label",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "main_comment",
     "named": true,
     "fields": {}
   },
   {
+    "type": "mode_dclose",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_dopen",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_dy",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_iclose",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_iix",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "mode_iopen",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_is_y",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_iy",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_s",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_x",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "mode_y",
     "named": true,
     "fields": {}
   },
@@ -783,6 +972,461 @@
     }
   },
   {
+    "type": "op_adc",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_and",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_asl",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_bcc",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_bcs",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_beq",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_bit",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_bmi",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_bne",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_bpl",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_bra",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_brk",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_brl",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_bvc",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_bvs",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_clc",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_cld",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_cli",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_clv",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_cmp",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_cop",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_cpx",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_cpy",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_dec",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_dex",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_dey",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_eor",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_inc",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_inx",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_iny",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_jml",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_jmp",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_jsl",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_jsr",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_lda",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_ldx",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_ldy",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_lsr",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_mvn",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_mvp",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_nop",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_ora",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_pea",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_pei",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_per",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_pha",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_phb",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_phd",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_phk",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_php",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_phx",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_phy",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_pla",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_plb",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_pld",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_plp",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_plx",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_ply",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_rep",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_rol",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_ror",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_rti",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_rtl",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_rts",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_sbc",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_sec",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_sed",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_sei",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_sep",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_sta",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_stx",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_sty",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_stz",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_tax",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_tay",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_tcd",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_tcs",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_tdc",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_trb",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_tsb",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_tsc",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_tsx",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_txa",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_txs",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_txy",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_tya",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_tyx",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_wai",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_wdm",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_xba",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "op_xce",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "operation",
     "named": true,
     "fields": {},
@@ -792,6 +1436,10 @@
       "types": [
         {
           "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
           "named": true
         },
         {
@@ -807,7 +1455,11 @@
           "named": true
         },
         {
-          "type": "force",
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
           "named": true
         },
         {
@@ -816,6 +1468,10 @@
         },
         {
           "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
           "named": true
         },
         {
@@ -883,6 +1539,10 @@
           "named": true
         },
         {
+          "type": "op_brl",
+          "named": true
+        },
+        {
           "type": "op_bvc",
           "named": true
         },
@@ -908,6 +1568,10 @@
         },
         {
           "type": "op_cmp",
+          "named": true
+        },
+        {
+          "type": "op_cop",
           "named": true
         },
         {
@@ -947,7 +1611,15 @@
           "named": true
         },
         {
+          "type": "op_jml",
+          "named": true
+        },
+        {
           "type": "op_jmp",
+          "named": true
+        },
+        {
+          "type": "op_jsl",
           "named": true
         },
         {
@@ -971,6 +1643,14 @@
           "named": true
         },
         {
+          "type": "op_mvn",
+          "named": true
+        },
+        {
+          "type": "op_mvp",
+          "named": true
+        },
+        {
           "type": "op_nop",
           "named": true
         },
@@ -979,7 +1659,31 @@
           "named": true
         },
         {
+          "type": "op_pea",
+          "named": true
+        },
+        {
+          "type": "op_pei",
+          "named": true
+        },
+        {
+          "type": "op_per",
+          "named": true
+        },
+        {
           "type": "op_pha",
+          "named": true
+        },
+        {
+          "type": "op_phb",
+          "named": true
+        },
+        {
+          "type": "op_phd",
+          "named": true
+        },
+        {
+          "type": "op_phk",
           "named": true
         },
         {
@@ -999,6 +1703,14 @@
           "named": true
         },
         {
+          "type": "op_plb",
+          "named": true
+        },
+        {
+          "type": "op_pld",
+          "named": true
+        },
+        {
           "type": "op_plp",
           "named": true
         },
@@ -1011,6 +1723,10 @@
           "named": true
         },
         {
+          "type": "op_rep",
+          "named": true
+        },
+        {
           "type": "op_rol",
           "named": true
         },
@@ -1020,6 +1736,10 @@
         },
         {
           "type": "op_rti",
+          "named": true
+        },
+        {
+          "type": "op_rtl",
           "named": true
         },
         {
@@ -1040,6 +1760,10 @@
         },
         {
           "type": "op_sei",
+          "named": true
+        },
+        {
+          "type": "op_sep",
           "named": true
         },
         {
@@ -1067,11 +1791,27 @@
           "named": true
         },
         {
+          "type": "op_tcd",
+          "named": true
+        },
+        {
+          "type": "op_tcs",
+          "named": true
+        },
+        {
+          "type": "op_tdc",
+          "named": true
+        },
+        {
           "type": "op_trb",
           "named": true
         },
         {
           "type": "op_tsb",
+          "named": true
+        },
+        {
+          "type": "op_tsc",
           "named": true
         },
         {
@@ -1087,11 +1827,39 @@
           "named": true
         },
         {
+          "type": "op_txy",
+          "named": true
+        },
+        {
           "type": "op_tya",
           "named": true
         },
         {
+          "type": "op_tyx",
+          "named": true
+        },
+        {
+          "type": "op_wai",
+          "named": true
+        },
+        {
+          "type": "op_wdm",
+          "named": true
+        },
+        {
+          "type": "op_xba",
+          "named": true
+        },
+        {
+          "type": "op_xce",
+          "named": true
+        },
+        {
           "type": "var_label",
+          "named": true
+        },
+        {
+          "type": "xyc",
           "named": true
         }
       ]
@@ -1099,6 +1867,11 @@
   },
   {
     "type": "pchar",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "prodos",
     "named": true,
     "fields": {}
   },
@@ -1175,6 +1948,10 @@
         },
         {
           "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "macro_args",
           "named": true
         },
         {
@@ -1270,6 +2047,10 @@
           "named": true
         },
         {
+          "type": "psop_eom",
+          "named": true
+        },
+        {
           "type": "psop_equ",
           "named": true
         },
@@ -1322,6 +2103,10 @@
           "named": true
         },
         {
+          "type": "psop_mac",
+          "named": true
+        },
+        {
           "type": "psop_mx",
           "named": true
         },
@@ -1339,6 +2124,10 @@
         },
         {
           "type": "psop_pau",
+          "named": true
+        },
+        {
+          "type": "psop_pmc",
           "named": true
         },
         {
@@ -1398,10 +2187,6 @@
           "named": true
         },
         {
-          "type": "schar",
-          "named": true
-        },
-        {
           "type": "unary_aexpr",
           "named": true
         },
@@ -1413,12 +2198,97 @@
     }
   },
   {
+    "type": "psop_adr",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_adrl",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_asc",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_ast",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_chk",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_cyc",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "psop_da",
     "named": true,
     "fields": {}
   },
   {
+    "type": "psop_dat",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_dci",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_ddb",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_dend",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "psop_dfb",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_do",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_ds",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_dsk",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_dum",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_else",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_end",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_ent",
     "named": true,
     "fields": {}
   },
@@ -1433,12 +2303,167 @@
     "fields": {}
   },
   {
+    "type": "psop_err",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_exp",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_ext",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_fin",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_fls",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_hex",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_if",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_inv",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_kbd",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_lst",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_lstdo",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_lup",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_mac",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_mx",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_obj",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_org",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_pag",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_pau",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "psop_pmc",
     "named": true,
     "fields": {}
   },
   {
-    "type": "schar",
+    "type": "psop_put",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_rel",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_rev",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_sav",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_skp",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_str",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_sw",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_tr",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_ttl",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_typ",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_use",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_usr",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_var",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "psop_xc",
     "named": true,
     "fields": {}
   },
@@ -1452,14 +2477,6 @@
       "types": [
         {
           "type": "macro_calli",
-          "named": true
-        },
-        {
-          "type": "macro_callx",
-          "named": true
-        },
-        {
-          "type": "macro_def",
           "named": true
         },
         {
@@ -1537,7 +2554,58 @@
     }
   },
   {
+    "type": "xyc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": " ",
+    "named": false
+  },
+  {
+    "type": "!",
     "named": false
   },
   {
@@ -1569,6 +2637,10 @@
     "named": false
   },
   {
+    "type": "&",
+    "named": false
+  },
+  {
     "type": "'",
     "named": false
   },
@@ -1577,11 +2649,67 @@
     "named": false
   },
   {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "),Y",
+    "named": false
+  },
+  {
+    "type": "),y",
+    "named": false
+  },
+  {
     "type": "*",
     "named": false
   },
   {
+    "type": "+",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": ",S",
+    "named": false
+  },
+  {
+    "type": ",S),Y",
+    "named": false
+  },
+  {
+    "type": ",X",
+    "named": false
+  },
+  {
+    "type": ",X)",
+    "named": false
+  },
+  {
+    "type": ",Y",
+    "named": false
+  },
+  {
+    "type": ",s",
+    "named": false
+  },
+  {
+    "type": ",s),y",
+    "named": false
+  },
+  {
+    "type": ",x",
+    "named": false
+  },
+  {
+    "type": ",x)",
+    "named": false
+  },
+  {
+    "type": ",y",
     "named": false
   },
   {
@@ -1597,7 +2725,55 @@
     "named": false
   },
   {
+    "type": "0",
+    "named": false
+  },
+  {
+    "type": "1",
+    "named": false
+  },
+  {
+    "type": "2",
+    "named": false
+  },
+  {
+    "type": "3",
+    "named": false
+  },
+  {
+    "type": "4",
+    "named": false
+  },
+  {
+    "type": "5",
+    "named": false
+  },
+  {
+    "type": "6",
+    "named": false
+  },
+  {
+    "type": "7",
+    "named": false
+  },
+  {
+    "type": "8",
+    "named": false
+  },
+  {
+    "type": "9",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
     "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
     "named": false
   },
   {
@@ -1609,7 +2785,51 @@
     "named": false
   },
   {
+    "type": ">",
+    "named": false
+  },
+  {
     "type": ">>>",
+    "named": false
+  },
+  {
+    "type": "?",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "A",
+    "named": false
+  },
+  {
+    "type": "ADC",
+    "named": false
+  },
+  {
+    "type": "ADR",
+    "named": false
+  },
+  {
+    "type": "ADRL",
+    "named": false
+  },
+  {
+    "type": "AND",
+    "named": false
+  },
+  {
+    "type": "ASC",
+    "named": false
+  },
+  {
+    "type": "ASL",
+    "named": false
+  },
+  {
+    "type": "AST",
     "named": false
   },
   {
@@ -1617,7 +2837,119 @@
     "named": false
   },
   {
+    "type": "B",
+    "named": false
+  },
+  {
+    "type": "BCC",
+    "named": false
+  },
+  {
+    "type": "BCS",
+    "named": false
+  },
+  {
+    "type": "BEQ",
+    "named": false
+  },
+  {
+    "type": "BGE",
+    "named": false
+  },
+  {
+    "type": "BIT",
+    "named": false
+  },
+  {
+    "type": "BLT",
+    "named": false
+  },
+  {
+    "type": "BMI",
+    "named": false
+  },
+  {
+    "type": "BNE",
+    "named": false
+  },
+  {
+    "type": "BPL",
+    "named": false
+  },
+  {
+    "type": "BRA",
+    "named": false
+  },
+  {
+    "type": "BRK",
+    "named": false
+  },
+  {
+    "type": "BRL",
+    "named": false
+  },
+  {
+    "type": "BVC",
+    "named": false
+  },
+  {
+    "type": "BVS",
+    "named": false
+  },
+  {
+    "type": "C",
+    "named": false
+  },
+  {
+    "type": "CHK",
+    "named": false
+  },
+  {
+    "type": "CLC",
+    "named": false
+  },
+  {
+    "type": "CLD",
+    "named": false
+  },
+  {
+    "type": "CLI",
+    "named": false
+  },
+  {
+    "type": "CLV",
+    "named": false
+  },
+  {
+    "type": "CMP",
+    "named": false
+  },
+  {
+    "type": "COP",
+    "named": false
+  },
+  {
+    "type": "CPX",
+    "named": false
+  },
+  {
+    "type": "CPY",
+    "named": false
+  },
+  {
+    "type": "CYC",
+    "named": false
+  },
+  {
+    "type": "D",
+    "named": false
+  },
+  {
     "type": "DA",
+    "named": false
+  },
+  {
+    "type": "DAT",
     "named": false
   },
   {
@@ -1625,7 +2957,47 @@
     "named": false
   },
   {
+    "type": "DCI",
+    "named": false
+  },
+  {
+    "type": "DDB",
+    "named": false
+  },
+  {
+    "type": "DEC",
+    "named": false
+  },
+  {
+    "type": "DEND",
+    "named": false
+  },
+  {
+    "type": "DEX",
+    "named": false
+  },
+  {
+    "type": "DEY",
+    "named": false
+  },
+  {
     "type": "DFB",
+    "named": false
+  },
+  {
+    "type": "DO",
+    "named": false
+  },
+  {
+    "type": "DS",
+    "named": false
+  },
+  {
+    "type": "DSK",
+    "named": false
+  },
+  {
+    "type": "DUM",
     "named": false
   },
   {
@@ -1633,11 +3005,187 @@
     "named": false
   },
   {
+    "type": "E",
+    "named": false
+  },
+  {
+    "type": "ELSE",
+    "named": false
+  },
+  {
+    "type": "END",
+    "named": false
+  },
+  {
+    "type": "ENT",
+    "named": false
+  },
+  {
     "type": "EOM",
     "named": false
   },
   {
+    "type": "EOR",
+    "named": false
+  },
+  {
     "type": "EQU",
+    "named": false
+  },
+  {
+    "type": "ERR",
+    "named": false
+  },
+  {
+    "type": "EXP",
+    "named": false
+  },
+  {
+    "type": "EXT",
+    "named": false
+  },
+  {
+    "type": "F",
+    "named": false
+  },
+  {
+    "type": "FIN",
+    "named": false
+  },
+  {
+    "type": "FLS",
+    "named": false
+  },
+  {
+    "type": "G",
+    "named": false
+  },
+  {
+    "type": "H",
+    "named": false
+  },
+  {
+    "type": "HEX",
+    "named": false
+  },
+  {
+    "type": "I",
+    "named": false
+  },
+  {
+    "type": "IF",
+    "named": false
+  },
+  {
+    "type": "INC",
+    "named": false
+  },
+  {
+    "type": "INV",
+    "named": false
+  },
+  {
+    "type": "INX",
+    "named": false
+  },
+  {
+    "type": "INY",
+    "named": false
+  },
+  {
+    "type": "J",
+    "named": false
+  },
+  {
+    "type": "JML",
+    "named": false
+  },
+  {
+    "type": "JMP",
+    "named": false
+  },
+  {
+    "type": "JSL",
+    "named": false
+  },
+  {
+    "type": "JSR",
+    "named": false
+  },
+  {
+    "type": "K",
+    "named": false
+  },
+  {
+    "type": "KBD",
+    "named": false
+  },
+  {
+    "type": "L",
+    "named": false
+  },
+  {
+    "type": "LDA",
+    "named": false
+  },
+  {
+    "type": "LDX",
+    "named": false
+  },
+  {
+    "type": "LDY",
+    "named": false
+  },
+  {
+    "type": "LSR",
+    "named": false
+  },
+  {
+    "type": "LST",
+    "named": false
+  },
+  {
+    "type": "LSTDO",
+    "named": false
+  },
+  {
+    "type": "LUP",
+    "named": false
+  },
+  {
+    "type": "M",
+    "named": false
+  },
+  {
+    "type": "MAC",
+    "named": false
+  },
+  {
+    "type": "MVN",
+    "named": false
+  },
+  {
+    "type": "MVP",
+    "named": false
+  },
+  {
+    "type": "MX",
+    "named": false
+  },
+  {
+    "type": "N",
+    "named": false
+  },
+  {
+    "type": "NOP",
+    "named": false
+  },
+  {
+    "type": "O",
+    "named": false
+  },
+  {
+    "type": "OBJ",
     "named": false
   },
   {
@@ -1653,7 +3201,343 @@
     "named": false
   },
   {
+    "type": "ORA",
+    "named": false
+  },
+  {
+    "type": "ORG",
+    "named": false
+  },
+  {
+    "type": "P",
+    "named": false
+  },
+  {
+    "type": "PAG",
+    "named": false
+  },
+  {
+    "type": "PAU",
+    "named": false
+  },
+  {
+    "type": "PEA",
+    "named": false
+  },
+  {
+    "type": "PEI",
+    "named": false
+  },
+  {
+    "type": "PER",
+    "named": false
+  },
+  {
+    "type": "PHA",
+    "named": false
+  },
+  {
+    "type": "PHB",
+    "named": false
+  },
+  {
+    "type": "PHD",
+    "named": false
+  },
+  {
+    "type": "PHK",
+    "named": false
+  },
+  {
+    "type": "PHP",
+    "named": false
+  },
+  {
+    "type": "PHX",
+    "named": false
+  },
+  {
+    "type": "PHY",
+    "named": false
+  },
+  {
+    "type": "PLA",
+    "named": false
+  },
+  {
+    "type": "PLB",
+    "named": false
+  },
+  {
+    "type": "PLD",
+    "named": false
+  },
+  {
+    "type": "PLP",
+    "named": false
+  },
+  {
+    "type": "PLX",
+    "named": false
+  },
+  {
+    "type": "PLY",
+    "named": false
+  },
+  {
     "type": "PMC",
+    "named": false
+  },
+  {
+    "type": "PUT",
+    "named": false
+  },
+  {
+    "type": "Q",
+    "named": false
+  },
+  {
+    "type": "R",
+    "named": false
+  },
+  {
+    "type": "REL",
+    "named": false
+  },
+  {
+    "type": "REP",
+    "named": false
+  },
+  {
+    "type": "REV",
+    "named": false
+  },
+  {
+    "type": "ROL",
+    "named": false
+  },
+  {
+    "type": "ROR",
+    "named": false
+  },
+  {
+    "type": "RTI",
+    "named": false
+  },
+  {
+    "type": "RTL",
+    "named": false
+  },
+  {
+    "type": "RTS",
+    "named": false
+  },
+  {
+    "type": "S",
+    "named": false
+  },
+  {
+    "type": "SAV",
+    "named": false
+  },
+  {
+    "type": "SBC",
+    "named": false
+  },
+  {
+    "type": "SEC",
+    "named": false
+  },
+  {
+    "type": "SED",
+    "named": false
+  },
+  {
+    "type": "SEI",
+    "named": false
+  },
+  {
+    "type": "SEP",
+    "named": false
+  },
+  {
+    "type": "SKP",
+    "named": false
+  },
+  {
+    "type": "STA",
+    "named": false
+  },
+  {
+    "type": "STR",
+    "named": false
+  },
+  {
+    "type": "STX",
+    "named": false
+  },
+  {
+    "type": "STY",
+    "named": false
+  },
+  {
+    "type": "STZ",
+    "named": false
+  },
+  {
+    "type": "SW",
+    "named": false
+  },
+  {
+    "type": "SWA",
+    "named": false
+  },
+  {
+    "type": "T",
+    "named": false
+  },
+  {
+    "type": "TAD",
+    "named": false
+  },
+  {
+    "type": "TAS",
+    "named": false
+  },
+  {
+    "type": "TAX",
+    "named": false
+  },
+  {
+    "type": "TAY",
+    "named": false
+  },
+  {
+    "type": "TCD",
+    "named": false
+  },
+  {
+    "type": "TCS",
+    "named": false
+  },
+  {
+    "type": "TDA",
+    "named": false
+  },
+  {
+    "type": "TDC",
+    "named": false
+  },
+  {
+    "type": "TR",
+    "named": false
+  },
+  {
+    "type": "TRB",
+    "named": false
+  },
+  {
+    "type": "TSA",
+    "named": false
+  },
+  {
+    "type": "TSB",
+    "named": false
+  },
+  {
+    "type": "TSC",
+    "named": false
+  },
+  {
+    "type": "TSX",
+    "named": false
+  },
+  {
+    "type": "TTL",
+    "named": false
+  },
+  {
+    "type": "TXA",
+    "named": false
+  },
+  {
+    "type": "TXS",
+    "named": false
+  },
+  {
+    "type": "TXY",
+    "named": false
+  },
+  {
+    "type": "TYA",
+    "named": false
+  },
+  {
+    "type": "TYP",
+    "named": false
+  },
+  {
+    "type": "TYX",
+    "named": false
+  },
+  {
+    "type": "U",
+    "named": false
+  },
+  {
+    "type": "USE",
+    "named": false
+  },
+  {
+    "type": "USR",
+    "named": false
+  },
+  {
+    "type": "V",
+    "named": false
+  },
+  {
+    "type": "VAR",
+    "named": false
+  },
+  {
+    "type": "W",
+    "named": false
+  },
+  {
+    "type": "WAI",
+    "named": false
+  },
+  {
+    "type": "WDM",
+    "named": false
+  },
+  {
+    "type": "X",
+    "named": false
+  },
+  {
+    "type": "XBA",
+    "named": false
+  },
+  {
+    "type": "XC",
+    "named": false
+  },
+  {
+    "type": "XCE",
+    "named": false
+  },
+  {
+    "type": "Y",
+    "named": false
+  },
+  {
+    "type": "Z",
+    "named": false
+  },
+  {
+    "type": "[",
     "named": false
   },
   {
@@ -1661,511 +3545,783 @@
     "named": false
   },
   {
-    "type": "eop_and",
-    "named": true
+    "type": "]",
+    "named": false
   },
   {
-    "type": "eop_plus",
-    "named": true
+    "type": "],Y",
+    "named": false
   },
   {
-    "type": "eop_xor",
-    "named": true
+    "type": "],y",
+    "named": false
   },
   {
-    "type": "force",
-    "named": true
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "_",
+    "named": false
+  },
+  {
+    "type": "`",
+    "named": false
+  },
+  {
+    "type": "a",
+    "named": false
+  },
+  {
+    "type": "adc",
+    "named": false
+  },
+  {
+    "type": "adr",
+    "named": false
+  },
+  {
+    "type": "adrl",
+    "named": false
+  },
+  {
+    "type": "and",
+    "named": false
+  },
+  {
+    "type": "asc",
+    "named": false
+  },
+  {
+    "type": "asl",
+    "named": false
+  },
+  {
+    "type": "ast",
+    "named": false
+  },
+  {
+    "type": "b",
+    "named": false
+  },
+  {
+    "type": "bcc",
+    "named": false
+  },
+  {
+    "type": "bcs",
+    "named": false
+  },
+  {
+    "type": "beq",
+    "named": false
+  },
+  {
+    "type": "bge",
+    "named": false
+  },
+  {
+    "type": "bit",
+    "named": false
+  },
+  {
+    "type": "blt",
+    "named": false
+  },
+  {
+    "type": "bmi",
+    "named": false
+  },
+  {
+    "type": "bne",
+    "named": false
+  },
+  {
+    "type": "bpl",
+    "named": false
+  },
+  {
+    "type": "bra",
+    "named": false
+  },
+  {
+    "type": "brk",
+    "named": false
+  },
+  {
+    "type": "brl",
+    "named": false
+  },
+  {
+    "type": "bvc",
+    "named": false
+  },
+  {
+    "type": "bvs",
+    "named": false
+  },
+  {
+    "type": "c",
+    "named": false
+  },
+  {
+    "type": "chk",
+    "named": false
+  },
+  {
+    "type": "clc",
+    "named": false
+  },
+  {
+    "type": "cld",
+    "named": false
+  },
+  {
+    "type": "cli",
+    "named": false
+  },
+  {
+    "type": "clv",
+    "named": false
+  },
+  {
+    "type": "cmp",
+    "named": false
+  },
+  {
+    "type": "cop",
+    "named": false
+  },
+  {
+    "type": "cpx",
+    "named": false
+  },
+  {
+    "type": "cpy",
+    "named": false
+  },
+  {
+    "type": "cyc",
+    "named": false
+  },
+  {
+    "type": "d",
+    "named": false
+  },
+  {
+    "type": "da",
+    "named": false
+  },
+  {
+    "type": "dat",
+    "named": false
+  },
+  {
+    "type": "db",
+    "named": false
+  },
+  {
+    "type": "dci",
+    "named": false
+  },
+  {
+    "type": "ddb",
+    "named": false
+  },
+  {
+    "type": "dec",
+    "named": false
+  },
+  {
+    "type": "dend",
+    "named": false
+  },
+  {
+    "type": "dex",
+    "named": false
+  },
+  {
+    "type": "dey",
+    "named": false
+  },
+  {
+    "type": "dfb",
+    "named": false
+  },
+  {
+    "type": "do",
+    "named": false
+  },
+  {
+    "type": "ds",
+    "named": false
+  },
+  {
+    "type": "dsk",
+    "named": false
+  },
+  {
+    "type": "dum",
+    "named": false
+  },
+  {
+    "type": "dw",
+    "named": false
+  },
+  {
+    "type": "e",
+    "named": false
+  },
+  {
+    "type": "else",
+    "named": false
+  },
+  {
+    "type": "end",
+    "named": false
+  },
+  {
+    "type": "ent",
+    "named": false
+  },
+  {
+    "type": "eom",
+    "named": false
+  },
+  {
+    "type": "eor",
+    "named": false
+  },
+  {
+    "type": "equ",
+    "named": false
+  },
+  {
+    "type": "err",
+    "named": false
+  },
+  {
+    "type": "exp",
+    "named": false
+  },
+  {
+    "type": "ext",
+    "named": false
+  },
+  {
+    "type": "f",
+    "named": false
+  },
+  {
+    "type": "fin",
+    "named": false
+  },
+  {
+    "type": "fls",
+    "named": false
+  },
+  {
+    "type": "g",
+    "named": false
   },
   {
     "type": "global_label",
     "named": true
   },
   {
+    "type": "h",
+    "named": false
+  },
+  {
+    "type": "hex",
+    "named": false
+  },
+  {
     "type": "hex_byte",
     "named": true
+  },
+  {
+    "type": "i",
+    "named": false
+  },
+  {
+    "type": "if",
+    "named": false
+  },
+  {
+    "type": "inc",
+    "named": false
+  },
+  {
+    "type": "inv",
+    "named": false
+  },
+  {
+    "type": "inx",
+    "named": false
+  },
+  {
+    "type": "iny",
+    "named": false
+  },
+  {
+    "type": "j",
+    "named": false
+  },
+  {
+    "type": "jml",
+    "named": false
+  },
+  {
+    "type": "jmp",
+    "named": false
+  },
+  {
+    "type": "jsl",
+    "named": false
+  },
+  {
+    "type": "jsr",
+    "named": false
+  },
+  {
+    "type": "k",
+    "named": false
+  },
+  {
+    "type": "kbd",
+    "named": false
+  },
+  {
+    "type": "l",
+    "named": false
+  },
+  {
+    "type": "lda",
+    "named": false
+  },
+  {
+    "type": "ldx",
+    "named": false
+  },
+  {
+    "type": "ldy",
+    "named": false
   },
   {
     "type": "local_label",
     "named": true
   },
   {
-    "type": "mode_iclose",
-    "named": true
+    "type": "lsr",
+    "named": false
   },
   {
-    "type": "mode_iix",
-    "named": true
+    "type": "lst",
+    "named": false
   },
   {
-    "type": "mode_iy",
-    "named": true
+    "type": "lstdo",
+    "named": false
   },
   {
-    "type": "mode_x",
-    "named": true
+    "type": "lup",
+    "named": false
   },
   {
-    "type": "mode_y",
-    "named": true
+    "type": "m",
+    "named": false
   },
   {
-    "type": "op_adc",
-    "named": true
+    "type": "mac",
+    "named": false
   },
   {
-    "type": "op_and",
-    "named": true
+    "type": "mvn",
+    "named": false
   },
   {
-    "type": "op_asl",
-    "named": true
+    "type": "mvp",
+    "named": false
   },
   {
-    "type": "op_bcc",
-    "named": true
+    "type": "mx",
+    "named": false
   },
   {
-    "type": "op_bcs",
-    "named": true
+    "type": "n",
+    "named": false
   },
   {
-    "type": "op_beq",
-    "named": true
+    "type": "nop",
+    "named": false
   },
   {
-    "type": "op_bit",
-    "named": true
+    "type": "o",
+    "named": false
   },
   {
-    "type": "op_bmi",
-    "named": true
+    "type": "obj",
+    "named": false
   },
   {
-    "type": "op_bne",
-    "named": true
+    "type": "ora",
+    "named": false
   },
   {
-    "type": "op_bpl",
-    "named": true
+    "type": "org",
+    "named": false
   },
   {
-    "type": "op_bra",
-    "named": true
+    "type": "p",
+    "named": false
   },
   {
-    "type": "op_brk",
-    "named": true
+    "type": "pag",
+    "named": false
   },
   {
-    "type": "op_bvc",
-    "named": true
+    "type": "pau",
+    "named": false
   },
   {
-    "type": "op_bvs",
-    "named": true
+    "type": "pea",
+    "named": false
   },
   {
-    "type": "op_clc",
-    "named": true
+    "type": "pei",
+    "named": false
   },
   {
-    "type": "op_cld",
-    "named": true
+    "type": "per",
+    "named": false
   },
   {
-    "type": "op_cli",
-    "named": true
+    "type": "pha",
+    "named": false
   },
   {
-    "type": "op_clv",
-    "named": true
+    "type": "phb",
+    "named": false
   },
   {
-    "type": "op_cmp",
-    "named": true
+    "type": "phd",
+    "named": false
   },
   {
-    "type": "op_cpx",
-    "named": true
+    "type": "phk",
+    "named": false
   },
   {
-    "type": "op_cpy",
-    "named": true
+    "type": "php",
+    "named": false
   },
   {
-    "type": "op_dec",
-    "named": true
+    "type": "phx",
+    "named": false
   },
   {
-    "type": "op_dex",
-    "named": true
+    "type": "phy",
+    "named": false
   },
   {
-    "type": "op_dey",
-    "named": true
+    "type": "pla",
+    "named": false
   },
   {
-    "type": "op_eor",
-    "named": true
+    "type": "plb",
+    "named": false
   },
   {
-    "type": "op_inc",
-    "named": true
+    "type": "pld",
+    "named": false
   },
   {
-    "type": "op_inx",
-    "named": true
+    "type": "plp",
+    "named": false
   },
   {
-    "type": "op_iny",
-    "named": true
+    "type": "plx",
+    "named": false
   },
   {
-    "type": "op_jmp",
-    "named": true
+    "type": "ply",
+    "named": false
   },
   {
-    "type": "op_jsr",
-    "named": true
-  },
-  {
-    "type": "op_lda",
-    "named": true
-  },
-  {
-    "type": "op_ldx",
-    "named": true
-  },
-  {
-    "type": "op_ldy",
-    "named": true
-  },
-  {
-    "type": "op_lsr",
-    "named": true
-  },
-  {
-    "type": "op_nop",
-    "named": true
-  },
-  {
-    "type": "op_ora",
-    "named": true
-  },
-  {
-    "type": "op_pha",
-    "named": true
-  },
-  {
-    "type": "op_php",
-    "named": true
-  },
-  {
-    "type": "op_phx",
-    "named": true
-  },
-  {
-    "type": "op_phy",
-    "named": true
-  },
-  {
-    "type": "op_pla",
-    "named": true
-  },
-  {
-    "type": "op_plp",
-    "named": true
-  },
-  {
-    "type": "op_plx",
-    "named": true
-  },
-  {
-    "type": "op_ply",
-    "named": true
-  },
-  {
-    "type": "op_rol",
-    "named": true
-  },
-  {
-    "type": "op_ror",
-    "named": true
-  },
-  {
-    "type": "op_rti",
-    "named": true
-  },
-  {
-    "type": "op_rts",
-    "named": true
-  },
-  {
-    "type": "op_sbc",
-    "named": true
-  },
-  {
-    "type": "op_sec",
-    "named": true
-  },
-  {
-    "type": "op_sed",
-    "named": true
-  },
-  {
-    "type": "op_sei",
-    "named": true
-  },
-  {
-    "type": "op_sta",
-    "named": true
-  },
-  {
-    "type": "op_stx",
-    "named": true
-  },
-  {
-    "type": "op_sty",
-    "named": true
-  },
-  {
-    "type": "op_stz",
-    "named": true
-  },
-  {
-    "type": "op_tax",
-    "named": true
-  },
-  {
-    "type": "op_tay",
-    "named": true
-  },
-  {
-    "type": "op_trb",
-    "named": true
-  },
-  {
-    "type": "op_tsb",
-    "named": true
-  },
-  {
-    "type": "op_tsx",
-    "named": true
-  },
-  {
-    "type": "op_txa",
-    "named": true
-  },
-  {
-    "type": "op_txs",
-    "named": true
-  },
-  {
-    "type": "op_tya",
-    "named": true
-  },
-  {
-    "type": "psop_adr",
-    "named": true
-  },
-  {
-    "type": "psop_adrl",
-    "named": true
-  },
-  {
-    "type": "psop_asc",
-    "named": true
-  },
-  {
-    "type": "psop_ast",
-    "named": true
-  },
-  {
-    "type": "psop_chk",
-    "named": true
-  },
-  {
-    "type": "psop_cyc",
-    "named": true
-  },
-  {
-    "type": "psop_dat",
-    "named": true
-  },
-  {
-    "type": "psop_dci",
-    "named": true
-  },
-  {
-    "type": "psop_ddb",
-    "named": true
-  },
-  {
-    "type": "psop_dend",
-    "named": true
-  },
-  {
-    "type": "psop_do",
-    "named": true
-  },
-  {
-    "type": "psop_ds",
-    "named": true
-  },
-  {
-    "type": "psop_dsk",
-    "named": true
-  },
-  {
-    "type": "psop_dum",
-    "named": true
-  },
-  {
-    "type": "psop_else",
-    "named": true
-  },
-  {
-    "type": "psop_end",
-    "named": true
+    "type": "pmc",
+    "named": false
   },
   {
     "type": "psop_end_lup",
     "named": true
   },
   {
-    "type": "psop_ent",
-    "named": true
+    "type": "put",
+    "named": false
   },
   {
-    "type": "psop_err",
-    "named": true
+    "type": "q",
+    "named": false
   },
   {
-    "type": "psop_exp",
-    "named": true
+    "type": "r",
+    "named": false
   },
   {
-    "type": "psop_ext",
-    "named": true
+    "type": "rel",
+    "named": false
   },
   {
-    "type": "psop_fin",
-    "named": true
+    "type": "rep",
+    "named": false
   },
   {
-    "type": "psop_fls",
-    "named": true
+    "type": "rev",
+    "named": false
   },
   {
-    "type": "psop_hex",
-    "named": true
+    "type": "rol",
+    "named": false
   },
   {
-    "type": "psop_if",
-    "named": true
+    "type": "ror",
+    "named": false
   },
   {
-    "type": "psop_inv",
-    "named": true
+    "type": "rti",
+    "named": false
   },
   {
-    "type": "psop_kbd",
-    "named": true
+    "type": "rtl",
+    "named": false
   },
   {
-    "type": "psop_lst",
-    "named": true
+    "type": "rts",
+    "named": false
   },
   {
-    "type": "psop_lstdo",
-    "named": true
+    "type": "s",
+    "named": false
   },
   {
-    "type": "psop_lup",
-    "named": true
+    "type": "sav",
+    "named": false
   },
   {
-    "type": "psop_mac",
-    "named": true
+    "type": "sbc",
+    "named": false
   },
   {
-    "type": "psop_mx",
-    "named": true
+    "type": "sec",
+    "named": false
   },
   {
-    "type": "psop_obj",
-    "named": true
+    "type": "sed",
+    "named": false
   },
   {
-    "type": "psop_org",
-    "named": true
+    "type": "sei",
+    "named": false
   },
   {
-    "type": "psop_pag",
-    "named": true
+    "type": "sep",
+    "named": false
   },
   {
-    "type": "psop_pau",
-    "named": true
+    "type": "skp",
+    "named": false
   },
   {
-    "type": "psop_put",
-    "named": true
+    "type": "sta",
+    "named": false
   },
   {
-    "type": "psop_rel",
-    "named": true
+    "type": "str",
+    "named": false
   },
   {
-    "type": "psop_rev",
-    "named": true
+    "type": "stx",
+    "named": false
   },
   {
-    "type": "psop_sav",
-    "named": true
+    "type": "sty",
+    "named": false
   },
   {
-    "type": "psop_skp",
-    "named": true
+    "type": "stz",
+    "named": false
   },
   {
-    "type": "psop_str",
-    "named": true
+    "type": "sw",
+    "named": false
   },
   {
-    "type": "psop_sw",
-    "named": true
+    "type": "swa",
+    "named": false
   },
   {
-    "type": "psop_tr",
-    "named": true
+    "type": "t",
+    "named": false
   },
   {
-    "type": "psop_ttl",
-    "named": true
+    "type": "tad",
+    "named": false
   },
   {
-    "type": "psop_typ",
-    "named": true
+    "type": "tas",
+    "named": false
   },
   {
-    "type": "psop_use",
-    "named": true
+    "type": "tax",
+    "named": false
   },
   {
-    "type": "psop_usr",
-    "named": true
+    "type": "tay",
+    "named": false
   },
   {
-    "type": "psop_var",
-    "named": true
+    "type": "tcd",
+    "named": false
   },
   {
-    "type": "psop_xc",
-    "named": true
+    "type": "tcs",
+    "named": false
+  },
+  {
+    "type": "tda",
+    "named": false
+  },
+  {
+    "type": "tdc",
+    "named": false
+  },
+  {
+    "type": "tr",
+    "named": false
+  },
+  {
+    "type": "trb",
+    "named": false
+  },
+  {
+    "type": "tsa",
+    "named": false
+  },
+  {
+    "type": "tsb",
+    "named": false
+  },
+  {
+    "type": "tsc",
+    "named": false
+  },
+  {
+    "type": "tsx",
+    "named": false
+  },
+  {
+    "type": "ttl",
+    "named": false
+  },
+  {
+    "type": "txa",
+    "named": false
+  },
+  {
+    "type": "txs",
+    "named": false
+  },
+  {
+    "type": "txy",
+    "named": false
+  },
+  {
+    "type": "tya",
+    "named": false
+  },
+  {
+    "type": "typ",
+    "named": false
+  },
+  {
+    "type": "tyx",
+    "named": false
+  },
+  {
+    "type": "u",
+    "named": false
+  },
+  {
+    "type": "use",
+    "named": false
+  },
+  {
+    "type": "usr",
+    "named": false
+  },
+  {
+    "type": "v",
+    "named": false
+  },
+  {
+    "type": "var",
+    "named": false
   },
   {
     "type": "var_label",
     "named": true
+  },
+  {
+    "type": "w",
+    "named": false
+  },
+  {
+    "type": "wai",
+    "named": false
+  },
+  {
+    "type": "wdm",
+    "named": false
+  },
+  {
+    "type": "x",
+    "named": false
+  },
+  {
+    "type": "xba",
+    "named": false
+  },
+  {
+    "type": "xc",
+    "named": false
+  },
+  {
+    "type": "xce",
+    "named": false
+  },
+  {
+    "type": "y",
+    "named": false
+  },
+  {
+    "type": "z",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  },
+  {
+    "type": "~",
+    "named": false
   }
 ]

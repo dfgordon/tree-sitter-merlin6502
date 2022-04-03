@@ -23,3 +23,33 @@ expression immediate
 	(operation
 		(op_lda)
 		(imm (imm_prefix) (binary_aexpr (global_label) (eop_plus) (number (decimal))))))
+
+===================
+bare move
+===================
+
+ MVP $10,$20
+
+---
+
+ (source_file
+ 	(operation
+	 	(op_mvp)
+		(xyc (number (hexadecimal)) (number (hexadecimal)))))
+
+===================
+stack
+===================
+
+ LDA (57,S),Y
+ ORA MYLAB,S
+
+---
+
+ (source_file
+ 	(operation
+	 	(op_lda)
+		(iaddr_is_y (mode_iopen) (number (decimal)) (mode_is_y) ))
+	(operation
+	 	(op_ora)
+		(addr_s (global_label) (mode_s))))

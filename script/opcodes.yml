@@ -1,4 +1,5 @@
 adc:
+  alt: []
   brief: add with carry
   desc: add operand to accumulator with carry bit
   modes:
@@ -6,60 +7,101 @@ adc:
     code: 0x69
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0x6d
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x65
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp,x)
     code: 0x61
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp),y
     code: 0x71
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x75
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x7d
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,y
     code: 0x79
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp)
     code: 0x72
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
+  - addr_mnemonic: d,s
+    code: 0x63
+    cycles: 4
+    processors:
+    - '65c816'
+  - addr_mnemonic: (d,s),y
+    code: 0x73
+    cycles: 7
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d]"
+    code: 0x67
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d],y"
+    code: 0x77
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl
+    code: 0x6f
+    cycles: 5
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl,x
+    code: 0x7f
+    cycles: 5
+    processors:
+    - '65c816'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nvzc
 and:
+  alt: []
   brief: bitwise and
   desc: and operand with accumulator
   modes:
@@ -67,60 +109,101 @@ and:
     code: 0x29
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0x2d
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x25
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp,x)
     code: 0x21
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp),y
     code: 0x31
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x35
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x3d
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,y
     code: 0x39
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp)
     code: 0x32
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
+  - addr_mnemonic: d,s
+    code: 0x23
+    cycles: 4
+    processors:
+    - '65c816'
+  - addr_mnemonic: (d,s),y
+    code: 0x33
+    cycles: 7
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d]"
+    code: 0x27
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d],y"
+    code: 0x37
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl
+    code: 0x2f
+    cycles: 5
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl,x
+    code: 0x3f
+    cycles: 5
+    processors:
+    - '65c816'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 asl:
+  alt: []
   brief: arithmetic shift left
   desc: shift bits left with incoming zero and outgoing carry bit
   modes:
@@ -128,37 +211,45 @@ asl:
     code: 0xe
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x6
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: accum
     code: 0xa
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x16
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x1e
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nzc
 bcc:
+  alt:
+  - blt
   brief: branch on carry clear
   desc: branch on carry clear
   modes:
@@ -166,13 +257,17 @@ bcc:
     code: 0x90
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 bcs:
+  alt:
+  - bge
   brief: branch on carry set
   desc: branch on carry set
   modes:
@@ -180,13 +275,16 @@ bcs:
     code: 0xb0
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 beq:
+  alt: []
   brief: branch on zero
   desc: branch if the Z status bit is set
   modes:
@@ -194,13 +292,16 @@ beq:
     code: 0xf0
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 bit:
+  alt: []
   brief: bit comparison
   desc: set status by bitwise AND of accumulator with memory, without changing accumulator
   modes:
@@ -208,34 +309,41 @@ bit:
     code: 0x89
     cycles: 2
     processors:
+    - '65c816'
     - '65c02'
   - addr_mnemonic: abs
     code: 0x2c
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x24
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x34
     cycles: 4
     processors:
+    - '65c816'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x3c
     cycles: 4
     processors:
+    - '65c816'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: m7m6z
 bmi:
+  alt: []
   brief: branch on minus
   desc: branch if the N status bit is set
   modes:
@@ -243,13 +351,16 @@ bmi:
     code: 0x30
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 bne:
+  alt: []
   brief: branch on not zero
   desc: branch if the Z status bit is not set
   modes:
@@ -257,13 +368,16 @@ bne:
     code: 0xd0
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 bpl:
+  alt: []
   brief: branch on plus
   desc: branch if the N status bit is not set
   modes:
@@ -271,13 +385,16 @@ bpl:
     code: 0x10
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 bra:
+  alt: []
   brief: branch always
   desc: branch always
   modes:
@@ -285,11 +402,14 @@ bra:
     code: 0x80
     cycles: 2
     processors:
+    - '65c816'
     - '65c02'
   processors:
+  - '65c816'
   - '65c02'
   status: I
 brk:
+  alt: []
   brief: branch on zero
   desc: branch if the Z status bit is set
   modes:
@@ -297,13 +417,16 @@ brk:
     code: 0x0
     cycles: 7
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: bi
 bvc:
+  alt: []
   brief: branch on overflow clear
   desc: branch if the V status bit is not set
   modes:
@@ -311,13 +434,16 @@ bvc:
     code: 0x50
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 bvs:
+  alt: []
   brief: branch on overflow
   desc: branch if the V status bit is set
   modes:
@@ -325,13 +451,16 @@ bvs:
     code: 0x70
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 clc:
+  alt: []
   brief: clear carry
   desc: clear carry bit, C
   modes:
@@ -339,13 +468,16 @@ clc:
     code: 0x18
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: C
 cld:
+  alt: []
   brief: clear decimal
   desc: clear decimal bit, D
   modes:
@@ -353,13 +485,16 @@ cld:
     code: 0xd8
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: D
 cli:
+  alt: []
   brief: clear interrupt
   desc: clear interrupt disable status, I
   modes:
@@ -367,13 +502,16 @@ cli:
     code: 0x58
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: I
 clv:
+  alt: []
   brief: clear overflow
   desc: clear overflow status flag, V
   modes:
@@ -381,13 +519,16 @@ clv:
     code: 0xb8
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: V
 cmp:
+  alt: []
   brief: compare accumulator
   desc: compare accumulator with memory and set status bits
   modes:
@@ -395,60 +536,101 @@ cmp:
     code: 0xc9
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0xcd
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0xc5
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp,x)
     code: 0xc1
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp),y
     code: 0xd1
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0xd5
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0xdd
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,y
     code: 0xd9
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp)
     code: 0xd2
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
+  - addr_mnemonic: d,s
+    code: 0xc3
+    cycles: 4
+    processors:
+    - '65c816'
+  - addr_mnemonic: (d,s),y
+    code: 0xd3
+    cycles: 7
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d]"
+    code: 0xc7
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d],y"
+    code: 0xd7
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl
+    code: 0xcf
+    cycles: 5
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl,x
+    code: 0xdf
+    cycles: 5
+    processors:
+    - '65c816'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nzc
 cpx:
+  alt: []
   brief: compare X index
   desc: compare X index with memory and set status bits
   modes:
@@ -456,25 +638,30 @@ cpx:
     code: 0xe0
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0xec
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0xe4
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nzc
 cpy:
+  alt: []
   brief: compare Y index
   desc: compare Y index with memory and set status bits
   modes:
@@ -482,25 +669,30 @@ cpy:
     code: 0xc0
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0xcc
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0xc4
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nzc
 dec:
+  alt: []
   brief: decrement
   desc: decrement memory or accumulator (65c02) by one
   modes:
@@ -508,36 +700,43 @@ dec:
     code: 0xce
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0xc6
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: accum
     code: 0x3a
     cycles: 2
     processors:
+    - '65c816'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0xd6
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0xde
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 dex:
+  alt: []
   brief: decrement X
   desc: decrement X index by one
   modes:
@@ -545,13 +744,16 @@ dex:
     code: 0xca
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 dey:
+  alt: []
   brief: decrement Y
   desc: decrement Y index by one
   modes:
@@ -559,13 +761,16 @@ dey:
     code: 0x88
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 eor:
+  alt: []
   brief: bitwise exclusive or
   desc: exclusive or operand with accumulator
   modes:
@@ -573,60 +778,101 @@ eor:
     code: 0x49
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0x4d
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x45
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp,x)
     code: 0x41
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp),y
     code: 0x51
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x55
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x5d
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,y
     code: 0x59
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp)
     code: 0x52
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
+  - addr_mnemonic: d,s
+    code: 0x43
+    cycles: 4
+    processors:
+    - '65c816'
+  - addr_mnemonic: (d,s),y
+    code: 0x53
+    cycles: 7
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d]"
+    code: 0x47
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d],y"
+    code: 0x57
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl
+    code: 0x4f
+    cycles: 5
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl,x
+    code: 0x5f
+    cycles: 5
+    processors:
+    - '65c816'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 inc:
+  alt: []
   brief: increment
   desc: increment memory or accumulator (65c02) by one
   modes:
@@ -634,36 +880,43 @@ inc:
     code: 0xee
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0xe6
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: accum
     code: 0x1a
     cycles: 2
     processors:
+    - '65c816'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0xf6
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0xfe
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 inx:
+  alt: []
   brief: increment X
   desc: increment X index by one
   modes:
@@ -671,13 +924,16 @@ inx:
     code: 0xe8
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 iny:
+  alt: []
   brief: increment Y
   desc: increment Y index by one
   modes:
@@ -685,13 +941,16 @@ iny:
     code: 0xc8
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 jmp:
+  alt: []
   brief: jump to address
   desc: jump to address
   modes:
@@ -699,24 +958,34 @@ jmp:
     code: 0x4c
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (abs)
     code: 0x6c
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
-  - addr_mnemonic: abs(ind,x)
+  - addr_mnemonic: (abs,x)
     code: 0x7c
     cycles: 6
     processors:
+    - '65c816'
     - '65c02'
+  - addr_mnemonic: absl
+    code: 0x5c
+    cycles: 4
+    processors:
+    - '65c816'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 jsr:
+  alt: []
   brief: jump to subroutine
   desc: jump to subroutine
   modes:
@@ -724,13 +993,21 @@ jsr:
     code: 0x20
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
+  - addr_mnemonic: (abs,x)
+    code: 0xfc
+    cycles: 8
+    processors:
+    - '65c816'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 lda:
+  alt: []
   brief: load accumulator
   desc: load accumulator
   modes:
@@ -738,60 +1015,101 @@ lda:
     code: 0xa9
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0xad
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0xa5
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp,x)
     code: 0xa1
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp),y
     code: 0xb1
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0xb5
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x8d
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,y
     code: 0xb9
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp)
     code: 0xb2
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
+  - addr_mnemonic: d,s
+    code: 0xa3
+    cycles: 4
+    processors:
+    - '65c816'
+  - addr_mnemonic: (d,s),y
+    code: 0xb3
+    cycles: 7
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d]"
+    code: 0xa7
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d],y"
+    code: 0xb7
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl
+    code: 0xaf
+    cycles: 5
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl,x
+    code: 0xbf
+    cycles: 5
+    processors:
+    - '65c816'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 ldx:
+  alt: []
   brief: load X index
   desc: load X index
   modes:
@@ -799,37 +1117,44 @@ ldx:
     code: 0xa2
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0xae
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0xa6
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,y
     code: 0xb6
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,y
     code: 0xbe
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 ldy:
+  alt: []
   brief: load Y index
   desc: load Y index
   modes:
@@ -837,37 +1162,44 @@ ldy:
     code: 0xa0
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0xac
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0xa4
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0xb4
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0xbc
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 lsr:
+  alt: []
   brief: logical shift right
   desc: shift bits right with incoming zero and outgoing carry bit
   modes:
@@ -875,37 +1207,44 @@ lsr:
     code: 0x4e
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x46
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: accum
     code: 0x4a
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x56
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x5e
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nzc
 nop:
+  alt: []
   brief: no operation
   desc: no operation
   modes:
@@ -913,13 +1252,16 @@ nop:
     code: 0xea
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 ora:
+  alt: []
   brief: bitwise or
   desc: or operand with accumulator
   modes:
@@ -927,60 +1269,101 @@ ora:
     code: 0x9
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0xd
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x5
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp,x)
     code: 0x1
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp),y
     code: 0x11
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x15
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x1d
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,y
     code: 0x19
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp)
     code: 0x12
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
+  - addr_mnemonic: d,s
+    code: 0x03
+    cycles: 4
+    processors:
+    - '65c816'
+  - addr_mnemonic: (d,s),y
+    code: 0x13
+    cycles: 7
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d]"
+    code: 0x07
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d],y"
+    code: 0x17
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl
+    code: 0x0f
+    cycles: 5
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl,x
+    code: 0x1f
+    cycles: 5
+    processors:
+    - '65c816'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 pha:
+  alt: []
   brief: push accumulator
   desc: push accumulator on stack
   modes:
@@ -988,13 +1371,16 @@ pha:
     code: 0x48
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 php:
+  alt: []
   brief: push status
   desc: push processor status on stack
   modes:
@@ -1002,13 +1388,16 @@ php:
     code: 0x8
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 phx:
+  alt: []
   brief: push X index
   desc: push X index on stack
   modes:
@@ -1016,11 +1405,14 @@ phx:
     code: 0xda
     cycles: 3
     processors:
+    - '65c816'
     - '65c02'
   processors:
+  - '65c816'
   - '65c02'
   status: null
 phy:
+  alt: []
   brief: push Y index
   desc: push Y index on stack
   modes:
@@ -1028,11 +1420,14 @@ phy:
     code: 0x5a
     cycles: 3
     processors:
+    - '65c816'
     - '65c02'
   processors:
+  - '65c816'
   - '65c02'
   status: null
 pla:
+  alt: []
   brief: pull accumulator
   desc: pull accumulator from stack
   modes:
@@ -1040,13 +1435,16 @@ pla:
     code: 0x68
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 plp:
+  alt: []
   brief: pull status
   desc: pull processor status from stack
   modes:
@@ -1054,13 +1452,16 @@ plp:
     code: 0x28
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nvbdizc
 plx:
+  alt: []
   brief: pull X index
   desc: pull X index from stack
   modes:
@@ -1068,11 +1469,14 @@ plx:
     code: 0xfa
     cycles: 4
     processors:
+    - '65c816'
     - '65c02'
   processors:
+  - '65c816'
   - '65c02'
   status: nz
 ply:
+  alt: []
   brief: pull Y index
   desc: pull Y index from stack
   modes:
@@ -1080,11 +1484,14 @@ ply:
     code: 0x7a
     cycles: 4
     processors:
+    - '65c816'
     - '65c02'
   processors:
+  - '65c816'
   - '65c02'
   status: nz
 rol:
+  alt: []
   brief: rotate bits left
   desc: rotate bits left, new bit 0 = old carry, new carry = old bit 7
   modes:
@@ -1092,37 +1499,44 @@ rol:
     code: 0x2e
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x26
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: accum
     code: 0x2a
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x36
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x3e
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nzc
 ror:
+  alt: []
   brief: rotate bits right
   desc: rotate bits right, new bit 7 = old carry, new carry = old bit 0
   modes:
@@ -1130,37 +1544,44 @@ ror:
     code: 0x6e
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x66
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: accum
     code: 0x6a
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x76
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x7e
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nzc
 rti:
+  alt: []
   brief: return from interrupt
   desc: return from interrupt
   modes:
@@ -1168,13 +1589,16 @@ rti:
     code: 0x40
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nvbdizc
 rts:
+  alt: []
   brief: return from subroutine
   desc: return from subroutine
   modes:
@@ -1182,13 +1606,16 @@ rts:
     code: 0x60
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 sbc:
+  alt: []
   brief: subtract with borrow
   desc: subtract memory from accumulator with borrow
   modes:
@@ -1196,60 +1623,101 @@ sbc:
     code: 0xe9
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs
     code: 0xed
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0xe5
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp,x)
     code: 0xe1
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp),y
     code: 0xf1
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0xf5
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0xfd
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,y
     code: 0xf9
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp)
     code: 0xf2
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
+  - addr_mnemonic: d,s
+    code: 0xe3
+    cycles: 4
+    processors:
+    - '65c816'
+  - addr_mnemonic: (d,s),y
+    code: 0xf3
+    cycles: 7
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d]"
+    code: 0xe7
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d],y"
+    code: 0xf7
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl
+    code: 0xef
+    cycles: 5
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl,x
+    code: 0xff
+    cycles: 5
+    processors:
+    - '65c816'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nvzc
 sec:
+  alt: []
   brief: set carry
   desc: set carry bit high
   modes:
@@ -1257,13 +1725,16 @@ sec:
     code: 0x38
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: c
 sed:
+  alt: []
   brief: set decimal
   desc: set decimal mode
   modes:
@@ -1271,13 +1742,16 @@ sed:
     code: 0xf8
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: d
 sei:
+  alt: []
   brief: set interrupt disable
   desc: set interrupt disable status
   modes:
@@ -1285,13 +1759,16 @@ sei:
     code: 0x78
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: i
 sta:
+  alt: []
   brief: store accumulator
   desc: store accumulator
   modes:
@@ -1299,54 +1776,94 @@ sta:
     code: 0x8d
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x85
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp,x)
     code: 0x81
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp),y
     code: 0x91
     cycles: 6
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x95
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x9d
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,y
     code: 0x99
     cycles: 5
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: (zp)
     code: 0x92
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
+  - addr_mnemonic: d,s
+    code: 0x83
+    cycles: 4
+    processors:
+    - '65c816'
+  - addr_mnemonic: (d,s),y
+    code: 0x93
+    cycles: 7
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d]"
+    code: 0x87
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: "[d],y"
+    code: 0x97
+    cycles: 6
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl
+    code: 0x8f
+    cycles: 5
+    processors:
+    - '65c816'
+  - addr_mnemonic: absl,x
+    code: 0x9f
+    cycles: 5
+    processors:
+    - '65c816'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 stx:
+  alt: []
   brief: store X index
   desc: store X index
   modes:
@@ -1354,25 +1871,30 @@ stx:
     code: 0x8e
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x86
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,y
     code: 0x96
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 sty:
+  alt: []
   brief: store Y index
   desc: store Y index
   modes:
@@ -1380,25 +1902,30 @@ sty:
     code: 0x8c
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x84
     cycles: 3
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x94
     cycles: 4
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 stz:
+  alt: []
   brief: store zero
   desc: store zero
   modes:
@@ -1406,26 +1933,32 @@ stz:
     code: 0x9c
     cycles: 4
     processors:
+    - '65c816'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x64
     cycles: 3
     processors:
+    - '65c816'
     - '65c02'
   - addr_mnemonic: zp,x
     code: 0x74
     cycles: 4
     processors:
+    - '65c816'
     - '65c02'
   - addr_mnemonic: abs,x
     code: 0x9e
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
   processors:
+  - '65c816'
   - '65c02'
   status: null
 tax:
+  alt: []
   brief: transfer A to X
   desc: transfer accumulator to X index
   modes:
@@ -1433,13 +1966,16 @@ tax:
     code: 0xaa
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 tay:
+  alt: []
   brief: transfer A to Y
   desc: transfer accumulator to Y index
   modes:
@@ -1447,13 +1983,16 @@ tay:
     code: 0xa8
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 trb:
+  alt: []
   brief: test and reset bits
   desc: test and reset memory bits with accumulator
   modes:
@@ -1461,16 +2000,20 @@ trb:
     code: 0x1c
     cycles: 6
     processors:
+    - '65c816'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x14
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
   processors:
+  - '65c816'
   - '65c02'
   status: z
 tsb:
+  alt: []
   brief: test and set bits
   desc: test and set memory bits with accumulator
   modes:
@@ -1478,16 +2021,20 @@ tsb:
     code: 0xc
     cycles: 6
     processors:
+    - '65c816'
     - '65c02'
   - addr_mnemonic: zp
     code: 0x4
     cycles: 5
     processors:
+    - '65c816'
     - '65c02'
   processors:
+  - '65c816'
   - '65c02'
   status: z
 tsx:
+  alt: []
   brief: transfer S to X
   desc: transfer stack pointer to X index
   modes:
@@ -1495,13 +2042,16 @@ tsx:
     code: 0xba
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 txa:
+  alt: []
   brief: transfer X to A
   desc: transfer X index to accumulator
   modes:
@@ -1509,13 +2059,16 @@ txa:
     code: 0x8a
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
 txs:
+  alt: []
   brief: transfer X to S
   desc: transfer X index to stack pointer
   modes:
@@ -1523,13 +2076,16 @@ txs:
     code: 0x9a
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: null
 tya:
+  alt: []
   brief: transfer Y to A
   desc: transfer Y index to accumulator
   modes:
@@ -1537,9 +2093,367 @@ tya:
     code: 0x98
     cycles: 2
     processors:
+    - '65c816'
     - '6502'
     - '65c02'
   processors:
+  - '65c816'
   - '6502'
   - '65c02'
   status: nz
+brl:
+  alt: []
+  brief: branch long always
+  desc: branch long always
+  modes:
+  - addr_mnemonic: rell
+    code: 0x82
+    cycles: 4
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+cop:
+  alt: []
+  brief: co-processor
+  desc: co-processor
+  modes:
+  - addr_mnemonic: s
+    code: 0x02
+    cycles: 7
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: di
+jml:
+  alt: []
+  brief: jump long
+  desc: jump long
+  modes:
+  - addr_mnemonic: (abs)
+    code: 0xdc
+    cycles: 6
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+jsl:
+  alt: []
+  brief: jump long to subroutine
+  desc: jump long to subroutine
+  modes:
+  - addr_mnemonic: absl
+    code: 0x22
+    cycles: 8
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+mvn:
+  alt: []
+  brief: block move negative
+  desc: block move negative
+  modes:
+  - addr_mnemonic: xyc
+    code: 0x54
+    cycles: 7
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+mvp:
+  alt: []
+  brief: block move positive
+  desc: block move positive
+  modes:
+  - addr_mnemonic: xyc
+    code: 0x44
+    cycles: 7
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+pea:
+  alt: []
+  brief: push absolute address
+  desc: push absolute address
+  modes:
+  - addr_mnemonic: s
+    code: 0xf4
+    cycles: 5
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+pei:
+  alt: []
+  brief: push indirect address
+  desc: push indirect address
+  modes:
+  - addr_mnemonic: s
+    code: 0xd4
+    cycles: 6
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+per:
+  alt: []
+  brief: push PC relative address
+  desc: push program counter relative address
+  modes:
+  - addr_mnemonic: s
+    code: 0x62
+    cycles: 6
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+phb:
+  alt: []
+  brief: push data bank register
+  desc: push data bank register on stack
+  modes:
+  - addr_mnemonic: s
+    code: 0x8b
+    cycles: 3
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+phd:
+  alt: []
+  brief: push direct register
+  desc: push direct register on stack
+  modes:
+  - addr_mnemonic: s
+    code: 0x0b
+    cycles: 4
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+phk:
+  alt: []
+  brief: push program bank register
+  desc: push program bank register on stack
+  modes:
+  - addr_mnemonic: s
+    code: 0x4b
+    cycles: 3
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+plb:
+  alt: []
+  brief: pull data bank register
+  desc: pull data bank register from stack
+  modes:
+  - addr_mnemonic: s
+    code: 0xab
+    cycles: 4
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: nz
+pld:
+  alt: []
+  brief: pull direct register
+  desc: pull direct register from stack
+  modes:
+  - addr_mnemonic: s
+    code: 0x2b
+    cycles: 5
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: nz
+rep:
+  alt: []
+  brief: reset status bits
+  desc: reset status bits
+  modes:
+  - addr_mnemonic: imm
+    code: 0xc2
+    cycles: 3
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: nvmxdizc
+rtl:
+  alt: []
+  brief: return from subroutine long
+  desc: return from subroutine long
+  modes:
+  - addr_mnemonic: s
+    code: 0x6b
+    cycles: 6
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+sep:
+  alt: []
+  brief: set processor status bit
+  desc: set processor status bit
+  modes:
+  - addr_mnemonic: imm
+    code: 0xe2
+    cycles: 3
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: nvmxdizc
+tcd:
+  alt:
+  - tad
+  brief: transfer C to D
+  desc: transfer C accumulator to direct register
+  modes:
+  - addr_mnemonic: impl
+    code: 0x5b
+    cycles: 2
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: nz
+tcs:
+  alt:
+  - tas
+  brief: transfer C to stack pointer
+  desc: transfer C accumulator to stack pointer
+  modes:
+  - addr_mnemonic: impl
+    code: 0x1b
+    cycles: 2
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+tdc:
+  alt:
+  - tda
+  brief: transfer D to C
+  desc: transfer direct register to C accumulator
+  modes:
+  - addr_mnemonic: impl
+    code: 0x7b
+    cycles: 2
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: nz
+tsc:
+  alt:
+  - tsa
+  brief: transfer stack pointer to C
+  desc: transfer stack pointer to C accumulator
+  modes:
+  - addr_mnemonic: impl
+    code: 0x3b
+    cycles: 2
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: nz
+txy:
+  alt: []
+  brief: transfer X to Y
+  desc: transfer X index to Y index
+  modes:
+  - addr_mnemonic: impl
+    code: 0x9b
+    cycles: 2
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: nz
+tyx:
+  alt: []
+  brief: transfer Y to X
+  desc: transfer Y index to X index
+  modes:
+  - addr_mnemonic: impl
+    code: 0xbb
+    cycles: 2
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: nz
+wai:
+  alt: []
+  brief: wait for interrupt
+  desc: wait for interrupt
+  modes:
+  - addr_mnemonic: impl
+    code: 0xcb
+    cycles: 3
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+wdm:
+  alt: []
+  brief: reserved
+  desc: reserved
+  modes:
+  - addr_mnemonic: impl
+    code: 0x42
+    cycles: 2
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+xba:
+  alt:
+  - swa
+  brief: exchange B and A
+  desc: exchange B and A accumulator
+  modes:
+  - addr_mnemonic: impl
+    code: 0xeb
+    cycles: 3
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null
+xce:
+  alt: []
+  brief: exchange carry and emulation bits
+  desc: exchange carry and emulation bits
+  modes:
+  - addr_mnemonic: impl
+    code: 0xfb
+    cycles: 2
+    processors:
+    - '65c816'
+  processors:
+  - '65c816'
+  status: null

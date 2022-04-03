@@ -1,0 +1,10 @@
+===================
+literal args
+===================
+
+ MACRO "hello"
+
+---
+
+(source_file
+	(macro_calli (global_label) (macro_args (literal_arg))))

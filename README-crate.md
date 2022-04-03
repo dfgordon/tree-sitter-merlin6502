@@ -13,10 +13,10 @@ use tree_sitter;
 use tree_sitter_merlin6502;
 
 fn main() {
-    let code = "10 GOTO 10\n";
+    let code = "LDA #$00\n";
     let mut parser = tree_sitter::Parser::new();
     parser.set_language(tree_sitter_merlin6502::language())
-      .expect("Error loading Integer BASIC grammar");
+      .expect("Error loading Merlin 6502 grammar");
     let tree = parser.parse(code,None).unwrap();
 
     println!("{}",tree.root_node().to_sexp());
@@ -24,6 +24,6 @@ fn main() {
 ```
 This should print the syntax tree
 ```
-(source_file (line (linenum) (statement (statement_goto) (integer))))
+(source_file (operation (op_lda) (imm (imm_prefix) (number (hexadecimal)))))
 ```
 For more on parsing with rust, see the general guidance [here](https://github.com/tree-sitter/tree-sitter/blob/master/lib/binding_rust/README.md).
