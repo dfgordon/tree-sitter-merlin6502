@@ -1,0 +1,137 @@
+===================
+line of asterisks AST
+===================
+
+ AST 30
+ AST NUM
+
+---
+
+(source_file
+	(pseudo_operation (psop_ast) (number (decimal)))
+	(pseudo_operation (psop_ast) (global_label)))
+
+===================
+print cycles CYC
+===================
+
+ CYC
+ CYC OFF
+ CYC AVE
+ CYC FLAGS
+
+---
+
+(source_file
+	(pseudo_operation (psop_cyc))
+	(pseudo_operation (psop_cyc))
+	(pseudo_operation (psop_cyc))
+	(pseudo_operation (psop_cyc)))
+
+===================
+Date stamp DAT
+===================
+
+ DAT
+
+---
+
+(source_file
+	(pseudo_operation (psop_dat)))
+
+===================
+Macro expand EXP
+===================
+
+ EXP ON
+ EXP OFF
+ EXP ONLY
+
+---
+
+(source_file
+	(pseudo_operation (psop_exp))
+	(pseudo_operation (psop_exp))
+	(pseudo_operation (psop_exp)))
+
+===================
+Listing LST
+===================
+
+ LST
+ LST ON
+ LST OFF
+ LST RTN
+
+---
+
+(source_file
+	(pseudo_operation (psop_lst))
+	(pseudo_operation (psop_lst))
+	(pseudo_operation (psop_lst))
+	(pseudo_operation (psop_lst)))
+
+===================
+List off areas LSTDO
+===================
+
+ LSTDO
+ LSTDO OFF
+
+---
+
+(source_file
+	(pseudo_operation (psop_lstdo))
+	(pseudo_operation (psop_lstdo)))
+
+===================
+new page PAG
+===================
+
+ PAG
+
+---
+
+(source_file
+	(pseudo_operation (psop_pag)))
+
+===================
+title heading TTL
+===================
+
+ TTL "Segment Title"
+ TTL &"Title in Quotes"&
+
+---
+
+(source_file
+	(pseudo_operation (psop_ttl) (dstring))
+    (pseudo_operation (psop_ttl) (dstring)))
+
+===================
+skip lines SKP
+===================
+
+ SKP 5
+ SKP LINES+5+"a"
+
+---
+
+(source_file
+	(pseudo_operation (psop_skp) (number (decimal)))
+    (pseudo_operation (psop_skp) (binary_aexpr (binary_aexpr (global_label) (eop_plus) (number (decimal))) (eop_plus) (nchar))))
+
+===================
+truncate TR
+===================
+
+ TR ON
+ TR OFF
+ TR ADR
+
+---
+
+(source_file
+	(pseudo_operation (psop_tr))
+	(pseudo_operation (psop_tr))
+	(pseudo_operation (psop_tr)))

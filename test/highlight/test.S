@@ -16,4 +16,18 @@ CONT
         JMP     ($1000)
 *                ^ number
         INC16   $2000
-*               ^ number
+*       ^ keyword
+*          ^ string
+Ā       INC16   $2000
+*        ^ type
+*                ^ number
+DATA    HEX     00,0A,000B
+*                  ^ number
+*                       ^ number
+        SAV     /prodoshd/myfile.obj
+*       ^ function.builtin
+*               ^ string
+        SAV     my dos 33 file
+*                 ^ string
+        LDA     |$4000
+*               ^ keyword

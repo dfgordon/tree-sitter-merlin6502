@@ -1,10 +1,79 @@
 ===================
-literal args
+Basic macro def
 ===================
 
- MACRO "hello"
+MYMAC MAC
+ LDA #$00
+ EOM
 
 ---
 
 (source_file
-	(macro_calli (global_label) (macro_args (literal_arg))))
+	(pseudo_operation (label_def (global_label)) (psop_mac))
+	(operation (op_lda) (imm (imm_prefix) (number (hexadecimal))))
+	(pseudo_operation (psop_eom)))
+
+===================
+Nested macro def
+===================
+
+MYMAC MAC
+ LDA #$00
+MID MAC
+ LDX #$00
+ <<<
+
+---
+
+(source_file
+	(pseudo_operation (label_def (global_label)) (psop_mac))
+	(operation (op_lda) (imm (imm_prefix) (number (hexadecimal))))
+	(pseudo_operation (label_def (global_label)) (psop_mac))
+	(operation (op_ldx) (imm (imm_prefix) (number (hexadecimal))))
+	(pseudo_operation (psop_eom)))
+
+===================
+call with literal
+===================
+
+ MYMAC "hello"
+
+---
+
+(source_file
+	(macro_call (global_label) (macro_args (literal_arg))))
+
+===================
+call with 2 args
+===================
+
+ MYMAC $40;$50
+
+---
+
+(source_file
+	(macro_call (global_label) (macro_args (addr (number (hexadecimal))) (addr (number (hexadecimal))))))
+
+===================
+call with indirect indexed
+===================
+
+ MYMAC (ADDR1),Y
+
+---
+
+(source_file
+	(macro_call (global_label) (macro_args (iaddr_y (mode_iopen) (global_label) (mode_iy)))))
+
+===================
+explicit call
+===================
+
+ PMC MYMAC,(ADDR1),Y
+ >>> MYMAC,[ADDR2],Y
+
+---
+
+(source_file
+	(pseudo_operation (psop_pmc) (global_label) (macro_args (iaddr_y (mode_iopen) (global_label) (mode_iy))))
+	(pseudo_operation (psop_pmc) (global_label) (macro_args (daddr_y (mode_dopen) (global_label) (mode_dy)))))

@@ -1,0 +1,108 @@
+===================
+Define word DA DW
+===================
+
+ DA $FDF0
+ DA 10,$300
+ DW LAB1,LAB2
+
+---
+
+(source_file
+	(pseudo_operation (psop_da) (number (hexadecimal)))
+	(pseudo_operation (psop_da) (number (decimal)) (number (hexadecimal)))
+	(pseudo_operation (psop_da) (global_label) (global_label)))
+
+===================
+Define double DDB
+===================
+
+ DDB $FDED+1
+ DDB 10,$300
+
+---
+
+(source_file
+	(pseudo_operation (psop_ddb) (binary_aexpr (number (hexadecimal)) (eop_plus) (number (decimal))))
+	(pseudo_operation (psop_ddb) (number (decimal)) (number (hexadecimal))))
+
+===================
+Define byte DFB DB
+===================
+
+ DFB 10
+ DFB $10
+ DFB %0101_1010
+ DB >$FDED+2
+ DB LAB
+
+---
+
+(source_file
+	(pseudo_operation (psop_dfb) (number (decimal)))
+	(pseudo_operation (psop_dfb) (number (hexadecimal)))
+	(pseudo_operation (psop_dfb) (number (binary)))
+    (pseudo_operation (psop_dfb) (data_prefix) (binary_aexpr (number (hexadecimal)) (eop_plus) (number (decimal))))
+	(pseudo_operation (psop_dfb) (global_label)))
+
+===================
+Define long address ADR
+===================
+
+ ADR $01FDF0
+ ADR 10,$020300
+ ADR LAB1,LAB2
+
+---
+
+(source_file
+	(pseudo_operation (psop_adr) (number (hexadecimal)))
+	(pseudo_operation (psop_adr) (number (decimal)) (number (hexadecimal)))
+    (pseudo_operation (psop_adr) (global_label) (global_label)))
+
+===================
+Define long long ADRL
+===================
+
+ ADRL $01FDF0
+ ADRL 10,$020300
+ ADRL LAB1,LAB2
+
+---
+
+(source_file
+	(pseudo_operation (psop_adrl) (number (hexadecimal)))
+	(pseudo_operation (psop_adrl) (number (decimal)) (number (hexadecimal)))
+    (pseudo_operation (psop_adrl) (global_label) (global_label)))
+
+===================
+Hex data HEX
+===================
+
+ HEX 0102030F
+ HEX FD,ED,C0
+
+---
+
+(source_file
+	(pseudo_operation (psop_hex) (hex_data (hex_byte) (hex_byte) (hex_byte) (hex_byte)))
+	(pseudo_operation (psop_hex) (hex_data (hex_byte) (hex_byte) (hex_byte))))
+
+===================
+Define storage DS
+===================
+
+ DS 10
+ DS 10,$80
+ DS \
+ DS \,$80
+ DS \,A1+A2
+
+---
+
+(source_file
+	(pseudo_operation (psop_ds) (number (decimal)))
+	(pseudo_operation (psop_ds) (number (decimal)) (number (hexadecimal)))
+	(pseudo_operation (psop_ds))
+	(pseudo_operation (psop_ds) (number (hexadecimal)))
+	(pseudo_operation (psop_ds) (binary_aexpr (global_label) (eop_plus) (global_label))))

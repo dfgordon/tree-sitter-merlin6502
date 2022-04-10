@@ -1,0 +1,87 @@
+===================
+Ascii text ASC
+===================
+
+ ASC "STRING"
+ ASC 'string'
+ ASC "Bye,Bye",8D,9E
+
+---
+
+(source_file
+	(pseudo_operation (psop_asc) (dstring))
+	(pseudo_operation (psop_asc) (dstring))
+	(pseudo_operation (psop_asc) (dstring) (hex_data (hex_byte) (hex_byte))))
+
+===================
+Dextral inverted DCI
+===================
+
+ DCI "STRING"
+ DCI 'string'
+ DCI "Hello",878D
+
+---
+
+(source_file
+	(pseudo_operation (psop_dci) (dstring))
+	(pseudo_operation (psop_dci) (dstring))
+	(pseudo_operation (psop_dci) (dstring) (hex_data (hex_byte) (hex_byte))))
+
+===================
+Inverse INV
+===================
+
+ INV "STRING"
+ INV 'string'
+ INV "Hello",878D
+
+---
+
+(source_file
+	(pseudo_operation (psop_inv) (dstring))
+	(pseudo_operation (psop_inv) (dstring))
+	(pseudo_operation (psop_inv) (dstring) (hex_data (hex_byte) (hex_byte))))
+
+===================
+Flashing FLS
+===================
+
+ FLS "STRING"
+ FLS 'string'
+ FLS "Hello",878D
+
+---
+
+(source_file
+	(pseudo_operation (psop_fls) (dstring))
+	(pseudo_operation (psop_fls) (dstring))
+	(pseudo_operation (psop_fls) (dstring) (hex_data (hex_byte) (hex_byte))))
+
+===================
+Reverse REV
+===================
+
+ REV "STRING"
+ REV 'string'
+
+---
+
+(source_file
+	(pseudo_operation (psop_rev) (dstring))
+	(pseudo_operation (psop_rev) (dstring)))
+
+===================
+Length byte STR
+===================
+
+ STR "/PATH/"
+ STR "HI"
+ STR 'HI',8D
+
+---
+
+(source_file
+	(pseudo_operation (psop_str) (dstring))
+	(pseudo_operation (psop_str) (dstring))
+	(pseudo_operation (psop_str) (dstring) (hex_data (hex_byte))))

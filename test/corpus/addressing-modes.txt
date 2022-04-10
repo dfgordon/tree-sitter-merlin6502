@@ -1,31 +1,73 @@
 ===================
-bare immediate
+absolute
 ===================
 
- LDA #$00
+ LDA 1000
+ LDA $4000
 
 ---
 
 (source_file
-	(operation
-		(op_lda)
-		(imm (imm_prefix) (number (hexadecimal)))))
+	(operation (op_lda) (addr (number (decimal))))
+	(operation (op_lda) (addr (number (hexadecimal)))))
 
 ===================
-expression immediate
+absolute indexed indirect
 ===================
 
- LDA #>ADDR+5
+ JMP ($4000,X)
 
 ---
 
 (source_file
-	(operation
-		(op_lda)
-		(imm (imm_prefix) (binary_aexpr (global_label) (eop_plus) (number (decimal))))))
+	(operation (op_jmp) (iaddr_ix (mode_iopen) (number (hexadecimal)) (mode_iix))))
 
 ===================
-bare move
+absolute indexed x
+===================
+
+ LDA $4000,X
+
+---
+
+(source_file
+	(operation (op_lda) (addr_x (number (hexadecimal)) (mode_x))))
+
+===================
+absolute indexed y
+===================
+
+ LDA $4000,Y
+
+---
+
+(source_file
+	(operation (op_lda) (addr_y (number (hexadecimal)) (mode_y))))
+
+===================
+absolute indirect
+===================
+
+ LDA ($4000)
+
+---
+
+(source_file
+	(operation (op_lda) (iaddr (mode_iopen) (number (hexadecimal)) (mode_iclose))))
+
+===================
+accumulator
+===================
+
+ INC
+
+---
+
+(source_file
+	(operation (op_inc)))
+
+===================
+block move
 ===================
 
  MVP $10,$20
@@ -38,15 +80,80 @@ bare move
 		(xyc (number (hexadecimal)) (number (hexadecimal)))))
 
 ===================
+direct/zp indirect indexed
+===================
+
+ LDA ($40),Y
+
+---
+
+ (source_file
+ 	(operation (op_lda) (iaddr_y (mode_iopen) (number (hexadecimal)) (mode_iy))))
+
+===================
+direct indirect long indexed
+===================
+
+ LDA [$40],Y
+
+---
+
+ (source_file
+ 	(operation (op_lda) (daddr_y (mode_dopen) (number (hexadecimal)) (mode_dy))))
+
+===================
+direct indirect long
+===================
+
+ LDA [$40]
+
+---
+
+ (source_file
+ 	(operation (op_lda) (daddr (mode_dopen) (number (hexadecimal)) (mode_dclose))))
+
+===================
+immediate
+===================
+
+ LDA #$00
+ LDA #>ADDR+5
+
+---
+
+(source_file
+	(operation (op_lda) (imm (imm_prefix) (number (hexadecimal))))
+	(operation (op_lda) (imm (imm_prefix) (binary_aexpr (global_label) (eop_plus) (number (decimal))))))
+
+===================
+implied
+===================
+
+ INX
+ INY
+ DEY
+ DEX
+
+---
+
+(source_file
+	(operation (op_inx))
+	(operation (op_iny))
+	(operation (op_dey))
+	(operation (op_dex)))
+
+===================
 stack
 ===================
 
+ PHA
  LDA (57,S),Y
  ORA MYLAB,S
 
 ---
 
  (source_file
+	(operation (op_pha))
  	(operation
 	 	(op_lda)
 		(iaddr_is_y (mode_iopen) (number (decimal)) (mode_is_y) ))

@@ -4,9 +4,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "addr_prefix",
+          "named": true
+        },
         {
           "type": "binary_aexpr",
           "named": true
@@ -45,6 +49,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "addr_prefix",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "addr_s",
@@ -106,6 +115,10 @@
       "required": true,
       "types": [
         {
+          "type": "addr_prefix",
+          "named": true
+        },
+        {
           "type": "binary_aexpr",
           "named": true
         },
@@ -157,6 +170,10 @@
       "required": true,
       "types": [
         {
+          "type": "addr_prefix",
+          "named": true
+        },
+        {
           "type": "binary_aexpr",
           "named": true
         },
@@ -198,6 +215,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "anyfs",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "binary",
@@ -415,6 +437,11 @@
     }
   },
   {
+    "type": "data_prefix",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "decimal",
     "named": true,
     "fields": {}
@@ -472,6 +499,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "anyfs",
+          "named": true
+        },
         {
           "type": "dos33",
           "named": true
@@ -724,6 +755,96 @@
     }
   },
   {
+    "type": "if_char",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if_mx",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "eop_and",
+          "named": true
+        },
+        {
+          "type": "eop_div",
+          "named": true
+        },
+        {
+          "type": "eop_minus",
+          "named": true
+        },
+        {
+          "type": "eop_or",
+          "named": true
+        },
+        {
+          "type": "eop_plus",
+          "named": true
+        },
+        {
+          "type": "eop_times",
+          "named": true
+        },
+        {
+          "type": "eop_xor",
+          "named": true
+        },
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "imm",
     "named": true,
     "fields": {},
@@ -778,6 +899,29 @@
     "type": "imm_prefix",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "label_def",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "literal",
@@ -853,7 +997,7 @@
     }
   },
   {
-    "type": "macro_calli",
+    "type": "macro_call",
     "named": true,
     "fields": {},
     "children": {
@@ -869,15 +1013,38 @@
           "named": true
         },
         {
-          "type": "local_label",
+          "type": "label_def",
           "named": true
         },
         {
           "type": "macro_args",
           "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_call_forced",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
         },
         {
-          "type": "var_label",
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "label_def",
+          "named": true
+        },
+        {
+          "type": "macro_args",
           "named": true
         }
       ]
@@ -886,7 +1053,17 @@
   {
     "type": "main_comment",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "comment_text",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "mode_dclose",
@@ -974,457 +1151,1367 @@
   {
     "type": "op_adc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_and",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_asl",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_bcc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_bcs",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_beq",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_bit",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_bmi",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_bne",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_bpl",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_bra",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_brk",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_brl",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_bvc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_bvs",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_clc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_cld",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_cli",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_clv",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_cmp",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_cop",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_cpx",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_cpy",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_dec",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_dex",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_dey",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_eor",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_inc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_inx",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_iny",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_jml",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_jmp",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_jsl",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_jsr",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_lda",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_ldx",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_ldy",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_lsr",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_mvn",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_mvp",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_nop",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_ora",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_pea",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_pei",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_per",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_pha",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_phb",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_phd",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_phk",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_php",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_phx",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_phy",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_pla",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_plb",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_pld",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_plp",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_plx",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_ply",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_rep",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_rol",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_ror",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_rti",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_rtl",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_rts",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_sbc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_sec",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_sed",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_sei",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_sep",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_sta",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_stx",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_sty",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_stz",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_tax",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_tay",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_tcd",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_tcs",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_tdc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_trb",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_tsb",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_tsc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_tsx",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_txa",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_txs",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_txy",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_tya",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_tyx",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_wai",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_wdm",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_xba",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "op_xce",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "operation",
@@ -1463,10 +2550,6 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
           "type": "iaddr",
           "named": true
         },
@@ -1487,7 +2570,7 @@
           "named": true
         },
         {
-          "type": "local_label",
+          "type": "label_def",
           "named": true
         },
         {
@@ -1855,10 +2938,6 @@
           "named": true
         },
         {
-          "type": "var_label",
-          "named": true
-        },
-        {
           "type": "xyc",
           "named": true
         }
@@ -1872,6 +2951,21 @@
   },
   {
     "type": "prodos",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "prodos_filename",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "prodos_filename",
     "named": true,
     "fields": {}
   },
@@ -1888,15 +2982,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
-          "named": true
-        },
-        {
-          "type": "var_label",
+          "type": "label_def",
           "named": true
         }
       ]
@@ -1923,6 +3009,10 @@
           "named": true
         },
         {
+          "type": "data_prefix",
+          "named": true
+        },
+        {
           "type": "dstring",
           "named": true
         },
@@ -1939,7 +3029,15 @@
           "named": true
         },
         {
-          "type": "imm_prefix",
+          "type": "if_char",
+          "named": true
+        },
+        {
+          "type": "if_mx",
+          "named": true
+        },
+        {
+          "type": "label_def",
           "named": true
         },
         {
@@ -2187,6 +3285,10 @@
           "named": true
         },
         {
+          "type": "ptr_check",
+          "named": true
+        },
+        {
           "type": "unary_aexpr",
           "named": true
         },
@@ -2200,272 +3302,842 @@
   {
     "type": "psop_adr",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_adrl",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_asc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_ast",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_chk",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_cyc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_da",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_dat",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_dci",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_ddb",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_dend",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_dfb",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_do",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_ds",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_dsk",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_dum",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_else",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_end",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "psop_end_lup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_ent",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_eom",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_equ",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_err",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_exp",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_ext",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_fin",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_fls",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_hex",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_if",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_inv",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_kbd",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_lst",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_lstdo",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_lup",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_mac",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_mx",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_obj",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_org",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_pag",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_pau",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_pmc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_put",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_rel",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_rev",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_sav",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_skp",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_str",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_sw",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_tr",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_ttl",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_typ",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_use",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_usr",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_var",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "psop_xc",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "trailing",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ptr_check",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "number",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "source_file",
@@ -2476,7 +4148,11 @@
       "required": false,
       "types": [
         {
-          "type": "macro_calli",
+          "type": "macro_call",
+          "named": true
+        },
+        {
+          "type": "macro_call_forced",
           "named": true
         },
         {
@@ -2661,6 +4337,10 @@
     "named": false
   },
   {
+    "type": ")-",
+    "named": false
+  },
+  {
     "type": "*",
     "named": false
   },
@@ -2714,6 +4394,10 @@
   },
   {
     "type": "-",
+    "named": false
+  },
+  {
+    "type": "--^",
     "named": false
   },
   {
@@ -2777,19 +4461,11 @@
     "named": false
   },
   {
-    "type": "<<<",
-    "named": false
-  },
-  {
     "type": "=",
     "named": false
   },
   {
     "type": ">",
-    "named": false
-  },
-  {
-    "type": ">>>",
     "named": false
   },
   {
@@ -2805,31 +4481,7 @@
     "named": false
   },
   {
-    "type": "ADC",
-    "named": false
-  },
-  {
     "type": "ADR",
-    "named": false
-  },
-  {
-    "type": "ADRL",
-    "named": false
-  },
-  {
-    "type": "AND",
-    "named": false
-  },
-  {
-    "type": "ASC",
-    "named": false
-  },
-  {
-    "type": "ASL",
-    "named": false
-  },
-  {
-    "type": "AST",
     "named": false
   },
   {
@@ -2841,103 +4493,7 @@
     "named": false
   },
   {
-    "type": "BCC",
-    "named": false
-  },
-  {
-    "type": "BCS",
-    "named": false
-  },
-  {
-    "type": "BEQ",
-    "named": false
-  },
-  {
-    "type": "BGE",
-    "named": false
-  },
-  {
-    "type": "BIT",
-    "named": false
-  },
-  {
-    "type": "BLT",
-    "named": false
-  },
-  {
-    "type": "BMI",
-    "named": false
-  },
-  {
-    "type": "BNE",
-    "named": false
-  },
-  {
-    "type": "BPL",
-    "named": false
-  },
-  {
-    "type": "BRA",
-    "named": false
-  },
-  {
-    "type": "BRK",
-    "named": false
-  },
-  {
-    "type": "BRL",
-    "named": false
-  },
-  {
-    "type": "BVC",
-    "named": false
-  },
-  {
-    "type": "BVS",
-    "named": false
-  },
-  {
     "type": "C",
-    "named": false
-  },
-  {
-    "type": "CHK",
-    "named": false
-  },
-  {
-    "type": "CLC",
-    "named": false
-  },
-  {
-    "type": "CLD",
-    "named": false
-  },
-  {
-    "type": "CLI",
-    "named": false
-  },
-  {
-    "type": "CLV",
-    "named": false
-  },
-  {
-    "type": "CMP",
-    "named": false
-  },
-  {
-    "type": "COP",
-    "named": false
-  },
-  {
-    "type": "CPX",
-    "named": false
-  },
-  {
-    "type": "CPY",
-    "named": false
-  },
-  {
-    "type": "CYC",
     "named": false
   },
   {
@@ -2945,103 +4501,7 @@
     "named": false
   },
   {
-    "type": "DA",
-    "named": false
-  },
-  {
-    "type": "DAT",
-    "named": false
-  },
-  {
-    "type": "DB",
-    "named": false
-  },
-  {
-    "type": "DCI",
-    "named": false
-  },
-  {
-    "type": "DDB",
-    "named": false
-  },
-  {
-    "type": "DEC",
-    "named": false
-  },
-  {
-    "type": "DEND",
-    "named": false
-  },
-  {
-    "type": "DEX",
-    "named": false
-  },
-  {
-    "type": "DEY",
-    "named": false
-  },
-  {
-    "type": "DFB",
-    "named": false
-  },
-  {
-    "type": "DO",
-    "named": false
-  },
-  {
-    "type": "DS",
-    "named": false
-  },
-  {
-    "type": "DSK",
-    "named": false
-  },
-  {
-    "type": "DUM",
-    "named": false
-  },
-  {
-    "type": "DW",
-    "named": false
-  },
-  {
     "type": "E",
-    "named": false
-  },
-  {
-    "type": "ELSE",
-    "named": false
-  },
-  {
-    "type": "END",
-    "named": false
-  },
-  {
-    "type": "ENT",
-    "named": false
-  },
-  {
-    "type": "EOM",
-    "named": false
-  },
-  {
-    "type": "EOR",
-    "named": false
-  },
-  {
-    "type": "EQU",
-    "named": false
-  },
-  {
-    "type": "ERR",
-    "named": false
-  },
-  {
-    "type": "EXP",
-    "named": false
-  },
-  {
-    "type": "EXT",
     "named": false
   },
   {
@@ -3049,11 +4509,7 @@
     "named": false
   },
   {
-    "type": "FIN",
-    "named": false
-  },
-  {
-    "type": "FLS",
+    "type": "FLAGS",
     "named": false
   },
   {
@@ -3065,31 +4521,7 @@
     "named": false
   },
   {
-    "type": "HEX",
-    "named": false
-  },
-  {
     "type": "I",
-    "named": false
-  },
-  {
-    "type": "IF",
-    "named": false
-  },
-  {
-    "type": "INC",
-    "named": false
-  },
-  {
-    "type": "INV",
-    "named": false
-  },
-  {
-    "type": "INX",
-    "named": false
-  },
-  {
-    "type": "INY",
     "named": false
   },
   {
@@ -3097,27 +4529,7 @@
     "named": false
   },
   {
-    "type": "JML",
-    "named": false
-  },
-  {
-    "type": "JMP",
-    "named": false
-  },
-  {
-    "type": "JSL",
-    "named": false
-  },
-  {
-    "type": "JSR",
-    "named": false
-  },
-  {
     "type": "K",
-    "named": false
-  },
-  {
-    "type": "KBD",
     "named": false
   },
   {
@@ -3125,47 +4537,7 @@
     "named": false
   },
   {
-    "type": "LDA",
-    "named": false
-  },
-  {
-    "type": "LDX",
-    "named": false
-  },
-  {
-    "type": "LDY",
-    "named": false
-  },
-  {
-    "type": "LSR",
-    "named": false
-  },
-  {
-    "type": "LST",
-    "named": false
-  },
-  {
-    "type": "LSTDO",
-    "named": false
-  },
-  {
-    "type": "LUP",
-    "named": false
-  },
-  {
     "type": "M",
-    "named": false
-  },
-  {
-    "type": "MAC",
-    "named": false
-  },
-  {
-    "type": "MVN",
-    "named": false
-  },
-  {
-    "type": "MVP",
     "named": false
   },
   {
@@ -3177,15 +4549,7 @@
     "named": false
   },
   {
-    "type": "NOP",
-    "named": false
-  },
-  {
     "type": "O",
-    "named": false
-  },
-  {
-    "type": "OBJ",
     "named": false
   },
   {
@@ -3201,95 +4565,7 @@
     "named": false
   },
   {
-    "type": "ORA",
-    "named": false
-  },
-  {
-    "type": "ORG",
-    "named": false
-  },
-  {
     "type": "P",
-    "named": false
-  },
-  {
-    "type": "PAG",
-    "named": false
-  },
-  {
-    "type": "PAU",
-    "named": false
-  },
-  {
-    "type": "PEA",
-    "named": false
-  },
-  {
-    "type": "PEI",
-    "named": false
-  },
-  {
-    "type": "PER",
-    "named": false
-  },
-  {
-    "type": "PHA",
-    "named": false
-  },
-  {
-    "type": "PHB",
-    "named": false
-  },
-  {
-    "type": "PHD",
-    "named": false
-  },
-  {
-    "type": "PHK",
-    "named": false
-  },
-  {
-    "type": "PHP",
-    "named": false
-  },
-  {
-    "type": "PHX",
-    "named": false
-  },
-  {
-    "type": "PHY",
-    "named": false
-  },
-  {
-    "type": "PLA",
-    "named": false
-  },
-  {
-    "type": "PLB",
-    "named": false
-  },
-  {
-    "type": "PLD",
-    "named": false
-  },
-  {
-    "type": "PLP",
-    "named": false
-  },
-  {
-    "type": "PLX",
-    "named": false
-  },
-  {
-    "type": "PLY",
-    "named": false
-  },
-  {
-    "type": "PMC",
-    "named": false
-  },
-  {
-    "type": "PUT",
     "named": false
   },
   {
@@ -3301,35 +4577,7 @@
     "named": false
   },
   {
-    "type": "REL",
-    "named": false
-  },
-  {
-    "type": "REP",
-    "named": false
-  },
-  {
-    "type": "REV",
-    "named": false
-  },
-  {
-    "type": "ROL",
-    "named": false
-  },
-  {
-    "type": "ROR",
-    "named": false
-  },
-  {
-    "type": "RTI",
-    "named": false
-  },
-  {
-    "type": "RTL",
-    "named": false
-  },
-  {
-    "type": "RTS",
+    "type": "RTN",
     "named": false
   },
   {
@@ -3337,147 +4585,7 @@
     "named": false
   },
   {
-    "type": "SAV",
-    "named": false
-  },
-  {
-    "type": "SBC",
-    "named": false
-  },
-  {
-    "type": "SEC",
-    "named": false
-  },
-  {
-    "type": "SED",
-    "named": false
-  },
-  {
-    "type": "SEI",
-    "named": false
-  },
-  {
-    "type": "SEP",
-    "named": false
-  },
-  {
-    "type": "SKP",
-    "named": false
-  },
-  {
-    "type": "STA",
-    "named": false
-  },
-  {
-    "type": "STR",
-    "named": false
-  },
-  {
-    "type": "STX",
-    "named": false
-  },
-  {
-    "type": "STY",
-    "named": false
-  },
-  {
-    "type": "STZ",
-    "named": false
-  },
-  {
-    "type": "SW",
-    "named": false
-  },
-  {
-    "type": "SWA",
-    "named": false
-  },
-  {
     "type": "T",
-    "named": false
-  },
-  {
-    "type": "TAD",
-    "named": false
-  },
-  {
-    "type": "TAS",
-    "named": false
-  },
-  {
-    "type": "TAX",
-    "named": false
-  },
-  {
-    "type": "TAY",
-    "named": false
-  },
-  {
-    "type": "TCD",
-    "named": false
-  },
-  {
-    "type": "TCS",
-    "named": false
-  },
-  {
-    "type": "TDA",
-    "named": false
-  },
-  {
-    "type": "TDC",
-    "named": false
-  },
-  {
-    "type": "TR",
-    "named": false
-  },
-  {
-    "type": "TRB",
-    "named": false
-  },
-  {
-    "type": "TSA",
-    "named": false
-  },
-  {
-    "type": "TSB",
-    "named": false
-  },
-  {
-    "type": "TSC",
-    "named": false
-  },
-  {
-    "type": "TSX",
-    "named": false
-  },
-  {
-    "type": "TTL",
-    "named": false
-  },
-  {
-    "type": "TXA",
-    "named": false
-  },
-  {
-    "type": "TXS",
-    "named": false
-  },
-  {
-    "type": "TXY",
-    "named": false
-  },
-  {
-    "type": "TYA",
-    "named": false
-  },
-  {
-    "type": "TYP",
-    "named": false
-  },
-  {
-    "type": "TYX",
     "named": false
   },
   {
@@ -3485,19 +4593,7 @@
     "named": false
   },
   {
-    "type": "USE",
-    "named": false
-  },
-  {
-    "type": "USR",
-    "named": false
-  },
-  {
     "type": "V",
-    "named": false
-  },
-  {
-    "type": "VAR",
     "named": false
   },
   {
@@ -3505,27 +4601,7 @@
     "named": false
   },
   {
-    "type": "WAI",
-    "named": false
-  },
-  {
-    "type": "WDM",
-    "named": false
-  },
-  {
     "type": "X",
-    "named": false
-  },
-  {
-    "type": "XBA",
-    "named": false
-  },
-  {
-    "type": "XC",
-    "named": false
-  },
-  {
-    "type": "XCE",
     "named": false
   },
   {
@@ -3573,91 +4649,7 @@
     "named": false
   },
   {
-    "type": "adc",
-    "named": false
-  },
-  {
-    "type": "adr",
-    "named": false
-  },
-  {
-    "type": "adrl",
-    "named": false
-  },
-  {
-    "type": "and",
-    "named": false
-  },
-  {
-    "type": "asc",
-    "named": false
-  },
-  {
-    "type": "asl",
-    "named": false
-  },
-  {
-    "type": "ast",
-    "named": false
-  },
-  {
     "type": "b",
-    "named": false
-  },
-  {
-    "type": "bcc",
-    "named": false
-  },
-  {
-    "type": "bcs",
-    "named": false
-  },
-  {
-    "type": "beq",
-    "named": false
-  },
-  {
-    "type": "bge",
-    "named": false
-  },
-  {
-    "type": "bit",
-    "named": false
-  },
-  {
-    "type": "blt",
-    "named": false
-  },
-  {
-    "type": "bmi",
-    "named": false
-  },
-  {
-    "type": "bne",
-    "named": false
-  },
-  {
-    "type": "bpl",
-    "named": false
-  },
-  {
-    "type": "bra",
-    "named": false
-  },
-  {
-    "type": "brk",
-    "named": false
-  },
-  {
-    "type": "brl",
-    "named": false
-  },
-  {
-    "type": "bvc",
-    "named": false
-  },
-  {
-    "type": "bvs",
     "named": false
   },
   {
@@ -3665,107 +4657,7 @@
     "named": false
   },
   {
-    "type": "chk",
-    "named": false
-  },
-  {
-    "type": "clc",
-    "named": false
-  },
-  {
-    "type": "cld",
-    "named": false
-  },
-  {
-    "type": "cli",
-    "named": false
-  },
-  {
-    "type": "clv",
-    "named": false
-  },
-  {
-    "type": "cmp",
-    "named": false
-  },
-  {
-    "type": "cop",
-    "named": false
-  },
-  {
-    "type": "cpx",
-    "named": false
-  },
-  {
-    "type": "cpy",
-    "named": false
-  },
-  {
-    "type": "cyc",
-    "named": false
-  },
-  {
     "type": "d",
-    "named": false
-  },
-  {
-    "type": "da",
-    "named": false
-  },
-  {
-    "type": "dat",
-    "named": false
-  },
-  {
-    "type": "db",
-    "named": false
-  },
-  {
-    "type": "dci",
-    "named": false
-  },
-  {
-    "type": "ddb",
-    "named": false
-  },
-  {
-    "type": "dec",
-    "named": false
-  },
-  {
-    "type": "dend",
-    "named": false
-  },
-  {
-    "type": "dex",
-    "named": false
-  },
-  {
-    "type": "dey",
-    "named": false
-  },
-  {
-    "type": "dfb",
-    "named": false
-  },
-  {
-    "type": "do",
-    "named": false
-  },
-  {
-    "type": "ds",
-    "named": false
-  },
-  {
-    "type": "dsk",
-    "named": false
-  },
-  {
-    "type": "dum",
-    "named": false
-  },
-  {
-    "type": "dw",
     "named": false
   },
   {
@@ -3773,51 +4665,7 @@
     "named": false
   },
   {
-    "type": "else",
-    "named": false
-  },
-  {
-    "type": "end",
-    "named": false
-  },
-  {
-    "type": "ent",
-    "named": false
-  },
-  {
-    "type": "eom",
-    "named": false
-  },
-  {
-    "type": "eor",
-    "named": false
-  },
-  {
-    "type": "equ",
-    "named": false
-  },
-  {
-    "type": "err",
-    "named": false
-  },
-  {
-    "type": "exp",
-    "named": false
-  },
-  {
-    "type": "ext",
-    "named": false
-  },
-  {
     "type": "f",
-    "named": false
-  },
-  {
-    "type": "fin",
-    "named": false
-  },
-  {
-    "type": "fls",
     "named": false
   },
   {
@@ -3833,10 +4681,6 @@
     "named": false
   },
   {
-    "type": "hex",
-    "named": false
-  },
-  {
     "type": "hex_byte",
     "named": true
   },
@@ -3845,43 +4689,7 @@
     "named": false
   },
   {
-    "type": "if",
-    "named": false
-  },
-  {
-    "type": "inc",
-    "named": false
-  },
-  {
-    "type": "inv",
-    "named": false
-  },
-  {
-    "type": "inx",
-    "named": false
-  },
-  {
-    "type": "iny",
-    "named": false
-  },
-  {
     "type": "j",
-    "named": false
-  },
-  {
-    "type": "jml",
-    "named": false
-  },
-  {
-    "type": "jmp",
-    "named": false
-  },
-  {
-    "type": "jsl",
-    "named": false
-  },
-  {
-    "type": "jsr",
     "named": false
   },
   {
@@ -3889,23 +4697,7 @@
     "named": false
   },
   {
-    "type": "kbd",
-    "named": false
-  },
-  {
     "type": "l",
-    "named": false
-  },
-  {
-    "type": "lda",
-    "named": false
-  },
-  {
-    "type": "ldx",
-    "named": false
-  },
-  {
-    "type": "ldy",
     "named": false
   },
   {
@@ -3913,39 +4705,7 @@
     "named": true
   },
   {
-    "type": "lsr",
-    "named": false
-  },
-  {
-    "type": "lst",
-    "named": false
-  },
-  {
-    "type": "lstdo",
-    "named": false
-  },
-  {
-    "type": "lup",
-    "named": false
-  },
-  {
     "type": "m",
-    "named": false
-  },
-  {
-    "type": "mac",
-    "named": false
-  },
-  {
-    "type": "mvn",
-    "named": false
-  },
-  {
-    "type": "mvp",
-    "named": false
-  },
-  {
-    "type": "mx",
     "named": false
   },
   {
@@ -3953,111 +4713,11 @@
     "named": false
   },
   {
-    "type": "nop",
-    "named": false
-  },
-  {
     "type": "o",
     "named": false
   },
   {
-    "type": "obj",
-    "named": false
-  },
-  {
-    "type": "ora",
-    "named": false
-  },
-  {
-    "type": "org",
-    "named": false
-  },
-  {
     "type": "p",
-    "named": false
-  },
-  {
-    "type": "pag",
-    "named": false
-  },
-  {
-    "type": "pau",
-    "named": false
-  },
-  {
-    "type": "pea",
-    "named": false
-  },
-  {
-    "type": "pei",
-    "named": false
-  },
-  {
-    "type": "per",
-    "named": false
-  },
-  {
-    "type": "pha",
-    "named": false
-  },
-  {
-    "type": "phb",
-    "named": false
-  },
-  {
-    "type": "phd",
-    "named": false
-  },
-  {
-    "type": "phk",
-    "named": false
-  },
-  {
-    "type": "php",
-    "named": false
-  },
-  {
-    "type": "phx",
-    "named": false
-  },
-  {
-    "type": "phy",
-    "named": false
-  },
-  {
-    "type": "pla",
-    "named": false
-  },
-  {
-    "type": "plb",
-    "named": false
-  },
-  {
-    "type": "pld",
-    "named": false
-  },
-  {
-    "type": "plp",
-    "named": false
-  },
-  {
-    "type": "plx",
-    "named": false
-  },
-  {
-    "type": "ply",
-    "named": false
-  },
-  {
-    "type": "pmc",
-    "named": false
-  },
-  {
-    "type": "psop_end_lup",
-    "named": true
-  },
-  {
-    "type": "put",
     "named": false
   },
   {
@@ -4069,95 +4729,7 @@
     "named": false
   },
   {
-    "type": "rel",
-    "named": false
-  },
-  {
-    "type": "rep",
-    "named": false
-  },
-  {
-    "type": "rev",
-    "named": false
-  },
-  {
-    "type": "rol",
-    "named": false
-  },
-  {
-    "type": "ror",
-    "named": false
-  },
-  {
-    "type": "rti",
-    "named": false
-  },
-  {
-    "type": "rtl",
-    "named": false
-  },
-  {
-    "type": "rts",
-    "named": false
-  },
-  {
     "type": "s",
-    "named": false
-  },
-  {
-    "type": "sav",
-    "named": false
-  },
-  {
-    "type": "sbc",
-    "named": false
-  },
-  {
-    "type": "sec",
-    "named": false
-  },
-  {
-    "type": "sed",
-    "named": false
-  },
-  {
-    "type": "sei",
-    "named": false
-  },
-  {
-    "type": "sep",
-    "named": false
-  },
-  {
-    "type": "skp",
-    "named": false
-  },
-  {
-    "type": "sta",
-    "named": false
-  },
-  {
-    "type": "str",
-    "named": false
-  },
-  {
-    "type": "stx",
-    "named": false
-  },
-  {
-    "type": "sty",
-    "named": false
-  },
-  {
-    "type": "stz",
-    "named": false
-  },
-  {
-    "type": "sw",
-    "named": false
-  },
-  {
-    "type": "swa",
     "named": false
   },
   {
@@ -4165,107 +4737,15 @@
     "named": false
   },
   {
-    "type": "tad",
-    "named": false
-  },
-  {
-    "type": "tas",
-    "named": false
-  },
-  {
-    "type": "tax",
-    "named": false
-  },
-  {
-    "type": "tay",
-    "named": false
-  },
-  {
-    "type": "tcd",
-    "named": false
-  },
-  {
-    "type": "tcs",
-    "named": false
-  },
-  {
-    "type": "tda",
-    "named": false
-  },
-  {
-    "type": "tdc",
-    "named": false
-  },
-  {
-    "type": "tr",
-    "named": false
-  },
-  {
-    "type": "trb",
-    "named": false
-  },
-  {
-    "type": "tsa",
-    "named": false
-  },
-  {
-    "type": "tsb",
-    "named": false
-  },
-  {
-    "type": "tsc",
-    "named": false
-  },
-  {
-    "type": "tsx",
-    "named": false
-  },
-  {
-    "type": "ttl",
-    "named": false
-  },
-  {
-    "type": "txa",
-    "named": false
-  },
-  {
-    "type": "txs",
-    "named": false
-  },
-  {
-    "type": "txy",
-    "named": false
-  },
-  {
-    "type": "tya",
-    "named": false
-  },
-  {
-    "type": "typ",
-    "named": false
-  },
-  {
-    "type": "tyx",
-    "named": false
+    "type": "trailing",
+    "named": true
   },
   {
     "type": "u",
     "named": false
   },
   {
-    "type": "use",
-    "named": false
-  },
-  {
-    "type": "usr",
-    "named": false
-  },
-  {
     "type": "v",
-    "named": false
-  },
-  {
-    "type": "var",
     "named": false
   },
   {
@@ -4277,27 +4757,7 @@
     "named": false
   },
   {
-    "type": "wai",
-    "named": false
-  },
-  {
-    "type": "wdm",
-    "named": false
-  },
-  {
     "type": "x",
-    "named": false
-  },
-  {
-    "type": "xba",
-    "named": false
-  },
-  {
-    "type": "xc",
-    "named": false
-  },
-  {
-    "type": "xce",
     "named": false
   },
   {
@@ -4322,6 +4782,10 @@
   },
   {
     "type": "~",
+    "named": false
+  },
+  {
+    "type": "Ā",
     "named": false
   }
 ]

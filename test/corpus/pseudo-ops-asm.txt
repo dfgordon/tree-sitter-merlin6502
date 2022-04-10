@@ -1,0 +1,268 @@
+===================
+Equate EQU
+===================
+
+LAB EQU $0000
+LAB2 EQU "A"
+LAB3 = LAB+LAB2
+
+---
+
+(source_file
+	(pseudo_operation (label_def (global_label)) (psop_equ) (number (hexadecimal)))
+	(pseudo_operation (label_def (global_label)) (psop_equ) (nchar))
+    (pseudo_operation (label_def (global_label)) (psop_equ) (binary_aexpr (global_label) (eop_plus) (global_label))))
+
+===================
+External Label EXT
+===================
+
+LAB EXT
+Label EXT
+>lab< EXT
+
+---
+
+(source_file
+	(pseudo_operation (label_def (global_label)) (psop_ext))
+	(pseudo_operation (label_def (global_label)) (psop_ext))
+	(pseudo_operation (label_def (global_label)) (psop_ext)))
+
+===================
+Entry Label ENT
+===================
+
+LAB ENT
+Label ENT
+ ENT <lab1>,>lab2<
+
+---
+
+(source_file
+	(pseudo_operation (label_def (global_label)) (psop_ent))
+	(pseudo_operation (label_def (global_label)) (psop_ent))
+	(pseudo_operation (psop_ent) (global_label) (global_label)))
+
+===================
+Origin ORG
+===================
+
+ ORG $1000
+ ORG START+END
+ ORG
+
+---
+
+(source_file
+	(pseudo_operation (psop_org) (number (hexadecimal)))
+	(pseudo_operation (psop_org) (binary_aexpr (global_label) (eop_plus) (global_label)))
+	(pseudo_operation (psop_org)))
+
+===================
+Relative REL
+===================
+
+ REL
+
+---
+
+(source_file
+	(pseudo_operation (psop_rel)))
+
+===================
+Object OBJ
+===================
+
+ OBJ $1000
+ OBJ START
+
+---
+
+(source_file
+	(pseudo_operation (psop_obj) (number (hexadecimal)))
+	(pseudo_operation (psop_obj) (global_label)))
+
+===================
+PUT DOS 3.3
+===================
+
+ PUT SOURCEFILE
+ PUT !SOURCE
+ PUT !SOURCE,D2
+
+---
+
+(source_file
+	(pseudo_operation (psop_put) (filename (prodos (prodos_filename))))
+	(pseudo_operation (psop_put) (filename (dos33)))
+	(pseudo_operation (psop_put) (filename (dos33))))
+
+===================
+PUT ProDOS
+===================
+
+ PUT SOURCEFILE
+ PUT /PRE/SOURCE
+
+---
+
+(source_file
+	(pseudo_operation (psop_put) (filename (prodos (prodos_filename))))
+	(pseudo_operation (psop_put) (filename (prodos (prodos_filename) (prodos_filename)))))
+
+===================
+PUT anyfs
+===================
+
+ PUT "/Users/Ludwig van Beethoven/music.asm"
+ PUT "C:\Windows\System32.asm"
+
+---
+
+(source_file
+	(pseudo_operation (psop_put) (filename (anyfs)))
+	(pseudo_operation (psop_put) (filename (anyfs))))
+
+===================
+USE DOS 3.3
+===================
+
+ USE SOURCEFILE
+ USE !SOURCE
+ USE !SOURCE,D2
+
+---
+
+(source_file
+	(pseudo_operation (psop_use) (filename (prodos (prodos_filename))))
+	(pseudo_operation (psop_use) (filename (dos33)))
+	(pseudo_operation (psop_use) (filename (dos33))))
+
+===================
+USE ProDOS
+===================
+
+ USE SOURCEFILE
+ USE /PRE/SOURCE
+
+---
+
+(source_file
+	(pseudo_operation (psop_use) (filename (prodos (prodos_filename))))
+	(pseudo_operation (psop_use) (filename (prodos (prodos_filename) (prodos_filename)))))
+
+===================
+Variable VAR
+===================
+
+ VAR 1;$3;LABEL
+
+---
+
+(source_file
+	(pseudo_operation (psop_var) (number (decimal)) (number (hexadecimal)) (global_label)))
+
+===================
+SAV DOS 3.3
+===================
+
+ SAV SOURCEFILE
+ SAV !SOURCE
+ SAV !SOURCE,D2
+
+---
+
+(source_file
+	(pseudo_operation (psop_sav) (filename (prodos (prodos_filename))))
+	(pseudo_operation (psop_sav) (filename (dos33)))
+	(pseudo_operation (psop_sav) (filename (dos33))))
+
+===================
+SAV ProDOS
+===================
+
+ SAV SOURCEFILE
+ SAV /PRE/SOURCE
+
+---
+
+(source_file
+	(pseudo_operation (psop_sav) (filename (prodos (prodos_filename))))
+	(pseudo_operation (psop_sav) (filename (prodos (prodos_filename) (prodos_filename)))))
+
+===================
+File type TYP
+===================
+
+ TYP $00
+ TYP MYTYPE
+
+---
+
+(source_file
+	(pseudo_operation (psop_typ) (number (hexadecimal)))
+	(pseudo_operation (psop_typ) (global_label)))
+
+===================
+DSK DOS 3.3
+===================
+
+ DSK SOURCEFILE
+ DSK !SOURCE
+ DSK !SOURCE,D2
+
+---
+
+(source_file
+	(pseudo_operation (psop_dsk) (filename (prodos (prodos_filename))))
+	(pseudo_operation (psop_dsk) (filename (dos33)))
+	(pseudo_operation (psop_dsk) (filename (dos33))))
+
+===================
+DSK ProDOS
+===================
+
+ DSK SOURCEFILE
+ DSK /PRE/SOURCE
+
+---
+
+(source_file
+	(pseudo_operation (psop_dsk) (filename (prodos (prodos_filename))))
+	(pseudo_operation (psop_dsk) (filename (prodos (prodos_filename) (prodos_filename)))))
+
+===================
+End of source END
+===================
+
+ END ; end of source
+
+---
+
+(source_file
+	(pseudo_operation (psop_end) (comment (comment_text))))
+
+===================
+Dummy section DUM
+===================
+
+ DUM $1000
+ DUM END-START
+
+---
+
+(source_file
+	(pseudo_operation (psop_dum) (number (hexadecimal)))
+	(pseudo_operation (psop_dum) (binary_aexpr (global_label) (eop_minus) (global_label))))
+
+===================
+End of dummy DEND
+===================
+
+ DEND ; end of dummy section
+
+---
+
+(source_file
+	(pseudo_operation (psop_dend) (comment (comment_text))))
+

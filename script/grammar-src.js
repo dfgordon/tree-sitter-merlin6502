@@ -5,9 +5,8 @@
 // * matching start and end of macro
 // * limitations on use of local labels
 // * limitations of 6502 and 65C02
-// * 8 vs. 16 bit psuedo-opcodes
-// * resolving collisions between opcodes, macro calls (macro_calli),
-//   and forced long addressing opcode postfixes
+// * limitations of Merlin 8
+// * identifying implied macro calls that overlap with (pseudo)opcode mnemonics
 // * verify that literal addresses or offsets are valid, e.g., lda -1 is accepted by the parser
 
 // Known differences with legacy Merlin syntax:
@@ -19,6 +18,7 @@
 const allow_lower_case = true;
 const language_name = allow_lower_case ? 'merlin6502' : 'merlin6502casesens';
 const alphachars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+const prodoschars = '.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
 // Define constants DO NOT EDIT
 
@@ -36,30 +36,37 @@ module.exports = grammar({
 		[$.literal_arg,$.mode_dopen],
 		[$.literal_arg,$.decimal],
 		[$.literal_arg,$.hexadecimal],
-		[$.literal_arg,$.binary]
+		[$.literal_arg,$.binary],
+		[$.literal_arg,$.addr_prefix],
+		[$.prodos_filename,$.dos33,$.anyfs],
+		[$.prodos_filename,$.dos33],
+		[$.dos33,$.anyfs]
 	],
 
 	rules: {
 		source_file: $ => repeat($._factor),
 		_factor: $ => choice(
 			$.program_counter,
-			$.main_comment,
-			$.macro_calli,
+			seq($.main_comment,$._newline), // vscode highlights don't like newline included in the highlight
+			$.macro_call,
+			$.macro_call_forced, // downstream must activate this in line by line parsing
 			$.operation,
 			$.pseudo_operation, // excludes macro pseudo-ops
 			$._newline
 		),
-		program_counter: $ => seq($._label,optional(seq($._sep,$.comment)),$._newline), // set label to program counter
+		program_counter: $ => seq($.label_def,optional(seq($._sep,$.comment)),$._newline), // set label to program counter
 
 		// Macros and labels
-		macro_calli: $ => seq(optional($._label),$._sep,$.global_label,optional(seq($._sep,$.macro_args)),optional(seq($._sep,$.comment)),$._newline),
+		macro_call: $ => seq(optional($.label_def),$._sep,$.global_label,optional(seq($._sep,$.macro_args)),optional(seq($._sep,$.comment)),$._newline),
+		macro_call_forced: $ => seq('\u0100',optional($.label_def),$._sep,$.global_label,optional(seq($._sep,$.macro_args)),optional(seq($._sep,$.comment)),$._newline),
 
 		_newline: $ => seq(optional($._sep),/\r?\n/),
 		_sep: $ => /[ \t]+/,
 		_arg_sep: $ => choice('.',',','/','-','(',' '), // separates macro call from arguments in the long form, e.g., PMC mymacro,myargs
 
 		_label: $ => choice($.global_label,$.local_label,$.var_label),
-		global_label: $ => token(prec.right(seq(GLOB_LAB_BEG,repeat(LAB_CHAR)))), // max 13 (8bit) or 26 (16bit)
+		label_def: $ => choice($.global_label,$.local_label,$.var_label),
+		global_label: $ => token(seq(GLOB_LAB_BEG,repeat(LAB_CHAR))), // max 13 (8bit) or 26 (16bit)
 		local_label: $ => token(seq(':',repeat1(LAB_CHAR))), // max 13 (8bit) or 26 (16bit),cannot be first label in program,in macro,MAC,ENT,EXT, or EQU
 		var_label: $ => token(seq(']',repeat1(LAB_CHAR))),
 
@@ -75,6 +82,19 @@ module.exports = grammar({
 
 		// Pseudo-operations DO NOT EDIT
 
+		// special arguments
+
+		trailing: $ => /\S+/,
+		if_mx: $ => seq('MX',choice($.eop_plus,$.eop_minus,$.eop_times,$.eop_div,$.eop_or,$.eop_and,$.eop_xor),$._aexpr),
+		if_char: $ => seq(ANYCHAR,ANYCHAR,$.var_label),
+		data_prefix: $ => choice('#','#<','#>','<','>'),
+		ptr_check: $ => seq('(',$.number,')-',$.number),
+
+		// If downstream finds a forward referenced macro call, it can insert ASCII NULL and re-parse the line
+		// to see if it can be interpreted as a forced absolute operation, such as `LDAL $00`
+
+		// Forced-operations DO NOT EDIT
+
 		// Strings
 
 		_string_operand: $ => seq($.dstring,optional(seq(',',$.hex_data))),
@@ -85,9 +105,9 @@ module.exports = grammar({
 	
 		_addr_6502: $ => choice($.imm,$.addr,$.addr_x,$.addr_y,$.iaddr_ix,$.iaddr_y,$.iaddr),
 		imm: $ => seq($.imm_prefix,$._aexpr),
-		addr: $ => $._aexpr,
-		addr_x: $ => seq($._aexpr,$.mode_x),
-		addr_y: $ => seq($._aexpr,$.mode_y),
+		addr: $ => $._addr_aexpr,
+		addr_x: $ => seq($._addr_aexpr,$.mode_x),
+		addr_y: $ => seq($._addr_aexpr,$.mode_y),
 		iaddr_ix: $ => seq($.mode_iopen,$._aexpr,$.mode_iix),
 		iaddr_y: $ => seq($.mode_iopen,$._aexpr,$.mode_iy),
 		iaddr: $ => seq($.mode_iopen,$._aexpr,$.mode_iclose),
@@ -115,7 +135,8 @@ module.exports = grammar({
 
 		// Expressions
 
-		_eaexpr: $ => seq(optional($.imm_prefix),$._aexpr),
+		_data_aexpr: $ => seq(optional($.data_prefix),$._aexpr),
+		_addr_aexpr: $ => seq(optional($.addr_prefix),$._aexpr),
 		_aexpr: $ => choice(
 			$._label,
 			$.number,
@@ -142,16 +163,21 @@ module.exports = grammar({
 		// Primitive Expressions
 
 		imm_prefix: $ => choice('#','#<','#>','#^'),
+		addr_prefix: $ => choice('<','>','^','|'),
 		hex_byte: $ => /[0-9A-Fa-f][0-9A-Fa-f]/,
 		hex_data: $ => seq($.hex_byte,repeat(seq(optional(','),$.hex_byte))),
-		filename: $ => choice($.prodos,$.dos33),
-		prodos: $ => seq(choice(...alphachars),/[A-Za-z0-9.]{0,14}/),
-		dos33: $ => seq(choice(...alphachars),DOS33_CHARS),
+		filename: $ => choice($.prodos,$.dos33,$.anyfs),
+		prodos: $ => seq(optional('/'),repeat(seq($.prodos_filename,'/')),$.prodos_filename),
+		prodos_filename: $ => prec.dynamic(1,seq(choice(...alphachars),repeat(choice(...prodoschars)))),
+		dos33: $ => seq(optional(choice(...DOS33_TFLAG)),choice(...alphachars),repeat(choice(...DOS33_CHARS)),
+			optional(/,S[1-7]/),
+			optional(/,D[1-2]/)),
+		anyfs: $ => prec.dynamic(1,choice(seq("'",repeat1(choice(...ANYFS)),"'"), seq('"',repeat1(choice(...ANYFS)),'"'))),
 
 		number: $ => choice($.decimal,$.hexadecimal,$.binary),
 		decimal: $ => repeat1(choice(...'0123456789')),
 		hexadecimal: $ => seq('$',repeat1(choice(...'0123456789ABCDEFabcdef'))),
-		binary: $ => seq('%',repeat1(choice(...'01'))),
+		binary: $ => seq('%',repeat1(choice(...'01_'))),
 
 		pchar: $ => seq("'",PCHAR,optional("'")),
 		nchar: $ => seq('"',NCHAR,optional('"')),
@@ -163,7 +189,7 @@ module.exports = grammar({
 		// Comments
 
 		comment: $ => seq(';',$.comment_text), // max 64 - len(operand)
-		comment_text: $ => /.*/,
-		main_comment: $ => seq(/\s*\*.*/,$._newline) // max 64
+		main_comment: $ => seq('*',$.comment_text), // max 64
+		comment_text: $ => /.*/
 	}
 });

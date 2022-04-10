@@ -1,0 +1,60 @@
+===================
+do if true DO
+===================
+
+ DO 0
+ DO 1
+ DO LABEL
+ DO LAB1/LAB2
+ DO LAB1-LAB2
+ DO LABEL-1
+
+---
+
+(source_file
+	(pseudo_operation (psop_do) (number (decimal)))
+	(pseudo_operation (psop_do) (number (decimal)))
+	(pseudo_operation (psop_do) (global_label))
+	(pseudo_operation (psop_do) (binary_aexpr (global_label) (eop_div) (global_label)))
+	(pseudo_operation (psop_do) (binary_aexpr (global_label) (eop_minus) (global_label)))
+	(pseudo_operation (psop_do) (binary_aexpr (global_label) (eop_minus) (number (decimal)))))
+
+===================
+else do this ELSE
+===================
+
+ ELSE
+
+---
+
+(source_file
+	(pseudo_operation (psop_else)))
+
+===================
+if char then do IF
+===================
+
+ IF (,]1
+ IF ",]TEMP
+ IF "=]1
+ IF MX!3/3
+
+---
+
+(source_file
+	(pseudo_operation (psop_if) (if_char (var_label)))
+	(pseudo_operation (psop_if) (if_char (var_label)))
+	(pseudo_operation (psop_if) (if_char (var_label)))
+	(pseudo_operation (psop_if) (if_mx (eop_xor)
+        (binary_aexpr (number (decimal)) (eop_div) (number (decimal))))))
+
+===================
+Finish FIN
+===================
+
+ FIN
+
+---
+
+(source_file
+	(pseudo_operation (psop_fin)))

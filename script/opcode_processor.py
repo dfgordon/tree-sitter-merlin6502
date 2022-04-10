@@ -99,16 +99,16 @@ for op in obj:
 with open(script_path / 'opcodes.md','w') as f:
     f.write(tableString)
 
-# Build the reduced syntactic opcodes for a 65C816.
+# Build the reduced syntactic opcode mnemonics for a 65C816.
 # These do not distinguish {d, zp, relative, absolute}, or {impl, accum, s}.
-# The 65C02 and 6502 opcodes are a syntactic subset.
+# The 65C02 and 6502 opcode mnemonics are a syntactic subset.
 reduced = {}
 for op in obj:
     reduced[op] = set()
     for am in obj[op]['modes']:
         reduced[op].add(reduction_map[am['addr_mnemonic']])
 
-# How to lex the opcodes
+# How to lex the opcode or pseudo-opcode mnemonics
 def opcode_lexeme(op,alt):
     lst = [op] + alt
     variants = set()
@@ -116,7 +116,7 @@ def opcode_lexeme(op,alt):
         variants.add(it.upper())
         if allow_lower_case:
             variants.add(it.lower())
-    lx = ""
+    lx = "token(prec(1,"
     if len(variants)>1:
         lx += "choice("
     for it in variants:
@@ -124,12 +124,30 @@ def opcode_lexeme(op,alt):
     lx = lx[:-1]
     if len(variants)>1:
         lx += ")"
-    return lx
+    return lx + "))"
+
+# Form pseudo-op argument sequence
+def closing_pos(str):
+    stack = ['(']
+    for i,c in enumerate(str):
+        if c=='(':
+            stack.append(c)
+        if c==')':
+            stack.pop()
+        if len(stack)==0:
+            return i
+def psop_args_insertion(args):
+    if args[:8]=='optional' and closing_pos(args[9:])==len(args[9:])-1:
+        return ", optional(seq($._sep," + args[9:-1] + "))"
+    else:
+       return ", $._sep, " + args
 
 # Rules for just the opcode column
 op_str = ''
 for op in reduced:
-    op_str += "\t\top_" + op + ": $ => "+opcode_lexeme(op,obj[op]['alt'])+",\n"
+    op_str += "\t\top_" + op + ": $ => seq("
+    op_str += opcode_lexeme(op,obj[op]['alt'])
+    op_str += ",optional($.trailing)),\n"
 
 # Rules for the entire operation line
 op_str += "\t\toperation: $ => choice(\n"
@@ -139,7 +157,7 @@ for op in reduced:
     addr_optional = '' in addr_modes and len(addr_modes)>1
     addr_choices = len(addr_modes) > 1 + int(addr_optional)
     addr_required = '' not in addr_modes
-    op_str += "\t\t\tseq(optional($._label), $._sep, $.op_" + op
+    op_str += "\t\t\tseq(optional($.label_def), $._sep, $.op_" + op
     if not addr_none:
         if addr_optional:
             op_str += ", optional(seq($._sep,"
@@ -166,23 +184,23 @@ def psop_rule(psop):
         return 'psop_end_lup'
     return 'psop_' + psop
 
+# Rules just for the (pseudo) opcode column
 psop_str = ''
 for psop in pobj:
-    psop_str += "\t\t" + psop_rule(psop) + ": $ => "
+    psop_str += "\t\t" + psop_rule(psop) + ": $ => seq("
     psop_str += opcode_lexeme(psop,pobj[psop]['alt'])
-    psop_str += ",\n"
+    psop_str += ",optional($.trailing)),\n"
 
+# Rules for the entire pseudo-op line
 psop_str += "\t\tpseudo_operation: $ => choice(\n"
 for psop in pobj:
     args = pobj[psop]['args']
     args16 = pobj[psop]['args16']
-    psop_str += "\t\t\tseq(optional($._label), $._sep, "
-    if args!=None:
-        psop_str += "$." + psop_rule(psop) + ", $._sep, " + args
-    elif args16!=None:
-        psop_str += "$." + psop_rule(psop) + ", $._sep, " + args16
-    else:
-        psop_str += "$." + psop_rule(psop)
+    psop_str += "\t\t\tseq(optional($.label_def), $._sep, $." + psop_rule(psop)
+    if args16!=None:
+        psop_str += psop_args_insertion(args16)
+    elif args!=None:
+        psop_str += psop_args_insertion(args)
     psop_str += ", optional(seq($._sep,$.comment)), $._newline),\n"
 psop_str =  psop_str[:-2] + "\n\t\t),\n"
 
@@ -200,6 +218,7 @@ arg = [c for c in anychar if c!=";" and c!=" "]
 glob_lab_beg = [chr(i) for i in range(ord(':')+1,127,1) if chr(i)!='[' and chr(i)!=']' and chr(i)!=';']
 lab_char = [chr(i) for i in range(ord('0'),127,1) if chr(i)!='[' and chr(i)!=']' and chr(i)!=';']
 dos33_char = [chr(i) for i in range(32,127,1) if chr(i)!=',']
+dos33_tflag = [chr(i) for i in range(33,ord('@'),1)]
 
 def build_char_regex(lst):
     ans = '/['
@@ -219,13 +238,15 @@ def build_char_ts(lst):
 
 char_regex = ''
 char_regex += 'const ANYCHAR = ' + build_char_regex(anychar)
+char_regex += 'const ANYFS = ' + build_char_ts(anychar)
 char_regex += 'const NCHAR = ' + build_char_regex(negchar)
 char_regex += 'const PCHAR = ' + build_char_regex(poschar)
 char_regex += 'const SPCHAR = ' + build_char_regex(spchar)
 char_regex += 'const ARG = ' + build_char_ts(arg)
 char_regex += 'const GLOB_LAB_BEG = ' + build_char_regex(glob_lab_beg)
 char_regex += 'const LAB_CHAR = ' + build_char_regex(lab_char)
-char_regex += 'const DOS33_CHARS = ' + build_char_regex(dos33_char)[:-3] + '{0,29}/;\n'
+char_regex += 'const DOS33_CHARS = ' + build_char_ts(dos33_char)
+char_regex += 'const DOS33_TFLAG = ' + build_char_ts(dos33_tflag)
 
 # Build dstring
 
@@ -262,11 +283,14 @@ highlights += '(current_addr) @type\n'
 highlights += '(local_label) @variable.parameter\n'
 highlights += '(var_label) @variable.builtin\n'
 highlights += '(number) @number\n'
+highlights += '(hex_byte) @number\n'
 highlights += '(dstring) @string\n'
 highlights += '(literal_arg) @string\n'
 highlights += '(pchar) @string\n'
 highlights += '(nchar) @string\n'
 highlights += '(literal) @string\n'
+highlights += '(filename) @string\n'
+highlights += '(trailing) @string\n'
 highlights += '(main_comment) @comment\n'
 highlights += '(comment) @comment\n'
 highlights += '(eop_plus) @operator\n'
@@ -282,6 +306,8 @@ highlights += '(mode_iopen) @keyword\n'
 highlights += '(mode_iclose) @keyword\n'
 highlights += '(mode_iix) @keyword\n'
 highlights += '(mode_iy) @keyword\n'
+highlights += '(imm_prefix) @keyword\n'
+highlights += '(addr_prefix) @keyword\n'
 highlights += '(ERROR) @error\n'
 for op in obj:
     highlights += '(op_' + op + ') @keyword\n'

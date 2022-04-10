@@ -3,11 +3,14 @@
 (local_label) @variable.parameter
 (var_label) @variable.builtin
 (number) @number
+(hex_byte) @number
 (dstring) @string
 (literal_arg) @string
 (pchar) @string
 (nchar) @string
 (literal) @string
+(filename) @string
+(trailing) @string
 (main_comment) @comment
 (comment) @comment
 (eop_plus) @operator
@@ -23,6 +26,8 @@
 (mode_iclose) @keyword
 (mode_iix) @keyword
 (mode_iy) @keyword
+(imm_prefix) @keyword
+(addr_prefix) @keyword
 (ERROR) @error
 (op_adc) @keyword
 (op_and) @keyword

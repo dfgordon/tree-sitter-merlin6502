@@ -3,14 +3,33 @@ opcodes in labels
 ===================
 
  INC16 10
+Ā INC16 10
  INC $00
 
 ---
 
 (source_file
-	(macro_calli
+	(operation
+		(op_inc (trailing))
+		(addr (number (decimal))))
+	(macro_call_forced
 		(global_label)
 		(macro_args (addr (number (decimal)))))
 	(operation
 		(op_inc)
 		(addr (number (hexadecimal)))))
+
+===================
+Trailing characters
+===================
+
+ LDAL $00
+ STA: $00
+LAB1 EQUA $1000
+
+---
+
+(source_file
+	(operation (op_lda (trailing)) (addr (number (hexadecimal))))
+	(operation (op_sta (trailing)) (addr (number (hexadecimal))))
+	(pseudo_operation (label_def (global_label)) (psop_equ (trailing)) (number (hexadecimal))))
