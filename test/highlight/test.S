@@ -1,5 +1,5 @@
 INC16   MAC
-*^ type
+*^ function
 *       ^ function.builtin
         INC     ]1
 *       ^ keyword
@@ -19,7 +19,9 @@ CONT
 *       ^ keyword
 *          ^ string
 Ā       INC16   $2000
-*        ^ type
+*        ^ function
+ST      MYMAC   $00;$01
+*        ^ function
 *                ^ number
 DATA    HEX     00,0A,000B
 *                  ^ number
@@ -30,4 +32,6 @@ DATA    HEX     00,0A,000B
         SAV     my dos 33 file
 *                 ^ string
         LDA     |$4000
+*               ^ keyword
+        ASC     #>A+B
 *               ^ keyword

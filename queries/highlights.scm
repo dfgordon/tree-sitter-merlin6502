@@ -1,3 +1,5 @@
+mac: (global_label) @function
+mac: (label_def (global_label) @function)
 (global_label) @type
 (current_addr) @type
 (local_label) @variable.parameter
@@ -28,6 +30,7 @@
 (mode_iy) @keyword
 (imm_prefix) @keyword
 (addr_prefix) @keyword
+(num_str_prefix) @keyword
 (ERROR) @error
 (op_adc) @keyword
 (op_and) @keyword
@@ -122,9 +125,11 @@
 (op_xce) @keyword
 (psop_equ) @function.builtin
 (psop_ext) @function.builtin
+(psop_exd) @function.builtin
 (psop_ent) @function.builtin
 (psop_org) @function.builtin
 (psop_rel) @function.builtin
+(psop_cas) @function.builtin
 (psop_obj) @function.builtin
 (psop_put) @function.builtin
 (psop_use) @function.builtin
@@ -151,9 +156,11 @@
 (psop_fls) @function.builtin
 (psop_rev) @function.builtin
 (psop_str) @function.builtin
+(psop_strl) @function.builtin
 (psop_da) @function.builtin
 (psop_ddb) @function.builtin
 (psop_dfb) @function.builtin
+(psop_flo) @function.builtin
 (psop_adr) @function.builtin
 (psop_adrl) @function.builtin
 (psop_hex) @function.builtin

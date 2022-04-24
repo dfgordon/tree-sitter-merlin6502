@@ -136,7 +136,16 @@ def closing_pos(str):
             stack.pop()
         if len(stack)==0:
             return i
+def case_insens(str):
+    ans = '/'
+    for c in str[1:-1]:
+        ans += '[' + c.lower() + c.upper() + ']'
+    return ans + '/'
 def psop_args_insertion(args):
+    if allow_lower_case:
+        while re.search("'[A-Z]+'",args)!=None:
+            match = re.search("'[A-Z]+'",args)
+            args = args.replace(match[0],case_insens(match[0]))
     if args[:8]=='optional' and closing_pos(args[9:])==len(args[9:])-1:
         return ", optional(seq($._sep," + args[9:-1] + "))"
     else:
@@ -194,14 +203,14 @@ for psop in pobj:
 # Rules for the entire pseudo-op line
 psop_str += "\t\tpseudo_operation: $ => choice(\n"
 for psop in pobj:
-    args = pobj[psop]['args']
-    args16 = pobj[psop]['args16']
-    psop_str += "\t\t\tseq(optional($.label_def), $._sep, $." + psop_rule(psop)
-    if args16!=None:
-        psop_str += psop_args_insertion(args16)
-    elif args!=None:
-        psop_str += psop_args_insertion(args)
-    psop_str += ", optional(seq($._sep,$.comment)), $._newline),\n"
+    if psop=='mac':
+        psop_str += "\t\t\tseq(field('mac',$.label_def), $._sep, $.psop_mac, optional(seq($._sep,$.comment)), $._newline),\n"
+    else:
+        args = pobj[psop]['args']
+        psop_str += "\t\t\tseq(optional($.label_def), $._sep, $." + psop_rule(psop)
+        if args!=None:
+            psop_str += psop_args_insertion(args)
+        psop_str += ", optional(seq($._sep,$.comment)), $._newline),\n"
 psop_str =  psop_str[:-2] + "\n\t\t),\n"
 
 # Build character context regex
@@ -210,13 +219,14 @@ psop_str =  psop_str[:-2] + "\n\t\t),\n"
 # In contrast Merlin has contextual relaxation of these restrictions.
 
 escaped = '/-^[]\\'
+label_forbidden = '}{][;'
 anychar = [chr(i) for i in range(32,127,1)]
 negchar = [c for c in anychar if c!='"']
 poschar = [c for c in anychar if c!="'"]
 spchar = [c for c in anychar if not c.isalnum() and c!=' ']
 arg = [c for c in anychar if c!=";" and c!=" "]
-glob_lab_beg = [chr(i) for i in range(ord(':')+1,127,1) if chr(i)!='[' and chr(i)!=']' and chr(i)!=';']
-lab_char = [chr(i) for i in range(ord('0'),127,1) if chr(i)!='[' and chr(i)!=']' and chr(i)!=';']
+glob_lab_beg = [chr(i) for i in range(ord(':')+1,127,1) if chr(i) not in label_forbidden]
+lab_char = [chr(i) for i in range(ord('0'),127,1) if chr(i) not in label_forbidden]
 dos33_char = [chr(i) for i in range(32,127,1) if chr(i)!=',']
 dos33_tflag = [chr(i) for i in range(33,ord('@'),1)]
 
@@ -278,7 +288,9 @@ with open(proj_path / 'grammar.js','w') as f:
 
 # Save the highlights
 
-highlights = '(global_label) @type\n'
+highlights = 'mac: (global_label) @function\n'
+highlights += 'mac: (label_def (global_label) @function)\n'
+highlights += '(global_label) @type\n'
 highlights += '(current_addr) @type\n'
 highlights += '(local_label) @variable.parameter\n'
 highlights += '(var_label) @variable.builtin\n'
@@ -308,6 +320,7 @@ highlights += '(mode_iix) @keyword\n'
 highlights += '(mode_iy) @keyword\n'
 highlights += '(imm_prefix) @keyword\n'
 highlights += '(addr_prefix) @keyword\n'
+highlights += '(num_str_prefix) @keyword\n'
 highlights += '(ERROR) @error\n'
 for op in obj:
     highlights += '(op_' + op + ') @keyword\n'

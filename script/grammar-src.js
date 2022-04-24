@@ -40,7 +40,8 @@ module.exports = grammar({
 		[$.literal_arg,$.addr_prefix],
 		[$.prodos_filename,$.dos33,$.anyfs],
 		[$.prodos_filename,$.dos33],
-		[$.dos33,$.anyfs]
+		[$.dos33,$.anyfs],
+		[$.hex_data]
 	],
 
 	rules: {
@@ -57,8 +58,8 @@ module.exports = grammar({
 		program_counter: $ => seq($.label_def,optional(seq($._sep,$.comment)),$._newline), // set label to program counter
 
 		// Macros and labels
-		macro_call: $ => seq(optional($.label_def),$._sep,$.global_label,optional(seq($._sep,$.macro_args)),optional(seq($._sep,$.comment)),$._newline),
-		macro_call_forced: $ => seq('\u0100',optional($.label_def),$._sep,$.global_label,optional(seq($._sep,$.macro_args)),optional(seq($._sep,$.comment)),$._newline),
+		macro_call: $ => seq(optional($.label_def),$._sep,field('mac',$.global_label),optional(seq($._sep,$.macro_args)),optional(seq($._sep,$.comment)),$._newline),
+		macro_call_forced: $ => seq('\u0100',optional($.label_def),$._sep,field('mac',$.global_label),optional(seq($._sep,$.macro_args)),optional(seq($._sep,$.comment)),$._newline),
 
 		_newline: $ => seq(optional($._sep),/\r?\n/),
 		_sep: $ => /[ \t]+/,
@@ -90,14 +91,13 @@ module.exports = grammar({
 		data_prefix: $ => choice('#','#<','#>','<','>'),
 		ptr_check: $ => seq('(',$.number,')-',$.number),
 
-		// If downstream finds a forward referenced macro call, it can insert ASCII NULL and re-parse the line
-		// to see if it can be interpreted as a forced absolute operation, such as `LDAL $00`
-
 		// Forced-operations DO NOT EDIT
 
 		// Strings
 
-		_string_operand: $ => seq($.dstring,optional(seq(',',$.hex_data))),
+		_string_operand: $ => seq($.dstring,repeat(seq(',',$.hex_data,',',$.dstring)),optional(seq(',',$.hex_data))),
+		_num_str: $ => seq($.num_str_prefix,$._aexpr),
+		num_str_prefix: $ => choice('#',"#'",'#"','#>',"#'>",'#">'),
 
 		// dstring DO NOT EDIT
 
@@ -138,6 +138,7 @@ module.exports = grammar({
 		_data_aexpr: $ => seq(optional($.data_prefix),$._aexpr),
 		_addr_aexpr: $ => seq(optional($.addr_prefix),$._aexpr),
 		_aexpr: $ => choice(
+			$._braced_aexpr,
 			$._label,
 			$.number,
 			$.pchar,
@@ -147,10 +148,30 @@ module.exports = grammar({
 			$.binary_aexpr
 		),
 		unary_aexpr: $ => prec(1,choice(seq($.eop_plus,$._aexpr),seq($.eop_minus,$._aexpr))),
-		// MERLIN has no operator precedence: left to right always prevails
+		// MERLIN 8/16 has no operator precedence: left to right always prevails
 		binary_aexpr: $ => prec.left(seq($._aexpr,choice(
 			$.eop_plus,$.eop_minus,$.eop_times,$.eop_div,$.eop_or,$.eop_and,$.eop_xor
 		),$._aexpr)),
+		// MERLIN 16+ added precedence within curly braced expressions
+		_braced_aexpr: $ => prec(1,seq('{',$._aexpr_prec,'}')),
+		_aexpr_prec: $ => choice(
+			$._braced_aexpr,
+			$._label,
+			$.number,
+			$.pchar,
+			$.nchar,
+			$.current_addr,
+			$.unary_aexpr_prec,
+			$.binary_aexpr_prec
+		),
+		unary_aexpr_prec: $ => prec(5,choice(seq($.eop_plus,$._aexpr_prec),seq($.eop_minus,$._aexpr_prec))),
+		binary_aexpr_prec: $ => choice(
+			prec.left(4,seq($._aexpr_prec,choice($.eop_or,$.eop_and,$.eop_xor),$._aexpr_prec)),
+			prec.left(3,seq($._aexpr_prec,choice($.eop_times,$.eop_div),$._aexpr_prec)),
+			prec.left(2,seq($._aexpr_prec,choice($.eop_plus,$.eop_minus),$._aexpr_prec)),
+			prec.left(1,seq($._aexpr_prec,choice($.cop_less,$.cop_gtr,$.cop_eq,$.cop_neq),$._aexpr_prec)),
+		),
+
 
 		eop_plus: $ => '+',
 		eop_minus: $ => '-',
@@ -159,6 +180,12 @@ module.exports = grammar({
 		eop_or: $ => '.',
 		eop_and: $ => '&',
 		eop_xor: $ => '!',
+
+		// Merlin 16+ added these operators
+		cop_less: $ => '<',
+		cop_gtr: $ => '>',
+		cop_eq: $ => '=',
+		cop_neq: $ => '#',
 
 		// Primitive Expressions
 

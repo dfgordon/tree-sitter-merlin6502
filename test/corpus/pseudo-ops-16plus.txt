@@ -1,0 +1,134 @@
+===================
+XC off
+===================
+
+ XC OFF
+
+---
+
+(source_file
+	(pseudo_operation (psop_xc) (enum)))
+
+===================
+interspersed ASC
+===================
+
+ ASC "Bye,Bye",8D,"between",9E1A
+
+---
+
+(source_file
+	(pseudo_operation (psop_asc) (dstring) (hex_data (hex_byte)) (dstring) (hex_data (hex_byte) (hex_byte))))
+
+===================
+expression ASC
+===================
+
+ ASC #X+Y
+ ASC #'X+Y
+ ASC #"X+Y
+ ASC #>X+Y
+ ASC #'>X+Y
+ ASC #'>X+Y
+ INV #X+Y
+
+---
+
+(source_file
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
+	(pseudo_operation (psop_inv) (dstring (MISSING "#"))))
+
+===================
+DATE with arg
+===================
+
+ DAT 1
+
+---
+
+(source_file
+	(pseudo_operation (psop_dat) (number (decimal))))
+
+===================
+case control CAS
+===================
+
+ CAS SE
+ CAS IN
+
+---
+
+(source_file
+	(pseudo_operation (psop_cas) (enum))
+	(pseudo_operation (psop_cas) (enum)))
+
+===================
+list control LST
+===================
+
+ LST FILE,myfile
+
+---
+
+(source_file
+	(pseudo_operation (psop_lst) (enum) (filename (prodos (prodos_filename)))))
+
+===================
+word length STRL
+===================
+
+ STRL "hello"
+
+---
+
+(source_file
+	(pseudo_operation (psop_strl) (dstring)))
+
+===================
+floating point FLO
+===================
+
+ FLO '1.6e-19'
+
+---
+
+(source_file
+	(pseudo_operation (psop_flo) (dstring)))
+
+===================
+external EXD
+===================
+
+LAB EXD
+ EXD LAB1,LAB2
+
+---
+
+(source_file
+	(pseudo_operation (label_def (global_label)) (psop_exd))
+    (pseudo_operation (psop_exd) (global_label) (global_label)))
+
+===================
+Precedence expressions
+===================
+
+ LDA {A+B*C}
+ LDA +{A+B}*C
+
+---
+
+(source_file
+	(operation (op_lda) (addr
+        (binary_aexpr_prec (global_label) (eop_plus)
+            (binary_aexpr_prec (global_label) (eop_times) (global_label)))))
+	(operation (op_lda) (addr
+        (binary_aexpr
+            (unary_aexpr (eop_plus)
+                (binary_aexpr_prec (global_label) (eop_plus) (global_label)))
+            (eop_times)
+            (global_label)))))

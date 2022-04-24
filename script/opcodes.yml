@@ -99,7 +99,7 @@ adc:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nvzc
+  status: nv----zc
 and:
   alt: []
   brief: bitwise and
@@ -201,7 +201,7 @@ and:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 asl:
   alt: []
   brief: arithmetic shift left
@@ -246,7 +246,7 @@ asl:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nzc
+  status: n-----zc
 bcc:
   alt:
   - blt
@@ -264,7 +264,7 @@ bcc:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 bcs:
   alt:
   - bge
@@ -282,7 +282,7 @@ bcs:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 beq:
   alt: []
   brief: branch on zero
@@ -299,7 +299,7 @@ beq:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 bit:
   alt: []
   brief: bit comparison
@@ -341,7 +341,7 @@ bit:
   - '65c816'
   - '6502'
   - '65c02'
-  status: m7m6z
+  status: mm----z-
 bmi:
   alt: []
   brief: branch on minus
@@ -358,7 +358,7 @@ bmi:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 bne:
   alt: []
   brief: branch on not zero
@@ -375,7 +375,7 @@ bne:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 bpl:
   alt: []
   brief: branch on plus
@@ -392,7 +392,7 @@ bpl:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 bra:
   alt: []
   brief: branch always
@@ -407,13 +407,13 @@ bra:
   processors:
   - '65c816'
   - '65c02'
-  status: I
+  status: --------
 brk:
   alt: []
-  brief: branch on zero
-  desc: branch if the Z status bit is set
+  brief: force break
+  desc: force break
   modes:
-  - addr_mnemonic: impl
+  - addr_mnemonic: imm
     code: 0x0
     cycles: 7
     processors:
@@ -424,7 +424,7 @@ brk:
   - '65c816'
   - '6502'
   - '65c02'
-  status: bi
+  status: ---b01--
 bvc:
   alt: []
   brief: branch on overflow clear
@@ -441,7 +441,7 @@ bvc:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 bvs:
   alt: []
   brief: branch on overflow
@@ -458,7 +458,7 @@ bvs:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 clc:
   alt: []
   brief: clear carry
@@ -475,7 +475,7 @@ clc:
   - '65c816'
   - '6502'
   - '65c02'
-  status: C
+  status: -------0
 cld:
   alt: []
   brief: clear decimal
@@ -492,7 +492,7 @@ cld:
   - '65c816'
   - '6502'
   - '65c02'
-  status: D
+  status: ----0---
 cli:
   alt: []
   brief: clear interrupt
@@ -509,7 +509,7 @@ cli:
   - '65c816'
   - '6502'
   - '65c02'
-  status: I
+  status: -----0--
 clv:
   alt: []
   brief: clear overflow
@@ -526,7 +526,7 @@ clv:
   - '65c816'
   - '6502'
   - '65c02'
-  status: V
+  status: -0------
 cmp:
   alt: []
   brief: compare accumulator
@@ -628,7 +628,7 @@ cmp:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nzc
+  status: n-----zc
 cpx:
   alt: []
   brief: compare X index
@@ -659,7 +659,7 @@ cpx:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nzc
+  status: n-----zc
 cpy:
   alt: []
   brief: compare Y index
@@ -690,7 +690,7 @@ cpy:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nzc
+  status: n-----zc
 dec:
   alt: []
   brief: decrement
@@ -734,7 +734,7 @@ dec:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 dex:
   alt: []
   brief: decrement X
@@ -751,7 +751,7 @@ dex:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 dey:
   alt: []
   brief: decrement Y
@@ -768,7 +768,7 @@ dey:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 eor:
   alt: []
   brief: bitwise exclusive or
@@ -870,7 +870,7 @@ eor:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 inc:
   alt: []
   brief: increment
@@ -914,7 +914,7 @@ inc:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 inx:
   alt: []
   brief: increment X
@@ -931,7 +931,7 @@ inx:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 iny:
   alt: []
   brief: increment Y
@@ -948,7 +948,7 @@ iny:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 jmp:
   alt: []
   brief: jump to address
@@ -983,7 +983,7 @@ jmp:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 jsr:
   alt: []
   brief: jump to subroutine
@@ -1005,7 +1005,7 @@ jsr:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 lda:
   alt: []
   brief: load accumulator
@@ -1054,7 +1054,7 @@ lda:
     - '6502'
     - '65c02'
   - addr_mnemonic: abs,x
-    code: 0x8d
+    code: 0xbd
     cycles: 4
     processors:
     - '65c816'
@@ -1107,7 +1107,7 @@ lda:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 ldx:
   alt: []
   brief: load X index
@@ -1152,7 +1152,7 @@ ldx:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 ldy:
   alt: []
   brief: load Y index
@@ -1197,7 +1197,7 @@ ldy:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 lsr:
   alt: []
   brief: logical shift right
@@ -1242,7 +1242,7 @@ lsr:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nzc
+  status: n-----zc
 nop:
   alt: []
   brief: no operation
@@ -1259,7 +1259,7 @@ nop:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 ora:
   alt: []
   brief: bitwise or
@@ -1361,7 +1361,7 @@ ora:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 pha:
   alt: []
   brief: push accumulator
@@ -1378,7 +1378,7 @@ pha:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 php:
   alt: []
   brief: push status
@@ -1395,7 +1395,7 @@ php:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 phx:
   alt: []
   brief: push X index
@@ -1410,7 +1410,7 @@ phx:
   processors:
   - '65c816'
   - '65c02'
-  status: null
+  status: --------
 phy:
   alt: []
   brief: push Y index
@@ -1425,7 +1425,7 @@ phy:
   processors:
   - '65c816'
   - '65c02'
-  status: null
+  status: --------
 pla:
   alt: []
   brief: pull accumulator
@@ -1442,7 +1442,7 @@ pla:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 plp:
   alt: []
   brief: pull status
@@ -1459,7 +1459,7 @@ plp:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nvbdizc
+  status: nvmxd1zc
 plx:
   alt: []
   brief: pull X index
@@ -1474,7 +1474,7 @@ plx:
   processors:
   - '65c816'
   - '65c02'
-  status: nz
+  status: n-----z-
 ply:
   alt: []
   brief: pull Y index
@@ -1489,7 +1489,7 @@ ply:
   processors:
   - '65c816'
   - '65c02'
-  status: nz
+  status: n-----z-
 rol:
   alt: []
   brief: rotate bits left
@@ -1534,7 +1534,7 @@ rol:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nzc
+  status: n-----zc
 ror:
   alt: []
   brief: rotate bits right
@@ -1579,7 +1579,7 @@ ror:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nzc
+  status: n-----zc
 rti:
   alt: []
   brief: return from interrupt
@@ -1596,7 +1596,7 @@ rti:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nvbdizc
+  status: nvmxd1zc
 rts:
   alt: []
   brief: return from subroutine
@@ -1613,7 +1613,7 @@ rts:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 sbc:
   alt: []
   brief: subtract with borrow
@@ -1715,7 +1715,7 @@ sbc:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nvzc
+  status: nv----zc
 sec:
   alt: []
   brief: set carry
@@ -1732,7 +1732,7 @@ sec:
   - '65c816'
   - '6502'
   - '65c02'
-  status: c
+  status: -------1
 sed:
   alt: []
   brief: set decimal
@@ -1749,7 +1749,7 @@ sed:
   - '65c816'
   - '6502'
   - '65c02'
-  status: d
+  status: ----1---
 sei:
   alt: []
   brief: set interrupt disable
@@ -1766,7 +1766,7 @@ sei:
   - '65c816'
   - '6502'
   - '65c02'
-  status: i
+  status: -----1--
 sta:
   alt: []
   brief: store accumulator
@@ -1861,7 +1861,7 @@ sta:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 stx:
   alt: []
   brief: store X index
@@ -1892,7 +1892,7 @@ stx:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 sty:
   alt: []
   brief: store Y index
@@ -1923,7 +1923,7 @@ sty:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 stz:
   alt: []
   brief: store zero
@@ -1956,7 +1956,7 @@ stz:
   processors:
   - '65c816'
   - '65c02'
-  status: null
+  status: --------
 tax:
   alt: []
   brief: transfer A to X
@@ -1973,7 +1973,7 @@ tax:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 tay:
   alt: []
   brief: transfer A to Y
@@ -1990,7 +1990,7 @@ tay:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 trb:
   alt: []
   brief: test and reset bits
@@ -2011,7 +2011,7 @@ trb:
   processors:
   - '65c816'
   - '65c02'
-  status: z
+  status: ------z-
 tsb:
   alt: []
   brief: test and set bits
@@ -2032,7 +2032,7 @@ tsb:
   processors:
   - '65c816'
   - '65c02'
-  status: z
+  status: ------z-
 tsx:
   alt: []
   brief: transfer S to X
@@ -2049,7 +2049,7 @@ tsx:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 txa:
   alt: []
   brief: transfer X to A
@@ -2066,7 +2066,7 @@ txa:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 txs:
   alt: []
   brief: transfer X to S
@@ -2083,7 +2083,7 @@ txs:
   - '65c816'
   - '6502'
   - '65c02'
-  status: null
+  status: --------
 tya:
   alt: []
   brief: transfer Y to A
@@ -2100,7 +2100,7 @@ tya:
   - '65c816'
   - '6502'
   - '65c02'
-  status: nz
+  status: n-----z-
 brl:
   alt: []
   brief: branch long always
@@ -2113,20 +2113,20 @@ brl:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 cop:
   alt: []
   brief: co-processor
   desc: co-processor
   modes:
-  - addr_mnemonic: s
+  - addr_mnemonic: zp
     code: 0x02
     cycles: 7
     processors:
     - '65c816'
   processors:
   - '65c816'
-  status: di
+  status: ----01--
 jml:
   alt: []
   brief: jump long
@@ -2139,7 +2139,7 @@ jml:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 jsl:
   alt: []
   brief: jump long to subroutine
@@ -2152,7 +2152,7 @@ jsl:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 mvn:
   alt: []
   brief: block move negative
@@ -2165,7 +2165,7 @@ mvn:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 mvp:
   alt: []
   brief: block move positive
@@ -2178,46 +2178,46 @@ mvp:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 pea:
   alt: []
   brief: push absolute address
   desc: push absolute address
   modes:
-  - addr_mnemonic: s
+  - addr_mnemonic: abs
     code: 0xf4
     cycles: 5
     processors:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 pei:
   alt: []
   brief: push indirect address
   desc: push indirect address
   modes:
-  - addr_mnemonic: s
+  - addr_mnemonic: (zp)
     code: 0xd4
     cycles: 6
     processors:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 per:
   alt: []
   brief: push PC relative address
   desc: push program counter relative address
   modes:
-  - addr_mnemonic: s
+  - addr_mnemonic: abs
     code: 0x62
     cycles: 6
     processors:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 phb:
   alt: []
   brief: push data bank register
@@ -2230,7 +2230,7 @@ phb:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 phd:
   alt: []
   brief: push direct register
@@ -2243,7 +2243,7 @@ phd:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 phk:
   alt: []
   brief: push program bank register
@@ -2256,7 +2256,7 @@ phk:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 plb:
   alt: []
   brief: pull data bank register
@@ -2269,7 +2269,7 @@ plb:
     - '65c816'
   processors:
   - '65c816'
-  status: nz
+  status: n-----z-
 pld:
   alt: []
   brief: pull direct register
@@ -2282,7 +2282,7 @@ pld:
     - '65c816'
   processors:
   - '65c816'
-  status: nz
+  status: n-----z-
 rep:
   alt: []
   brief: reset status bits
@@ -2295,7 +2295,7 @@ rep:
     - '65c816'
   processors:
   - '65c816'
-  status: nvmxdizc
+  status: nvmxd1zc
 rtl:
   alt: []
   brief: return from subroutine long
@@ -2308,7 +2308,7 @@ rtl:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 sep:
   alt: []
   brief: set processor status bit
@@ -2321,7 +2321,7 @@ sep:
     - '65c816'
   processors:
   - '65c816'
-  status: nvmxdizc
+  status: nvmxd1zc
 tcd:
   alt:
   - tad
@@ -2335,7 +2335,7 @@ tcd:
     - '65c816'
   processors:
   - '65c816'
-  status: nz
+  status: n-----z-
 tcs:
   alt:
   - tas
@@ -2349,7 +2349,7 @@ tcs:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 tdc:
   alt:
   - tda
@@ -2363,7 +2363,7 @@ tdc:
     - '65c816'
   processors:
   - '65c816'
-  status: nz
+  status: n-----z-
 tsc:
   alt:
   - tsa
@@ -2377,7 +2377,7 @@ tsc:
     - '65c816'
   processors:
   - '65c816'
-  status: nz
+  status: n-----z-
 txy:
   alt: []
   brief: transfer X to Y
@@ -2390,7 +2390,7 @@ txy:
     - '65c816'
   processors:
   - '65c816'
-  status: nz
+  status: n-----z-
 tyx:
   alt: []
   brief: transfer Y to X
@@ -2403,7 +2403,7 @@ tyx:
     - '65c816'
   processors:
   - '65c816'
-  status: nz
+  status: n-----z-
 wai:
   alt: []
   brief: wait for interrupt
@@ -2416,7 +2416,7 @@ wai:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 wdm:
   alt: []
   brief: reserved
@@ -2429,7 +2429,7 @@ wdm:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: --------
 xba:
   alt:
   - swa
@@ -2443,7 +2443,7 @@ xba:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: n-----z-
 xce:
   alt: []
   brief: exchange carry and emulation bits
@@ -2456,4 +2456,4 @@ xce:
     - '65c816'
   processors:
   - '65c816'
-  status: null
+  status: -------e

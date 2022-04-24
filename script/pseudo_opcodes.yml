@@ -4,29 +4,37 @@ equ:
   desc: equate label with expression
   caveat: cannot equate to zero page number after label has been used
   args: $._aexpr
-  args16: null
   label: [var,global]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 ext:
   alt: []
   brief: external label
   desc: defines label as external for use by linker
   caveat: null
-  args: null
-  args16: optional(seq($._label,repeat(seq(',',$._label))))
+  args: optional(seq($._label,repeat(seq(',',$._label))))
+  v8x: /.*/
   label: [var,global]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
+  category: assembler
+exd:
+  alt: []
+  brief: external label direct page
+  desc: defines label as a direct page external for use by linker
+  caveat: null
+  args: optional(seq($._label,repeat(seq(',',$._label))))
+  label: [var,global]
+  version: [v16+]
   category: assembler
 ent:
   alt: []
   brief: entry label
   desc: defines label as referenceable to an external label by another REL module
   caveat: null
-  args: null
-  args16: optional(seq($._label,repeat(seq(',',$._label))))
+  args: optional(seq($._label,repeat(seq(',',$._label))))
+  v8x: /.*/
   label: [var,global]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 org:
   alt: []
@@ -34,9 +42,8 @@ org:
   desc: set starting address of assembled code
   caveat: null
   args: optional($._aexpr)
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 rel:
   alt: []
@@ -44,9 +51,17 @@ rel:
   desc: generate code compatible with relocating linker
   caveat: must occur prior to any labels
   args: null
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
+  category: assembler
+cas:
+  alt: []
+  brief: set case sensitivity
+  desc: set case sensitivity, CAS SE sets case sensitive, CAS IN sets case insensitive
+  caveat: extension ignores this pseudo-op
+  args: alias(choice('SE','IN'),$.enum)
+  label: [var,global,local]
+  version: [v16+]
   category: assembler
 obj:
   alt: []
@@ -54,9 +69,8 @@ obj:
   desc: set the division line between symbol table and object code areas
   caveat: accepted only prior to start of code, must be in range $4000-$BFE0
   args: $._aexpr
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 put:
   alt: []
@@ -64,9 +78,8 @@ put:
   desc: insert a named file into the assembly source
   caveat: Not recursive.  Macro definitions not allowed in PUT file.  Prefix `T.` is assumed for DOS 3.3, unless first character is less than `@`. Slot and drive are not accepted in ProDOS.
   args: $.filename
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 use:
   alt: []
@@ -74,9 +87,8 @@ use:
   desc: use text file as macro library
   caveat: null
   args: $.filename
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 var:
   alt: []
@@ -84,9 +96,8 @@ var:
   desc: equate several variable labels in one step
   caveat: often used just prior to PUT
   args: $._aexpr,repeat(seq(';',$._aexpr))
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 sav:
   alt: []
@@ -94,9 +105,8 @@ sav:
   desc: save object code to named file, starting at last SAV
   caveat: null
   args: $.filename
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 typ:
   alt: []
@@ -104,9 +114,8 @@ typ:
   desc: set filetype used by DSK or SAV, 0=none,6=BIN,255=SYS
   caveat: null
   args: $._aexpr
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 dsk:
   alt: []
@@ -114,9 +123,8 @@ dsk:
   desc: write assembled code directly to named file on disk
   caveat: null
   args: $.filename
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 end:
   alt: []
@@ -124,9 +132,8 @@ end:
   desc: ignore any trailing source code
   caveat: labels trailing END are not recognized
   args: null
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 dum:
   alt: []
@@ -134,9 +141,8 @@ dum:
   desc: start a section that produces label values, but no object code. Expression gives the ORG of the section.
   caveat: null
   args: $._aexpr
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 dend:
   alt: []
@@ -144,9 +150,8 @@ dend:
   desc: mark the end of a dummy section
   caveat: null
   args: null
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: assembler
 ast:
   alt: []
@@ -154,59 +159,58 @@ ast:
   desc: print a line of asterisks
   caveat: null
   args: $._aexpr
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: formatting
 cyc:
   alt: []
   brief: cycle time
   desc: calculate and print cycle times
   caveat: null
-  args: optional(choice('OFF','AVE'))
-  args16: optional(choice('OFF','AVE','FLAGS'))
+  args: optional(alias(choice('OFF','AVE','FLAGS'),$.enum))
+  v8x: /FLAGS/
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: formatting
 dat:
   alt: []
   brief: date stamp
   desc: print the date and time
   caveat: ProDOS only
-  args: null
-  args16: null
+  args: optional($._aexpr)
+  v8x: /.*/
+  v16x: /.*/
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: formatting
 exp:
   alt: []
   brief: expand macros
   desc: ON prints entire macro, OFF prints only PMC, ONLY omits call line and end of macro line
   caveat: null
-  args: choice('ON','OFF','ONLY')
-  args16: null
+  args: alias(choice('ON','OFF','ONLY'),$.enum)
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: formatting
 lst:
   alt: []
   brief: listing control
   desc: ON starts listing, OFF stops listing, RTN restores to whatever was before the last LST
   caveat: null
-  args: optional(choice('ON','OFF'))
-  args16: optional(choice('ON','OFF','RTN'))
+  args: optional(choice(alias(choice('ON','OFF','RTN'),$.enum),seq(alias('FILE',$.enum),',',$.filename)))
+  v8x: /RTN|FILE/
+  v16x: /FILE/
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: formatting
 lstdo:
   alt: []
   brief: list inactive areas
   desc: controls whether to list code where DO OFF is in effect
   caveat: null
-  args: optional('OFF')
-  args16: null
+  args: optional(alias('OFF',$.enum))
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: formatting
 pag:
   alt: []
@@ -214,9 +218,8 @@ pag:
   desc: send formfeed to the printer
   caveat: no effect on screen listing
   args: null
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: formatting
 ttl:
   alt: []
@@ -224,9 +227,8 @@ ttl:
   desc: used to change title at top of a page during listing
   caveat: Merlin 16 only
   args: $.dstring
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: formatting
 skp:
   alt: []
@@ -234,29 +236,27 @@ skp:
   desc: sends a number of carriage returns to the listing
   caveat: null
   args: $._aexpr
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: formatting
 tr:
   alt: []
   brief: truncate control
   desc: limits the object code printout to three bytes per source line
   caveat: ADR only for Merlin 16 (suppress bank byte)
-  args: optional(choice('ON','OFF'))
-  args16: optional(choice('ON','OFF','ADR'))
+  args: optional(alias(choice('ON','OFF','ADR'),$.enum))
+  v8x: /ADR/
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: formatting
 asc:
   alt: []
   brief: ascii text
-  desc: put delimited ascii text into object code
-  caveat: delimiter can be any character, "sample" negative ascii, 'sample' positive ascii
-  args: $._string_operand
-  args16: null
+  desc: put delimited ascii text into object code, where delimiter can be any character
+  caveat: delimiter affects ASCII sign, e.g. "sample" is negative, while 'sample' is positive
+  args: choice($._string_operand,$._num_str)
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: strings
 dci:
   alt: []
@@ -264,9 +264,8 @@ dci:
   desc: same as ASC except string last character has opposite high bit
   caveat: null
   args: $._string_operand
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: strings
 inv:
   alt: []
@@ -274,9 +273,8 @@ inv:
   desc: put text in inverse format
   caveat: null
   args: $._string_operand
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: strings
 fls:
   alt: []
@@ -284,9 +282,8 @@ fls:
   desc: put text in flashing format
   caveat: null
   args: $._string_operand
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: strings
 rev:
   alt: []
@@ -294,9 +291,8 @@ rev:
   desc: put d-string backwards in memory
   caveat: null
   args: $.dstring
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: strings
 str:
   alt: []
@@ -304,9 +300,17 @@ str:
   desc: put delimited string with leading length byte
   caveat: trailing hex not counted in length
   args: $._string_operand
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
+  category: strings
+strl:
+  alt: []
+  brief: put delimited string with leading length word
+  desc: put delimited string with leading length word
+  caveat: trailing hex not counted in length
+  args: $._string_operand
+  label: [var,global,local]
+  version: [v16+,v32]
   category: strings
 da:
   alt: [dw]
@@ -314,9 +318,8 @@ da:
   desc: define little endian address
   caveat: null
   args: $._aexpr,repeat(seq(',',$._aexpr))
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: data storage
 ddb:
   alt: []
@@ -324,9 +327,8 @@ ddb:
   desc: define big endian address
   caveat: null
   args: $._aexpr,repeat(seq(',',$._aexpr))
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: data storage
 dfb:
   alt: [db]
@@ -334,29 +336,37 @@ dfb:
   desc: define byte, selects low byte, \# and < ignored, > selects high byte
   caveat: null
   args: $._data_aexpr,repeat(seq(',',$._data_aexpr))
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
+  category: data storage
+flo:
+  alt: []
+  brief: floating point constant
+  desc: converts a dstring to a 10-byte floating point constant
+  caveat: null
+  args: $.dstring
+  label: [var,global,local]
+  version: [v16+,v32]
   category: data storage
 adr:
   alt: []
   brief: define long address
   desc: define 3 byte long address
-  caveat: Merlin 16
-  args: null
-  args16: $._aexpr,repeat(seq(',',$._aexpr))
+  caveat: null
+  args: $._aexpr,repeat(seq(',',$._aexpr))
+  v8x: /.*/ 
   label: [var,global,local]
-  version: [16]
+  version: [v16,v16+,v32]
   category: data storage
 adrl:
   alt: []
   brief: define long address
   desc: define 4 byte long address
-  caveat: Merlin 16
-  args: null
-  args16: $._aexpr,repeat(seq(',',$._aexpr))
+  caveat: null
+  args: $._aexpr,repeat(seq(',',$._aexpr))
+  v8x: /.*/ 
   label: [var,global,local]
-  version: [16]
+  version: [v16,v16+,v32]
   category: data storage
 hex:
   alt: []
@@ -364,9 +374,8 @@ hex:
   desc: insert plain hex data
   caveat: null
   args: $.hex_data
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: data storage
 ds:
   alt: []
@@ -374,9 +383,8 @@ ds:
   desc: reserve space for string storage data
   caveat: null
   args: choice($._aexpr,seq($._aexpr,',',$._aexpr),'\\',seq('\\',',',$._aexpr))
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: data storage
 do:
   alt: []
@@ -384,9 +392,8 @@ do:
   desc: if expression is zero, stop generating object code
   caveat: null
   args: $._aexpr
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: conditionals
 else:
   alt: []
@@ -394,19 +401,18 @@ else:
   desc: invert the last do
   caveat: null
   args: null
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: conditionals
 if:
   alt: []
   brief: test first character or MX
   desc: if first character of variable matches, or if expression starting with MX is true, then assemble
   caveat: null
-  args: $.if_char
-  args16: choice($.if_char,$.if_mx)
+  args: choice($.if_char,$.if_mx)
+  v8x: /^MX/
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: conditionals
 fin:
   alt: []
@@ -414,9 +420,8 @@ fin:
   desc: cancel last DO or IF
   caveat: null
   args: null
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: conditionals
 chk:
   alt: []
@@ -424,19 +429,17 @@ chk:
   desc: put checksum in object code
   caveat: null
   args: null
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: miscellaneous
 err:
   alt: []
   brief: force error
   desc: force error
-  caveat: null
+  caveat: Merlin 16+ ignores this unless the expression evaluates to zero page
   args: choice($.ptr_check,seq(optional('\\'),$._aexpr))
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: miscellaneous
 kbd:
   alt: []
@@ -444,9 +447,8 @@ kbd:
   desc: define label from keyboard
   caveat: null
   args: optional($.dstring)
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: miscellaneous
 lup:
   alt: []
@@ -454,9 +456,8 @@ lup:
   desc: begin loop
   caveat: null
   args: $._aexpr
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: miscellaneous
 --^:
   alt: []
@@ -464,19 +465,18 @@ lup:
   desc: end of loop
   caveat: null
   args: null
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: miscellaneous
 mx:
   alt: []
   brief: long status mode
   desc: set intended long status of the 65816
   caveat: null
-  args: null
-  args16: $._aexpr
+  args: $._aexpr
+  v8x: /.*/ 
   label: [var,global,local]
-  version: [16]
+  version: [v16,v16+,v32]
   category: miscellaneous
 pau:
   alt: []
@@ -484,9 +484,8 @@ pau:
   desc: pause until keypress
   caveat: null
   args: null
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: miscellaneous
 sw:
   alt: []
@@ -494,7 +493,6 @@ sw:
   desc: enable sweet 16
   caveat: Merlin 8
   args: null
-  args16: null
   label: [var,global,local]
   version: [8]
   category: miscellaneous
@@ -504,19 +502,19 @@ usr:
   desc: user defined
   caveat: null
   args: $.literal
-  args16: null
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: miscellaneous
 xc:
   alt: []
   brief: extended opcodes
-  desc: once enables 65C02, twice enables 65816
+  desc: once enables 65C02, twice enables 65816, with argument OFF disables both
   caveat: null
-  args: null
-  args16: null
+  args: optional(alias('OFF',$.enum))
+  v8x: /.*/
+  v16x: /.*/
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+]
   category: miscellaneous
 mac:
   alt: []
@@ -524,9 +522,8 @@ mac:
   desc: start of a macro definition
   caveat: assigned label cannot be referenced except as a macro call
   args: null
-  args16: null
   label: [var,global]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: macro
 eom:
   alt: ['<<<']
@@ -534,17 +531,15 @@ eom:
   desc: end of a macro definition
   caveat: null
   args: null
-  args16: null
   label: [var,global]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: macro
 pmc:
   alt: ['>>>']
   brief: put macro call
   desc: call the named macro
   caveat: null
-  args: $.global_label,optional(seq($._arg_sep,$.macro_args))
-  args16: null
+  args: field('mac',$.global_label),optional(seq($._arg_sep,$.macro_args))
   label: [var,global,local]
-  version: [8,16]
+  version: [v8,v16,v16+,v32]
   category: macro

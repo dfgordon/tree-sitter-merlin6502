@@ -1,0 +1,297 @@
+equ:
+  brief: local equate
+  desc: equate label with constant, and apply to the next assembly
+  caveat: null
+  args: choice($.hexadecimal,$.decimal)
+  label: [var,global]
+  version:
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+=:
+  brief: linker equate
+  desc: equate label with constant, limited to linker scope
+  caveat: null
+  args: choice($.hexadecimal,$.decimal)
+  label: [var,global]
+  version:
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+geq:
+  brief: global equate
+  desc: equate label with constant, and apply to all assemblies involved in the link
+  caveat: null
+  args: choice($.hexadecimal,$.decimal)
+  label: [var,global]
+  version:
+    v16+: [absolute,GS,XL,OMF]
+    v32: [absolute,GS,XL,OMF]
+ext:
+  alt: []
+  brief: list externals
+  desc: list external labels
+  caveat: null
+  args: null
+  label: [var,global]
+  version:
+    v16: [absolute]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+ent:
+  alt: []
+  brief: list entries
+  desc: list entries
+  caveat: null
+  args: null
+  label: [var,global]
+  version:
+    v16: [absolute]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+org:
+  alt: []
+  brief: set origin
+  desc: set starting address of assembled code, also used in 16b link file
+  caveat: null
+  args: $.hexadecimal
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+put:
+  alt: []
+  brief: force assembly
+  desc: unconditionally execute the next ASM if the PUT file has changed
+  caveat: null
+  args: $.filename
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+sav:
+  alt: []
+  brief: save linked file
+  desc: save linked file
+  caveat: null
+  args: $.filename
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+typ:
+  alt: []
+  brief: set ProDOS file type
+  desc: set filetype used by DSK or SAV, 0=none,6=BIN,255=SYS
+  caveat: null
+  args: $.hexadecimal
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl]
+    v32: [absolute,gs,xl]
+end:
+  alt: []
+  brief: end of linking
+  desc: mark end of linker command file, optional
+  caveat: null
+  args: null
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+dat:
+  alt: []
+  brief: date stamp
+  desc: store date with object file
+  caveat: null
+  args: null
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+adr:
+  alt: []
+  brief: set load address
+  desc: set the load address of the next linked file
+  caveat: null
+  args: $.hexadecimal
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+ds:
+  alt: []
+  brief: define storage
+  desc: reserve space for string storage data, also can be used in GS linker file
+  caveat: null
+  args: choice($._aexpr,seq($._aexpr,',',$._aexpr),'\\',seq('\\',',',$._aexpr))
+  label: [var,global,local]
+  version:
+    v16+: [gs,xl,omf]
+    v32: [gs,xl,omf]
+do:
+  alt: []
+  brief: do if true
+  desc: if expression is zero, stop generating object code
+  caveat: null
+  args: $._aexpr
+  label: [var,global,local]
+  version:
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+else:
+  alt: []
+  brief: invert the last do
+  desc: invert the last do
+  caveat: null
+  args: null
+  label: [var,global,local]
+  version:
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+if:
+  alt: []
+  brief: force assembly
+  desc: if file changed force all subsequent assembly
+  caveat: null
+  args: $.filename
+  label: [var,global,local]
+  version:
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+fin:
+  alt: []
+  brief: cancel last DO or IF
+  desc: cancel last DO or IF
+  caveat: null
+  args: null
+  label: [var,global,local]
+  version:
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+kbd:
+  alt: []
+  brief: define label from keyboard
+  desc: define label from keyboard
+  caveat: null
+  args: optional($.dstring)
+  label: [var,global,local]
+  version:
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+asm:
+  alt: []
+  brief: assemble source file
+  desc: assemble named source file if it has changed since the last link
+  caveat: null
+  args: $.filename
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+ovr:
+  alt: []
+  brief: override and assemble
+  desc: execute the next ASM regardless of the file status
+  caveat: argument OFF requires Merlin 16+
+  args: optional(choice('ALL','OFF'))
+  v16x: /OFF/
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+lnk:
+  alt: [lin]
+  brief: include link file
+  desc: link the named link file
+  caveat: null
+  args: $.filename
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+lib:
+  alt: []
+  brief: search for library
+  desc: search for library files to resolve missing external labels
+  caveat: null
+  args: $.filename
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+lkv:
+  alt: []
+  brief: verify linker version
+  desc: verify linker version using mapping 0 = Absolute, 1 = GS, 2 = XL, 3 = OMF
+  caveat: OMF linker requires Merlin 16+
+  args: $.hexadecimal
+  label: [var,global,local]
+  version:
+    v16: [absolute,gs,xl]
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+ver:
+  alt: []
+  brief: system loader version
+  desc: specify the version of the OMF (System Loader), can be $1 or $2
+  caveat: null
+  args: $.hexadecimal
+  label: [var,global,local]
+  version:
+    v16+: [gs,xl,omf]
+    v32: [gs,xl,omf]
+knd:
+  alt: [kin]
+  brief: KIND value
+  desc: specify value to put in the KIND location of the OMF header
+  caveat: GS linker only
+  args: $.hexadecimal
+  label: [var,global,local]
+  version:
+    v16+: [gs,xl,omf]
+    v32: [gs,xl,omf]
+ali:
+  alt: []
+  brief: specify ALIGN
+  desc: specify ALIGN field in the file header, 0, $100, or $10000
+  caveat: null
+  args: $.hexadecimal
+  label: [var,global,local]
+  version:
+    v16+: [gs,xl,omf]
+    v32: [gs,xl,omf]
+nol:
+  alt: []
+  brief: no list
+  desc: perform all assemblies with LST OFF
+  caveat: null
+  args: null
+  label: [var,global,local]
+  version:
+    v16+: [absolute,gs,xl,omf]
+    v32: [absolute,gs,xl,omf]
+fas:
+  alt: []
+  version:
+    v16+: [absolute]
+    v32: [absolute]
+pos:
+  alt: []
+  version:
+    v16+: [absolute,gs,xl]
+    v32: [absolute,gs,xl]
+len:
+  alt: []
+  version:
+    v16+: [absolute,gs,xl]
+    v32: [absolute,gs,xl]

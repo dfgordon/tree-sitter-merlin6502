@@ -2,7 +2,6 @@
     "--^": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "end of loop",
         "category": "miscellaneous",
         "caveat": null,
@@ -13,66 +12,72 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "adr": {
         "alt": [],
-        "args": null,
-        "args16": "$._aexpr,repeat(seq(',',$._aexpr))",
+        "args": "$._aexpr,repeat(seq(',',$._aexpr))",
         "brief": "define long address",
         "category": "data storage",
-        "caveat": "Merlin 16",
+        "caveat": null,
         "desc": "define 3 byte long address",
         "label": [
             "var",
             "global",
             "local"
         ],
+        "v8x": "/.*/",
         "version": [
-            16
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "adrl": {
         "alt": [],
-        "args": null,
-        "args16": "$._aexpr,repeat(seq(',',$._aexpr))",
+        "args": "$._aexpr,repeat(seq(',',$._aexpr))",
         "brief": "define long address",
         "category": "data storage",
-        "caveat": "Merlin 16",
+        "caveat": null,
         "desc": "define 4 byte long address",
         "label": [
             "var",
             "global",
             "local"
         ],
+        "v8x": "/.*/",
         "version": [
-            16
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "asc": {
         "alt": [],
-        "args": "$._string_operand",
-        "args16": null,
+        "args": "choice($._string_operand,$._num_str)",
         "brief": "ascii text",
         "category": "strings",
-        "caveat": "delimiter can be any character, \"sample\" negative ascii, 'sample' positive ascii",
-        "desc": "put delimited ascii text into object code",
+        "caveat": "delimiter affects ASCII sign, e.g. \"sample\" is negative, while 'sample' is positive",
+        "desc": "put delimited ascii text into object code, where delimiter can be any character",
         "label": [
             "var",
             "global",
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "ast": {
         "alt": [],
         "args": "$._aexpr",
-        "args16": null,
         "brief": "asterisks",
         "category": "formatting",
         "caveat": null,
@@ -83,14 +88,30 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
+        ]
+    },
+    "cas": {
+        "alt": [],
+        "args": "alias(choice('SE','IN'),$.enum)",
+        "brief": "set case sensitivity",
+        "category": "assembler",
+        "caveat": "extension ignores this pseudo-op",
+        "desc": "set case sensitivity, CAS SE sets case sensitive, CAS IN sets case insensitive",
+        "label": [
+            "var",
+            "global",
+            "local"
+        ],
+        "version": [
+            "v16+"
         ]
     },
     "chk": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "checksum",
         "category": "miscellaneous",
         "caveat": null,
@@ -101,14 +122,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "cyc": {
         "alt": [],
-        "args": "optional(choice('OFF','AVE'))",
-        "args16": "optional(choice('OFF','AVE','FLAGS'))",
+        "args": "optional(alias(choice('OFF','AVE','FLAGS'),$.enum))",
         "brief": "cycle time",
         "category": "formatting",
         "caveat": null,
@@ -118,9 +140,11 @@
             "global",
             "local"
         ],
+        "v8x": "/FLAGS/",
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "da": {
@@ -128,7 +152,6 @@
             "dw"
         ],
         "args": "$._aexpr,repeat(seq(',',$._aexpr))",
-        "args16": null,
         "brief": "define address or word",
         "category": "data storage",
         "caveat": null,
@@ -139,14 +162,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "dat": {
         "alt": [],
-        "args": null,
-        "args16": null,
+        "args": "optional($._aexpr)",
         "brief": "date stamp",
         "category": "formatting",
         "caveat": "ProDOS only",
@@ -156,15 +180,17 @@
             "global",
             "local"
         ],
+        "v16x": "/.*/",
+        "v8x": "/.*/",
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "dci": {
         "alt": [],
         "args": "$._string_operand",
-        "args16": null,
         "brief": "dextral character inverted",
         "category": "strings",
         "caveat": null,
@@ -175,14 +201,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "ddb": {
         "alt": [],
         "args": "$._aexpr,repeat(seq(',',$._aexpr))",
-        "args16": null,
         "brief": "define double byte",
         "category": "data storage",
         "caveat": null,
@@ -193,14 +220,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "dend": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "end dummy section",
         "category": "assembler",
         "caveat": null,
@@ -211,8 +239,10 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "dfb": {
@@ -220,7 +250,6 @@
             "db"
         ],
         "args": "$._data_aexpr,repeat(seq(',',$._data_aexpr))",
-        "args16": null,
         "brief": "define byte",
         "category": "data storage",
         "caveat": null,
@@ -231,14 +260,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "do": {
         "alt": [],
         "args": "$._aexpr",
-        "args16": null,
         "brief": "do if true",
         "category": "conditionals",
         "caveat": null,
@@ -249,14 +279,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "ds": {
         "alt": [],
         "args": "choice($._aexpr,seq($._aexpr,',',$._aexpr),'\\\\',seq('\\\\',',',$._aexpr))",
-        "args16": null,
         "brief": "define storage",
         "category": "data storage",
         "caveat": null,
@@ -267,14 +298,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "dsk": {
         "alt": [],
         "args": "$.filename",
-        "args16": null,
         "brief": "assemble to disk",
         "category": "assembler",
         "caveat": null,
@@ -285,14 +317,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "dum": {
         "alt": [],
         "args": "$._aexpr",
-        "args16": null,
         "brief": "dummy section",
         "category": "assembler",
         "caveat": null,
@@ -303,14 +336,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "else": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "invert the last do",
         "category": "conditionals",
         "caveat": null,
@@ -321,14 +355,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "end": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "end of source",
         "category": "assembler",
         "caveat": "labels trailing END are not recognized",
@@ -339,14 +374,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "ent": {
         "alt": [],
-        "args": null,
-        "args16": "optional(seq($._label,repeat(seq(',',$._label))))",
+        "args": "optional(seq($._label,repeat(seq(',',$._label))))",
         "brief": "entry label",
         "category": "assembler",
         "caveat": null,
@@ -355,9 +391,12 @@
             "var",
             "global"
         ],
+        "v8x": "/.*/",
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "eom": {
@@ -365,7 +404,6 @@
             "<<<"
         ],
         "args": null,
-        "args16": null,
         "brief": "end macro",
         "category": "macro",
         "caveat": null,
@@ -375,8 +413,10 @@
             "global"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "equ": {
@@ -384,7 +424,6 @@
             "="
         ],
         "args": "$._aexpr",
-        "args16": null,
         "brief": "equate",
         "category": "assembler",
         "caveat": "cannot equate to zero page number after label has been used",
@@ -394,17 +433,18 @@
             "global"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "err": {
         "alt": [],
         "args": "choice($.ptr_check,seq(optional('\\\\'),$._aexpr))",
-        "args16": null,
         "brief": "force error",
         "category": "miscellaneous",
-        "caveat": null,
+        "caveat": "Merlin 16+ ignores this unless the expression evaluates to zero page",
         "desc": "force error",
         "label": [
             "var",
@@ -412,14 +452,30 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
+        ]
+    },
+    "exd": {
+        "alt": [],
+        "args": "optional(seq($._label,repeat(seq(',',$._label))))",
+        "brief": "external label direct page",
+        "category": "assembler",
+        "caveat": null,
+        "desc": "defines label as a direct page external for use by linker",
+        "label": [
+            "var",
+            "global"
+        ],
+        "version": [
+            "v16+"
         ]
     },
     "exp": {
         "alt": [],
-        "args": "choice('ON','OFF','ONLY')",
-        "args16": null,
+        "args": "alias(choice('ON','OFF','ONLY'),$.enum)",
         "brief": "expand macros",
         "category": "formatting",
         "caveat": null,
@@ -430,14 +486,14 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "ext": {
         "alt": [],
-        "args": null,
-        "args16": "optional(seq($._label,repeat(seq(',',$._label))))",
+        "args": "optional(seq($._label,repeat(seq(',',$._label))))",
         "brief": "external label",
         "category": "assembler",
         "caveat": null,
@@ -446,15 +502,17 @@
             "var",
             "global"
         ],
+        "v8x": "/.*/",
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "fin": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "cancel last DO or IF",
         "category": "conditionals",
         "caveat": null,
@@ -465,14 +523,32 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
+        ]
+    },
+    "flo": {
+        "alt": [],
+        "args": "$.dstring",
+        "brief": "floating point constant",
+        "category": "data storage",
+        "caveat": null,
+        "desc": "converts a dstring to a 10-byte floating point constant",
+        "label": [
+            "var",
+            "global",
+            "local"
+        ],
+        "version": [
+            "v16+",
+            "v32"
         ]
     },
     "fls": {
         "alt": [],
         "args": "$._string_operand",
-        "args16": null,
         "brief": "flashing text",
         "category": "strings",
         "caveat": null,
@@ -483,14 +559,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "hex": {
         "alt": [],
         "args": "$.hex_data",
-        "args16": null,
         "brief": "hex data",
         "category": "data storage",
         "caveat": null,
@@ -501,14 +578,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "if": {
         "alt": [],
-        "args": "$.if_char",
-        "args16": "choice($.if_char,$.if_mx)",
+        "args": "choice($.if_char,$.if_mx)",
         "brief": "test first character or MX",
         "category": "conditionals",
         "caveat": null,
@@ -518,15 +596,17 @@
             "global",
             "local"
         ],
+        "v8x": "/^MX/",
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "inv": {
         "alt": [],
         "args": "$._string_operand",
-        "args16": null,
         "brief": "inverse text",
         "category": "strings",
         "caveat": null,
@@ -537,14 +617,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "kbd": {
         "alt": [],
         "args": "optional($.dstring)",
-        "args16": null,
         "brief": "define label from keyboard",
         "category": "miscellaneous",
         "caveat": null,
@@ -555,14 +636,14 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "lst": {
         "alt": [],
-        "args": "optional(choice('ON','OFF'))",
-        "args16": "optional(choice('ON','OFF','RTN'))",
+        "args": "optional(choice(alias(choice('ON','OFF','RTN'),$.enum),seq(alias('FILE',$.enum),',',$.filename)))",
         "brief": "listing control",
         "category": "formatting",
         "caveat": null,
@@ -572,15 +653,17 @@
             "global",
             "local"
         ],
+        "v16x": "/FILE/",
+        "v8x": "/RTN|FILE/",
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "lstdo": {
         "alt": [],
-        "args": "optional('OFF')",
-        "args16": null,
+        "args": "optional(alias('OFF',$.enum))",
         "brief": "list inactive areas",
         "category": "formatting",
         "caveat": null,
@@ -591,14 +674,14 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "lup": {
         "alt": [],
         "args": "$._aexpr",
-        "args16": null,
         "brief": "begin loop",
         "category": "miscellaneous",
         "caveat": null,
@@ -609,14 +692,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "mac": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "begin macro",
         "category": "macro",
         "caveat": "assigned label cannot be referenced except as a macro call",
@@ -626,14 +710,15 @@
             "global"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "mx": {
         "alt": [],
-        "args": null,
-        "args16": "$._aexpr",
+        "args": "$._aexpr",
         "brief": "long status mode",
         "category": "miscellaneous",
         "caveat": null,
@@ -643,14 +728,16 @@
             "global",
             "local"
         ],
+        "v8x": "/.*/",
         "version": [
-            16
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "obj": {
         "alt": [],
         "args": "$._aexpr",
-        "args16": null,
         "brief": "set object",
         "category": "assembler",
         "caveat": "accepted only prior to start of code, must be in range $4000-$BFE0",
@@ -661,14 +748,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "org": {
         "alt": [],
         "args": "optional($._aexpr)",
-        "args16": null,
         "brief": "set origin",
         "category": "assembler",
         "caveat": null,
@@ -679,14 +767,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "pag": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "send formfeed",
         "category": "formatting",
         "caveat": "no effect on screen listing",
@@ -697,14 +786,14 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "pau": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "pause",
         "category": "miscellaneous",
         "caveat": null,
@@ -715,16 +804,16 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "pmc": {
         "alt": [
             ">>>"
         ],
-        "args": "$.global_label,optional(seq($._arg_sep,$.macro_args))",
-        "args16": null,
+        "args": "field('mac',$.global_label),optional(seq($._arg_sep,$.macro_args))",
         "brief": "put macro call",
         "category": "macro",
         "caveat": null,
@@ -735,14 +824,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "put": {
         "alt": [],
         "args": "$.filename",
-        "args16": null,
         "brief": "put text file",
         "category": "assembler",
         "caveat": "Not recursive.  Macro definitions not allowed in PUT file.  Prefix `T.` is assumed for DOS 3.3, unless first character is less than `@`. Slot and drive are not accepted in ProDOS.",
@@ -753,14 +843,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "rel": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "relocatable code module",
         "category": "assembler",
         "caveat": "must occur prior to any labels",
@@ -771,14 +862,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "rev": {
         "alt": [],
         "args": "$.dstring",
-        "args16": null,
         "brief": "reverse text",
         "category": "strings",
         "caveat": null,
@@ -789,14 +881,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "sav": {
         "alt": [],
         "args": "$.filename",
-        "args16": null,
         "brief": "save object code",
         "category": "assembler",
         "caveat": null,
@@ -807,14 +900,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "skp": {
         "alt": [],
         "args": "$._aexpr",
-        "args16": null,
         "brief": "skip lines",
         "category": "formatting",
         "caveat": null,
@@ -825,14 +919,14 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "str": {
         "alt": [],
         "args": "$._string_operand",
-        "args16": null,
         "brief": "put delimited string with leading length byte",
         "category": "strings",
         "caveat": "trailing hex not counted in length",
@@ -843,14 +937,32 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
+        ]
+    },
+    "strl": {
+        "alt": [],
+        "args": "$._string_operand",
+        "brief": "put delimited string with leading length word",
+        "category": "strings",
+        "caveat": "trailing hex not counted in length",
+        "desc": "put delimited string with leading length word",
+        "label": [
+            "var",
+            "global",
+            "local"
+        ],
+        "version": [
+            "v16+",
+            "v32"
         ]
     },
     "sw": {
         "alt": [],
         "args": null,
-        "args16": null,
         "brief": "enable sweet 16",
         "category": "miscellaneous",
         "caveat": "Merlin 8",
@@ -866,8 +978,7 @@
     },
     "tr": {
         "alt": [],
-        "args": "optional(choice('ON','OFF'))",
-        "args16": "optional(choice('ON','OFF','ADR'))",
+        "args": "optional(alias(choice('ON','OFF','ADR'),$.enum))",
         "brief": "truncate control",
         "category": "formatting",
         "caveat": "ADR only for Merlin 16 (suppress bank byte)",
@@ -877,15 +988,16 @@
             "global",
             "local"
         ],
+        "v8x": "/ADR/",
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "ttl": {
         "alt": [],
         "args": "$.dstring",
-        "args16": null,
         "brief": "define title heading",
         "category": "formatting",
         "caveat": "Merlin 16 only",
@@ -896,14 +1008,14 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     },
     "typ": {
         "alt": [],
         "args": "$._aexpr",
-        "args16": null,
         "brief": "set ProDOS file type",
         "category": "assembler",
         "caveat": null,
@@ -914,14 +1026,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "use": {
         "alt": [],
         "args": "$.filename",
-        "args16": null,
         "brief": "use file as library",
         "category": "assembler",
         "caveat": null,
@@ -932,14 +1045,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "usr": {
         "alt": [],
         "args": "$.literal",
-        "args16": null,
         "brief": "user defined",
         "category": "miscellaneous",
         "caveat": null,
@@ -950,14 +1064,15 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "var": {
         "alt": [],
         "args": "$._aexpr,repeat(seq(';',$._aexpr))",
-        "args16": null,
         "brief": "setup variables",
         "category": "assembler",
         "caveat": "often used just prior to PUT",
@@ -968,26 +1083,30 @@
             "local"
         ],
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+",
+            "v32"
         ]
     },
     "xc": {
         "alt": [],
-        "args": null,
-        "args16": null,
+        "args": "optional(alias('OFF',$.enum))",
         "brief": "extended opcodes",
         "category": "miscellaneous",
         "caveat": null,
-        "desc": "once enables 65C02, twice enables 65816",
+        "desc": "once enables 65C02, twice enables 65816, with argument OFF disables both",
         "label": [
             "var",
             "global",
             "local"
         ],
+        "v16x": "/.*/",
+        "v8x": "/.*/",
         "version": [
-            8,
-            16
+            "v8",
+            "v16",
+            "v16+"
         ]
     }
 }
