@@ -219,7 +219,7 @@ psop_str =  psop_str[:-2] + "\n\t\t),\n"
 # In contrast Merlin has contextual relaxation of these restrictions.
 
 escaped = '/-^[]\\'
-label_forbidden = '}{][;'
+label_forbidden = '}{][;<>=#'
 anychar = [chr(i) for i in range(32,127,1)]
 negchar = [c for c in anychar if c!='"']
 poschar = [c for c in anychar if c!="'"]

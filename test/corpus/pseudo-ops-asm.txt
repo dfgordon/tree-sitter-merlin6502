@@ -19,7 +19,7 @@ External Label EXT
 
 LAB EXT
 Label EXT
->lab< EXT
+lab EXT
 
 ---
 
@@ -34,7 +34,7 @@ Entry Label ENT
 
 LAB ENT
 Label ENT
- ENT <lab1>,>lab2<
+ ENT lab1,lab2
 
 ---
 

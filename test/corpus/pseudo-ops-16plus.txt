@@ -114,7 +114,7 @@ LAB EXD
     (pseudo_operation (psop_exd) (global_label) (global_label)))
 
 ===================
-Precedence expressions
+Braced expressions
 ===================
 
  LDA {A+B*C}
@@ -123,12 +123,24 @@ Precedence expressions
 ---
 
 (source_file
-	(operation (op_lda) (addr
+	(operation (op_lda) (addr (braced_aexpr
         (binary_aexpr_prec (global_label) (eop_plus)
-            (binary_aexpr_prec (global_label) (eop_times) (global_label)))))
+            (binary_aexpr_prec (global_label) (eop_times) (global_label))))))
 	(operation (op_lda) (addr
         (binary_aexpr
             (unary_aexpr (eop_plus)
-                (binary_aexpr_prec (global_label) (eop_plus) (global_label)))
+                (braced_aexpr (binary_aexpr_prec (global_label) (eop_plus) (global_label))))
             (eop_times)
             (global_label)))))
+
+===================
+Comparison operators
+===================
+
+ LDA X<Y
+
+---
+
+(source_file
+	(operation (op_lda) (addr
+        (binary_aexpr (global_label) (cop_less) (global_label)))))

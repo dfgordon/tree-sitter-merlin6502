@@ -138,7 +138,7 @@ module.exports = grammar({
 		_data_aexpr: $ => seq(optional($.data_prefix),$._aexpr),
 		_addr_aexpr: $ => seq(optional($.addr_prefix),$._aexpr),
 		_aexpr: $ => choice(
-			$._braced_aexpr,
+			$.braced_aexpr,
 			$._label,
 			$.number,
 			$.pchar,
@@ -150,12 +150,13 @@ module.exports = grammar({
 		unary_aexpr: $ => prec(1,choice(seq($.eop_plus,$._aexpr),seq($.eop_minus,$._aexpr))),
 		// MERLIN 8/16 has no operator precedence: left to right always prevails
 		binary_aexpr: $ => prec.left(seq($._aexpr,choice(
-			$.eop_plus,$.eop_minus,$.eop_times,$.eop_div,$.eop_or,$.eop_and,$.eop_xor
+			$.eop_plus,$.eop_minus,$.eop_times,$.eop_div,$.eop_or,$.eop_and,$.eop_xor,
+			$.cop_less,$.cop_gtr,$.cop_eq,$.cop_neq
 		),$._aexpr)),
 		// MERLIN 16+ added precedence within curly braced expressions
-		_braced_aexpr: $ => prec(1,seq('{',$._aexpr_prec,'}')),
+		braced_aexpr: $ => prec(1,seq('{',$._aexpr_prec,'}')),
 		_aexpr_prec: $ => choice(
-			$._braced_aexpr,
+			$.braced_aexpr,
 			$._label,
 			$.number,
 			$.pchar,
