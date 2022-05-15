@@ -5,12 +5,9 @@ import sys
 import re
 
 def Usage():
-    print('Usage: python script/opcode_processor.py --allow-lower-case <bool> [--help]')
-    print('<bool> = 0 : build parser to forbid lower case in opcode mnemonics')
-    print('<bool> = 1 : build parser to allow lower case in opcode mnemonics')
+    print('Usage: python script/opcode_processor.py [--help]')
 
-flags = ['--allow-lower-case','--help']
-allow_lower_case = None
+flags = ['--help']
 arg_idx = 1
 while (arg_idx<len(sys.argv)):
     if sys.argv[arg_idx] not in flags:
@@ -18,13 +15,7 @@ while (arg_idx<len(sys.argv)):
     if sys.argv[arg_idx]=='--help':
         Usage()
         exit(0)
-    if sys.argv[arg_idx]=='--allow-lower-case':
-        arg_idx += 1
-        allow_lower_case = bool(int(sys.argv[arg_idx]))
     arg_idx += 1
-
-if allow_lower_case==None:
-    raise ValueError('--allow-lower-case flag was not set')
 
 proj_path = pathlib.Path.cwd()
 script_path = proj_path / 'script'
@@ -109,20 +100,16 @@ for op in obj:
         reduced[op].add(reduction_map[am['addr_mnemonic']])
 
 # How to lex the opcode or pseudo-opcode mnemonics
+
 def opcode_lexeme(op,alt):
     lst = [op] + alt
-    variants = set()
-    for it in lst:
-        variants.add(it.upper())
-        if allow_lower_case:
-            variants.add(it.lower())
     lx = "token(prec(1,"
-    if len(variants)>1:
+    if len(lst)>1:
         lx += "choice("
-    for it in variants:
-        lx += "'" + it + "',"
+    for it in lst:
+        lx += "caseTS('"+it+"'),"
     lx = lx[:-1]
-    if len(variants)>1:
+    if len(lst)>1:
         lx += ")"
     return lx + "))"
 
@@ -136,16 +123,10 @@ def closing_pos(str):
             stack.pop()
         if len(stack)==0:
             return i
-def case_insens(str):
-    ans = '/'
-    for c in str[1:-1]:
-        ans += '[' + c.lower() + c.upper() + ']'
-    return ans + '/'
 def psop_args_insertion(args):
-    if allow_lower_case:
-        while re.search("'[A-Z]+'",args)!=None:
-            match = re.search("'[A-Z]+'",args)
-            args = args.replace(match[0],case_insens(match[0]))
+    while re.search("'[A-Z]+'",args)!=None:
+        match = re.search("'[A-Z]+'",args)
+        args = args.replace(match[0],'caseRe('+match[0].lower()+')')
     if args[:8]=='optional' and closing_pos(args[9:])==len(args[9:])-1:
         return ", optional(seq($._sep," + args[9:-1] + "))"
     else:
@@ -282,7 +263,6 @@ grammar = grammar.replace('Define constants DO NOT EDIT','Define constants\n\n'+
 grammar = grammar.replace('Operations DO NOT EDIT','Operations\n\n'+op_str)
 grammar = grammar.replace('Pseudo-operations DO NOT EDIT','Pseudo-operations\n\n'+psop_str)
 grammar = grammar.replace('dstring DO NOT EDIT','dstring\n\n'+dstring_rule)
-grammar = re.sub('allow_lower_case\s*=\s*\w+','allow_lower_case = '+str(allow_lower_case).lower(),grammar)
 with open(proj_path / 'grammar.js','w') as f:
     f.write(grammar)
 

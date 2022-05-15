@@ -14,9 +14,7 @@
 // Here square brackets are forbidden in labels, except for start the start of variable token
 // dstrings must always be terminated
 
-// Do not set this flag manually, let `build.py` handle it
-const allow_lower_case = true;
-const language_name = allow_lower_case ? 'merlin6502' : 'merlin6502casesens';
+const language_name = 'merlin6502';
 const alphachars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 const prodoschars = '.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
@@ -111,12 +109,12 @@ module.exports = grammar({
 		iaddr_ix: $ => seq($.mode_iopen,$._aexpr,$.mode_iix),
 		iaddr_y: $ => seq($.mode_iopen,$._aexpr,$.mode_iy),
 		iaddr: $ => seq($.mode_iopen,$._aexpr,$.mode_iclose),
-		mode_x: $ => allow_lower_case ? choice(',X',',x') : ',X',
-		mode_y: $ => allow_lower_case ? choice(',Y',',y') : ',Y',
+		mode_x: $ => choice(',X',',x'),
+		mode_y: $ => choice(',Y',',y'),
 		mode_iopen: $ => '(',
 		mode_iclose: $ => ')',
-		mode_iix: $ => allow_lower_case ? choice(',X)',',x)') : ',X)',
-		mode_iy: $ => allow_lower_case ? choice('),Y','),y') : '),Y',
+		mode_iix: $ => choice(',X)',',x)'),
+		mode_iy: $ => choice('),Y','),y'),
 
 		// 65C816 addressing modes
 
@@ -128,9 +126,9 @@ module.exports = grammar({
 		xyc: $ => seq($._aexpr,',',$._aexpr),
 		mode_dopen: $ => '[',
 		mode_dclose: $ => ']',
-		mode_dy: $ => allow_lower_case ? choice('],Y','],y') : '],Y',
-		mode_s: $ => allow_lower_case ? choice(',S',',s') : ',S',
-		mode_is_y: $ => allow_lower_case ? choice(',S),Y',',s),y') : ',S),Y',
+		mode_dy: $ => choice('],Y','],y'),
+		mode_s: $ => choice(',S',',s'),
+		mode_is_y: $ => choice(',S),Y',',s),y',',S),y',',s),Y'),
 
 
 		// Expressions
@@ -221,3 +219,19 @@ module.exports = grammar({
 		comment_text: $ => /.*/
 	}
 });
+
+function caseRe (keyword) {
+	let result = new RegExp(keyword
+	  .split('')
+	  .map(c => c.toLowerCase() != c.toUpperCase() ? `[${c.toLowerCase()}${c.toUpperCase()}]` : c)
+	  .join('')
+	);
+	return result;
+}
+
+function caseTS (keyword) {
+	let chars = keyword
+	  .split('')
+	  .map(c => c.toLowerCase() != c.toUpperCase() ? choice(c.toLowerCase(),c.toUpperCase()) : c);
+	return seq(...chars);
+}
