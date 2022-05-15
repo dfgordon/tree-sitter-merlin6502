@@ -7375,27 +7375,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_ix"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "daddr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_s"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_x"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "iaddr_is_y"
                 },
                 {
                   "type": "SYMBOL",
@@ -7403,7 +7383,15 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_y"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "daddr"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_x"
                 },
                 {
                   "type": "SYMBOL",
@@ -7411,11 +7399,23 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_ix"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_y"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_s"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "addr"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_y"
+                  "name": "iaddr_is_y"
                 }
               ]
             },
@@ -7478,27 +7478,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_ix"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "daddr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_s"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_x"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "iaddr_is_y"
                 },
                 {
                   "type": "SYMBOL",
@@ -7506,7 +7486,15 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_y"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "daddr"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_x"
                 },
                 {
                   "type": "SYMBOL",
@@ -7514,11 +7502,23 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_ix"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_y"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_s"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "addr"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_y"
+                  "name": "iaddr_is_y"
                 }
               ]
             },
@@ -7835,11 +7835,11 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "addr_x"
+                  "name": "imm"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "imm"
+                  "name": "addr_x"
                 },
                 {
                   "type": "SYMBOL",
@@ -8512,27 +8512,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_ix"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "daddr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_s"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_x"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "iaddr_is_y"
                 },
                 {
                   "type": "SYMBOL",
@@ -8540,7 +8520,15 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_y"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "daddr"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_x"
                 },
                 {
                   "type": "SYMBOL",
@@ -8548,11 +8536,23 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_ix"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_y"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_s"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "addr"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_y"
+                  "name": "iaddr_is_y"
                 }
               ]
             },
@@ -8929,27 +8929,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_ix"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "daddr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_s"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_x"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "iaddr_is_y"
                 },
                 {
                   "type": "SYMBOL",
@@ -8957,7 +8937,15 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_y"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "daddr"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_x"
                 },
                 {
                   "type": "SYMBOL",
@@ -8965,11 +8953,23 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_ix"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_y"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_s"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "addr"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_y"
+                  "name": "iaddr_is_y"
                 }
               ]
             },
@@ -9212,11 +9212,11 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_ix"
+                  "name": "iaddr"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr"
+                  "name": "iaddr_ix"
                 },
                 {
                   "type": "SYMBOL",
@@ -9350,27 +9350,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_ix"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "daddr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_s"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_x"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "iaddr_is_y"
                 },
                 {
                   "type": "SYMBOL",
@@ -9378,7 +9358,15 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_y"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "daddr"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_x"
                 },
                 {
                   "type": "SYMBOL",
@@ -9386,11 +9374,23 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_ix"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_y"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_s"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "addr"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_y"
+                  "name": "iaddr_is_y"
                 }
               ]
             },
@@ -9453,11 +9453,11 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "addr_y"
+                  "name": "imm"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "imm"
+                  "name": "addr_y"
                 },
                 {
                   "type": "SYMBOL",
@@ -9524,11 +9524,11 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "addr_x"
+                  "name": "imm"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "imm"
+                  "name": "addr_x"
                 },
                 {
                   "type": "SYMBOL",
@@ -9725,27 +9725,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_ix"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "daddr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_s"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_x"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "iaddr_is_y"
                 },
                 {
                   "type": "SYMBOL",
@@ -9753,7 +9733,15 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_y"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "daddr"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_x"
                 },
                 {
                   "type": "SYMBOL",
@@ -9761,11 +9749,23 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_ix"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_y"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_s"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "addr"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_y"
+                  "name": "iaddr_is_y"
                 }
               ]
             },
@@ -10488,27 +10488,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_ix"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "daddr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_s"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_x"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "iaddr_is_y"
                 },
                 {
                   "type": "SYMBOL",
@@ -10516,7 +10496,15 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_y"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "daddr"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_x"
                 },
                 {
                   "type": "SYMBOL",
@@ -10524,11 +10512,23 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "iaddr_ix"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_y"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_s"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "addr"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_y"
+                  "name": "iaddr_is_y"
                 }
               ]
             },
@@ -10741,27 +10741,11 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_ix"
-                },
-                {
-                  "type": "SYMBOL",
                   "name": "daddr_y"
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "addr_s"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_x"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "addr_y"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "iaddr_is_y"
+                  "name": "iaddr_y"
                 },
                 {
                   "type": "SYMBOL",
@@ -10769,7 +10753,23 @@
                 },
                 {
                   "type": "SYMBOL",
+                  "name": "addr_x"
+                },
+                {
+                  "type": "SYMBOL",
                   "name": "iaddr"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "iaddr_ix"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_y"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "addr_s"
                 },
                 {
                   "type": "SYMBOL",
@@ -10777,7 +10777,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "iaddr_y"
+                  "name": "iaddr_is_y"
                 }
               ]
             },
@@ -23516,42 +23516,9 @@
         }
       ]
     },
-    "hex_byte": {
-      "type": "PATTERN",
-      "value": "[0-9A-Fa-f][0-9A-Fa-f]"
-    },
     "hex_data": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "hex_byte"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": ","
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              },
-              {
-                "type": "SYMBOL",
-                "name": "hex_byte"
-              }
-            ]
-          }
-        }
-      ]
+      "type": "PATTERN",
+      "value": "[0-9A-Fa-f][0-9A-Fa-f](,?[0-9A-Fa-f][0-9A-Fa-f])*"
     },
     "filename": {
       "type": "CHOICE",
@@ -26005,9 +25972,6 @@
     [
       "dos33",
       "anyfs"
-    ],
-    [
-      "hex_data"
     ]
   ],
   "precedences": [],

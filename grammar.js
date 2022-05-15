@@ -8,9 +8,10 @@
 // * limitations of Merlin 8
 // * identifying implied macro calls that overlap with (pseudo)opcode mnemonics
 // * verify that literal addresses or offsets are valid, e.g., lda -1 is accepted by the parser
+// * verify that label and column lengths are within limits
 
 // Known differences with legacy Merlin syntax:
-// Here semicolons are unconditionally forbidden in labels
+// Here semicolons and curly braces are unconditionally forbidden in labels
 // Here square brackets are forbidden in labels, except for start the start of variable token
 // dstrings must always be terminated
 
@@ -50,8 +51,7 @@ module.exports = grammar({
 		[$.literal_arg,$.addr_prefix],
 		[$.prodos_filename,$.dos33,$.anyfs],
 		[$.prodos_filename,$.dos33],
-		[$.dos33,$.anyfs],
-		[$.hex_data]
+		[$.dos33,$.anyfs]
 	],
 
 	rules: {
@@ -183,13 +183,13 @@ module.exports = grammar({
 		op_xba: $ => seq(token(prec(1,choice(caseTS('xba'),caseTS('swa')))),optional($.trailing)),
 		op_xce: $ => seq(token(prec(1,caseTS('xce'))),optional($.trailing)),
 		operation: $ => choice(
-			seq(optional($.label_def), $._sep, $.op_adc, $._sep, choice($.iaddr_ix,$.daddr_y,$.addr_s,$.addr_x,$.addr_y,$.iaddr_is_y,$.imm,$.daddr,$.iaddr,$.addr,$.iaddr_y), optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_and, $._sep, choice($.iaddr_ix,$.daddr_y,$.addr_s,$.addr_x,$.addr_y,$.iaddr_is_y,$.imm,$.daddr,$.iaddr,$.addr,$.iaddr_y), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_adc, $._sep, choice($.daddr_y,$.imm,$.iaddr_y,$.daddr,$.addr_x,$.iaddr,$.iaddr_ix,$.addr_y,$.addr_s,$.addr,$.iaddr_is_y), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_and, $._sep, choice($.daddr_y,$.imm,$.iaddr_y,$.daddr,$.addr_x,$.iaddr,$.iaddr_ix,$.addr_y,$.addr_s,$.addr,$.iaddr_is_y), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_asl, optional(seq($._sep,choice($.addr_x,$.addr))), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_bcc, $._sep, $.addr, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_bcs, $._sep, $.addr, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_beq, $._sep, $.addr, optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_bit, $._sep, choice($.addr_x,$.imm,$.addr), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_bit, $._sep, choice($.imm,$.addr_x,$.addr), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_bmi, $._sep, $.addr, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_bne, $._sep, $.addr, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_bpl, $._sep, $.addr, optional(seq($._sep,$.comment)), $._newline),
@@ -201,24 +201,24 @@ module.exports = grammar({
 			seq(optional($.label_def), $._sep, $.op_cld, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_cli, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_clv, optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_cmp, $._sep, choice($.iaddr_ix,$.daddr_y,$.addr_s,$.addr_x,$.addr_y,$.iaddr_is_y,$.imm,$.daddr,$.iaddr,$.addr,$.iaddr_y), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_cmp, $._sep, choice($.daddr_y,$.imm,$.iaddr_y,$.daddr,$.addr_x,$.iaddr,$.iaddr_ix,$.addr_y,$.addr_s,$.addr,$.iaddr_is_y), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_cpx, $._sep, choice($.imm,$.addr), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_cpy, $._sep, choice($.imm,$.addr), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_dec, optional(seq($._sep,choice($.addr_x,$.addr))), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_dex, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_dey, optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_eor, $._sep, choice($.iaddr_ix,$.daddr_y,$.addr_s,$.addr_x,$.addr_y,$.iaddr_is_y,$.imm,$.daddr,$.iaddr,$.addr,$.iaddr_y), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_eor, $._sep, choice($.daddr_y,$.imm,$.iaddr_y,$.daddr,$.addr_x,$.iaddr,$.iaddr_ix,$.addr_y,$.addr_s,$.addr,$.iaddr_is_y), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_inc, optional(seq($._sep,choice($.addr_x,$.addr))), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_inx, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_iny, optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_jmp, $._sep, choice($.iaddr_ix,$.iaddr,$.addr), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_jmp, $._sep, choice($.iaddr,$.iaddr_ix,$.addr), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_jsr, $._sep, choice($.iaddr_ix,$.addr), optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_lda, $._sep, choice($.iaddr_ix,$.daddr_y,$.addr_s,$.addr_x,$.addr_y,$.iaddr_is_y,$.imm,$.daddr,$.iaddr,$.addr,$.iaddr_y), optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_ldx, $._sep, choice($.addr_y,$.imm,$.addr), optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_ldy, $._sep, choice($.addr_x,$.imm,$.addr), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_lda, $._sep, choice($.daddr_y,$.imm,$.iaddr_y,$.daddr,$.addr_x,$.iaddr,$.iaddr_ix,$.addr_y,$.addr_s,$.addr,$.iaddr_is_y), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_ldx, $._sep, choice($.imm,$.addr_y,$.addr), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_ldy, $._sep, choice($.imm,$.addr_x,$.addr), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_lsr, optional(seq($._sep,choice($.addr_x,$.addr))), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_nop, optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_ora, $._sep, choice($.iaddr_ix,$.daddr_y,$.addr_s,$.addr_x,$.addr_y,$.iaddr_is_y,$.imm,$.daddr,$.iaddr,$.addr,$.iaddr_y), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_ora, $._sep, choice($.daddr_y,$.imm,$.iaddr_y,$.daddr,$.addr_x,$.iaddr,$.iaddr_ix,$.addr_y,$.addr_s,$.addr,$.iaddr_is_y), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_pha, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_php, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_phx, optional(seq($._sep,$.comment)), $._newline),
@@ -231,11 +231,11 @@ module.exports = grammar({
 			seq(optional($.label_def), $._sep, $.op_ror, optional(seq($._sep,choice($.addr_x,$.addr))), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_rti, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_rts, optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_sbc, $._sep, choice($.iaddr_ix,$.daddr_y,$.addr_s,$.addr_x,$.addr_y,$.iaddr_is_y,$.imm,$.daddr,$.iaddr,$.addr,$.iaddr_y), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_sbc, $._sep, choice($.daddr_y,$.imm,$.iaddr_y,$.daddr,$.addr_x,$.iaddr,$.iaddr_ix,$.addr_y,$.addr_s,$.addr,$.iaddr_is_y), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_sec, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_sed, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_sei, optional(seq($._sep,$.comment)), $._newline),
-			seq(optional($.label_def), $._sep, $.op_sta, $._sep, choice($.iaddr_ix,$.daddr_y,$.addr_s,$.addr_x,$.addr_y,$.iaddr_is_y,$.daddr,$.iaddr,$.addr,$.iaddr_y), optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_sta, $._sep, choice($.daddr_y,$.iaddr_y,$.daddr,$.addr_x,$.iaddr,$.iaddr_ix,$.addr_y,$.addr_s,$.addr,$.iaddr_is_y), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_stx, $._sep, choice($.addr_y,$.addr), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_sty, $._sep, choice($.addr_x,$.addr), optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_stz, $._sep, choice($.addr_x,$.addr), optional(seq($._sep,$.comment)), $._newline),
@@ -596,8 +596,7 @@ module.exports = grammar({
 
 		imm_prefix: $ => choice('#','#<','#>','#^'),
 		addr_prefix: $ => choice('<','>','^','|'),
-		hex_byte: $ => /[0-9A-Fa-f][0-9A-Fa-f]/,
-		hex_data: $ => seq($.hex_byte,repeat(seq(optional(','),$.hex_byte))),
+		hex_data: $ => /[0-9A-Fa-f][0-9A-Fa-f](,?[0-9A-Fa-f][0-9A-Fa-f])*/,
 		filename: $ => choice($.prodos,$.dos33,$.anyfs),
 		prodos: $ => seq(optional('/'),repeat(seq($.prodos_filename,'/')),$.prodos_filename),
 		prodos_filename: $ => prec.dynamic(1,seq(choice(...alphachars),repeat(choice(...prodoschars)))),

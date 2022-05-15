@@ -11,7 +11,7 @@ Ascii text ASC
 (source_file
 	(pseudo_operation (psop_asc) (dstring))
 	(pseudo_operation (psop_asc) (dstring))
-	(pseudo_operation (psop_asc) (dstring) (hex_data (hex_byte) (hex_byte))))
+	(pseudo_operation (psop_asc) (dstring) (hex_data)))
 
 ===================
 Dextral inverted DCI
@@ -26,7 +26,7 @@ Dextral inverted DCI
 (source_file
 	(pseudo_operation (psop_dci) (dstring))
 	(pseudo_operation (psop_dci) (dstring))
-	(pseudo_operation (psop_dci) (dstring) (hex_data (hex_byte) (hex_byte))))
+	(pseudo_operation (psop_dci) (dstring) (hex_data)))
 
 ===================
 Inverse INV
@@ -41,7 +41,7 @@ Inverse INV
 (source_file
 	(pseudo_operation (psop_inv) (dstring))
 	(pseudo_operation (psop_inv) (dstring))
-	(pseudo_operation (psop_inv) (dstring) (hex_data (hex_byte) (hex_byte))))
+	(pseudo_operation (psop_inv) (dstring) (hex_data)))
 
 ===================
 Flashing FLS
@@ -56,7 +56,7 @@ Flashing FLS
 (source_file
 	(pseudo_operation (psop_fls) (dstring))
 	(pseudo_operation (psop_fls) (dstring))
-	(pseudo_operation (psop_fls) (dstring) (hex_data (hex_byte) (hex_byte))))
+	(pseudo_operation (psop_fls) (dstring) (hex_data)))
 
 ===================
 Reverse REV
@@ -84,4 +84,4 @@ Length byte STR
 (source_file
 	(pseudo_operation (psop_str) (dstring))
 	(pseudo_operation (psop_str) (dstring))
-	(pseudo_operation (psop_str) (dstring) (hex_data (hex_byte))))
+	(pseudo_operation (psop_str) (dstring) (hex_data)))

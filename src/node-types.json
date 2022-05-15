@@ -725,21 +725,6 @@
     }
   },
   {
-    "type": "hex_data",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "hex_byte",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "hexadecimal",
     "named": true,
     "fields": {}
@@ -5100,7 +5085,7 @@
     "named": false
   },
   {
-    "type": "hex_byte",
+    "type": "hex_data",
     "named": true
   },
   {

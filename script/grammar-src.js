@@ -8,9 +8,10 @@
 // * limitations of Merlin 8
 // * identifying implied macro calls that overlap with (pseudo)opcode mnemonics
 // * verify that literal addresses or offsets are valid, e.g., lda -1 is accepted by the parser
+// * verify that label and column lengths are within limits
 
 // Known differences with legacy Merlin syntax:
-// Here semicolons are unconditionally forbidden in labels
+// Here semicolons and curly braces are unconditionally forbidden in labels
 // Here square brackets are forbidden in labels, except for start the start of variable token
 // dstrings must always be terminated
 
@@ -38,8 +39,7 @@ module.exports = grammar({
 		[$.literal_arg,$.addr_prefix],
 		[$.prodos_filename,$.dos33,$.anyfs],
 		[$.prodos_filename,$.dos33],
-		[$.dos33,$.anyfs],
-		[$.hex_data]
+		[$.dos33,$.anyfs]
 	],
 
 	rules: {
@@ -190,8 +190,7 @@ module.exports = grammar({
 
 		imm_prefix: $ => choice('#','#<','#>','#^'),
 		addr_prefix: $ => choice('<','>','^','|'),
-		hex_byte: $ => /[0-9A-Fa-f][0-9A-Fa-f]/,
-		hex_data: $ => seq($.hex_byte,repeat(seq(optional(','),$.hex_byte))),
+		hex_data: $ => /[0-9A-Fa-f][0-9A-Fa-f](,?[0-9A-Fa-f][0-9A-Fa-f])*/,
 		filename: $ => choice($.prodos,$.dos33,$.anyfs),
 		prodos: $ => seq(optional('/'),repeat(seq($.prodos_filename,'/')),$.prodos_filename),
 		prodos_filename: $ => prec.dynamic(1,seq(choice(...alphachars),repeat(choice(...prodoschars)))),

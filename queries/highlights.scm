@@ -5,7 +5,7 @@ mac: (label_def (global_label) @function)
 (local_label) @variable.parameter
 (var_label) @variable.builtin
 (number) @number
-(hex_byte) @number
+(hex_data) @number
 (dstring) @string
 (literal_arg) @string
 (pchar) @string

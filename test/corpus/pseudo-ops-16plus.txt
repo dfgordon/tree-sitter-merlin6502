@@ -13,12 +13,14 @@ XC off
 interspersed ASC
 ===================
 
- ASC "Bye,Bye",8D,"between",9E1A
+ ASC "Bye,Bye",8D,ff,"between",9E1A
+ ASC "terminating hex that could be a null dstring",00,ff
 
 ---
 
 (source_file
-	(pseudo_operation (psop_asc) (dstring) (hex_data (hex_byte)) (dstring) (hex_data (hex_byte) (hex_byte))))
+	(pseudo_operation (psop_asc) (dstring) (hex_data) (dstring) (hex_data))
+	(pseudo_operation (psop_asc) (dstring) (hex_data)))
 
 ===================
 expression ASC

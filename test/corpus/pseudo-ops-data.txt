@@ -85,8 +85,8 @@ Hex data HEX
 ---
 
 (source_file
-	(pseudo_operation (psop_hex) (hex_data (hex_byte) (hex_byte) (hex_byte) (hex_byte)))
-	(pseudo_operation (psop_hex) (hex_data (hex_byte) (hex_byte) (hex_byte))))
+	(pseudo_operation (psop_hex) (hex_data))
+	(pseudo_operation (psop_hex) (hex_data)))
 
 ===================
 Define storage DS
