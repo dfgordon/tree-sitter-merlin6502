@@ -1,4 +1,4 @@
-mac: (global_label) @function
+mac: (label_ref (global_label) @function)
 mac: (label_def (global_label) @function)
 (global_label) @type
 (current_addr) @type

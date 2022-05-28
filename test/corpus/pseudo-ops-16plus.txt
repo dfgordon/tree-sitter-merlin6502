@@ -37,12 +37,12 @@ expression ASC
 ---
 
 (source_file
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (global_label) (eop_plus) (global_label)))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
+	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
 	(pseudo_operation (psop_inv) (dstring (MISSING "#"))))
 
 ===================
@@ -113,7 +113,7 @@ LAB EXD
 
 (source_file
 	(pseudo_operation (label_def (global_label)) (psop_exd))
-    (pseudo_operation (psop_exd) (global_label) (global_label)))
+    (pseudo_operation (psop_exd) (label_def (global_label)) (label_def (global_label))))
 
 ===================
 Braced expressions
@@ -126,14 +126,14 @@ Braced expressions
 
 (source_file
 	(operation (op_lda) (addr (braced_aexpr
-        (binary_aexpr_prec (global_label) (eop_plus)
-            (binary_aexpr_prec (global_label) (eop_times) (global_label))))))
+        (binary_aexpr_prec (label_ref (global_label)) (eop_plus)
+            (binary_aexpr_prec (label_ref (global_label)) (eop_times) (label_ref (global_label)))))))
 	(operation (op_lda) (addr
         (binary_aexpr
             (unary_aexpr (eop_plus)
-                (braced_aexpr (binary_aexpr_prec (global_label) (eop_plus) (global_label))))
+                (braced_aexpr (binary_aexpr_prec (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
             (eop_times)
-            (global_label)))))
+            (label_ref (global_label))))))
 
 ===================
 Comparison operators
@@ -145,4 +145,4 @@ Comparison operators
 
 (source_file
 	(operation (op_lda) (addr
-        (binary_aexpr (global_label) (cop_less) (global_label)))))
+        (binary_aexpr (label_ref (global_label)) (cop_less) (label_ref (global_label))))))

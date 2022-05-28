@@ -9,7 +9,7 @@ line of asterisks AST
 
 (source_file
 	(pseudo_operation (psop_ast) (number (decimal)))
-	(pseudo_operation (psop_ast) (global_label)))
+	(pseudo_operation (psop_ast) (label_ref (global_label))))
 
 ===================
 print cycles CYC
@@ -119,7 +119,7 @@ skip lines SKP
 
 (source_file
 	(pseudo_operation (psop_skp) (number (decimal)))
-    (pseudo_operation (psop_skp) (binary_aexpr (binary_aexpr (global_label) (eop_plus) (number (decimal))) (eop_plus) (nchar))))
+    (pseudo_operation (psop_skp) (binary_aexpr (binary_aexpr (label_ref (global_label)) (eop_plus) (number (decimal))) (eop_plus) (nchar))))
 
 ===================
 truncate TR

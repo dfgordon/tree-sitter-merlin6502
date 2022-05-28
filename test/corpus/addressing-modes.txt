@@ -123,7 +123,7 @@ immediate
 
 (source_file
 	(operation (op_lda) (imm (imm_prefix) (number (hexadecimal))))
-	(operation (op_lda) (imm (imm_prefix) (binary_aexpr (global_label) (eop_plus) (number (decimal))))))
+	(operation (op_lda) (imm (imm_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (number (decimal))))))
 
 ===================
 implied
@@ -159,4 +159,4 @@ stack
 		(iaddr_is_y (mode_iopen) (number (decimal)) (mode_is_y) ))
 	(operation
 	 	(op_ora)
-		(addr_s (global_label) (mode_s))))
+		(addr_s (label_ref (global_label)) (mode_s))))

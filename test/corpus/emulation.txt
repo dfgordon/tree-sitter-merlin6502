@@ -13,7 +13,7 @@ opcodes in labels
 		(op_inc (trailing))
 		(addr (number (decimal))))
 	(macro_call_forced
-		(global_label)
+		(label_ref (global_label))
 		(macro_args (addr (number (decimal)))))
 	(operation
 		(op_inc)

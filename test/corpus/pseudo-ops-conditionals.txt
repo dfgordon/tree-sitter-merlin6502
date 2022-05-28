@@ -14,10 +14,10 @@ do if true DO
 (source_file
 	(pseudo_operation (psop_do) (number (decimal)))
 	(pseudo_operation (psop_do) (number (decimal)))
-	(pseudo_operation (psop_do) (global_label))
-	(pseudo_operation (psop_do) (binary_aexpr (global_label) (eop_div) (global_label)))
-	(pseudo_operation (psop_do) (binary_aexpr (global_label) (eop_minus) (global_label)))
-	(pseudo_operation (psop_do) (binary_aexpr (global_label) (eop_minus) (number (decimal)))))
+	(pseudo_operation (psop_do) (label_ref (global_label)))
+	(pseudo_operation (psop_do) (binary_aexpr (label_ref (global_label)) (eop_div) (label_ref (global_label))))
+	(pseudo_operation (psop_do) (binary_aexpr (label_ref (global_label)) (eop_minus) (label_ref (global_label))))
+	(pseudo_operation (psop_do) (binary_aexpr (label_ref (global_label)) (eop_minus) (number (decimal)))))
 
 ===================
 else do this ELSE

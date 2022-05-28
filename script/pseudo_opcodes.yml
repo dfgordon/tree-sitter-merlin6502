@@ -11,10 +11,10 @@ equ:
 ext:
   alt: []
   brief: external label
-  desc: defines label as external for use by linker
+  desc: defines label as external for use by linker, i.e., import the label from another REL module
   caveat: null
   eg: ['lab  EXT','     EXT  lab1,lab2']
-  args: optional(seq($._label,repeat(seq(',',$._label))))
+  args: optional(seq($.label_def,repeat(seq(',',$.label_def))))
   v8x: /.*/
   label: [var,global]
   version: [v8,v16,v16+,v32]
@@ -22,20 +22,20 @@ ext:
 exd:
   alt: []
   brief: external label direct page
-  desc: defines label as a direct page external for use by linker
+  desc: defines label as a direct page external for use by linker, i.e., import the label from another REL module
   caveat: null
   eg: ['lab  EXD','     EXD  lab1,lab2']
-  args: optional(seq($._label,repeat(seq(',',$._label))))
+  args: optional(seq($.label_def,repeat(seq(',',$.label_def))))
   label: [var,global]
   version: [v16+]
   category: assembler
 ent:
   alt: []
   brief: entry label
-  desc: defines label as referenceable to an external label by another REL module
+  desc: defines label as entry for use by the linker, i.e., export the label to another REL module
   caveat: null
   eg: ['lab  ENT','     ENT  lab1,lab2']
-  args: optional(seq($._label,repeat(seq(',',$._label))))
+  args: optional(seq($.label_ref,repeat(seq(',',$.label_ref))))
   v8x: /.*/
   label: [var,global]
   version: [v8,v16,v16+,v32]
@@ -107,7 +107,7 @@ var:
   desc: equate several variable labels in one step
   caveat: often used just prior to PUT
   eg: ['     VAR  1;$3;lab']
-  args: $._aexpr,repeat(seq(';',$._aexpr))
+  args: seq($._aexpr,repeat(seq(';',$._aexpr)))
   label: [var,global,local]
   version: [v8,v16,v16+,v32]
   category: assembler
@@ -368,7 +368,7 @@ da:
   desc: define little endian address
   caveat: null
   eg: ['     DA $FDF0  ; F0 FD','     DA 10,$300  ; 0A 00 00 03','     DA dat1,dat2']
-  args: $._aexpr,repeat(seq(',',$._aexpr))
+  args: seq($._aexpr,repeat(seq(',',$._aexpr)))
   label: [var,global,local]
   version: [v8,v16,v16+,v32]
   category: data storage
@@ -378,7 +378,7 @@ ddb:
   desc: define big endian address
   caveat: null
   eg: ['     DDB $FDF0  ; FD F0','     DDB 10,$300  ; 00 0A 03 00','     DDB dat1,dat2']
-  args: $._aexpr,repeat(seq(',',$._aexpr))
+  args: seq($._aexpr,repeat(seq(',',$._aexpr)))
   label: [var,global,local]
   version: [v8,v16,v16+,v32]
   category: data storage
@@ -388,7 +388,7 @@ dfb:
   desc: define byte, selects low byte, \# and < ignored, > selects high byte
   caveat: null
   eg: ['     DFB $FDF0  ; F0','     DFB 10,31  ; 0A 1F','     DB dat1,dat2']
-  args: $._data_aexpr,repeat(seq(',',$._data_aexpr))
+  args: seq($._data_aexpr,repeat(seq(',',$._data_aexpr)))
   label: [var,global,local]
   version: [v8,v16,v16+,v32]
   category: data storage
@@ -408,7 +408,7 @@ adr:
   desc: define 3 byte long address
   caveat: null
   eg: ['     ADR $01FDF0  ; F0 FD 01','     ADR 10  ; 0A 00 00','     ADR dat1,dat2']
-  args: $._aexpr,repeat(seq(',',$._aexpr))
+  args: seq($._aexpr,repeat(seq(',',$._aexpr)))
   v8x: /.*/ 
   label: [var,global,local]
   version: [v16,v16+,v32]
@@ -419,7 +419,7 @@ adrl:
   desc: define 4 byte long address
   caveat: null
   eg: ['     ADRL $01FDF0  ; F0 FD 01 00','     ADRL 10  ; 0A 00 00 00','     ADRL dat1,dat2']
-  args: $._aexpr,repeat(seq(',',$._aexpr))
+  args: seq($._aexpr,repeat(seq(',',$._aexpr)))
   v8x: /.*/ 
   label: [var,global,local]
   version: [v16,v16+,v32]
@@ -537,7 +537,7 @@ lup:
   alt: []
   brief: begin loop
   desc: begin loop
-  caveat: ampersand is used to form iterated labels
+  caveat: at-symbol is used to form iterated labels
   eg:
     - '     LUP  NUM   ; start'
     - ']I   =    ]I+1  ; increment'
@@ -608,7 +608,7 @@ xc:
   v8x: /.*/
   v16x: /.*/
   label: [var,global,local]
-  version: [v8,v16,v16+]
+  version: [v8,v16,v16+,v32]
   category: miscellaneous
 mac:
   alt: []
@@ -636,7 +636,7 @@ pmc:
   desc: call the named macro
   caveat: macro label can also go directly in the instruction column
   eg: ['     PMC mymac','     >>> mymac,arg1;arg2']
-  args: field('mac',$.global_label),optional(seq($._arg_sep,$.macro_args))
+  args: seq(field('mac',$.label_ref),optional(seq($._arg_sep,$.macro_args)))
   label: [var,global,local]
   version: [v8,v16,v16+,v32]
   category: macro

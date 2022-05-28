@@ -128,9 +128,9 @@ def psop_args_insertion(args):
         match = re.search("'[A-Z]+'",args)
         args = args.replace(match[0],'caseRe('+match[0].lower()+')')
     if args[:8]=='optional' and closing_pos(args[9:])==len(args[9:])-1:
-        return ", optional(seq($._sep," + args[9:-1] + "))"
+        return ", optional(seq($._sep, field('c3'," + args[9:-1] + ")))"
     else:
-       return ", $._sep, " + args
+       return ", $._sep, field('c3'," + args + ")"
 
 # Rules for just the opcode column
 op_str = ''
@@ -150,12 +150,12 @@ for op in reduced:
     op_str += "\t\t\tseq(optional($.label_def), $._sep, $.op_" + op
     if not addr_none:
         if addr_optional:
-            op_str += ", optional(seq($._sep,"
+            op_str += ", optional(seq($._sep, field('c3',"
         else:
-            op_str += ", $._sep, "
+            op_str += ", $._sep, field('c3',"
         if addr_choices:
             op_str += "choice("
-        for am in reduced[op]:
+        for am in sorted(reduced[op]):
             if am!='':
                 op_str += "$." + am + ","
         if op_str[-1]==",":
@@ -164,6 +164,7 @@ for op in reduced:
             op_str += ")"
         if addr_optional:
             op_str += "))"
+        op_str += ")"
     op_str += ", optional(seq($._sep,$.comment)), $._newline),\n"
 op_str =  op_str[:-2] + "\n\t\t),\n"
 
@@ -268,7 +269,7 @@ with open(proj_path / 'grammar.js','w') as f:
 
 # Save the highlights
 
-highlights = 'mac: (global_label) @function\n'
+highlights = 'mac: (label_ref (global_label) @function)\n'
 highlights += 'mac: (label_def (global_label) @function)\n'
 highlights += '(global_label) @type\n'
 highlights += '(current_addr) @type\n'

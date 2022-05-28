@@ -11,7 +11,7 @@ LAB3 = LAB+LAB2
 (source_file
 	(pseudo_operation (label_def (global_label)) (psop_equ) (number (hexadecimal)))
 	(pseudo_operation (label_def (global_label)) (psop_equ) (nchar))
-    (pseudo_operation (label_def (global_label)) (psop_equ) (binary_aexpr (global_label) (eop_plus) (global_label))))
+    (pseudo_operation (label_def (global_label)) (psop_equ) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
 
 ===================
 External Label EXT
@@ -41,7 +41,7 @@ Label ENT
 (source_file
 	(pseudo_operation (label_def (global_label)) (psop_ent))
 	(pseudo_operation (label_def (global_label)) (psop_ent))
-	(pseudo_operation (psop_ent) (global_label) (global_label)))
+	(pseudo_operation (psop_ent) (label_ref (global_label)) (label_ref (global_label))))
 
 ===================
 Origin ORG
@@ -55,7 +55,7 @@ Origin ORG
 
 (source_file
 	(pseudo_operation (psop_org) (number (hexadecimal)))
-	(pseudo_operation (psop_org) (binary_aexpr (global_label) (eop_plus) (global_label)))
+	(pseudo_operation (psop_org) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
 	(pseudo_operation (psop_org)))
 
 ===================
@@ -80,7 +80,7 @@ Object OBJ
 
 (source_file
 	(pseudo_operation (psop_obj) (number (hexadecimal)))
-	(pseudo_operation (psop_obj) (global_label)))
+	(pseudo_operation (psop_obj) (label_ref (global_label))))
 
 ===================
 PUT DOS 3.3
@@ -109,19 +109,6 @@ PUT ProDOS
 (source_file
 	(pseudo_operation (psop_put) (filename (prodos (prodos_filename))))
 	(pseudo_operation (psop_put) (filename (prodos (prodos_filename) (prodos_filename)))))
-
-===================
-PUT anyfs
-===================
-
- PUT "/Users/Ludwig van Beethoven/music.asm"
- PUT "C:\Windows\System32.asm"
-
----
-
-(source_file
-	(pseudo_operation (psop_put) (filename (anyfs)))
-	(pseudo_operation (psop_put) (filename (anyfs))))
 
 ===================
 USE DOS 3.3
@@ -160,7 +147,7 @@ Variable VAR
 ---
 
 (source_file
-	(pseudo_operation (psop_var) (number (decimal)) (number (hexadecimal)) (global_label)))
+	(pseudo_operation (psop_var) (number (decimal)) (number (hexadecimal)) (label_ref (global_label))))
 
 ===================
 SAV DOS 3.3
@@ -201,7 +188,7 @@ File type TYP
 
 (source_file
 	(pseudo_operation (psop_typ) (number (hexadecimal)))
-	(pseudo_operation (psop_typ) (global_label)))
+	(pseudo_operation (psop_typ) (label_ref (global_label))))
 
 ===================
 DSK DOS 3.3
@@ -253,7 +240,7 @@ Dummy section DUM
 
 (source_file
 	(pseudo_operation (psop_dum) (number (hexadecimal)))
-	(pseudo_operation (psop_dum) (binary_aexpr (global_label) (eop_minus) (global_label))))
+	(pseudo_operation (psop_dum) (binary_aexpr (label_ref (global_label)) (eop_minus) (label_ref (global_label)))))
 
 ===================
 End of dummy DEND

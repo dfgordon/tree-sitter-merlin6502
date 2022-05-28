@@ -24,11 +24,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -45,10 +41,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -80,11 +72,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -105,10 +93,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -139,11 +123,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -164,10 +144,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -198,11 +174,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -224,18 +196,9 @@
         {
           "type": "unary_aexpr",
           "named": true
-        },
-        {
-          "type": "var_label",
-          "named": true
         }
       ]
     }
-  },
-  {
-    "type": "anyfs",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "binary",
@@ -307,11 +270,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -328,10 +287,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -402,11 +357,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -423,10 +374,6 @@
         },
         {
           "type": "unary_aexpr_prec",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -453,11 +400,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -474,10 +417,6 @@
         },
         {
           "type": "unary_aexpr_prec",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -549,11 +488,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -578,10 +513,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -608,11 +539,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -637,10 +564,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -710,10 +633,6 @@
       "required": true,
       "types": [
         {
-          "type": "anyfs",
-          "named": true
-        },
-        {
           "type": "dos33",
           "named": true
         },
@@ -750,11 +669,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -779,10 +694,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -809,11 +720,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -838,10 +745,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -868,11 +771,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -897,10 +796,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -927,11 +822,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -956,10 +847,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -1029,11 +916,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -1050,10 +933,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -1080,15 +959,11 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
           "type": "imm_prefix",
           "named": true
         },
         {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -1106,10 +981,6 @@
         {
           "type": "unary_aexpr",
           "named": true
-        },
-        {
-          "type": "var_label",
-          "named": true
         }
       ]
     }
@@ -1121,6 +992,29 @@
   },
   {
     "type": "label_def",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "global_label",
+          "named": true
+        },
+        {
+          "type": "local_label",
+          "named": true
+        },
+        {
+          "type": "var_label",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "label_ref",
     "named": true,
     "fields": {},
     "children": {
@@ -1219,12 +1113,22 @@
     "type": "macro_call",
     "named": true,
     "fields": {
+      "c3": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "macro_args",
+            "named": true
+          }
+        ]
+      },
       "mac": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "global_label",
+            "type": "label_ref",
             "named": true
           }
         ]
@@ -1240,10 +1144,6 @@
         },
         {
           "type": "label_def",
-          "named": true
-        },
-        {
-          "type": "macro_args",
           "named": true
         }
       ]
@@ -1253,12 +1153,22 @@
     "type": "macro_call_forced",
     "named": true,
     "fields": {
+      "c3": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "macro_args",
+            "named": true
+          }
+        ]
+      },
       "mac": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "global_label",
+            "type": "label_ref",
             "named": true
           }
         ]
@@ -1274,10 +1184,6 @@
         },
         {
           "type": "label_def",
-          "named": true
-        },
-        {
-          "type": "macro_args",
           "named": true
         }
       ]
@@ -2754,57 +2660,68 @@
   {
     "type": "operation",
     "named": true,
-    "fields": {},
+    "fields": {
+      "c3": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "addr",
+            "named": true
+          },
+          {
+            "type": "addr_s",
+            "named": true
+          },
+          {
+            "type": "addr_x",
+            "named": true
+          },
+          {
+            "type": "addr_y",
+            "named": true
+          },
+          {
+            "type": "daddr",
+            "named": true
+          },
+          {
+            "type": "daddr_y",
+            "named": true
+          },
+          {
+            "type": "iaddr",
+            "named": true
+          },
+          {
+            "type": "iaddr_is_y",
+            "named": true
+          },
+          {
+            "type": "iaddr_ix",
+            "named": true
+          },
+          {
+            "type": "iaddr_y",
+            "named": true
+          },
+          {
+            "type": "imm",
+            "named": true
+          },
+          {
+            "type": "xyc",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
         {
-          "type": "addr",
-          "named": true
-        },
-        {
-          "type": "addr_s",
-          "named": true
-        },
-        {
-          "type": "addr_x",
-          "named": true
-        },
-        {
-          "type": "addr_y",
-          "named": true
-        },
-        {
           "type": "comment",
-          "named": true
-        },
-        {
-          "type": "daddr",
-          "named": true
-        },
-        {
-          "type": "daddr_y",
-          "named": true
-        },
-        {
-          "type": "iaddr",
-          "named": true
-        },
-        {
-          "type": "iaddr_is_y",
-          "named": true
-        },
-        {
-          "type": "iaddr_ix",
-          "named": true
-        },
-        {
-          "type": "iaddr_y",
-          "named": true
-        },
-        {
-          "type": "imm",
           "named": true
         },
         {
@@ -3174,10 +3091,6 @@
         {
           "type": "op_xce",
           "named": true
-        },
-        {
-          "type": "xyc",
-          "named": true
         }
       ]
     }
@@ -3230,16 +3143,134 @@
     "type": "pseudo_operation",
     "named": true,
     "fields": {
+      "c3": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": " ",
+            "named": false
+          },
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          },
+          {
+            "type": ".",
+            "named": false
+          },
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "\\",
+            "named": false
+          },
+          {
+            "type": "binary_aexpr",
+            "named": true
+          },
+          {
+            "type": "braced_aexpr",
+            "named": true
+          },
+          {
+            "type": "current_addr",
+            "named": true
+          },
+          {
+            "type": "data_prefix",
+            "named": true
+          },
+          {
+            "type": "dstring",
+            "named": true
+          },
+          {
+            "type": "enum",
+            "named": true
+          },
+          {
+            "type": "filename",
+            "named": true
+          },
+          {
+            "type": "hex_data",
+            "named": true
+          },
+          {
+            "type": "if_char",
+            "named": true
+          },
+          {
+            "type": "if_mx",
+            "named": true
+          },
+          {
+            "type": "label_def",
+            "named": true
+          },
+          {
+            "type": "label_ref",
+            "named": true
+          },
+          {
+            "type": "literal",
+            "named": true
+          },
+          {
+            "type": "macro_args",
+            "named": true
+          },
+          {
+            "type": "nchar",
+            "named": true
+          },
+          {
+            "type": "num_str_prefix",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "pchar",
+            "named": true
+          },
+          {
+            "type": "ptr_check",
+            "named": true
+          },
+          {
+            "type": "unary_aexpr",
+            "named": true
+          }
+        ]
+      },
       "mac": {
         "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "global_label",
+            "type": "label_def",
             "named": true
           },
           {
-            "type": "label_def",
+            "type": "label_ref",
             "named": true
           }
         ]
@@ -3250,83 +3281,11 @@
       "required": true,
       "types": [
         {
-          "type": "binary_aexpr",
-          "named": true
-        },
-        {
-          "type": "braced_aexpr",
-          "named": true
-        },
-        {
           "type": "comment",
           "named": true
         },
         {
-          "type": "current_addr",
-          "named": true
-        },
-        {
-          "type": "data_prefix",
-          "named": true
-        },
-        {
-          "type": "dstring",
-          "named": true
-        },
-        {
-          "type": "enum",
-          "named": true
-        },
-        {
-          "type": "filename",
-          "named": true
-        },
-        {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "hex_data",
-          "named": true
-        },
-        {
-          "type": "if_char",
-          "named": true
-        },
-        {
-          "type": "if_mx",
-          "named": true
-        },
-        {
           "type": "label_def",
-          "named": true
-        },
-        {
-          "type": "literal",
-          "named": true
-        },
-        {
-          "type": "local_label",
-          "named": true
-        },
-        {
-          "type": "macro_args",
-          "named": true
-        },
-        {
-          "type": "nchar",
-          "named": true
-        },
-        {
-          "type": "num_str_prefix",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "pchar",
           "named": true
         },
         {
@@ -3563,18 +3522,6 @@
         },
         {
           "type": "psop_xc",
-          "named": true
-        },
-        {
-          "type": "ptr_check",
-          "named": true
-        },
-        {
-          "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -4544,11 +4491,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -4565,10 +4508,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -4603,11 +4542,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -4624,10 +4559,6 @@
         },
         {
           "type": "unary_aexpr_prec",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]
@@ -4654,11 +4585,7 @@
           "named": true
         },
         {
-          "type": "global_label",
-          "named": true
-        },
-        {
-          "type": "local_label",
+          "type": "label_ref",
           "named": true
         },
         {
@@ -4675,10 +4602,6 @@
         },
         {
           "type": "unary_aexpr",
-          "named": true
-        },
-        {
-          "type": "var_label",
           "named": true
         }
       ]

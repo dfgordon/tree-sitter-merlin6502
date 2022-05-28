@@ -37,9 +37,7 @@ module.exports = grammar({
 		[$.literal_arg,$.hexadecimal],
 		[$.literal_arg,$.binary],
 		[$.literal_arg,$.addr_prefix],
-		[$.prodos_filename,$.dos33,$.anyfs],
 		[$.prodos_filename,$.dos33],
-		[$.dos33,$.anyfs]
 	],
 
 	rules: {
@@ -56,14 +54,14 @@ module.exports = grammar({
 		program_counter: $ => seq($.label_def,optional(seq($._sep,$.comment)),$._newline), // set label to program counter
 
 		// Macros and labels
-		macro_call: $ => seq(optional($.label_def),$._sep,field('mac',$.global_label),optional(seq($._sep,$.macro_args)),optional(seq($._sep,$.comment)),$._newline),
-		macro_call_forced: $ => seq('\u0100',optional($.label_def),$._sep,field('mac',$.global_label),optional(seq($._sep,$.macro_args)),optional(seq($._sep,$.comment)),$._newline),
+		macro_call: $ => seq(optional($.label_def),$._sep,field('mac',$.label_ref),optional(seq($._sep,field('c3',$.macro_args))),optional(seq($._sep,$.comment)),$._newline),
+		macro_call_forced: $ => seq('\u0100',optional($.label_def),$._sep,field('mac',$.label_ref),optional(seq($._sep,field('c3',$.macro_args))),optional(seq($._sep,$.comment)),$._newline),
 
 		_newline: $ => seq(optional($._sep),/\r?\n/),
 		_sep: $ => /[ \t]+/,
 		_arg_sep: $ => choice('.',',','/','-','(',' '), // separates macro call from arguments in the long form, e.g., PMC mymacro,myargs
 
-		_label: $ => choice($.global_label,$.local_label,$.var_label),
+		label_ref: $ => choice($.global_label,$.local_label,$.var_label),
 		label_def: $ => choice($.global_label,$.local_label,$.var_label),
 		global_label: $ => token(seq(GLOB_LAB_BEG,repeat(LAB_CHAR))), // max 13 (8bit) or 26 (16bit)
 		local_label: $ => token(seq(':',repeat1(LAB_CHAR))), // max 13 (8bit) or 26 (16bit),cannot be first label in program,in macro,MAC,ENT,EXT, or EQU
@@ -88,8 +86,6 @@ module.exports = grammar({
 		if_char: $ => seq(ANYCHAR,ANYCHAR,$.var_label),
 		data_prefix: $ => choice('#','#<','#>','<','>'),
 		ptr_check: $ => seq('(',$.number,')-',$.number),
-
-		// Forced-operations DO NOT EDIT
 
 		// Strings
 
@@ -137,7 +133,7 @@ module.exports = grammar({
 		_addr_aexpr: $ => seq(optional($.addr_prefix),$._aexpr),
 		_aexpr: $ => choice(
 			$.braced_aexpr,
-			$._label,
+			$.label_ref,
 			$.number,
 			$.pchar,
 			$.nchar,
@@ -155,7 +151,7 @@ module.exports = grammar({
 		braced_aexpr: $ => prec(1,seq('{',$._aexpr_prec,'}')),
 		_aexpr_prec: $ => choice(
 			$.braced_aexpr,
-			$._label,
+			$.label_ref,
 			$.number,
 			$.pchar,
 			$.nchar,
@@ -191,13 +187,12 @@ module.exports = grammar({
 		imm_prefix: $ => choice('#','#<','#>','#^'),
 		addr_prefix: $ => choice('<','>','^','|'),
 		hex_data: $ => /[0-9A-Fa-f][0-9A-Fa-f](,?[0-9A-Fa-f][0-9A-Fa-f])*/,
-		filename: $ => choice($.prodos,$.dos33,$.anyfs),
+		filename: $ => choice($.prodos,$.dos33),
 		prodos: $ => seq(optional('/'),repeat(seq($.prodos_filename,'/')),$.prodos_filename),
 		prodos_filename: $ => prec.dynamic(1,seq(choice(...alphachars),repeat(choice(...prodoschars)))),
 		dos33: $ => seq(optional(choice(...DOS33_TFLAG)),choice(...alphachars),repeat(choice(...DOS33_CHARS)),
 			optional(/,S[1-7]/),
 			optional(/,D[1-2]/)),
-		anyfs: $ => prec.dynamic(1,choice(seq("'",repeat1(choice(...ANYFS)),"'"), seq('"',repeat1(choice(...ANYFS)),'"'))),
 
 		number: $ => choice($.decimal,$.hexadecimal,$.binary),
 		decimal: $ => repeat1(choice(...'0123456789')),
@@ -213,8 +208,8 @@ module.exports = grammar({
 
 		// Comments
 
-		comment: $ => seq(';',$.comment_text), // max 64 - len(operand)
-		main_comment: $ => seq('*',$.comment_text), // max 64
+		comment: $ => seq(';',$.comment_text), // max 64/80 - len(operand)
+		main_comment: $ => seq('*',$.comment_text), // max 64/80
 		comment_text: $ => /.*/
 	}
 });
