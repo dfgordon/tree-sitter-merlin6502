@@ -2,6 +2,7 @@ test
 examples
 build
 script
-.travis.yml
+.github
 .gitattributes
 target
+*.wasm

@@ -14,13 +14,10 @@ The parser recognizes assembly source only, i.e., it will not parse linker comma
 
 Merlin language versions satisfy the set relations 16+ ∋ 16 ∋ 8 and 16+ ∋ 32.  Similarly, processor instructions satisfy 65816 ∋ 65C02 ∋ 6502.  The parser accepts the most expansive sets, Merlin 16+ assembly, and 65816 instructions.  Downstream tools must filter the syntax tree if some other combination is the target.
 
-The parser has to be called line by line, unless one is certain there are no implicit macro calls that match an operation or pseudo-operation with trailing characters.  If such a match is possible, the following must be carried out for each line:
+If one is unconcerned about resolving conflicts between implicit macro calls and (pseudo)ops, the parser can digest an entire source file all at once.  If one wishes to distinguish these the same way Merlin does, the procedure is as follows: 
 
-* If the operator column matches a macro label *and* satisfies the below negative match conditions, then insert unicode `0x100` at the beginning of the line and re-parse it.
-    - Negative match conditions:
-        - Macro does not exactly match any valid operation
-        - Macro does not exactly match any valid pseudo operation
-        - Macro does not begin with `DEND` or `POPD`
+* Downstream parses each line, and uses the document's symbol information to decide if column 2 is a macro call
+* If it is, insert unicode `0x100` at the beginning of the line and re-parse it; the line's syntax tree should now be correct.
 
 There are some syntax errors that have to be detected downstream:
 

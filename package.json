@@ -1,7 +1,7 @@
 {
   "name": "tree-sitter-merlin6502",
   "version": "1.0.0",
-  "description": "parser for integer basic",
+  "description": "parser for 6502-family assembly language",
   "main": "bindings/node",
   "scripts": {
     "test": "tree-sitter test",
@@ -16,7 +16,7 @@
     "lexer"
   ],
   "author": "Daniel Gordon",
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/dfgordon/tree-sitter-merlin6502/issues"
   },
