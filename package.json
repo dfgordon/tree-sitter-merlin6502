@@ -1,15 +1,18 @@
 {
-  "name": "tree-sitter-merlin6502",
+  "name": "@dfgordon/tree-sitter-merlin6502",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "version": "1.0.0",
   "description": "parser for 6502-family assembly language",
   "main": "bindings/node",
   "scripts": {
-    "test": "tree-sitter test",
-    "test-windows": "tree-sitter test"
+    "test": "exit 0",
+    "test-windows": "exit 0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dfgordon/tree-sitter-merlin6502.git"
+    "url": "https://github.com/dfgordon/tree-sitter-merlin6502.git"
   },
   "keywords": [
     "parser",
