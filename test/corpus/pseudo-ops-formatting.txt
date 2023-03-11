@@ -8,8 +8,8 @@ line of asterisks AST
 ---
 
 (source_file
-	(pseudo_operation (psop_ast) (number (decimal)))
-	(pseudo_operation (psop_ast) (label_ref (global_label))))
+	(pseudo_operation (psop_ast) (arg_ast (num (dec))))
+	(pseudo_operation (psop_ast) (arg_ast (label_ref (global_label)))))
 
 ===================
 print cycles CYC
@@ -24,9 +24,9 @@ print cycles CYC
 
 (source_file
 	(pseudo_operation (psop_cyc))
-	(pseudo_operation (psop_cyc) (enum))
-	(pseudo_operation (psop_cyc) (enum))
-	(pseudo_operation (psop_cyc) (enum)))
+	(pseudo_operation (psop_cyc) (arg_cyc (enum)))
+	(pseudo_operation (psop_cyc) (arg_cyc (enum)))
+	(pseudo_operation (psop_cyc) (arg_cyc (enum))))
 
 ===================
 Date stamp DAT
@@ -50,9 +50,9 @@ Macro expand EXP
 ---
 
 (source_file
-	(pseudo_operation (psop_exp) (enum))
-	(pseudo_operation (psop_exp) (enum))
-	(pseudo_operation (psop_exp) (enum)))
+	(pseudo_operation (psop_exp) (arg_exp (enum)))
+	(pseudo_operation (psop_exp) (arg_exp (enum)))
+	(pseudo_operation (psop_exp) (arg_exp (enum))))
 
 ===================
 Listing LST
@@ -67,9 +67,9 @@ Listing LST
 
 (source_file
 	(pseudo_operation (psop_lst))
-	(pseudo_operation (psop_lst) (enum))
-	(pseudo_operation (psop_lst) (enum))
-	(pseudo_operation (psop_lst) (enum)))
+	(pseudo_operation (psop_lst) (arg_lst (enum)))
+	(pseudo_operation (psop_lst) (arg_lst (enum)))
+	(pseudo_operation (psop_lst) (arg_lst (enum))))
 
 ===================
 List off areas LSTDO
@@ -82,7 +82,7 @@ List off areas LSTDO
 
 (source_file
 	(pseudo_operation (psop_lstdo))
-	(pseudo_operation (psop_lstdo) (enum)))
+	(pseudo_operation (psop_lstdo) (arg_lstdo (enum))))
 
 ===================
 new page PAG
@@ -105,8 +105,8 @@ title heading TTL
 ---
 
 (source_file
-	(pseudo_operation (psop_ttl) (dstring))
-    (pseudo_operation (psop_ttl) (dstring)))
+	(pseudo_operation (psop_ttl) (arg_ttl (dstring)))
+    (pseudo_operation (psop_ttl) (arg_ttl (dstring))))
 
 ===================
 skip lines SKP
@@ -118,8 +118,8 @@ skip lines SKP
 ---
 
 (source_file
-	(pseudo_operation (psop_skp) (number (decimal)))
-    (pseudo_operation (psop_skp) (binary_aexpr (binary_aexpr (label_ref (global_label)) (eop_plus) (number (decimal))) (eop_plus) (nchar))))
+	(pseudo_operation (psop_skp) (arg_skp (num (dec))))
+    (pseudo_operation (psop_skp) (arg_skp (binary_aexpr (binary_aexpr (label_ref (global_label)) (eop_plus) (num (dec))) (eop_plus) (nchar)))))
 
 ===================
 truncate TR
@@ -132,6 +132,6 @@ truncate TR
 ---
 
 (source_file
-	(pseudo_operation (psop_tr) (enum))
-	(pseudo_operation (psop_tr) (enum))
-	(pseudo_operation (psop_tr) (enum)))
+	(pseudo_operation (psop_tr) (arg_tr (enum)))
+	(pseudo_operation (psop_tr) (arg_tr (enum)))
+	(pseudo_operation (psop_tr) (arg_tr (enum))))

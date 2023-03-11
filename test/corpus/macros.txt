@@ -9,8 +9,8 @@ MYMAC MAC
 ---
 
 (source_file
-	(pseudo_operation (label_def (global_label)) (psop_mac))
-	(operation (op_lda) (imm (imm_prefix) (number (hexadecimal))))
+	(pseudo_operation (macro_def (global_label)) (psop_mac))
+	(operation (op_lda) (arg_lda (imm (imm_prefix) (num (hex)))))
 	(pseudo_operation (psop_eom)))
 
 ===================
@@ -26,10 +26,10 @@ MID MAC
 ---
 
 (source_file
-	(pseudo_operation (label_def (global_label)) (psop_mac))
-	(operation (op_lda) (imm (imm_prefix) (number (hexadecimal))))
-	(pseudo_operation (label_def (global_label)) (psop_mac))
-	(operation (op_ldx) (imm (imm_prefix) (number (hexadecimal))))
+	(pseudo_operation (macro_def (global_label)) (psop_mac))
+	(operation (op_lda) (arg_lda (imm (imm_prefix) (num (hex)))))
+	(pseudo_operation (macro_def (global_label)) (psop_mac))
+	(operation (op_ldx) (arg_ldx (imm (imm_prefix) (num (hex)))))
 	(pseudo_operation (psop_eom)))
 
 ===================
@@ -41,7 +41,7 @@ call with literal
 ---
 
 (source_file
-	(macro_call (label_ref (global_label)) (macro_args (literal_arg))))
+	(macro_call (macro_ref (global_label)) (arg_macro (arg_literal))))
 
 ===================
 call with 2 args
@@ -52,7 +52,7 @@ call with 2 args
 ---
 
 (source_file
-	(macro_call (label_ref (global_label)) (macro_args (addr (number (hexadecimal))) (addr (number (hexadecimal))))))
+	(macro_call (macro_ref (global_label)) (arg_macro (addr (num (hex))) (addr (num (hex))))))
 
 ===================
 call with indirect indexed
@@ -63,7 +63,7 @@ call with indirect indexed
 ---
 
 (source_file
-	(macro_call (label_ref (global_label)) (macro_args (iaddr_y (mode_iopen) (label_ref (global_label)) (mode_iy)))))
+	(macro_call (macro_ref (global_label)) (arg_macro (iaddr_y (mode) (label_ref (global_label)) (mode)))))
 
 ===================
 explicit call
@@ -75,5 +75,5 @@ explicit call
 ---
 
 (source_file
-	(pseudo_operation (psop_pmc) (label_ref (global_label)) (macro_args (iaddr_y (mode_iopen) (label_ref (global_label)) (mode_iy))))
-	(pseudo_operation (psop_pmc) (label_ref (global_label)) (macro_args (daddr_y (mode_dopen) (label_ref (global_label)) (mode_dy)))))
+	(pseudo_operation (psop_pmc) (arg_pmc (macro_ref (global_label)) (arg_macro (iaddr_y (mode) (label_ref (global_label)) (mode)))))
+	(pseudo_operation (psop_pmc) (arg_pmc (macro_ref (global_label)) (arg_macro (daddr_y (mode) (label_ref (global_label)) (mode))))))

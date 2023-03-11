@@ -27,53 +27,57 @@ module.exports = grammar({
 	name: language_name,
 	extras: $ => [],
 	conflicts: $ => [
-		[$.literal_arg,$.eop_minus],
-		[$.literal_arg,$.mode_iopen],
-		[$.literal_arg,$.imm_prefix],
-		[$.literal_arg,$.current_addr],
-		[$.literal_arg,$.eop_plus],
-		[$.literal_arg,$.mode_dopen],
-		[$.literal_arg,$.decimal],
-		[$.literal_arg,$.hexadecimal],
-		[$.literal_arg,$.binary],
-		[$.literal_arg,$.addr_prefix],
+		[$.label_def,$.macro_def],
 		[$.prodos_filename,$.dos33],
 	],
 
 	rules: {
 		source_file: $ => repeat($._factor),
 		_factor: $ => choice(
+			$._newline,
+			seq($.heading,$._newline), // vscode highlights don't like newline included in the highlight
+			seq(optional($._sep),$.comment, $._newline),
 			$.program_counter,
-			seq($.main_comment,$._newline), // vscode highlights don't like newline included in the highlight
 			$.macro_call,
-			$.macro_call_forced, // downstream must activate this in line by line parsing
+			alias($.macro_call_forced,$.macro_call), // downstream must activate this in line by line parsing
 			$.operation,
-			$.pseudo_operation, // excludes macro pseudo-ops
-			$._newline
+			$.pseudo_operation // excludes implicit macro calls
 		),
 		program_counter: $ => seq($.label_def,optional(seq($._sep,$.comment)),$._newline), // set label to program counter
 
 		// Macros and labels
-		macro_call: $ => seq(optional($.label_def),$._sep,field('mac',$.label_ref),optional(seq($._sep,field('c3',$.macro_args))),optional(seq($._sep,$.comment)),$._newline),
-		macro_call_forced: $ => seq('\u0100',optional($.label_def),$._sep,field('mac',$.label_ref),optional(seq($._sep,field('c3',$.macro_args))),optional(seq($._sep,$.comment)),$._newline),
+		macro_call: $ => seq(optional($.label_def),$._sep,$.macro_ref,optional(seq($._sep,$.arg_macro)),optional(seq($._sep,$.comment)),$._newline),
+		macro_call_forced: $ => seq('\u0100',optional($.label_def),$._sep,$.macro_ref,optional(seq($._sep,$.arg_macro)),optional(seq($._sep,$.comment)),$._newline),
 
 		_newline: $ => seq(optional($._sep),/\r?\n/),
 		_sep: $ => /[ \t]+/,
 		_arg_sep: $ => choice('.',',','/','-','(',' '), // separates macro call from arguments in the long form, e.g., PMC mymacro,myargs
 
 		label_ref: $ => choice($.global_label,$.local_label,$.var_label),
-		label_def: $ => choice($.global_label,$.local_label,$.var_label),
+		label_def: $ => choice($.global_label, $.local_label, $.var_label),
+		macro_ref: $ => $.global_label,
+		macro_def: $ => prec.dynamic(1,$.global_label),
 		global_label: $ => token(seq(GLOB_LAB_BEG,repeat(LAB_CHAR))), // max 13 (8bit) or 26 (16bit)
 		local_label: $ => token(seq(':',repeat1(LAB_CHAR))), // max 13 (8bit) or 26 (16bit),cannot be first label in program,in macro,MAC,ENT,EXT, or EQU
 		var_label: $ => token(seq(']',repeat1(LAB_CHAR))),
 
-		macro_args: $ => seq($._arg,repeat(seq(';',$._arg))),
+		arg_macro: $ => seq($._arg,repeat(seq(';',$._arg))),
 		_arg: $ => choice(
-			$._addr_6502,
-			$._addr_65816,
-			$.literal_arg,
+			$.imm,
+			$.addr,
+			$.addr_x,
+			$.addr_y,
+			$.iaddr_ix,
+			$.iaddr_y,
+			$.iaddr,
+			$.daddr,
+			$.daddr_y,
+			$.addr_s,
+			$.iaddr_is_y,
+			$.xyc,
+			$.arg_literal,
 		),
-		literal_arg: $ => prec.dynamic(-9,repeat1(choice(...ARG))),
+		arg_literal: $ => repeat1(prec.left(-1,choice(...ARG))),
 
 		// Operations DO NOT EDIT
 
@@ -85,7 +89,7 @@ module.exports = grammar({
 		if_mx: $ => seq('MX',choice($.eop_plus,$.eop_minus,$.eop_times,$.eop_div,$.eop_or,$.eop_and,$.eop_xor),$._aexpr),
 		if_char: $ => seq(ANYCHAR,ANYCHAR,$.var_label),
 		data_prefix: $ => choice('#','#<','#>','<','>'),
-		ptr_check: $ => seq('(',$.number,')-',$.number),
+		ptr_check: $ => seq('(',$.num,')-',$.num),
 
 		// Strings
 
@@ -95,37 +99,25 @@ module.exports = grammar({
 
 		// dstring DO NOT EDIT
 
-		// 65C02 addressing Modes
+		// 6502 and 65C02 addressing Modes
+		// The 65C02 added (ZP) and (ABS,X), but these are indistinguishable from (ABS) and (ZP,X)
+		// until the arguments are actually evaluated.
 	
-		_addr_6502: $ => choice($.imm,$.addr,$.addr_x,$.addr_y,$.iaddr_ix,$.iaddr_y,$.iaddr),
 		imm: $ => seq($.imm_prefix,$._aexpr),
 		addr: $ => $._addr_aexpr,
-		addr_x: $ => seq($._addr_aexpr,$.mode_x),
-		addr_y: $ => seq($._addr_aexpr,$.mode_y),
-		iaddr_ix: $ => seq($.mode_iopen,$._aexpr,$.mode_iix),
-		iaddr_y: $ => seq($.mode_iopen,$._aexpr,$.mode_iy),
-		iaddr: $ => seq($.mode_iopen,$._aexpr,$.mode_iclose),
-		mode_x: $ => choice(',X',',x'),
-		mode_y: $ => choice(',Y',',y'),
-		mode_iopen: $ => '(',
-		mode_iclose: $ => ')',
-		mode_iix: $ => choice(',X)',',x)'),
-		mode_iy: $ => choice('),Y','),y'),
+		addr_x: $ => seq($._addr_aexpr,alias(choice(',X',',x'),$.mode)),
+		addr_y: $ => seq($._addr_aexpr,alias(choice(',Y',',y'),$.mode)),
+		iaddr_ix: $ => seq(alias('(',$.mode),$._aexpr,alias(choice(',X)',',x)'),$.mode)),
+		iaddr_y: $ => seq(alias('(',$.mode),$._aexpr,alias(choice('),Y','),y'),$.mode)),
+		iaddr: $ => seq(alias('(',$.mode),$._aexpr,alias(')',$.mode)),
 
 		// 65C816 addressing modes
 
-		_addr_65816: $ => choice($.daddr,$.daddr_y,$.addr_s,$.iaddr_is_y,$.xyc),
-		daddr: $ => seq($.mode_dopen,$._aexpr,$.mode_dclose),
-		daddr_y: $ => seq($.mode_dopen,$._aexpr,$.mode_dy),
-		addr_s: $ => seq($._aexpr,$.mode_s),
-		iaddr_is_y: $ => seq($.mode_iopen,$._aexpr,$.mode_is_y),
+		daddr: $ => seq(alias('[',$.mode),$._aexpr,alias(']',$.mode)),
+		daddr_y: $ => seq(alias('[',$.mode),$._aexpr,alias(choice('],Y','],y'),$.mode)),
+		addr_s: $ => seq($._aexpr,alias(choice(',S',',s'),$.mode)),
+		iaddr_is_y: $ => seq(alias('(',$.mode),$._aexpr,alias(choice(',S),Y',',s),y',',S),y',',s),Y'),$.mode)),
 		xyc: $ => seq($._aexpr,',',$._aexpr),
-		mode_dopen: $ => '[',
-		mode_dclose: $ => ']',
-		mode_dy: $ => choice('],Y','],y'),
-		mode_s: $ => choice(',S',',s'),
-		mode_is_y: $ => choice(',S),Y',',s),y',',S),y',',s),Y'),
-
 
 		// Expressions
 
@@ -134,7 +126,7 @@ module.exports = grammar({
 		_aexpr: $ => choice(
 			$.braced_aexpr,
 			$.label_ref,
-			$.number,
+			$.num,
 			$.pchar,
 			$.nchar,
 			$.current_addr,
@@ -152,7 +144,7 @@ module.exports = grammar({
 		_aexpr_prec: $ => choice(
 			$.braced_aexpr,
 			$.label_ref,
-			$.number,
+			$.num,
 			$.pchar,
 			$.nchar,
 			$.current_addr,
@@ -194,10 +186,10 @@ module.exports = grammar({
 			optional(/,S[1-7]/),
 			optional(/,D[1-2]/)),
 
-		number: $ => choice($.decimal,$.hexadecimal,$.binary),
-		decimal: $ => repeat1(choice(...'0123456789')),
-		hexadecimal: $ => seq('$',repeat1(choice(...'0123456789ABCDEFabcdef'))),
-		binary: $ => seq('%',repeat1(choice(...'01_'))),
+		num: $ => choice($.dec,$.hex,$.bin),
+		dec: $ => repeat1(choice(...'0123456789')),
+		hex: $ => seq('$',repeat1(choice(...'0123456789ABCDEFabcdef'))),
+		bin: $ => seq('%',repeat1(choice(...'01_'))),
 
 		pchar: $ => seq("'",PCHAR,optional("'")),
 		nchar: $ => seq('"',NCHAR,optional('"')),
@@ -208,9 +200,9 @@ module.exports = grammar({
 
 		// Comments
 
-		comment: $ => seq(';',$.comment_text), // max 64/80 - len(operand)
-		main_comment: $ => seq('*',$.comment_text), // max 64/80
-		comment_text: $ => /.*/
+		comment: $ => seq(';',$.txt), // max 64/80 - len(operand)
+		heading: $ => seq('*',$.txt), // max 64/80
+		txt: $ => /.*/
 	}
 });
 

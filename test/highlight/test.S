@@ -1,4 +1,6 @@
 MYMAC    MAC
+*^ function
+*        ^ function.builtin
 INC16    MAC
 *^ function
 *        ^ function.builtin
@@ -28,6 +30,7 @@ CONT
 ST       MYMAC $00;$01
 *        ^ function
 *               ^ number
+*                   ^ number
 DATA     HEX   00,0A,000B
 *                 ^ number
 *                    ^ number

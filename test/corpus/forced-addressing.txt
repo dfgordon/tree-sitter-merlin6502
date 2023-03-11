@@ -8,8 +8,8 @@ forced long
 ---
 
 (source_file
-	(operation (op_lda (trailing)) (addr (number (decimal))))
-	(operation (op_lda) (addr (addr_prefix) (number (hexadecimal)))))
+	(operation (op_lda (trailing)) (arg_lda (addr (num (dec)))))
+	(operation (op_lda) (arg_lda (addr (addr_prefix) (num (hex))))))
 
 ===================
 forced absolute
@@ -20,4 +20,4 @@ forced absolute
 ---
 
 (source_file
-	(operation (op_lda (trailing)) (addr (number (decimal)))))
+	(operation (op_lda (trailing)) (arg_lda (addr (num (dec))))))

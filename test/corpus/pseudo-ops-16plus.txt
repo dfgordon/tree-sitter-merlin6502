@@ -7,7 +7,7 @@ XC off
 ---
 
 (source_file
-	(pseudo_operation (psop_xc) (enum)))
+	(pseudo_operation (psop_xc) (arg_xc (enum))))
 
 ===================
 interspersed ASC
@@ -19,8 +19,8 @@ interspersed ASC
 ---
 
 (source_file
-	(pseudo_operation (psop_asc) (dstring) (hex_data) (dstring) (hex_data))
-	(pseudo_operation (psop_asc) (dstring) (hex_data)))
+	(pseudo_operation (psop_asc) (arg_asc (dstring) (hex_data) (dstring) (hex_data)))
+	(pseudo_operation (psop_asc) (arg_asc (dstring) (hex_data))))
 
 ===================
 expression ASC
@@ -37,13 +37,13 @@ expression ASC
 ---
 
 (source_file
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
-	(pseudo_operation (psop_asc) (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
-	(pseudo_operation (psop_inv) (dstring (MISSING "#"))))
+	(pseudo_operation (psop_asc) (arg_asc (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
+	(pseudo_operation (psop_asc) (arg_asc (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
+	(pseudo_operation (psop_asc) (arg_asc (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
+	(pseudo_operation (psop_asc) (arg_asc (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
+	(pseudo_operation (psop_asc) (arg_asc (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
+	(pseudo_operation (psop_asc) (arg_asc (num_str_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
+	(pseudo_operation (psop_inv) (arg_inv (dstring (MISSING "#")))))
 
 ===================
 DATE with arg
@@ -54,7 +54,7 @@ DATE with arg
 ---
 
 (source_file
-	(pseudo_operation (psop_dat) (number (decimal))))
+	(pseudo_operation (psop_dat) (arg_dat (num (dec)))))
 
 ===================
 case control CAS
@@ -66,8 +66,8 @@ case control CAS
 ---
 
 (source_file
-	(pseudo_operation (psop_cas) (enum))
-	(pseudo_operation (psop_cas) (enum)))
+	(pseudo_operation (psop_cas) (arg_cas (enum)))
+	(pseudo_operation (psop_cas) (arg_cas (enum))))
 
 ===================
 list control LST
@@ -78,7 +78,7 @@ list control LST
 ---
 
 (source_file
-	(pseudo_operation (psop_lst) (enum) (filename (prodos (prodos_filename)))))
+	(pseudo_operation (psop_lst) (arg_lst (enum) (filename (prodos (prodos_filename))))))
 
 ===================
 word length STRL
@@ -89,7 +89,7 @@ word length STRL
 ---
 
 (source_file
-	(pseudo_operation (psop_strl) (dstring)))
+	(pseudo_operation (psop_strl) (arg_strl (dstring))))
 
 ===================
 floating point FLO
@@ -100,7 +100,7 @@ floating point FLO
 ---
 
 (source_file
-	(pseudo_operation (psop_flo) (dstring)))
+	(pseudo_operation (psop_flo) (arg_flo (dstring))))
 
 ===================
 external EXD
@@ -113,7 +113,7 @@ LAB EXD
 
 (source_file
 	(pseudo_operation (label_def (global_label)) (psop_exd))
-    (pseudo_operation (psop_exd) (label_def (global_label)) (label_def (global_label))))
+    (pseudo_operation (psop_exd) (arg_exd (label_def (global_label)) (label_def (global_label)))))
 
 ===================
 Braced expressions
@@ -125,15 +125,45 @@ Braced expressions
 ---
 
 (source_file
-	(operation (op_lda) (addr (braced_aexpr
-        (binary_aexpr_prec (label_ref (global_label)) (eop_plus)
-            (binary_aexpr_prec (label_ref (global_label)) (eop_times) (label_ref (global_label)))))))
-	(operation (op_lda) (addr
-        (binary_aexpr
-            (unary_aexpr (eop_plus)
-                (braced_aexpr (binary_aexpr_prec (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
-            (eop_times)
-            (label_ref (global_label))))))
+	(operation
+		(op_lda)
+		(arg_lda
+			(addr
+				(braced_aexpr
+        			(binary_aexpr_prec
+						(label_ref (global_label))
+						(eop_plus)
+            			(binary_aexpr_prec
+							(label_ref (global_label))
+							(eop_times)
+							(label_ref (global_label))
+						)
+					)
+				)
+			)
+		)
+	)
+	(operation
+		(op_lda)
+		(arg_lda
+			(addr
+        		(binary_aexpr
+            		(unary_aexpr (eop_plus)
+                		(braced_aexpr
+							(binary_aexpr_prec
+								(label_ref (global_label))
+								(eop_plus)
+								(label_ref (global_label))
+							)
+						)
+					)
+            		(eop_times)
+            		(label_ref (global_label))
+				)
+			)
+		)
+	)
+)
 
 ===================
 Comparison operators
@@ -144,5 +174,15 @@ Comparison operators
 ---
 
 (source_file
-	(operation (op_lda) (addr
-        (binary_aexpr (label_ref (global_label)) (cop_less) (label_ref (global_label))))))
+	(operation (op_lda)
+		(arg_lda
+			(addr
+        		(binary_aexpr
+					(label_ref (global_label))
+					(cop_less)
+					(label_ref (global_label))
+				)
+			)
+		)
+	)
+)

@@ -9,9 +9,9 @@ LAB3 = LAB+LAB2
 ---
 
 (source_file
-	(pseudo_operation (label_def (global_label)) (psop_equ) (number (hexadecimal)))
-	(pseudo_operation (label_def (global_label)) (psop_equ) (nchar))
-    (pseudo_operation (label_def (global_label)) (psop_equ) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
+	(pseudo_operation (label_def (global_label)) (psop_equ) (arg_equ (num (hex))))
+	(pseudo_operation (label_def (global_label)) (psop_equ) (arg_equ (nchar)))
+    (pseudo_operation (label_def (global_label)) (psop_equ) (arg_equ (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))))
 
 ===================
 External Label EXT
@@ -41,7 +41,7 @@ Label ENT
 (source_file
 	(pseudo_operation (label_def (global_label)) (psop_ent))
 	(pseudo_operation (label_def (global_label)) (psop_ent))
-	(pseudo_operation (psop_ent) (label_ref (global_label)) (label_ref (global_label))))
+	(pseudo_operation (psop_ent) (arg_ent (label_ref (global_label)) (label_ref (global_label)))))
 
 ===================
 Origin ORG
@@ -54,8 +54,8 @@ Origin ORG
 ---
 
 (source_file
-	(pseudo_operation (psop_org) (number (hexadecimal)))
-	(pseudo_operation (psop_org) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))
+	(pseudo_operation (psop_org) (arg_org (num (hex))))
+	(pseudo_operation (psop_org) (arg_org (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
 	(pseudo_operation (psop_org)))
 
 ===================
@@ -79,8 +79,8 @@ Object OBJ
 ---
 
 (source_file
-	(pseudo_operation (psop_obj) (number (hexadecimal)))
-	(pseudo_operation (psop_obj) (label_ref (global_label))))
+	(pseudo_operation (psop_obj) (arg_obj (num (hex))))
+	(pseudo_operation (psop_obj) (arg_obj (label_ref (global_label)))))
 
 ===================
 PUT DOS 3.3
@@ -93,9 +93,9 @@ PUT DOS 3.3
 ---
 
 (source_file
-	(pseudo_operation (psop_put) (filename (prodos (prodos_filename))))
-	(pseudo_operation (psop_put) (filename (dos33)))
-	(pseudo_operation (psop_put) (filename (dos33))))
+	(pseudo_operation (psop_put) (arg_put (filename (prodos (prodos_filename)))))
+	(pseudo_operation (psop_put) (arg_put (filename (dos33))))
+	(pseudo_operation (psop_put) (arg_put (filename (dos33)))))
 
 ===================
 PUT ProDOS
@@ -107,8 +107,8 @@ PUT ProDOS
 ---
 
 (source_file
-	(pseudo_operation (psop_put) (filename (prodos (prodos_filename))))
-	(pseudo_operation (psop_put) (filename (prodos (prodos_filename) (prodos_filename)))))
+	(pseudo_operation (psop_put) (arg_put (filename (prodos (prodos_filename)))))
+	(pseudo_operation (psop_put) (arg_put (filename (prodos (prodos_filename) (prodos_filename))))))
 
 ===================
 USE DOS 3.3
@@ -121,9 +121,9 @@ USE DOS 3.3
 ---
 
 (source_file
-	(pseudo_operation (psop_use) (filename (prodos (prodos_filename))))
-	(pseudo_operation (psop_use) (filename (dos33)))
-	(pseudo_operation (psop_use) (filename (dos33))))
+	(pseudo_operation (psop_use) (arg_use (filename (prodos (prodos_filename)))))
+	(pseudo_operation (psop_use) (arg_use (filename (dos33))))
+	(pseudo_operation (psop_use) (arg_use (filename (dos33)))))
 
 ===================
 USE ProDOS
@@ -135,8 +135,8 @@ USE ProDOS
 ---
 
 (source_file
-	(pseudo_operation (psop_use) (filename (prodos (prodos_filename))))
-	(pseudo_operation (psop_use) (filename (prodos (prodos_filename) (prodos_filename)))))
+	(pseudo_operation (psop_use) (arg_use (filename (prodos (prodos_filename)))))
+	(pseudo_operation (psop_use) (arg_use (filename (prodos (prodos_filename) (prodos_filename))))))
 
 ===================
 Variable VAR
@@ -147,7 +147,7 @@ Variable VAR
 ---
 
 (source_file
-	(pseudo_operation (psop_var) (number (decimal)) (number (hexadecimal)) (label_ref (global_label))))
+	(pseudo_operation (psop_var) (arg_var (num (dec)) (num (hex)) (label_ref (global_label)))))
 
 ===================
 SAV DOS 3.3
@@ -160,9 +160,9 @@ SAV DOS 3.3
 ---
 
 (source_file
-	(pseudo_operation (psop_sav) (filename (prodos (prodos_filename))))
-	(pseudo_operation (psop_sav) (filename (dos33)))
-	(pseudo_operation (psop_sav) (filename (dos33))))
+	(pseudo_operation (psop_sav) (arg_sav (filename (prodos (prodos_filename)))))
+	(pseudo_operation (psop_sav) (arg_sav (filename (dos33))))
+	(pseudo_operation (psop_sav) (arg_sav (filename (dos33)))))
 
 ===================
 SAV ProDOS
@@ -174,8 +174,8 @@ SAV ProDOS
 ---
 
 (source_file
-	(pseudo_operation (psop_sav) (filename (prodos (prodos_filename))))
-	(pseudo_operation (psop_sav) (filename (prodos (prodos_filename) (prodos_filename)))))
+	(pseudo_operation (psop_sav) (arg_sav (filename (prodos (prodos_filename)))))
+	(pseudo_operation (psop_sav) (arg_sav (filename (prodos (prodos_filename) (prodos_filename))))))
 
 ===================
 File type TYP
@@ -187,8 +187,8 @@ File type TYP
 ---
 
 (source_file
-	(pseudo_operation (psop_typ) (number (hexadecimal)))
-	(pseudo_operation (psop_typ) (label_ref (global_label))))
+	(pseudo_operation (psop_typ) (arg_typ (num (hex))))
+	(pseudo_operation (psop_typ) (arg_typ (label_ref (global_label)))))
 
 ===================
 DSK DOS 3.3
@@ -201,9 +201,9 @@ DSK DOS 3.3
 ---
 
 (source_file
-	(pseudo_operation (psop_dsk) (filename (prodos (prodos_filename))))
-	(pseudo_operation (psop_dsk) (filename (dos33)))
-	(pseudo_operation (psop_dsk) (filename (dos33))))
+	(pseudo_operation (psop_dsk) (arg_dsk (filename (prodos (prodos_filename)))))
+	(pseudo_operation (psop_dsk) (arg_dsk (filename (dos33))))
+	(pseudo_operation (psop_dsk) (arg_dsk (filename (dos33)))))
 
 ===================
 DSK ProDOS
@@ -215,8 +215,8 @@ DSK ProDOS
 ---
 
 (source_file
-	(pseudo_operation (psop_dsk) (filename (prodos (prodos_filename))))
-	(pseudo_operation (psop_dsk) (filename (prodos (prodos_filename) (prodos_filename)))))
+	(pseudo_operation (psop_dsk) (arg_dsk (filename (prodos (prodos_filename)))))
+	(pseudo_operation (psop_dsk) (arg_dsk (filename (prodos (prodos_filename) (prodos_filename))))))
 
 ===================
 End of source END
@@ -227,7 +227,7 @@ End of source END
 ---
 
 (source_file
-	(pseudo_operation (psop_end) (comment (comment_text))))
+	(pseudo_operation (psop_end) (comment (txt))))
 
 ===================
 Dummy section DUM
@@ -239,8 +239,8 @@ Dummy section DUM
 ---
 
 (source_file
-	(pseudo_operation (psop_dum) (number (hexadecimal)))
-	(pseudo_operation (psop_dum) (binary_aexpr (label_ref (global_label)) (eop_minus) (label_ref (global_label)))))
+	(pseudo_operation (psop_dum) (arg_dum (num (hex))))
+	(pseudo_operation (psop_dum) (arg_dum (binary_aexpr (label_ref (global_label)) (eop_minus) (label_ref (global_label))))))
 
 ===================
 End of dummy DEND
@@ -251,5 +251,5 @@ End of dummy DEND
 ---
 
 (source_file
-	(pseudo_operation (psop_dend) (comment (comment_text))))
+	(pseudo_operation (psop_dend) (comment (txt))))
 

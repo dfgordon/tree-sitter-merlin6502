@@ -636,7 +636,7 @@ pmc:
   desc: call the named macro
   caveat: macro label can also go directly in the instruction column
   eg: ['     PMC mymac','     >>> mymac,arg1;arg2']
-  args: seq(field('mac',$.label_ref),optional(seq($._arg_sep,$.macro_args)))
+  args: seq($.macro_ref,optional(seq($._arg_sep,$.arg_macro)))
   label: [var,global,local]
   version: [v8,v16,v16+,v32]
   category: macro

@@ -9,9 +9,9 @@ Ascii text ASC
 ---
 
 (source_file
-	(pseudo_operation (psop_asc) (dstring))
-	(pseudo_operation (psop_asc) (dstring))
-	(pseudo_operation (psop_asc) (dstring) (hex_data)))
+	(pseudo_operation (psop_asc) (arg_asc (dstring)))
+	(pseudo_operation (psop_asc) (arg_asc (dstring)))
+	(pseudo_operation (psop_asc) (arg_asc (dstring) (hex_data))))
 
 ===================
 Dextral inverted DCI
@@ -24,9 +24,9 @@ Dextral inverted DCI
 ---
 
 (source_file
-	(pseudo_operation (psop_dci) (dstring))
-	(pseudo_operation (psop_dci) (dstring))
-	(pseudo_operation (psop_dci) (dstring) (hex_data)))
+	(pseudo_operation (psop_dci) (arg_dci (dstring)))
+	(pseudo_operation (psop_dci) (arg_dci (dstring)))
+	(pseudo_operation (psop_dci) (arg_dci (dstring) (hex_data))))
 
 ===================
 Inverse INV
@@ -39,9 +39,9 @@ Inverse INV
 ---
 
 (source_file
-	(pseudo_operation (psop_inv) (dstring))
-	(pseudo_operation (psop_inv) (dstring))
-	(pseudo_operation (psop_inv) (dstring) (hex_data)))
+	(pseudo_operation (psop_inv) (arg_inv (dstring)))
+	(pseudo_operation (psop_inv) (arg_inv (dstring)))
+	(pseudo_operation (psop_inv) (arg_inv (dstring) (hex_data))))
 
 ===================
 Flashing FLS
@@ -54,9 +54,9 @@ Flashing FLS
 ---
 
 (source_file
-	(pseudo_operation (psop_fls) (dstring))
-	(pseudo_operation (psop_fls) (dstring))
-	(pseudo_operation (psop_fls) (dstring) (hex_data)))
+	(pseudo_operation (psop_fls) (arg_fls (dstring)))
+	(pseudo_operation (psop_fls) (arg_fls (dstring)))
+	(pseudo_operation (psop_fls) (arg_fls (dstring) (hex_data))))
 
 ===================
 Reverse REV
@@ -68,8 +68,8 @@ Reverse REV
 ---
 
 (source_file
-	(pseudo_operation (psop_rev) (dstring))
-	(pseudo_operation (psop_rev) (dstring)))
+	(pseudo_operation (psop_rev) (arg_rev (dstring)))
+	(pseudo_operation (psop_rev) (arg_rev (dstring))))
 
 ===================
 Length byte STR
@@ -82,6 +82,6 @@ Length byte STR
 ---
 
 (source_file
-	(pseudo_operation (psop_str) (dstring))
-	(pseudo_operation (psop_str) (dstring))
-	(pseudo_operation (psop_str) (dstring) (hex_data)))
+	(pseudo_operation (psop_str) (arg_str (dstring)))
+	(pseudo_operation (psop_str) (arg_str (dstring)))
+	(pseudo_operation (psop_str) (arg_str (dstring) (hex_data))))

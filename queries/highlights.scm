@@ -1,19 +1,20 @@
-mac: (label_ref (global_label) @function)
-mac: (label_def (global_label) @function)
-(global_label) @type
+(macro_def) @function
+(macro_ref) @function
+(label_def (global_label)) @type
+(label_ref (global_label)) @type
 (current_addr) @type
 (local_label) @variable.parameter
 (var_label) @variable.builtin
-(number) @number
+(num) @number
 (hex_data) @number
 (dstring) @string
-(literal_arg) @string
+(arg_literal) @string
 (pchar) @string
 (nchar) @string
 (literal) @string
 (filename) @string
 (trailing) @string
-(main_comment) @comment
+(heading) @comment
 (comment) @comment
 (eop_plus) @operator
 (eop_minus) @operator
@@ -22,14 +23,10 @@ mac: (label_def (global_label) @function)
 (eop_or) @operator
 (eop_and) @operator
 (eop_xor) @operator
-(mode_x) @keyword
-(mode_y) @keyword
-(mode_iopen) @keyword
-(mode_iclose) @keyword
-(mode_iix) @keyword
-(mode_iy) @keyword
+(mode) @keyword
 (imm_prefix) @keyword
 (addr_prefix) @keyword
+(data_prefix) @keyword
 (num_str_prefix) @keyword
 (ERROR) @error
 (op_adc) @keyword

@@ -32,7 +32,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -76,7 +76,7 @@
           "named": true
         },
         {
-          "type": "mode_s",
+          "type": "mode",
           "named": true
         },
         {
@@ -84,7 +84,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -127,7 +127,7 @@
           "named": true
         },
         {
-          "type": "mode_x",
+          "type": "mode",
           "named": true
         },
         {
@@ -135,7 +135,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -178,7 +178,7 @@
           "named": true
         },
         {
-          "type": "mode_y",
+          "type": "mode",
           "named": true
         },
         {
@@ -186,7 +186,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -201,7 +201,2493 @@
     }
   },
   {
-    "type": "binary",
+    "type": "arg_adc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_adr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_adrl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_and",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_asc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "dstring",
+          "named": true
+        },
+        {
+          "type": "hex_data",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "num_str_prefix",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_asl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_ast",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_bcc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_bcs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_beq",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_bit",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_bmi",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_bne",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_bpl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_bra",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_brk",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_brl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_bvc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_bvs",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_cas",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_cmp",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_cop",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_cpx",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_cpy",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_cyc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_da",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_dat",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_dci",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dstring",
+          "named": true
+        },
+        {
+          "type": "hex_data",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_ddb",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_dec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_dfb",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "data_prefix",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_do",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_ds",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_dsk",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "filename",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_dum",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_ent",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "label_ref",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_eor",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_equ",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_err",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "ptr_check",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_exd",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "label_def",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_exp",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_ext",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "label_def",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_flo",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dstring",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_fls",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dstring",
+          "named": true
+        },
+        {
+          "type": "hex_data",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_hex",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "hex_data",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_if",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "if_char",
+          "named": true
+        },
+        {
+          "type": "if_mx",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_inc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_inv",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dstring",
+          "named": true
+        },
+        {
+          "type": "hex_data",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_jml",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "iaddr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_jmp",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_jsl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_jsr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_kbd",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dstring",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_lda",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_ldx",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_ldy",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "arg_lsr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_lst",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "enum",
+          "named": true
+        },
+        {
+          "type": "filename",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_lstdo",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_lup",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_macro",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "arg_literal",
+          "named": true
+        },
+        {
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        },
+        {
+          "type": "xyc",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_mvn",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "xyc",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_mvp",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "xyc",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_mx",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_obj",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_ora",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_org",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_pea",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_pei",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "iaddr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_per",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_pmc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arg_macro",
+          "named": true
+        },
+        {
+          "type": "macro_ref",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_put",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "filename",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_rep",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_rev",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dstring",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_rol",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_ror",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_sav",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "filename",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_sbc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        },
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_sep",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "imm",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_skp",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_sta",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_s",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        },
+        {
+          "type": "daddr",
+          "named": true
+        },
+        {
+          "type": "daddr_y",
+          "named": true
+        },
+        {
+          "type": "iaddr",
+          "named": true
+        },
+        {
+          "type": "iaddr_is_y",
+          "named": true
+        },
+        {
+          "type": "iaddr_ix",
+          "named": true
+        },
+        {
+          "type": "iaddr_y",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_str",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dstring",
+          "named": true
+        },
+        {
+          "type": "hex_data",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_strl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dstring",
+          "named": true
+        },
+        {
+          "type": "hex_data",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_stx",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_y",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_sty",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_stz",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        },
+        {
+          "type": "addr_x",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_tr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_trb",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_tsb",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_ttl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "dstring",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_typ",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_use",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "filename",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_usr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_var",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_aexpr",
+          "named": true
+        },
+        {
+          "type": "braced_aexpr",
+          "named": true
+        },
+        {
+          "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "label_ref",
+          "named": true
+        },
+        {
+          "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "num",
+          "named": true
+        },
+        {
+          "type": "pchar",
+          "named": true
+        },
+        {
+          "type": "unary_aexpr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "arg_xc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enum",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "bin",
     "named": true,
     "fields": {}
   },
@@ -278,7 +2764,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -365,7 +2851,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -408,7 +2894,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -431,16 +2917,11 @@
       "required": true,
       "types": [
         {
-          "type": "comment_text",
+          "type": "txt",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "comment_text",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "cop_eq",
@@ -492,11 +2973,7 @@
           "named": true
         },
         {
-          "type": "mode_dclose",
-          "named": true
-        },
-        {
-          "type": "mode_dopen",
+          "type": "mode",
           "named": true
         },
         {
@@ -504,7 +2981,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -543,11 +3020,7 @@
           "named": true
         },
         {
-          "type": "mode_dopen",
-          "named": true
-        },
-        {
-          "type": "mode_dy",
+          "type": "mode",
           "named": true
         },
         {
@@ -555,7 +3028,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -575,7 +3048,7 @@
     "fields": {}
   },
   {
-    "type": "decimal",
+    "type": "dec",
     "named": true,
     "fields": {}
   },
@@ -644,7 +3117,22 @@
     }
   },
   {
-    "type": "hexadecimal",
+    "type": "heading",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "txt",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "hex",
     "named": true,
     "fields": {}
   },
@@ -673,11 +3161,7 @@
           "named": true
         },
         {
-          "type": "mode_iclose",
-          "named": true
-        },
-        {
-          "type": "mode_iopen",
+          "type": "mode",
           "named": true
         },
         {
@@ -685,7 +3169,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -724,11 +3208,7 @@
           "named": true
         },
         {
-          "type": "mode_iopen",
-          "named": true
-        },
-        {
-          "type": "mode_is_y",
+          "type": "mode",
           "named": true
         },
         {
@@ -736,7 +3216,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -775,11 +3255,7 @@
           "named": true
         },
         {
-          "type": "mode_iix",
-          "named": true
-        },
-        {
-          "type": "mode_iopen",
+          "type": "mode",
           "named": true
         },
         {
@@ -787,7 +3263,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -826,11 +3302,7 @@
           "named": true
         },
         {
-          "type": "mode_iopen",
-          "named": true
-        },
-        {
-          "type": "mode_iy",
+          "type": "mode",
           "named": true
         },
         {
@@ -838,7 +3310,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -924,7 +3396,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -971,7 +3443,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -1042,12 +3514,7 @@
     "fields": {}
   },
   {
-    "type": "literal_arg",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "macro_args",
+    "type": "macro_call",
     "named": true,
     "fields": {},
     "children": {
@@ -1055,89 +3522,9 @@
       "required": true,
       "types": [
         {
-          "type": "addr",
+          "type": "arg_macro",
           "named": true
         },
-        {
-          "type": "addr_s",
-          "named": true
-        },
-        {
-          "type": "addr_x",
-          "named": true
-        },
-        {
-          "type": "addr_y",
-          "named": true
-        },
-        {
-          "type": "daddr",
-          "named": true
-        },
-        {
-          "type": "daddr_y",
-          "named": true
-        },
-        {
-          "type": "iaddr",
-          "named": true
-        },
-        {
-          "type": "iaddr_is_y",
-          "named": true
-        },
-        {
-          "type": "iaddr_ix",
-          "named": true
-        },
-        {
-          "type": "iaddr_y",
-          "named": true
-        },
-        {
-          "type": "imm",
-          "named": true
-        },
-        {
-          "type": "literal_arg",
-          "named": true
-        },
-        {
-          "type": "xyc",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "macro_call",
-    "named": true,
-    "fields": {
-      "c3": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "macro_args",
-            "named": true
-          }
-        ]
-      },
-      "mac": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "label_ref",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
         {
           "type": "comment",
           "named": true
@@ -1145,52 +3532,16 @@
         {
           "type": "label_def",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "macro_call_forced",
-    "named": true,
-    "fields": {
-      "c3": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "macro_args",
-            "named": true
-          }
-        ]
-      },
-      "mac": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "label_ref",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "comment",
-          "named": true
         },
         {
-          "type": "label_def",
+          "type": "macro_ref",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "main_comment",
+    "type": "macro_def",
     "named": true,
     "fields": {},
     "children": {
@@ -1198,66 +3549,26 @@
       "required": true,
       "types": [
         {
-          "type": "comment_text",
+          "type": "global_label",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "mode_dclose",
+    "type": "macro_ref",
     "named": true,
-    "fields": {}
-  },
-  {
-    "type": "mode_dopen",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "mode_dy",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "mode_iclose",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "mode_iix",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "mode_iopen",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "mode_is_y",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "mode_iy",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "mode_s",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "mode_x",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "mode_y",
-    "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "global_label",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "nchar",
@@ -1265,12 +3576,7 @@
     "fields": {}
   },
   {
-    "type": "num_str_prefix",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "number",
+    "type": "num",
     "named": true,
     "fields": {},
     "children": {
@@ -1278,19 +3584,24 @@
       "required": true,
       "types": [
         {
-          "type": "binary",
+          "type": "bin",
           "named": true
         },
         {
-          "type": "decimal",
+          "type": "dec",
           "named": true
         },
         {
-          "type": "hexadecimal",
+          "type": "hex",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "num_str_prefix",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "op_adc",
@@ -2660,66 +4971,199 @@
   {
     "type": "operation",
     "named": true,
-    "fields": {
-      "c3": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "addr",
-            "named": true
-          },
-          {
-            "type": "addr_s",
-            "named": true
-          },
-          {
-            "type": "addr_x",
-            "named": true
-          },
-          {
-            "type": "addr_y",
-            "named": true
-          },
-          {
-            "type": "daddr",
-            "named": true
-          },
-          {
-            "type": "daddr_y",
-            "named": true
-          },
-          {
-            "type": "iaddr",
-            "named": true
-          },
-          {
-            "type": "iaddr_is_y",
-            "named": true
-          },
-          {
-            "type": "iaddr_ix",
-            "named": true
-          },
-          {
-            "type": "iaddr_y",
-            "named": true
-          },
-          {
-            "type": "imm",
-            "named": true
-          },
-          {
-            "type": "xyc",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "arg_adc",
+          "named": true
+        },
+        {
+          "type": "arg_and",
+          "named": true
+        },
+        {
+          "type": "arg_asl",
+          "named": true
+        },
+        {
+          "type": "arg_bcc",
+          "named": true
+        },
+        {
+          "type": "arg_bcs",
+          "named": true
+        },
+        {
+          "type": "arg_beq",
+          "named": true
+        },
+        {
+          "type": "arg_bit",
+          "named": true
+        },
+        {
+          "type": "arg_bmi",
+          "named": true
+        },
+        {
+          "type": "arg_bne",
+          "named": true
+        },
+        {
+          "type": "arg_bpl",
+          "named": true
+        },
+        {
+          "type": "arg_bra",
+          "named": true
+        },
+        {
+          "type": "arg_brk",
+          "named": true
+        },
+        {
+          "type": "arg_brl",
+          "named": true
+        },
+        {
+          "type": "arg_bvc",
+          "named": true
+        },
+        {
+          "type": "arg_bvs",
+          "named": true
+        },
+        {
+          "type": "arg_cmp",
+          "named": true
+        },
+        {
+          "type": "arg_cop",
+          "named": true
+        },
+        {
+          "type": "arg_cpx",
+          "named": true
+        },
+        {
+          "type": "arg_cpy",
+          "named": true
+        },
+        {
+          "type": "arg_dec",
+          "named": true
+        },
+        {
+          "type": "arg_eor",
+          "named": true
+        },
+        {
+          "type": "arg_inc",
+          "named": true
+        },
+        {
+          "type": "arg_jml",
+          "named": true
+        },
+        {
+          "type": "arg_jmp",
+          "named": true
+        },
+        {
+          "type": "arg_jsl",
+          "named": true
+        },
+        {
+          "type": "arg_jsr",
+          "named": true
+        },
+        {
+          "type": "arg_lda",
+          "named": true
+        },
+        {
+          "type": "arg_ldx",
+          "named": true
+        },
+        {
+          "type": "arg_ldy",
+          "named": true
+        },
+        {
+          "type": "arg_lsr",
+          "named": true
+        },
+        {
+          "type": "arg_mvn",
+          "named": true
+        },
+        {
+          "type": "arg_mvp",
+          "named": true
+        },
+        {
+          "type": "arg_ora",
+          "named": true
+        },
+        {
+          "type": "arg_pea",
+          "named": true
+        },
+        {
+          "type": "arg_pei",
+          "named": true
+        },
+        {
+          "type": "arg_per",
+          "named": true
+        },
+        {
+          "type": "arg_rep",
+          "named": true
+        },
+        {
+          "type": "arg_rol",
+          "named": true
+        },
+        {
+          "type": "arg_ror",
+          "named": true
+        },
+        {
+          "type": "arg_sbc",
+          "named": true
+        },
+        {
+          "type": "arg_sep",
+          "named": true
+        },
+        {
+          "type": "arg_sta",
+          "named": true
+        },
+        {
+          "type": "arg_stx",
+          "named": true
+        },
+        {
+          "type": "arg_sty",
+          "named": true
+        },
+        {
+          "type": "arg_stz",
+          "named": true
+        },
+        {
+          "type": "arg_trb",
+          "named": true
+        },
+        {
+          "type": "arg_tsb",
+          "named": true
+        },
         {
           "type": "comment",
           "named": true
@@ -3142,150 +5586,209 @@
   {
     "type": "pseudo_operation",
     "named": true,
-    "fields": {
-      "c3": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": " ",
-            "named": false
-          },
-          {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "-",
-            "named": false
-          },
-          {
-            "type": ".",
-            "named": false
-          },
-          {
-            "type": "/",
-            "named": false
-          },
-          {
-            "type": ";",
-            "named": false
-          },
-          {
-            "type": "\\",
-            "named": false
-          },
-          {
-            "type": "binary_aexpr",
-            "named": true
-          },
-          {
-            "type": "braced_aexpr",
-            "named": true
-          },
-          {
-            "type": "current_addr",
-            "named": true
-          },
-          {
-            "type": "data_prefix",
-            "named": true
-          },
-          {
-            "type": "dstring",
-            "named": true
-          },
-          {
-            "type": "enum",
-            "named": true
-          },
-          {
-            "type": "filename",
-            "named": true
-          },
-          {
-            "type": "hex_data",
-            "named": true
-          },
-          {
-            "type": "if_char",
-            "named": true
-          },
-          {
-            "type": "if_mx",
-            "named": true
-          },
-          {
-            "type": "label_def",
-            "named": true
-          },
-          {
-            "type": "label_ref",
-            "named": true
-          },
-          {
-            "type": "literal",
-            "named": true
-          },
-          {
-            "type": "macro_args",
-            "named": true
-          },
-          {
-            "type": "nchar",
-            "named": true
-          },
-          {
-            "type": "num_str_prefix",
-            "named": true
-          },
-          {
-            "type": "number",
-            "named": true
-          },
-          {
-            "type": "pchar",
-            "named": true
-          },
-          {
-            "type": "ptr_check",
-            "named": true
-          },
-          {
-            "type": "unary_aexpr",
-            "named": true
-          }
-        ]
-      },
-      "mac": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "label_def",
-            "named": true
-          },
-          {
-            "type": "label_ref",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "arg_adr",
+          "named": true
+        },
+        {
+          "type": "arg_adrl",
+          "named": true
+        },
+        {
+          "type": "arg_asc",
+          "named": true
+        },
+        {
+          "type": "arg_ast",
+          "named": true
+        },
+        {
+          "type": "arg_cas",
+          "named": true
+        },
+        {
+          "type": "arg_cyc",
+          "named": true
+        },
+        {
+          "type": "arg_da",
+          "named": true
+        },
+        {
+          "type": "arg_dat",
+          "named": true
+        },
+        {
+          "type": "arg_dci",
+          "named": true
+        },
+        {
+          "type": "arg_ddb",
+          "named": true
+        },
+        {
+          "type": "arg_dfb",
+          "named": true
+        },
+        {
+          "type": "arg_do",
+          "named": true
+        },
+        {
+          "type": "arg_ds",
+          "named": true
+        },
+        {
+          "type": "arg_dsk",
+          "named": true
+        },
+        {
+          "type": "arg_dum",
+          "named": true
+        },
+        {
+          "type": "arg_ent",
+          "named": true
+        },
+        {
+          "type": "arg_equ",
+          "named": true
+        },
+        {
+          "type": "arg_err",
+          "named": true
+        },
+        {
+          "type": "arg_exd",
+          "named": true
+        },
+        {
+          "type": "arg_exp",
+          "named": true
+        },
+        {
+          "type": "arg_ext",
+          "named": true
+        },
+        {
+          "type": "arg_flo",
+          "named": true
+        },
+        {
+          "type": "arg_fls",
+          "named": true
+        },
+        {
+          "type": "arg_hex",
+          "named": true
+        },
+        {
+          "type": "arg_if",
+          "named": true
+        },
+        {
+          "type": "arg_inv",
+          "named": true
+        },
+        {
+          "type": "arg_kbd",
+          "named": true
+        },
+        {
+          "type": "arg_lst",
+          "named": true
+        },
+        {
+          "type": "arg_lstdo",
+          "named": true
+        },
+        {
+          "type": "arg_lup",
+          "named": true
+        },
+        {
+          "type": "arg_mx",
+          "named": true
+        },
+        {
+          "type": "arg_obj",
+          "named": true
+        },
+        {
+          "type": "arg_org",
+          "named": true
+        },
+        {
+          "type": "arg_pmc",
+          "named": true
+        },
+        {
+          "type": "arg_put",
+          "named": true
+        },
+        {
+          "type": "arg_rev",
+          "named": true
+        },
+        {
+          "type": "arg_sav",
+          "named": true
+        },
+        {
+          "type": "arg_skp",
+          "named": true
+        },
+        {
+          "type": "arg_str",
+          "named": true
+        },
+        {
+          "type": "arg_strl",
+          "named": true
+        },
+        {
+          "type": "arg_tr",
+          "named": true
+        },
+        {
+          "type": "arg_ttl",
+          "named": true
+        },
+        {
+          "type": "arg_typ",
+          "named": true
+        },
+        {
+          "type": "arg_use",
+          "named": true
+        },
+        {
+          "type": "arg_usr",
+          "named": true
+        },
+        {
+          "type": "arg_var",
+          "named": true
+        },
+        {
+          "type": "arg_xc",
+          "named": true
+        },
         {
           "type": "comment",
           "named": true
         },
         {
           "type": "label_def",
+          "named": true
+        },
+        {
+          "type": "macro_def",
           "named": true
         },
         {
@@ -4421,7 +6924,7 @@
       "required": true,
       "types": [
         {
-          "type": "number",
+          "type": "num",
           "named": true
         }
       ]
@@ -4436,15 +6939,15 @@
       "required": false,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "heading",
+          "named": true
+        },
+        {
           "type": "macro_call",
-          "named": true
-        },
-        {
-          "type": "macro_call_forced",
-          "named": true
-        },
-        {
-          "type": "main_comment",
           "named": true
         },
         {
@@ -4461,6 +6964,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "txt",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "unary_aexpr",
@@ -4499,7 +7007,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -4550,7 +7058,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -4593,7 +7101,7 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "num",
           "named": true
         },
         {
@@ -4676,14 +7184,6 @@
     "named": false
   },
   {
-    "type": "),Y",
-    "named": false
-  },
-  {
-    "type": "),y",
-    "named": false
-  },
-  {
     "type": ")-",
     "named": false
   },
@@ -4697,54 +7197,6 @@
   },
   {
     "type": ",",
-    "named": false
-  },
-  {
-    "type": ",S",
-    "named": false
-  },
-  {
-    "type": ",S),Y",
-    "named": false
-  },
-  {
-    "type": ",S),y",
-    "named": false
-  },
-  {
-    "type": ",X",
-    "named": false
-  },
-  {
-    "type": ",X)",
-    "named": false
-  },
-  {
-    "type": ",Y",
-    "named": false
-  },
-  {
-    "type": ",s",
-    "named": false
-  },
-  {
-    "type": ",s),Y",
-    "named": false
-  },
-  {
-    "type": ",s),y",
-    "named": false
-  },
-  {
-    "type": ",x",
-    "named": false
-  },
-  {
-    "type": ",x)",
-    "named": false
-  },
-  {
-    "type": ",y",
     "named": false
   },
   {
@@ -4948,14 +7400,6 @@
     "named": false
   },
   {
-    "type": "],Y",
-    "named": false
-  },
-  {
-    "type": "],y",
-    "named": false
-  },
-  {
     "type": "^",
     "named": false
   },
@@ -5034,6 +7478,10 @@
   {
     "type": "m",
     "named": false
+  },
+  {
+    "type": "mode",
+    "named": true
   },
   {
     "type": "n",

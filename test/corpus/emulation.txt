@@ -11,13 +11,13 @@ opcodes in labels
 (source_file
 	(operation
 		(op_inc (trailing))
-		(addr (number (decimal))))
-	(macro_call_forced
-		(label_ref (global_label))
-		(macro_args (addr (number (decimal)))))
+		(arg_inc (addr (num (dec)))))
+	(macro_call
+		(macro_ref (global_label))
+		(arg_macro (addr (num (dec)))))
 	(operation
 		(op_inc)
-		(addr (number (hexadecimal)))))
+		(arg_inc (addr (num (hex))))))
 
 ===================
 Trailing characters
@@ -30,6 +30,24 @@ LAB1 EQUA $1000
 ---
 
 (source_file
-	(operation (op_lda (trailing)) (addr (number (hexadecimal))))
-	(operation (op_sta (trailing)) (addr (number (hexadecimal))))
-	(pseudo_operation (label_def (global_label)) (psop_equ (trailing)) (number (hexadecimal))))
+	(operation (op_lda (trailing)) (arg_lda (addr (num (hex)))))
+	(operation (op_sta (trailing)) (arg_sta (addr (num (hex)))))
+	(pseudo_operation (label_def (global_label)) (psop_equ (trailing)) (arg_equ (num (hex)))))
+
+===================
+Comments
+===================
+
+* Start comment test
+ LDA $00 ; comment1
+; comment2
+         ; comment3
+
+---
+
+(source_file
+	(heading (txt))
+	(operation (op_lda) (arg_lda (addr (num (hex)))) (comment (txt)))
+	(comment (txt))
+	(comment (txt))
+)

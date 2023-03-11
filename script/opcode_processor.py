@@ -17,8 +17,8 @@ while (arg_idx<len(sys.argv)):
         exit(0)
     arg_idx += 1
 
-proj_path = pathlib.Path.cwd()
-script_path = proj_path / 'script'
+proj_path = pathlib.Path.cwd().parent
+script_path = pathlib.Path.cwd()
 query_path = proj_path / 'queries'
 test_path = proj_path / 'test' / 'corpus'
 
@@ -100,7 +100,6 @@ for op in obj:
         reduced[op].add(reduction_map[am['addr_mnemonic']])
 
 # How to lex the opcode or pseudo-opcode mnemonics
-
 def opcode_lexeme(op,alt):
     lst = [op] + alt
     lx = "token(prec(1,"
@@ -112,6 +111,15 @@ def opcode_lexeme(op,alt):
     if len(lst)>1:
         lx += ")"
     return lx + "))"
+# Special treatment for end loop
+def psop_rule(psop):
+    if psop=='--^':
+        return 'psop_end_lup'
+    return 'psop_' + psop
+def psop_arg(psop):
+    if psop=='--^':
+        return 'arg_end_lup' # should be none
+    return 'arg_' + psop
 
 # Form pseudo-op argument sequence
 def closing_pos(str):
@@ -123,14 +131,21 @@ def closing_pos(str):
             stack.pop()
         if len(stack)==0:
             return i
-def psop_args_insertion(args):
+def is_psop_arg_optional(args):
+    return args[:8]=='optional' and closing_pos(args[9:])==len(args[9:])-1
+def psop_args_def(raw_args):
+    args = raw_args
     while re.search("'[A-Z]+'",args)!=None:
         match = re.search("'[A-Z]+'",args)
         args = args.replace(match[0],'caseRe('+match[0].lower()+')')
-    if args[:8]=='optional' and closing_pos(args[9:])==len(args[9:])-1:
-        return ", optional(seq($._sep, field('c3'," + args[9:-1] + ")))"
+    if is_psop_arg_optional(raw_args):
+        args = args[9:-1]
+    return args
+def psop_args_insertion(raw_args,psop_rule):
+    if is_psop_arg_optional(raw_args):
+        return ", optional(seq($._sep, $." + psop_rule + "))"
     else:
-       return ", $._sep, field('c3'," + args + ")"
+       return ", $._sep, $." + psop_rule
 
 # Rules for just the opcode column
 op_str = ''
@@ -138,7 +153,29 @@ for op in reduced:
     op_str += "\t\top_" + op + ": $ => seq("
     op_str += opcode_lexeme(op,obj[op]['alt'])
     op_str += ",optional($.trailing)),\n"
+op_str += '\n'
 
+# Rules for just the opcode argument column
+for op in reduced:
+    addr_modes = [am for am in reduced[op]]
+    addr_none = '' in addr_modes and len(addr_modes)==1
+    addr_optional = '' in addr_modes and len(addr_modes)>1
+    addr_choices = len(addr_modes) > 1 + int(addr_optional)
+    addr_required = '' not in addr_modes
+    if not addr_none:
+        op_str += "\t\targ_" + op + ": $ => "
+        if addr_choices:
+            op_str += "choice("
+        for am in sorted(reduced[op]):
+            if am!='':
+                op_str += "$." + am + ","
+        if op_str[-1]==",":
+            op_str = op_str[:-1]
+        if addr_choices:
+            op_str += ")"
+        op_str += ",\n"
+op_str += '\n'
+    
 # Rules for the entire operation line
 op_str += "\t\toperation: $ => choice(\n"
 for op in reduced:
@@ -150,48 +187,42 @@ for op in reduced:
     op_str += "\t\t\tseq(optional($.label_def), $._sep, $.op_" + op
     if not addr_none:
         if addr_optional:
-            op_str += ", optional(seq($._sep, field('c3',"
+            op_str += ", optional(seq($._sep, $.arg_" + op
         else:
-            op_str += ", $._sep, field('c3',"
-        if addr_choices:
-            op_str += "choice("
-        for am in sorted(reduced[op]):
-            if am!='':
-                op_str += "$." + am + ","
-        if op_str[-1]==",":
-            op_str = op_str[:-1]
-        if addr_choices:
-            op_str += ")"
+            op_str += ", $._sep, $.arg_" + op
         if addr_optional:
             op_str += "))"
-        op_str += ")"
     op_str += ", optional(seq($._sep,$.comment)), $._newline),\n"
 op_str =  op_str[:-2] + "\n\t\t),\n"
 
 # Prepare the psuedo-opcode string for insertion
 
-def psop_rule(psop):
-    if psop=='--^':
-        return 'psop_end_lup'
-    return 'psop_' + psop
-
-# Rules just for the (pseudo) opcode column
+# Rules just for the pseudo-opcode column
 psop_str = ''
 for psop in pobj:
     psop_str += "\t\t" + psop_rule(psop) + ": $ => seq("
     psop_str += opcode_lexeme(psop,pobj[psop]['alt'])
     psop_str += ",optional($.trailing)),\n"
+psop_str += '\n'
+
+# Rules just for the pseudo-argument column
+for psop in pobj:
+    args = pobj[psop]['args']
+    if args!=None:
+        psop_str += "\t\t" + psop_arg(psop) + ": $ => "
+        psop_str += psop_args_def(args) + ",\n"
+psop_str += '\n'
 
 # Rules for the entire pseudo-op line
 psop_str += "\t\tpseudo_operation: $ => choice(\n"
 for psop in pobj:
     if psop=='mac':
-        psop_str += "\t\t\tseq(field('mac',$.label_def), $._sep, $.psop_mac, optional(seq($._sep,$.comment)), $._newline),\n"
+        psop_str += "\t\t\tseq($.macro_def, $._sep, $.psop_mac, optional(seq($._sep,$.comment)), $._newline),\n"
     else:
         args = pobj[psop]['args']
         psop_str += "\t\t\tseq(optional($.label_def), $._sep, $." + psop_rule(psop)
         if args!=None:
-            psop_str += psop_args_insertion(args)
+            psop_str += psop_args_insertion(args,psop_arg(psop))
         psop_str += ", optional(seq($._sep,$.comment)), $._newline),\n"
 psop_str =  psop_str[:-2] + "\n\t\t),\n"
 
@@ -269,22 +300,23 @@ with open(proj_path / 'grammar.js','w') as f:
 
 # Save the highlights
 
-highlights = 'mac: (label_ref (global_label) @function)\n'
-highlights += 'mac: (label_def (global_label) @function)\n'
-highlights += '(global_label) @type\n'
+highlights = '(macro_def) @function\n'
+highlights += '(macro_ref) @function\n'
+highlights += '(label_def (global_label)) @type\n'
+highlights += '(label_ref (global_label)) @type\n'
 highlights += '(current_addr) @type\n'
 highlights += '(local_label) @variable.parameter\n'
 highlights += '(var_label) @variable.builtin\n'
-highlights += '(number) @number\n'
+highlights += '(num) @number\n'
 highlights += '(hex_data) @number\n'
 highlights += '(dstring) @string\n'
-highlights += '(literal_arg) @string\n'
+highlights += '(arg_literal) @string\n'
 highlights += '(pchar) @string\n'
 highlights += '(nchar) @string\n'
 highlights += '(literal) @string\n'
 highlights += '(filename) @string\n'
 highlights += '(trailing) @string\n'
-highlights += '(main_comment) @comment\n'
+highlights += '(heading) @comment\n'
 highlights += '(comment) @comment\n'
 highlights += '(eop_plus) @operator\n'
 highlights += '(eop_minus) @operator\n'
@@ -293,14 +325,10 @@ highlights += '(eop_div) @operator\n'
 highlights += '(eop_or) @operator\n'
 highlights += '(eop_and) @operator\n'
 highlights += '(eop_xor) @operator\n'
-highlights += '(mode_x) @keyword\n'
-highlights += '(mode_y) @keyword\n'
-highlights += '(mode_iopen) @keyword\n'
-highlights += '(mode_iclose) @keyword\n'
-highlights += '(mode_iix) @keyword\n'
-highlights += '(mode_iy) @keyword\n'
+highlights += '(mode) @keyword\n'
 highlights += '(imm_prefix) @keyword\n'
 highlights += '(addr_prefix) @keyword\n'
+highlights += '(data_prefix) @keyword\n'
 highlights += '(num_str_prefix) @keyword\n'
 highlights += '(ERROR) @error\n'
 for op in obj:
