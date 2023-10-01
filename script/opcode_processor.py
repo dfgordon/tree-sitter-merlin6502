@@ -205,12 +205,20 @@ for psop in pobj:
     psop_str += ",optional($.trailing)),\n"
 psop_str += '\n'
 
+needs_var_option = ['cas','put','use','sav','dsk','cyc','exp','lst','lstdo','ttl','tr']
+needs_var_option += ['asc','dci','inv','fls','rev','str','strl']
+needs_var_option += ['flo','hex','kbd',]
+
 # Rules just for the pseudo-argument column
 for psop in pobj:
     args = pobj[psop]['args']
     if args!=None:
         psop_str += "\t\t" + psop_arg(psop) + ": $ => "
-        psop_str += psop_args_def(args) + ",\n"
+        raw = psop_args_def(args)
+        if psop in needs_var_option:
+            psop_str += "choice($.var_mac,"+raw+"),\n"
+        else:
+            psop_str += raw + ",\n"
 psop_str += '\n'
 
 # Rules for the entire pseudo-op line
@@ -234,21 +242,32 @@ psop_str =  psop_str[:-2] + "\n\t\t),\n"
 escaped = '/-^[]\\'
 label_forbidden = '}{][;<>=#'
 anychar = [chr(i) for i in range(32,127,1)]
-negchar = [c for c in anychar if c!='"']
-poschar = [c for c in anychar if c!="'"]
-spchar = [c for c in anychar if not c.isalnum() and c!=' ']
+dstr_br_beg = [chr(i) for i in range(32,127,1) if chr(i) not in '012345678']
 arg = [c for c in anychar if c!=";" and c!=" "]
 glob_lab_beg = [chr(i) for i in range(ord(':')+1,127,1) if chr(i) not in label_forbidden]
 lab_char = [chr(i) for i in range(ord('0'),127,1) if chr(i) not in label_forbidden]
+var_lab_beg = [chr(i) for i in range(ord('9'),127,1) if chr(i) not in label_forbidden]
 dos33_char = [chr(i) for i in range(32,127,1) if chr(i)!=',']
 dos33_tflag = [chr(i) for i in range(33,ord('@'),1)]
 
 def build_char_regex(lst):
+    first = ord(lst[0])
+    last = ord(lst[0])
     ans = '/['
-    for c in lst:
-        if c in escaped:
-            ans += '\\'
-        ans += c
+    for c in lst[1:]:
+        if ord(c)==last+1:
+            last += 1
+        else:
+            if first==last:
+                ans += '\\x' + hex(first)[2:]
+            else:
+                ans += '\\x' + hex(first)[2:] + '-\\x' + hex(last)[2:]
+            first = ord(c)
+            last = ord(c)
+    if first==last:
+        ans += '\\x' + hex(first)[2:]
+    else:
+        ans += '\\x' + hex(first)[2:] + '-\\x' + hex(last)[2:]
     return ans + ']/;\n'
 
 def build_char_ts(lst):
@@ -261,12 +280,10 @@ def build_char_ts(lst):
 
 char_regex = ''
 char_regex += 'const ANYCHAR = ' + build_char_regex(anychar)
-char_regex += 'const ANYFS = ' + build_char_ts(anychar)
-char_regex += 'const NCHAR = ' + build_char_regex(negchar)
-char_regex += 'const PCHAR = ' + build_char_regex(poschar)
-char_regex += 'const SPCHAR = ' + build_char_regex(spchar)
+char_regex += 'const DSTR_BR_BEG = ' + build_char_regex(dstr_br_beg)
 char_regex += 'const ARG = ' + build_char_ts(arg)
 char_regex += 'const GLOB_LAB_BEG = ' + build_char_regex(glob_lab_beg)
+char_regex += 'const VAR_LAB_BEG = ' + build_char_regex(var_lab_beg)
 char_regex += 'const LAB_CHAR = ' + build_char_regex(lab_char)
 char_regex += 'const DOS33_CHARS = ' + build_char_ts(dos33_char)
 char_regex += 'const DOS33_TFLAG = ' + build_char_ts(dos33_tflag)
@@ -280,8 +297,10 @@ for i in range(33,127,1):
         continue
     elif chr(i)=='"':
         dstring_rule += "\t\t\tseq('"+chr(i)+"',repeat(ANYCHAR),'"+chr(i)+"'),\n"
-    elif chr(i)=='\\':
-        dstring_rule += "\t\t\tseq('\\"+chr(i)+"',repeat(ANYCHAR),'\\"+chr(i)+"'),\n"
+    elif chr(i)=="\\":
+        dstring_rule += '\t\t\tseq("\\'+chr(i)+'",repeat(ANYCHAR),"\\'+chr(i)+'"),\n'
+    elif chr(i)==']':
+        dstring_rule += '\t\t\tseq("]",optional(seq(DSTR_BR_BEG,repeat(ANYCHAR))),"]"),\n'
     else:
         dstring_rule += '\t\t\tseq("'+chr(i)+'",repeat(ANYCHAR),"'+chr(i)+'"),\n'
 dstring_rule += '\t\t),\n'
@@ -307,6 +326,8 @@ highlights += '(label_ref (global_label)) @type\n'
 highlights += '(current_addr) @type\n'
 highlights += '(local_label) @variable.parameter\n'
 highlights += '(var_label) @variable.builtin\n'
+highlights += '(var_mac) @variable.builtin\n'
+highlights += '(var_cnt) @variable.builtin\n'
 highlights += '(num) @number\n'
 highlights += '(hex_data) @number\n'
 highlights += '(dstring) @string\n'

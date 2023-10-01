@@ -5,6 +5,8 @@
 (current_addr) @type
 (local_label) @variable.parameter
 (var_label) @variable.builtin
+(var_mac) @variable.builtin
+(var_cnt) @variable.builtin
 (num) @number
 (hex_data) @number
 (dstring) @string

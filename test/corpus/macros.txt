@@ -33,10 +33,27 @@ MID MAC
 	(pseudo_operation (psop_eom)))
 
 ===================
+macro def with args
+===================
+
+MYMAC MAC
+ LDA ]1+]offset
+ ASC ]2
+ <<<
+
+---
+
+(source_file
+	(pseudo_operation (macro_def (global_label)) (psop_mac))
+	(operation (op_lda) (arg_lda (addr (binary_aexpr (label_ref (var_label (var_mac))) (eop_plus) (label_ref (var_label))))))
+	(pseudo_operation (psop_asc) (arg_asc (var_mac)))
+	(pseudo_operation (psop_eom)))
+
+===================
 call with literal
 ===================
 
- MYMAC "hello"
+ MYMAC &hello&
 
 ---
 
@@ -77,3 +94,17 @@ explicit call
 (source_file
 	(pseudo_operation (psop_pmc) (arg_pmc (macro_ref (global_label)) (arg_macro (iaddr_y (mode) (label_ref (global_label)) (mode)))))
 	(pseudo_operation (psop_pmc) (arg_pmc (macro_ref (global_label)) (arg_macro (daddr_y (mode) (label_ref (global_label)) (mode))))))
+
+==================
+string arguments
+==================
+
+ MYMAC "hello world"
+ PMC MYMAC 'hello world'
+
+---
+
+(source_file
+	(macro_call (macro_ref (global_label)) (arg_macro (dstring)))
+	(pseudo_operation (psop_pmc) (arg_pmc (macro_ref (global_label)) (arg_macro (dstring)))))
+

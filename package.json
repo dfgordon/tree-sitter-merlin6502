@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "parser for 6502-family assembly language",
   "main": "bindings/node",
   "scripts": {

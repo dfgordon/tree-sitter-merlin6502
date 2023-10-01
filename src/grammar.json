@@ -367,13 +367,13 @@
         "members": [
           {
             "type": "PATTERN",
-            "value": "[?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\\\\\^_`abcdefghijklmnopqrstuvwxyz|~]"
+            "value": "[\\x3f-\\x5a\\x5c\\x5e-\\x7a\\x7c\\x7e]"
           },
           {
             "type": "REPEAT",
             "content": {
               "type": "PATTERN",
-              "value": "[0123456789:?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\\\\\^_`abcdefghijklmnopqrstuvwxyz|~]"
+              "value": "[\\x30-\\x3a\\x3f-\\x5a\\x5c\\x5e-\\x7a\\x7c\\x7e]"
             }
           }
         ]
@@ -392,13 +392,30 @@
             "type": "REPEAT1",
             "content": {
               "type": "PATTERN",
-              "value": "[0123456789:?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\\\\\^_`abcdefghijklmnopqrstuvwxyz|~]"
+              "value": "[\\x30-\\x3a\\x3f-\\x5a\\x5c\\x5e-\\x7a\\x7c\\x7e]"
             }
           }
         ]
       }
     },
     "var_label": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_var"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "var_cnt"
+        }
+      ]
+    },
+    "_var": {
       "type": "TOKEN",
       "content": {
         "type": "SEQ",
@@ -408,14 +425,60 @@
             "value": "]"
           },
           {
-            "type": "REPEAT1",
+            "type": "PATTERN",
+            "value": "[\\x39-\\x3a\\x3f-\\x5a\\x5c\\x5e-\\x7a\\x7c\\x7e]"
+          },
+          {
+            "type": "REPEAT",
             "content": {
               "type": "PATTERN",
-              "value": "[0123456789:?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\\\\\^_`abcdefghijklmnopqrstuvwxyz|~]"
+              "value": "[\\x30-\\x3a\\x3f-\\x5a\\x5c\\x5e-\\x7a\\x7c\\x7e]"
             }
           }
         ]
       }
+    },
+    "var_mac": {
+      "type": "PATTERN",
+      "value": "\\][1-8]"
+    },
+    "var_cnt": {
+      "type": "STRING",
+      "value": "]0"
+    },
+    "dq_str": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\""
+        },
+        {
+          "type": "PATTERN",
+          "value": "[\\x20-\\x21\\x23-\\x7e]*"
+        },
+        {
+          "type": "STRING",
+          "value": "\""
+        }
+      ]
+    },
+    "sq_str": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "'"
+        },
+        {
+          "type": "PATTERN",
+          "value": "[\\x20-\\x26\\x28-\\x7e]*"
+        },
+        {
+          "type": "STRING",
+          "value": "'"
+        }
+      ]
     },
     "arg_macro": {
       "type": "SEQ",
@@ -492,6 +555,24 @@
         {
           "type": "SYMBOL",
           "name": "xyc"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "dq_str"
+          },
+          "named": true,
+          "value": "dstring"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "sq_str"
+          },
+          "named": true,
+          "value": "dstring"
         },
         {
           "type": "SYMBOL",
@@ -17300,34 +17381,61 @@
       "name": "_aexpr"
     },
     "arg_cas": {
-      "type": "ALIAS",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[sS][eE]"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[sS][eE]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[iI][nN]"
+              }
+            ]
           },
-          {
-            "type": "PATTERN",
-            "value": "[iI][nN]"
-          }
-        ]
-      },
-      "named": true,
-      "value": "enum"
+          "named": true,
+          "value": "enum"
+        }
+      ]
     },
     "arg_obj": {
       "type": "SYMBOL",
       "name": "_aexpr"
     },
     "arg_put": {
-      "type": "SYMBOL",
-      "name": "filename"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "filename"
+        }
+      ]
     },
     "arg_use": {
-      "type": "SYMBOL",
-      "name": "filename"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "filename"
+        }
+      ]
     },
     "arg_var": {
       "type": "SEQ",
@@ -17355,16 +17463,34 @@
       ]
     },
     "arg_sav": {
-      "type": "SYMBOL",
-      "name": "filename"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "filename"
+        }
+      ]
     },
     "arg_typ": {
       "type": "SYMBOL",
       "name": "_aexpr"
     },
     "arg_dsk": {
-      "type": "SYMBOL",
-      "name": "filename"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "filename"
+        }
+      ]
     },
     "arg_dum": {
       "type": "SYMBOL",
@@ -17375,56 +17501,47 @@
       "name": "_aexpr"
     },
     "arg_cyc": {
-      "type": "ALIAS",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[oO][fF][fF]"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[oO][fF][fF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[aA][vV][eE]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[fF][lL][aA][gG][sS]"
+              }
+            ]
           },
-          {
-            "type": "PATTERN",
-            "value": "[aA][vV][eE]"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[fF][lL][aA][gG][sS]"
-          }
-        ]
-      },
-      "named": true,
-      "value": "enum"
+          "named": true,
+          "value": "enum"
+        }
+      ]
     },
     "arg_dat": {
       "type": "SYMBOL",
       "name": "_aexpr"
     },
     "arg_exp": {
-      "type": "ALIAS",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[oO][nN]"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[oO][fF][fF]"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[oO][nN][lL][yY]"
-          }
-        ]
-      },
-      "named": true,
-      "value": "enum"
-    },
-    "arg_lst": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
         {
           "type": "ALIAS",
           "content": {
@@ -17440,112 +17557,238 @@
               },
               {
                 "type": "PATTERN",
-                "value": "[rR][tT][nN]"
+                "value": "[oO][nN][lL][yY]"
               }
             ]
           },
           "named": true,
           "value": "enum"
+        }
+      ]
+    },
+    "arg_lst": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
         },
         {
-          "type": "SEQ",
+          "type": "CHOICE",
           "members": [
             {
               "type": "ALIAS",
               "content": {
-                "type": "PATTERN",
-                "value": "[fF][iI][lL][eE]"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "PATTERN",
+                    "value": "[oO][nN]"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[oO][fF][fF]"
+                  },
+                  {
+                    "type": "PATTERN",
+                    "value": "[rR][tT][nN]"
+                  }
+                ]
               },
               "named": true,
               "value": "enum"
             },
             {
-              "type": "STRING",
-              "value": ","
-            },
-            {
-              "type": "SYMBOL",
-              "name": "filename"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[fF][iI][lL][eE]"
+                  },
+                  "named": true,
+                  "value": "enum"
+                },
+                {
+                  "type": "STRING",
+                  "value": ","
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "filename"
+                }
+              ]
             }
           ]
         }
       ]
     },
     "arg_lstdo": {
-      "type": "ALIAS",
-      "content": {
-        "type": "PATTERN",
-        "value": "[oO][fF][fF]"
-      },
-      "named": true,
-      "value": "enum"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "PATTERN",
+            "value": "[oO][fF][fF]"
+          },
+          "named": true,
+          "value": "enum"
+        }
+      ]
     },
     "arg_ttl": {
-      "type": "SYMBOL",
-      "name": "dstring"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dstring"
+        }
+      ]
     },
     "arg_skp": {
       "type": "SYMBOL",
       "name": "_aexpr"
     },
     "arg_tr": {
-      "type": "ALIAS",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[oO][nN]"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[oO][nN]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[oO][fF][fF]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[aA][dD][rR]"
+              }
+            ]
           },
-          {
-            "type": "PATTERN",
-            "value": "[oO][fF][fF]"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[aA][dD][rR]"
-          }
-        ]
-      },
-      "named": true,
-      "value": "enum"
+          "named": true,
+          "value": "enum"
+        }
+      ]
     },
     "arg_asc": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_string_operand"
+          "name": "var_mac"
         },
         {
-          "type": "SYMBOL",
-          "name": "_num_str"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_string_operand"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_num_str"
+            }
+          ]
         }
       ]
     },
     "arg_dci": {
-      "type": "SYMBOL",
-      "name": "_string_operand"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_string_operand"
+        }
+      ]
     },
     "arg_inv": {
-      "type": "SYMBOL",
-      "name": "_string_operand"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_string_operand"
+        }
+      ]
     },
     "arg_fls": {
-      "type": "SYMBOL",
-      "name": "_string_operand"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_string_operand"
+        }
+      ]
     },
     "arg_rev": {
-      "type": "SYMBOL",
-      "name": "dstring"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dstring"
+        }
+      ]
     },
     "arg_str": {
-      "type": "SYMBOL",
-      "name": "_string_operand"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_string_operand"
+        }
+      ]
     },
     "arg_strl": {
-      "type": "SYMBOL",
-      "name": "_string_operand"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_string_operand"
+        }
+      ]
     },
     "arg_da": {
       "type": "SEQ",
@@ -17623,8 +17866,17 @@
       ]
     },
     "arg_flo": {
-      "type": "SYMBOL",
-      "name": "dstring"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dstring"
+        }
+      ]
     },
     "arg_adr": {
       "type": "SEQ",
@@ -17677,8 +17929,17 @@
       ]
     },
     "arg_hex": {
-      "type": "SYMBOL",
-      "name": "hex_data"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hex_data"
+        }
+      ]
     },
     "arg_ds": {
       "type": "CHOICE",
@@ -17775,8 +18036,17 @@
       ]
     },
     "arg_kbd": {
-      "type": "SYMBOL",
-      "name": "dstring"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "var_mac"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dstring"
+        }
+      ]
     },
     "arg_lup": {
       "type": "SYMBOL",
@@ -21350,15 +21620,24 @@
       "members": [
         {
           "type": "PATTERN",
-          "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+          "value": "[\\x20-\\x7e]"
         },
         {
           "type": "PATTERN",
-          "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+          "value": "[\\x20-\\x7e]"
         },
         {
-          "type": "SYMBOL",
-          "name": "var_label"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "var_mac"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "arg_literal"
+            }
+          ]
         }
       ]
     },
@@ -21518,7 +21797,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21538,7 +21817,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21558,7 +21837,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21578,7 +21857,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21598,7 +21877,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21618,7 +21897,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21638,7 +21917,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21658,7 +21937,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21678,7 +21957,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21698,7 +21977,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21718,7 +21997,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21738,7 +22017,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21758,7 +22037,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21778,7 +22057,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21798,7 +22077,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21818,7 +22097,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21838,7 +22117,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21858,7 +22137,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21878,7 +22157,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21898,7 +22177,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21918,7 +22197,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21938,7 +22217,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21958,7 +22237,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21978,7 +22257,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -21998,7 +22277,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22018,7 +22297,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22038,7 +22317,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22058,7 +22337,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22078,7 +22357,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22098,7 +22377,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22118,7 +22397,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22138,7 +22417,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22158,7 +22437,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22178,7 +22457,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22198,7 +22477,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22218,7 +22497,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22238,7 +22517,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22258,7 +22537,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22278,7 +22557,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22298,7 +22577,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22318,7 +22597,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22338,7 +22617,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22358,7 +22637,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22378,7 +22657,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22398,7 +22677,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22418,7 +22697,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22438,7 +22717,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22458,7 +22737,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22475,11 +22754,28 @@
               "value": "]"
             },
             {
-              "type": "REPEAT",
-              "content": {
-                "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
-              }
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "PATTERN",
+                      "value": "[\\x20-\\x2f\\x39-\\x7e]"
+                    },
+                    {
+                      "type": "REPEAT",
+                      "content": {
+                        "type": "PATTERN",
+                        "value": "[\\x20-\\x7e]"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "STRING",
@@ -22498,7 +22794,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22518,7 +22814,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22538,7 +22834,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22558,7 +22854,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22578,7 +22874,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22598,7 +22894,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22618,7 +22914,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22638,7 +22934,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22658,7 +22954,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22678,7 +22974,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22698,7 +22994,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22718,7 +23014,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22738,7 +23034,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22758,7 +23054,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22778,7 +23074,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22798,7 +23094,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22818,7 +23114,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22838,7 +23134,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22858,7 +23154,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22878,7 +23174,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22898,7 +23194,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22918,7 +23214,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22938,7 +23234,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22958,7 +23254,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22978,7 +23274,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -22998,7 +23294,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -23018,7 +23314,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -23038,7 +23334,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -23058,7 +23354,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -23078,7 +23374,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -23098,7 +23394,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -23118,7 +23414,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -23138,7 +23434,7 @@
               "type": "REPEAT",
               "content": {
                 "type": "PATTERN",
-                "value": "[ !\"#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+                "value": "[\\x20-\\x7e]"
               }
             },
             {
@@ -25473,7 +25769,7 @@
         },
         {
           "type": "PATTERN",
-          "value": "[ !\"#$%&()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+          "value": "[\\x20-\\x7e]"
         },
         {
           "type": "CHOICE",
@@ -25498,7 +25794,7 @@
         },
         {
           "type": "PATTERN",
-          "value": "[ !#$%&'()*+,\\-.\\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\[\\\\\\]\\^_`abcdefghijklmnopqrstuvwxyz{|}~]"
+          "value": "[\\x20-\\x7e]"
         },
         {
           "type": "CHOICE",

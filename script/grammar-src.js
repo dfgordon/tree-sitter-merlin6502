@@ -3,6 +3,7 @@
 
 // Downstream tools must resolve the following:
 // * matching start and end of macro
+// * use of `]0` through `]8` in an invalid context
 // * limitations on use of local labels
 // * limitations of 6502 and 65C02
 // * limitations of Merlin 8
@@ -59,7 +60,13 @@ module.exports = grammar({
 		macro_def: $ => prec.dynamic(1,$.global_label),
 		global_label: $ => token(seq(GLOB_LAB_BEG,repeat(LAB_CHAR))), // max 13 (8bit) or 26 (16bit)
 		local_label: $ => token(seq(':',repeat1(LAB_CHAR))), // max 13 (8bit) or 26 (16bit),cannot be first label in program,in macro,MAC,ENT,EXT, or EQU
-		var_label: $ => token(seq(']',repeat1(LAB_CHAR))),
+		var_label: $ => choice($._var,$.var_mac,$.var_cnt),
+		_var: $ => token(seq(']', VAR_LAB_BEG, repeat(LAB_CHAR))),
+		var_mac: $ => /\][1-8]/,
+		var_cnt: $ => ']0',
+		// dstrings delimited by quotes are specially treated in macro calls
+		dq_str: $ => seq('"',/[\x20-\x21\x23-\x7e]*/,'"'),
+		sq_str: $ => seq("'",/[\x20-\x26\x28-\x7e]*/,"'"),
 
 		arg_macro: $ => seq($._arg,repeat(seq(';',$._arg))),
 		_arg: $ => choice(
@@ -75,6 +82,8 @@ module.exports = grammar({
 			$.addr_s,
 			$.iaddr_is_y,
 			$.xyc,
+			alias($.dq_str,$.dstring),
+			alias($.sq_str,$.dstring),
 			$.arg_literal,
 		),
 		arg_literal: $ => repeat1(prec.left(-1,choice(...ARG))),
@@ -86,8 +95,10 @@ module.exports = grammar({
 		// special arguments
 
 		trailing: $ => /\S+/,
-		if_mx: $ => seq('MX',choice($.eop_plus,$.eop_minus,$.eop_times,$.eop_div,$.eop_or,$.eop_and,$.eop_xor),$._aexpr),
-		if_char: $ => seq(ANYCHAR,ANYCHAR,$.var_label),
+		if_mx: $ => seq('MX', choice($.eop_plus, $.eop_minus, $.eop_times, $.eop_div, $.eop_or, $.eop_and, $.eop_xor), $._aexpr),
+		// For IF, any literal can be on the right, but this would only be expected after expansion.
+		// In other words, the IF is only useful to the programmer if a macro variable is on the right.
+		if_char: $ => seq(ANYCHAR,ANYCHAR,choice($.var_mac,$.arg_literal)),
 		data_prefix: $ => choice('#','#<','#>','<','>'),
 		ptr_check: $ => seq('(',$.num,')-',$.num),
 
@@ -191,8 +202,8 @@ module.exports = grammar({
 		hex: $ => seq('$',repeat1(choice(...'0123456789ABCDEFabcdef'))),
 		bin: $ => seq('%',repeat1(choice(...'01_'))),
 
-		pchar: $ => seq("'",PCHAR,optional("'")),
-		nchar: $ => seq('"',NCHAR,optional('"')),
+		pchar: $ => seq("'",ANYCHAR,optional("'")), // ''' is OK
+		nchar: $ => seq('"',ANYCHAR,optional('"')), // """ is OK
 
 		current_addr: $ => '*',
 

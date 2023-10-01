@@ -3,6 +3,7 @@
 
 // Downstream tools must resolve the following:
 // * matching start and end of macro
+// * use of `]0` through `]8` in an invalid context
 // * limitations on use of local labels
 // * limitations of 6502 and 65C02
 // * limitations of Merlin 8
@@ -21,14 +22,12 @@ const prodoschars = '.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuv
 
 // Define constants
 
-const ANYCHAR = /[ !"#$%&'()*+,\-.\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\[\\\]\^_`abcdefghijklmnopqrstuvwxyz{|}~]/;
-const ANYFS = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
-const NCHAR = /[ !#$%&'()*+,\-.\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\[\\\]\^_`abcdefghijklmnopqrstuvwxyz{|}~]/;
-const PCHAR = /[ !"#$%&()*+,\-.\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\[\\\]\^_`abcdefghijklmnopqrstuvwxyz{|}~]/;
-const SPCHAR = /[!"#$%&'()*+,\-.\/:;<=>?@\[\\\]\^_`{|}~]/;
+const ANYCHAR = /[\x20-\x7e]/;
+const DSTR_BR_BEG = /[\x20-\x2f\x39-\x7e]/;
 const ARG = "!\"#$%&'()*+,-./0123456789:<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
-const GLOB_LAB_BEG = /[?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\\^_`abcdefghijklmnopqrstuvwxyz|~]/;
-const LAB_CHAR = /[0123456789:?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\\\^_`abcdefghijklmnopqrstuvwxyz|~]/;
+const GLOB_LAB_BEG = /[\x3f-\x5a\x5c\x5e-\x7a\x7c\x7e]/;
+const VAR_LAB_BEG = /[\x39-\x3a\x3f-\x5a\x5c\x5e-\x7a\x7c\x7e]/;
+const LAB_CHAR = /[\x30-\x3a\x3f-\x5a\x5c\x5e-\x7a\x7c\x7e]/;
 const DOS33_CHARS = " !\"#$%&'()*+-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
 const DOS33_TFLAG = "!\"#$%&'()*+,-./0123456789:;<=>?";
 
@@ -71,7 +70,13 @@ module.exports = grammar({
 		macro_def: $ => prec.dynamic(1,$.global_label),
 		global_label: $ => token(seq(GLOB_LAB_BEG,repeat(LAB_CHAR))), // max 13 (8bit) or 26 (16bit)
 		local_label: $ => token(seq(':',repeat1(LAB_CHAR))), // max 13 (8bit) or 26 (16bit),cannot be first label in program,in macro,MAC,ENT,EXT, or EQU
-		var_label: $ => token(seq(']',repeat1(LAB_CHAR))),
+		var_label: $ => choice($._var,$.var_mac,$.var_cnt),
+		_var: $ => token(seq(']', VAR_LAB_BEG, repeat(LAB_CHAR))),
+		var_mac: $ => /\][1-8]/,
+		var_cnt: $ => ']0',
+		// dstrings delimited by quotes are specially treated in macro calls
+		dq_str: $ => seq('"',/[\x20-\x21\x23-\x7e]*/,'"'),
+		sq_str: $ => seq("'",/[\x20-\x26\x28-\x7e]*/,"'"),
 
 		arg_macro: $ => seq($._arg,repeat(seq(';',$._arg))),
 		_arg: $ => choice(
@@ -87,6 +92,8 @@ module.exports = grammar({
 			$.addr_s,
 			$.iaddr_is_y,
 			$.xyc,
+			alias($.dq_str,$.dstring),
+			alias($.sq_str,$.dstring),
 			$.arg_literal,
 		),
 		arg_literal: $ => repeat1(prec.left(-1,choice(...ARG))),
@@ -395,43 +402,43 @@ module.exports = grammar({
 		arg_exd: $ => seq($.label_def,repeat(seq(',',$.label_def))),
 		arg_ent: $ => seq($.label_ref,repeat(seq(',',$.label_ref))),
 		arg_org: $ => $._aexpr,
-		arg_cas: $ => alias(choice(caseRe('se'),caseRe('in')),$.enum),
+		arg_cas: $ => choice($.var_mac,alias(choice(caseRe('se'),caseRe('in')),$.enum)),
 		arg_obj: $ => $._aexpr,
-		arg_put: $ => $.filename,
-		arg_use: $ => $.filename,
+		arg_put: $ => choice($.var_mac,$.filename),
+		arg_use: $ => choice($.var_mac,$.filename),
 		arg_var: $ => seq($._aexpr,repeat(seq(';',$._aexpr))),
-		arg_sav: $ => $.filename,
+		arg_sav: $ => choice($.var_mac,$.filename),
 		arg_typ: $ => $._aexpr,
-		arg_dsk: $ => $.filename,
+		arg_dsk: $ => choice($.var_mac,$.filename),
 		arg_dum: $ => $._aexpr,
 		arg_ast: $ => $._aexpr,
-		arg_cyc: $ => alias(choice(caseRe('off'),caseRe('ave'),caseRe('flags')),$.enum),
+		arg_cyc: $ => choice($.var_mac,alias(choice(caseRe('off'),caseRe('ave'),caseRe('flags')),$.enum)),
 		arg_dat: $ => $._aexpr,
-		arg_exp: $ => alias(choice(caseRe('on'),caseRe('off'),caseRe('only')),$.enum),
-		arg_lst: $ => choice(alias(choice(caseRe('on'),caseRe('off'),caseRe('rtn')),$.enum),seq(alias(caseRe('file'),$.enum),',',$.filename)),
-		arg_lstdo: $ => alias(caseRe('off'),$.enum),
-		arg_ttl: $ => $.dstring,
+		arg_exp: $ => choice($.var_mac,alias(choice(caseRe('on'),caseRe('off'),caseRe('only')),$.enum)),
+		arg_lst: $ => choice($.var_mac,choice(alias(choice(caseRe('on'),caseRe('off'),caseRe('rtn')),$.enum),seq(alias(caseRe('file'),$.enum),',',$.filename))),
+		arg_lstdo: $ => choice($.var_mac,alias(caseRe('off'),$.enum)),
+		arg_ttl: $ => choice($.var_mac,$.dstring),
 		arg_skp: $ => $._aexpr,
-		arg_tr: $ => alias(choice(caseRe('on'),caseRe('off'),caseRe('adr')),$.enum),
-		arg_asc: $ => choice($._string_operand,$._num_str),
-		arg_dci: $ => $._string_operand,
-		arg_inv: $ => $._string_operand,
-		arg_fls: $ => $._string_operand,
-		arg_rev: $ => $.dstring,
-		arg_str: $ => $._string_operand,
-		arg_strl: $ => $._string_operand,
+		arg_tr: $ => choice($.var_mac,alias(choice(caseRe('on'),caseRe('off'),caseRe('adr')),$.enum)),
+		arg_asc: $ => choice($.var_mac,choice($._string_operand,$._num_str)),
+		arg_dci: $ => choice($.var_mac,$._string_operand),
+		arg_inv: $ => choice($.var_mac,$._string_operand),
+		arg_fls: $ => choice($.var_mac,$._string_operand),
+		arg_rev: $ => choice($.var_mac,$.dstring),
+		arg_str: $ => choice($.var_mac,$._string_operand),
+		arg_strl: $ => choice($.var_mac,$._string_operand),
 		arg_da: $ => seq($._aexpr,repeat(seq(',',$._aexpr))),
 		arg_ddb: $ => seq($._aexpr,repeat(seq(',',$._aexpr))),
 		arg_dfb: $ => seq($._data_aexpr,repeat(seq(',',$._data_aexpr))),
-		arg_flo: $ => $.dstring,
+		arg_flo: $ => choice($.var_mac,$.dstring),
 		arg_adr: $ => seq($._aexpr,repeat(seq(',',$._aexpr))),
 		arg_adrl: $ => seq($._aexpr,repeat(seq(',',$._aexpr))),
-		arg_hex: $ => $.hex_data,
+		arg_hex: $ => choice($.var_mac,$.hex_data),
 		arg_ds: $ => choice($._aexpr,seq($._aexpr,',',$._aexpr),'\\',seq('\\',',',$._aexpr)),
 		arg_do: $ => $._aexpr,
 		arg_if: $ => choice($.if_char,$.if_mx),
 		arg_err: $ => choice($.ptr_check,seq(optional('\\'),$._aexpr)),
-		arg_kbd: $ => $.dstring,
+		arg_kbd: $ => choice($.var_mac,$.dstring),
 		arg_lup: $ => $._aexpr,
 		arg_mx: $ => $._aexpr,
 		arg_usr: $ => $.literal,
@@ -504,8 +511,10 @@ module.exports = grammar({
 		// special arguments
 
 		trailing: $ => /\S+/,
-		if_mx: $ => seq('MX',choice($.eop_plus,$.eop_minus,$.eop_times,$.eop_div,$.eop_or,$.eop_and,$.eop_xor),$._aexpr),
-		if_char: $ => seq(ANYCHAR,ANYCHAR,$.var_label),
+		if_mx: $ => seq('MX', choice($.eop_plus, $.eop_minus, $.eop_times, $.eop_div, $.eop_or, $.eop_and, $.eop_xor), $._aexpr),
+		// For IF, any literal can be on the right, but this would only be expected after expansion.
+		// In other words, the IF is only useful to the programmer if a macro variable is on the right.
+		if_char: $ => seq(ANYCHAR,ANYCHAR,choice($.var_mac,$.arg_literal)),
 		data_prefix: $ => choice('#','#<','#>','<','>'),
 		ptr_check: $ => seq('(',$.num,')-',$.num),
 
@@ -565,8 +574,8 @@ module.exports = grammar({
 			seq("Y",repeat(ANYCHAR),"Y"),
 			seq("Z",repeat(ANYCHAR),"Z"),
 			seq("[",repeat(ANYCHAR),"["),
-			seq('\\',repeat(ANYCHAR),'\\'),
-			seq("]",repeat(ANYCHAR),"]"),
+			seq("\\",repeat(ANYCHAR),"\\"),
+			seq("]",optional(seq(DSTR_BR_BEG,repeat(ANYCHAR))),"]"),
 			seq("^",repeat(ANYCHAR),"^"),
 			seq("_",repeat(ANYCHAR),"_"),
 			seq("`",repeat(ANYCHAR),"`"),
@@ -695,8 +704,8 @@ module.exports = grammar({
 		hex: $ => seq('$',repeat1(choice(...'0123456789ABCDEFabcdef'))),
 		bin: $ => seq('%',repeat1(choice(...'01_'))),
 
-		pchar: $ => seq("'",PCHAR,optional("'")),
-		nchar: $ => seq('"',NCHAR,optional('"')),
+		pchar: $ => seq("'",ANYCHAR,optional("'")), // ''' is OK
+		nchar: $ => seq('"',ANYCHAR,optional('"')), // """ is OK
 
 		current_addr: $ => '*',
 

@@ -35,16 +35,18 @@ if char then do IF
 ===================
 
  IF (,]1
- IF ",]TEMP
+ IF ",]8
  IF "=]1
+ IF A=]something
  IF MX!3/3
 
 ---
 
 (source_file
-	(pseudo_operation (psop_if) (arg_if (if_char (var_label))))
-	(pseudo_operation (psop_if) (arg_if (if_char (var_label))))
-	(pseudo_operation (psop_if) (arg_if (if_char (var_label))))
+	(pseudo_operation (psop_if) (arg_if (if_char (var_mac))))
+	(pseudo_operation (psop_if) (arg_if (if_char (var_mac))))
+	(pseudo_operation (psop_if) (arg_if (if_char (var_mac))))
+	(pseudo_operation (psop_if) (arg_if (if_char (arg_literal))))
 	(pseudo_operation (psop_if) (arg_if (if_mx (eop_xor)
         (binary_aexpr (num (dec)) (eop_div) (num (dec)))))))
 
