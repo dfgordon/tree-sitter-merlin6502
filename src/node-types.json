@@ -1741,11 +1741,6 @@
     }
   },
   {
-    "type": "arg_literal",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "arg_lsr",
     "named": true,
     "fields": {},
@@ -7525,6 +7520,10 @@
   {
     "type": "a",
     "named": false
+  },
+  {
+    "type": "arg_literal",
+    "named": true
   },
   {
     "type": "b",

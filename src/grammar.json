@@ -581,386 +581,389 @@
       ]
     },
     "arg_literal": {
-      "type": "REPEAT1",
+      "type": "TOKEN",
       "content": {
         "type": "PREC_LEFT",
         "value": -1,
         "content": {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "!"
-            },
-            {
-              "type": "STRING",
-              "value": "\""
-            },
-            {
-              "type": "STRING",
-              "value": "#"
-            },
-            {
-              "type": "STRING",
-              "value": "$"
-            },
-            {
-              "type": "STRING",
-              "value": "%"
-            },
-            {
-              "type": "STRING",
-              "value": "&"
-            },
-            {
-              "type": "STRING",
-              "value": "'"
-            },
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            },
-            {
-              "type": "STRING",
-              "value": "*"
-            },
-            {
-              "type": "STRING",
-              "value": "+"
-            },
-            {
-              "type": "STRING",
-              "value": ","
-            },
-            {
-              "type": "STRING",
-              "value": "-"
-            },
-            {
-              "type": "STRING",
-              "value": "."
-            },
-            {
-              "type": "STRING",
-              "value": "/"
-            },
-            {
-              "type": "STRING",
-              "value": "0"
-            },
-            {
-              "type": "STRING",
-              "value": "1"
-            },
-            {
-              "type": "STRING",
-              "value": "2"
-            },
-            {
-              "type": "STRING",
-              "value": "3"
-            },
-            {
-              "type": "STRING",
-              "value": "4"
-            },
-            {
-              "type": "STRING",
-              "value": "5"
-            },
-            {
-              "type": "STRING",
-              "value": "6"
-            },
-            {
-              "type": "STRING",
-              "value": "7"
-            },
-            {
-              "type": "STRING",
-              "value": "8"
-            },
-            {
-              "type": "STRING",
-              "value": "9"
-            },
-            {
-              "type": "STRING",
-              "value": ":"
-            },
-            {
-              "type": "STRING",
-              "value": "<"
-            },
-            {
-              "type": "STRING",
-              "value": "="
-            },
-            {
-              "type": "STRING",
-              "value": ">"
-            },
-            {
-              "type": "STRING",
-              "value": "?"
-            },
-            {
-              "type": "STRING",
-              "value": "@"
-            },
-            {
-              "type": "STRING",
-              "value": "A"
-            },
-            {
-              "type": "STRING",
-              "value": "B"
-            },
-            {
-              "type": "STRING",
-              "value": "C"
-            },
-            {
-              "type": "STRING",
-              "value": "D"
-            },
-            {
-              "type": "STRING",
-              "value": "E"
-            },
-            {
-              "type": "STRING",
-              "value": "F"
-            },
-            {
-              "type": "STRING",
-              "value": "G"
-            },
-            {
-              "type": "STRING",
-              "value": "H"
-            },
-            {
-              "type": "STRING",
-              "value": "I"
-            },
-            {
-              "type": "STRING",
-              "value": "J"
-            },
-            {
-              "type": "STRING",
-              "value": "K"
-            },
-            {
-              "type": "STRING",
-              "value": "L"
-            },
-            {
-              "type": "STRING",
-              "value": "M"
-            },
-            {
-              "type": "STRING",
-              "value": "N"
-            },
-            {
-              "type": "STRING",
-              "value": "O"
-            },
-            {
-              "type": "STRING",
-              "value": "P"
-            },
-            {
-              "type": "STRING",
-              "value": "Q"
-            },
-            {
-              "type": "STRING",
-              "value": "R"
-            },
-            {
-              "type": "STRING",
-              "value": "S"
-            },
-            {
-              "type": "STRING",
-              "value": "T"
-            },
-            {
-              "type": "STRING",
-              "value": "U"
-            },
-            {
-              "type": "STRING",
-              "value": "V"
-            },
-            {
-              "type": "STRING",
-              "value": "W"
-            },
-            {
-              "type": "STRING",
-              "value": "X"
-            },
-            {
-              "type": "STRING",
-              "value": "Y"
-            },
-            {
-              "type": "STRING",
-              "value": "Z"
-            },
-            {
-              "type": "STRING",
-              "value": "["
-            },
-            {
-              "type": "STRING",
-              "value": "\\"
-            },
-            {
-              "type": "STRING",
-              "value": "]"
-            },
-            {
-              "type": "STRING",
-              "value": "^"
-            },
-            {
-              "type": "STRING",
-              "value": "_"
-            },
-            {
-              "type": "STRING",
-              "value": "`"
-            },
-            {
-              "type": "STRING",
-              "value": "a"
-            },
-            {
-              "type": "STRING",
-              "value": "b"
-            },
-            {
-              "type": "STRING",
-              "value": "c"
-            },
-            {
-              "type": "STRING",
-              "value": "d"
-            },
-            {
-              "type": "STRING",
-              "value": "e"
-            },
-            {
-              "type": "STRING",
-              "value": "f"
-            },
-            {
-              "type": "STRING",
-              "value": "g"
-            },
-            {
-              "type": "STRING",
-              "value": "h"
-            },
-            {
-              "type": "STRING",
-              "value": "i"
-            },
-            {
-              "type": "STRING",
-              "value": "j"
-            },
-            {
-              "type": "STRING",
-              "value": "k"
-            },
-            {
-              "type": "STRING",
-              "value": "l"
-            },
-            {
-              "type": "STRING",
-              "value": "m"
-            },
-            {
-              "type": "STRING",
-              "value": "n"
-            },
-            {
-              "type": "STRING",
-              "value": "o"
-            },
-            {
-              "type": "STRING",
-              "value": "p"
-            },
-            {
-              "type": "STRING",
-              "value": "q"
-            },
-            {
-              "type": "STRING",
-              "value": "r"
-            },
-            {
-              "type": "STRING",
-              "value": "s"
-            },
-            {
-              "type": "STRING",
-              "value": "t"
-            },
-            {
-              "type": "STRING",
-              "value": "u"
-            },
-            {
-              "type": "STRING",
-              "value": "v"
-            },
-            {
-              "type": "STRING",
-              "value": "w"
-            },
-            {
-              "type": "STRING",
-              "value": "x"
-            },
-            {
-              "type": "STRING",
-              "value": "y"
-            },
-            {
-              "type": "STRING",
-              "value": "z"
-            },
-            {
-              "type": "STRING",
-              "value": "{"
-            },
-            {
-              "type": "STRING",
-              "value": "|"
-            },
-            {
-              "type": "STRING",
-              "value": "}"
-            },
-            {
-              "type": "STRING",
-              "value": "~"
-            }
-          ]
+          "type": "REPEAT1",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "!"
+              },
+              {
+                "type": "STRING",
+                "value": "\""
+              },
+              {
+                "type": "STRING",
+                "value": "#"
+              },
+              {
+                "type": "STRING",
+                "value": "$"
+              },
+              {
+                "type": "STRING",
+                "value": "%"
+              },
+              {
+                "type": "STRING",
+                "value": "&"
+              },
+              {
+                "type": "STRING",
+                "value": "'"
+              },
+              {
+                "type": "STRING",
+                "value": "("
+              },
+              {
+                "type": "STRING",
+                "value": ")"
+              },
+              {
+                "type": "STRING",
+                "value": "*"
+              },
+              {
+                "type": "STRING",
+                "value": "+"
+              },
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "STRING",
+                "value": "-"
+              },
+              {
+                "type": "STRING",
+                "value": "."
+              },
+              {
+                "type": "STRING",
+                "value": "/"
+              },
+              {
+                "type": "STRING",
+                "value": "0"
+              },
+              {
+                "type": "STRING",
+                "value": "1"
+              },
+              {
+                "type": "STRING",
+                "value": "2"
+              },
+              {
+                "type": "STRING",
+                "value": "3"
+              },
+              {
+                "type": "STRING",
+                "value": "4"
+              },
+              {
+                "type": "STRING",
+                "value": "5"
+              },
+              {
+                "type": "STRING",
+                "value": "6"
+              },
+              {
+                "type": "STRING",
+                "value": "7"
+              },
+              {
+                "type": "STRING",
+                "value": "8"
+              },
+              {
+                "type": "STRING",
+                "value": "9"
+              },
+              {
+                "type": "STRING",
+                "value": ":"
+              },
+              {
+                "type": "STRING",
+                "value": "<"
+              },
+              {
+                "type": "STRING",
+                "value": "="
+              },
+              {
+                "type": "STRING",
+                "value": ">"
+              },
+              {
+                "type": "STRING",
+                "value": "?"
+              },
+              {
+                "type": "STRING",
+                "value": "@"
+              },
+              {
+                "type": "STRING",
+                "value": "A"
+              },
+              {
+                "type": "STRING",
+                "value": "B"
+              },
+              {
+                "type": "STRING",
+                "value": "C"
+              },
+              {
+                "type": "STRING",
+                "value": "D"
+              },
+              {
+                "type": "STRING",
+                "value": "E"
+              },
+              {
+                "type": "STRING",
+                "value": "F"
+              },
+              {
+                "type": "STRING",
+                "value": "G"
+              },
+              {
+                "type": "STRING",
+                "value": "H"
+              },
+              {
+                "type": "STRING",
+                "value": "I"
+              },
+              {
+                "type": "STRING",
+                "value": "J"
+              },
+              {
+                "type": "STRING",
+                "value": "K"
+              },
+              {
+                "type": "STRING",
+                "value": "L"
+              },
+              {
+                "type": "STRING",
+                "value": "M"
+              },
+              {
+                "type": "STRING",
+                "value": "N"
+              },
+              {
+                "type": "STRING",
+                "value": "O"
+              },
+              {
+                "type": "STRING",
+                "value": "P"
+              },
+              {
+                "type": "STRING",
+                "value": "Q"
+              },
+              {
+                "type": "STRING",
+                "value": "R"
+              },
+              {
+                "type": "STRING",
+                "value": "S"
+              },
+              {
+                "type": "STRING",
+                "value": "T"
+              },
+              {
+                "type": "STRING",
+                "value": "U"
+              },
+              {
+                "type": "STRING",
+                "value": "V"
+              },
+              {
+                "type": "STRING",
+                "value": "W"
+              },
+              {
+                "type": "STRING",
+                "value": "X"
+              },
+              {
+                "type": "STRING",
+                "value": "Y"
+              },
+              {
+                "type": "STRING",
+                "value": "Z"
+              },
+              {
+                "type": "STRING",
+                "value": "["
+              },
+              {
+                "type": "STRING",
+                "value": "\\"
+              },
+              {
+                "type": "STRING",
+                "value": "]"
+              },
+              {
+                "type": "STRING",
+                "value": "^"
+              },
+              {
+                "type": "STRING",
+                "value": "_"
+              },
+              {
+                "type": "STRING",
+                "value": "`"
+              },
+              {
+                "type": "STRING",
+                "value": "a"
+              },
+              {
+                "type": "STRING",
+                "value": "b"
+              },
+              {
+                "type": "STRING",
+                "value": "c"
+              },
+              {
+                "type": "STRING",
+                "value": "d"
+              },
+              {
+                "type": "STRING",
+                "value": "e"
+              },
+              {
+                "type": "STRING",
+                "value": "f"
+              },
+              {
+                "type": "STRING",
+                "value": "g"
+              },
+              {
+                "type": "STRING",
+                "value": "h"
+              },
+              {
+                "type": "STRING",
+                "value": "i"
+              },
+              {
+                "type": "STRING",
+                "value": "j"
+              },
+              {
+                "type": "STRING",
+                "value": "k"
+              },
+              {
+                "type": "STRING",
+                "value": "l"
+              },
+              {
+                "type": "STRING",
+                "value": "m"
+              },
+              {
+                "type": "STRING",
+                "value": "n"
+              },
+              {
+                "type": "STRING",
+                "value": "o"
+              },
+              {
+                "type": "STRING",
+                "value": "p"
+              },
+              {
+                "type": "STRING",
+                "value": "q"
+              },
+              {
+                "type": "STRING",
+                "value": "r"
+              },
+              {
+                "type": "STRING",
+                "value": "s"
+              },
+              {
+                "type": "STRING",
+                "value": "t"
+              },
+              {
+                "type": "STRING",
+                "value": "u"
+              },
+              {
+                "type": "STRING",
+                "value": "v"
+              },
+              {
+                "type": "STRING",
+                "value": "w"
+              },
+              {
+                "type": "STRING",
+                "value": "x"
+              },
+              {
+                "type": "STRING",
+                "value": "y"
+              },
+              {
+                "type": "STRING",
+                "value": "z"
+              },
+              {
+                "type": "STRING",
+                "value": "{"
+              },
+              {
+                "type": "STRING",
+                "value": "|"
+              },
+              {
+                "type": "STRING",
+                "value": "}"
+              },
+              {
+                "type": "STRING",
+                "value": "~"
+              }
+            ]
+          }
         }
       }
     },

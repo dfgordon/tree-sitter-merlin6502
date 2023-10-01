@@ -86,7 +86,7 @@ module.exports = grammar({
 			alias($.sq_str,$.dstring),
 			$.arg_literal,
 		),
-		arg_literal: $ => repeat1(prec.left(-1,choice(...ARG))),
+		arg_literal: $ => token(prec.left(-1,repeat1(choice(...ARG)))),
 
 		// Operations DO NOT EDIT
 

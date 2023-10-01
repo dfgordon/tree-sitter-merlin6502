@@ -54,11 +54,13 @@ call with literal
 ===================
 
  MYMAC &hello&
+ MYMAC A;!
 
 ---
 
 (source_file
-	(macro_call (macro_ref (global_label)) (arg_macro (arg_literal))))
+	(macro_call (macro_ref (global_label)) (arg_macro (arg_literal)))
+	(macro_call (macro_ref (global_label)) (arg_macro (addr (label_ref (global_label))) (arg_literal) ) ))
 
 ===================
 call with 2 args
