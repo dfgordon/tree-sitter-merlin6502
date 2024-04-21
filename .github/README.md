@@ -8,7 +8,7 @@ This is a parser for Merlin assembly language intended for use with language ser
 * [Parsing Merlin with C++](https://github.com/dfgordon/tree-sitter-merlin6502/releases)
 * [Parsing Merlin with Rust](https://crates.io/crates/tree-sitter-merlin6502)
 * [Parsing Merlin with WASM](https://github.com/dfgordon/tree-sitter-merlin6502/releases)
-* [Parsing Merlin with Node](https://www.npmjs.com/package/tree-sitter-merlin6502)
+* [Parsing Merlin with Node](https://github.com/dfgordon/tree-sitter-merlin6502/pkgs/npm/tree-sitter-merlin6502)
 
 For details on parser usage and design see the [wiki](https://github.com/dfgordon/tree-sitter-merlin6502/wiki).
 

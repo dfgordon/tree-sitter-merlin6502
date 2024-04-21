@@ -23,6 +23,12 @@ Here is a sample `package.json`:
 }
 ```
 
+You will also need `.npmrc` in the same directory:
+
+```
+@dfgordon:registry=https://npm.pkg.github.com
+```
+
 With an example `index.js` as follows:
 
 ```js
