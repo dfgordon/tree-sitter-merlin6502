@@ -3,12 +3,15 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "parser for 6502-family assembly language",
   "main": "bindings/node",
+  "types": "bindings/node",
   "scripts": {
     "test": "tree-sitter test",
-    "test-windows": "tree-sitter test"
+    "test-windows": "tree-sitter test",
+    "install": "node-gyp-build",
+    "prebuildify": "prebuildify --napi --strip"
   },
   "repository": {
     "type": "git",
@@ -17,6 +20,14 @@
   "keywords": [
     "parser",
     "lexer"
+  ],
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "prebuilds/**",
+    "bindings/node/*",
+    "queries/*",
+    "src/**"
   ],
   "author": "Daniel Gordon",
   "license": "MIT",
@@ -31,13 +42,27 @@
         "S",
         "asm"
       ],
-      "first-line-regex": "\\s*ORG\\s*$[0-9A-Fa-f]+"
+      "first-line-regex": "\\s*ORG\\s*$[0-9A-Fa-f]+",
+      "highlights": [
+        "queries/highlights.scm"
+      ]
     }
   ],
   "dependencies": {
-    "nan": "^2.14.2"
+    "node-gyp": "^10.1.0",
+    "node-addon-api": "^7.1.0",
+    "node-gyp-build": "^4.8.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "tree_sitter": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.20.7"
+    "tree-sitter-cli": "^0.22.4",
+    "prebuildify": "^6.0.0"
   }
 }

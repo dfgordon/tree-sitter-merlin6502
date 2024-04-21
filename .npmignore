@@ -1,8 +1,0 @@
-test
-examples
-build
-script
-.github
-.gitattributes
-target
-*.wasm

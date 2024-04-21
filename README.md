@@ -1,40 +1,45 @@
-Parser for Merlin 6502 Assembly
-===============================
+Parser for Merlin Assembly
+==========================
 
-![unit tests](https://github.com/dfgordon/tree-sitter-merlin6502/actions/workflows/node.js.yml/badge.svg)
+This is the node binding for `tree-sitter-merlin6502`.  See the main README [here](https://github.com/dfgordon/tree-sitter-merlin6502).
 
-This is a comprehensive language description and fast parser for Merlin 6502 Assembly language built using the [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) system.
+Here is a sample `package.json`:
 
-Scope
------
+```json
+{
+  "name": "parsing-example",
+  "version": "1.0.0",
+  "description": "merlin parsing example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tree-sitter": "^0.21.1",
+    "@dfgordon/tree-sitter-merlin6502": "^2.2.0"
+  }
+}
+```
 
-The parser recognizes Merlin 8/16/16+/32 assembly language for the 6502 family of processors, including the 6502, 65C02, and 65816.
+With an example `index.js` as follows:
 
-The parser recognizes assembly source only, i.e., it will not parse linker command files.
+```js
+const Parser = require('tree-sitter');
+const Merlin = require('tree-sitter-merlin6502');
 
-Merlin language versions satisfy the set relations 16+ ∋ 16 ∋ 8 and 16+ ∋ 32.  Similarly, processor instructions satisfy 65816 ∋ 65C02 ∋ 6502.  The parser accepts the most expansive sets, Merlin 16+ assembly, and 65816 instructions.  Downstream tools must filter the syntax tree if some other combination is the target.
+const code = 'my_label lda #$00"\n';
+const parser = new Parser();
+parser.setLanguage(Merlin);
+tree = parser.parse(code);
+console.log(tree.rootNode.toString());
+```
 
-If one is unconcerned about resolving conflicts between implicit macro calls and (pseudo)ops, the parser can digest an entire source file all at once.  If one wishes to distinguish these the same way Merlin does, the procedure is as follows: 
+This should print the syntax tree
 
-* Downstream parses each line, and uses the document's symbol information to decide if column 2 is a macro call
-* If it is, insert unicode `0x100` at the beginning of the line and re-parse it; the line's syntax tree should now be correct.
+```
+(source_file (operation (label_def (global_label)) (op_lda) (arg_lda (imm (imm_prefix) (num (hex))))))
+```
 
-There are some syntax errors that have to be detected downstream:
-
-* Unpaired `EOM`
-* Invalid context for local label
-* Specific target limitations
-
-Emulation
----------
-
-The parser is supposed to produce a syntax tree consistent with the way Merlin 16+ would interpret a given source file.  As of this writing, the following are the only known inconsistencies:
-
-* Labels cannot use any of `;[]{}`, except when starting a variable with `]`
-* Delimited strings (dstrings) must always be terminated
-
-References
------------
-* Merlin 8/16 Manual, copyright 1987, Roger Wagner Publishing, Inc.
-* Merlin 16+ Manual, copyright 1988-1989, Roger Wagner Publishing, Inc.
-* [Merlin 32 Documentation](https://brutaldeluxe.fr/products/crossdevtools/merlin/)
+For more on parsing with node, see the general guidance [here](https://github.com/tree-sitter/node-tree-sitter).
