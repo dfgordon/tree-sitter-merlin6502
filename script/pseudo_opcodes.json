@@ -23,11 +23,11 @@
     },
     "adr": {
         "alt": [],
-        "args": "seq($._aexpr,repeat(seq(',',$._aexpr)))",
+        "args": "seq($._data_aexpr,repeat(seq(',',$._data_aexpr)))",
         "brief": "define long address",
         "category": "data storage",
         "caveat": null,
-        "desc": "define 3 byte long address",
+        "desc": "list of expressions resolving to 24 bit little endian",
         "eg": [
             "     ADR $01FDF0  ; F0 FD 01",
             "     ADR 10  ; 0A 00 00",
@@ -47,11 +47,11 @@
     },
     "adrl": {
         "alt": [],
-        "args": "seq($._aexpr,repeat(seq(',',$._aexpr)))",
+        "args": "seq($._data_aexpr,repeat(seq(',',$._data_aexpr)))",
         "brief": "define long address",
         "category": "data storage",
         "caveat": null,
-        "desc": "define 4 byte long address",
+        "desc": "list of expressions resolving to 32 bit little endian",
         "eg": [
             "     ADRL $01FDF0  ; F0 FD 01 00",
             "     ADRL 10  ; 0A 00 00 00",
@@ -195,11 +195,11 @@
         "alt": [
             "dw"
         ],
-        "args": "seq($._aexpr,repeat(seq(',',$._aexpr)))",
+        "args": "seq($._data_aexpr,repeat(seq(',',$._data_aexpr)))",
         "brief": "define address or word",
         "category": "data storage",
         "caveat": null,
-        "desc": "define little endian address",
+        "desc": "list of expressions resolving to 16 bit little endian",
         "eg": [
             "     DA $FDF0  ; F0 FD",
             "     DA 10,$300  ; 0A 00 00 03",
@@ -269,11 +269,11 @@
     },
     "ddb": {
         "alt": [],
-        "args": "seq($._aexpr,repeat(seq(',',$._aexpr)))",
+        "args": "seq($._data_aexpr,repeat(seq(',',$._data_aexpr)))",
         "brief": "define double byte",
         "category": "data storage",
         "caveat": null,
-        "desc": "define big endian address",
+        "desc": "list of expressions resolving to 16 bit big endian",
         "eg": [
             "     DDB $FDF0  ; FD F0",
             "     DDB 10,$300  ; 00 0A 03 00",
@@ -366,11 +366,11 @@
     },
     "ds": {
         "alt": [],
-        "args": "choice($._aexpr,seq($._aexpr,',',$._aexpr),'\\\\',seq('\\\\',',',$._aexpr))",
+        "args": "choice($._data_aexpr,seq($._data_aexpr,',',$._data_aexpr),$.new_page,seq($.new_page,',',$._data_aexpr))",
         "brief": "define storage",
         "category": "data storage",
         "caveat": "using \\ in REL file loads next file at page boundary",
-        "desc": "reserve space for string storage data",
+        "desc": "fill space with uniform bytes",
         "eg": [
             "     DS  10  ; zero 10 bytes",
             "     DS  10,$80  ; put $80 in 10 bytes",
@@ -1091,7 +1091,7 @@
         "caveat": null,
         "desc": "ASC with d-string backwards in memory",
         "eg": [
-            "     REV  \"racecar\",00"
+            "     REV  \"racecar\""
         ],
         "label": [
             "var",

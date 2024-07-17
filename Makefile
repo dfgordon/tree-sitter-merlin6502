@@ -1,4 +1,4 @@
-VERSION := 2.2.0
+VERSION := 2.3.0
 
 LANGUAGE_NAME := tree-sitter-merlin6502
 

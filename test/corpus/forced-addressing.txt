@@ -3,7 +3,7 @@ forced long
 ===================
 
  LDAL 16384
- LDA |$4000
+ LDA >$4000
 
 ---
 
@@ -16,8 +16,10 @@ forced absolute
 ===================
 
  LDA: 10
+ LDA |10
 
 ---
 
 (source_file
-	(operation (op_lda (trailing)) (arg_lda (addr (num (dec))))))
+	(operation (op_lda (trailing)) (arg_lda (addr (num (dec)))))
+	(operation (op_lda) (arg_lda (addr (addr_prefix) (num (dec))))))

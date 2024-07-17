@@ -92,7 +92,6 @@ dstring-var collision
 
  ASC ]string~]
  ASC ]9]
- ASC ]1]
  ASC ]1
 
 ---
@@ -100,5 +99,13 @@ dstring-var collision
 (source_file
 	(pseudo_operation (psop_asc) (arg_asc (dstring)))
 	(pseudo_operation (psop_asc) (arg_asc (dstring)))
-	(pseudo_operation (psop_asc) (arg_asc (var_mac)) (ERROR))
 	(pseudo_operation (psop_asc) (arg_asc (var_mac))))
+
+=====================
+dstring-var error
+:error
+=====================
+
+ ASC ]1]
+
+---

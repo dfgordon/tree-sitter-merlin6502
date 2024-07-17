@@ -1,4 +1,3 @@
-import yaml
 import json
 import pathlib
 import sys
@@ -54,14 +53,10 @@ reduction_map = {
     'xyc':'xyc'
 }
 
-with open(script_path / 'opcodes.yml','r') as f:
-    obj = yaml.safe_load(f)
-with open(script_path / 'opcodes.json','w') as f:
-    f.write(json.dumps(obj,indent=4,sort_keys=True))
-with open(script_path / 'pseudo_opcodes.yml','r') as f:
-    pobj = yaml.safe_load(f)
-with open(script_path / 'pseudo_opcodes.json','w') as f:
-    f.write(json.dumps(pobj,indent=4,sort_keys=True))
+with open(script_path / 'opcodes.json','r') as f:
+    obj = json.load(f)
+with open(script_path / 'pseudo_opcodes.json','r') as f:
+    pobj = json.load(f)
 
 # Build a nice markdown table of opcodes
 
@@ -239,12 +234,12 @@ psop_str =  psop_str[:-2] + "\n\t\t),\n"
 # of the 65C816.  Semicolons are forbidden due to their use as separators in macro arguments.
 # In contrast Merlin has contextual relaxation of these restrictions.
 
-escaped = '/-^[]\\'
 label_forbidden = '}{][;<>=#'
+glob_start_forbidden = label_forbidden + '^|'
 anychar = [chr(i) for i in range(32,127,1)]
 dstr_br_beg = [chr(i) for i in range(32,127,1) if chr(i) not in '012345678']
 arg = [c for c in anychar if c!=";" and c!=" "]
-glob_lab_beg = [chr(i) for i in range(ord(':')+1,127,1) if chr(i) not in label_forbidden]
+glob_lab_beg = [chr(i) for i in range(ord(':')+1,127,1) if chr(i) not in glob_start_forbidden]
 lab_char = [chr(i) for i in range(ord('0'),127,1) if chr(i) not in label_forbidden]
 var_lab_beg = [chr(i) for i in range(ord('9'),127,1) if chr(i) not in label_forbidden]
 dos33_char = [chr(i) for i in range(32,127,1) if chr(i)!=',']

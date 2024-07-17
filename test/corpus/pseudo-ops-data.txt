@@ -19,12 +19,14 @@ Define double DDB
 
  DDB $FDED+1
  DDB 10,$300
+ DDB ^$030201
 
 ---
 
 (source_file
 	(pseudo_operation (psop_ddb) (arg_ddb (binary_aexpr (num (hex)) (eop_plus) (num (dec)))))
-	(pseudo_operation (psop_ddb) (arg_ddb (num (dec)) (num (hex)))))
+	(pseudo_operation (psop_ddb) (arg_ddb (num (dec)) (num (hex))))
+	(pseudo_operation (psop_ddb) (arg_ddb (data_prefix) (num (hex)))))
 
 ===================
 Define byte DFB DB
@@ -103,6 +105,6 @@ Define storage DS
 (source_file
 	(pseudo_operation (psop_ds) (arg_ds (num (dec))))
 	(pseudo_operation (psop_ds) (arg_ds (num (dec)) (num (hex))))
-	(pseudo_operation (psop_ds) (arg_ds))
-	(pseudo_operation (psop_ds) (arg_ds (num (hex))))
-	(pseudo_operation (psop_ds) (arg_ds (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))))
+	(pseudo_operation (psop_ds) (arg_ds (new_page)))
+	(pseudo_operation (psop_ds) (arg_ds (new_page) (num (hex))))
+	(pseudo_operation (psop_ds) (arg_ds (new_page) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))))

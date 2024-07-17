@@ -276,6 +276,10 @@
           "named": true
         },
         {
+          "type": "data_prefix",
+          "named": true
+        },
+        {
           "type": "label_ref",
           "named": true
         },
@@ -316,6 +320,10 @@
         },
         {
           "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "data_prefix",
           "named": true
         },
         {
@@ -872,6 +880,10 @@
           "named": true
         },
         {
+          "type": "data_prefix",
+          "named": true
+        },
+        {
           "type": "label_ref",
           "named": true
         },
@@ -978,6 +990,10 @@
         },
         {
           "type": "current_addr",
+          "named": true
+        },
+        {
+          "type": "data_prefix",
           "named": true
         },
         {
@@ -1118,7 +1134,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "binary_aexpr",
@@ -1133,11 +1149,19 @@
           "named": true
         },
         {
+          "type": "data_prefix",
+          "named": true
+        },
+        {
           "type": "label_ref",
           "named": true
         },
         {
           "type": "nchar",
+          "named": true
+        },
+        {
+          "type": "new_page",
           "named": true
         },
         {
@@ -3659,6 +3683,11 @@
   },
   {
     "type": "nchar",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "new_page",
     "named": true,
     "fields": {}
   },

@@ -99,7 +99,8 @@ module.exports = grammar({
 		// For IF, any literal can be on the right, but this would only be expected after expansion.
 		// In other words, the IF is only useful to the programmer if a macro variable is on the right.
 		if_char: $ => seq(ANYCHAR,ANYCHAR,choice($.var_mac,$.arg_literal)),
-		data_prefix: $ => choice('#','#<','#>','<','>'),
+		data_prefix: $ => choice('#', '#<', '#>', '#^', '<', '>', '^'),
+		new_page: $ => '\\',
 		ptr_check: $ => seq('(',$.num,')-',$.num),
 
 		// Strings

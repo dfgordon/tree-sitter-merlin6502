@@ -38,6 +38,7 @@ Emulation
 The parser is supposed to produce a syntax tree consistent with the way Merlin 16+ would interpret a given source file.  As of this writing, the following are the only known inconsistencies:
 
 * Labels cannot use any of `;[]{}`, except when starting a variable with `]`
+* Labels cannot start with `|` or `^`
 * Delimited strings (dstrings) must always be terminated
 
 References
