@@ -54,7 +54,7 @@ DATE with arg
 ---
 
 (source_file
-	(pseudo_operation (psop_dat) (arg_dat (num (dec)))))
+	(pseudo_operation (psop_dat) (arg_dat (num))))
 
 ===================
 case control CAS
@@ -130,10 +130,10 @@ Braced expressions
 		(arg_lda
 			(addr
 				(braced_aexpr
-        			(binary_aexpr_prec
+        			(binary_aexpr
 						(label_ref (global_label))
 						(eop_plus)
-            			(binary_aexpr_prec
+            			(binary_aexpr
 							(label_ref (global_label))
 							(eop_times)
 							(label_ref (global_label))
@@ -150,7 +150,7 @@ Braced expressions
         		(binary_aexpr
             		(unary_aexpr (eop_plus)
                 		(braced_aexpr
-							(binary_aexpr_prec
+							(binary_aexpr
 								(label_ref (global_label))
 								(eop_plus)
 								(label_ref (global_label))

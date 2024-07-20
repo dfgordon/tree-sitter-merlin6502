@@ -9,9 +9,9 @@ Define word DA DW
 ---
 
 (source_file
-	(pseudo_operation (psop_da) (arg_da (num (hex))))
-	(pseudo_operation (psop_da) (arg_da (num (dec)) (num (hex))))
-	(pseudo_operation (psop_da) (arg_da (label_ref (global_label)) (label_ref (global_label)))))
+	(pseudo_operation (psop_da) (arg_da (data (num))))
+	(pseudo_operation (psop_da) (arg_da (data (num)) (data (num))))
+	(pseudo_operation (psop_da) (arg_da (data (label_ref (global_label))) (data (label_ref (global_label))))))
 
 ===================
 Define double DDB
@@ -24,9 +24,9 @@ Define double DDB
 ---
 
 (source_file
-	(pseudo_operation (psop_ddb) (arg_ddb (binary_aexpr (num (hex)) (eop_plus) (num (dec)))))
-	(pseudo_operation (psop_ddb) (arg_ddb (num (dec)) (num (hex))))
-	(pseudo_operation (psop_ddb) (arg_ddb (data_prefix) (num (hex)))))
+	(pseudo_operation (psop_ddb) (arg_ddb (data (binary_aexpr (num) (eop_plus) (num)))))
+	(pseudo_operation (psop_ddb) (arg_ddb (data (num)) (data (num))))
+	(pseudo_operation (psop_ddb) (arg_ddb (data (data_prefix) (num)))))
 
 ===================
 Define byte DFB DB
@@ -41,11 +41,11 @@ Define byte DFB DB
 ---
 
 (source_file
-	(pseudo_operation (psop_dfb) (arg_dfb (num (dec))))
-	(pseudo_operation (psop_dfb) (arg_dfb (num (hex))))
-	(pseudo_operation (psop_dfb) (arg_dfb (num (bin))))
-    (pseudo_operation (psop_dfb) (arg_dfb (data_prefix) (binary_aexpr (num (hex)) (eop_plus) (num (dec)))))
-	(pseudo_operation (psop_dfb) (arg_dfb (label_ref (global_label)))))
+	(pseudo_operation (psop_dfb) (arg_dfb (data (num))))
+	(pseudo_operation (psop_dfb) (arg_dfb (data (num))))
+	(pseudo_operation (psop_dfb) (arg_dfb (data (num))))
+    (pseudo_operation (psop_dfb) (arg_dfb (data (data_prefix) (binary_aexpr (num) (eop_plus) (num)))))
+	(pseudo_operation (psop_dfb) (arg_dfb (data (label_ref (global_label))))))
 
 ===================
 Define long address ADR
@@ -58,9 +58,9 @@ Define long address ADR
 ---
 
 (source_file
-	(pseudo_operation (psop_adr) (arg_adr (num (hex))))
-	(pseudo_operation (psop_adr) (arg_adr (num (dec)) (num (hex))))
-    (pseudo_operation (psop_adr) (arg_adr (label_ref (global_label)) (label_ref (global_label)))))
+	(pseudo_operation (psop_adr) (arg_adr (data (num))))
+	(pseudo_operation (psop_adr) (arg_adr (data (num)) (data (num))))
+    (pseudo_operation (psop_adr) (arg_adr (data (label_ref (global_label))) (data (label_ref (global_label))))))
 
 ===================
 Define long long ADRL
@@ -73,9 +73,9 @@ Define long long ADRL
 ---
 
 (source_file
-	(pseudo_operation (psop_adrl) (arg_adrl (num (hex))))
-	(pseudo_operation (psop_adrl) (arg_adrl (num (dec)) (num (hex))))
-    (pseudo_operation (psop_adrl) (arg_adrl (label_ref (global_label)) (label_ref (global_label)))))
+	(pseudo_operation (psop_adrl) (arg_adrl (data (num))))
+	(pseudo_operation (psop_adrl) (arg_adrl (data (num)) (data (num))))
+    (pseudo_operation (psop_adrl) (arg_adrl (data (label_ref (global_label))) (data (label_ref (global_label))))))
 
 ===================
 Hex data HEX
@@ -103,8 +103,8 @@ Define storage DS
 ---
 
 (source_file
-	(pseudo_operation (psop_ds) (arg_ds (num (dec))))
-	(pseudo_operation (psop_ds) (arg_ds (num (dec)) (num (hex))))
+	(pseudo_operation (psop_ds) (arg_ds (data (num))))
+	(pseudo_operation (psop_ds) (arg_ds (data (num)) (data (num))))
 	(pseudo_operation (psop_ds) (arg_ds (new_page)))
-	(pseudo_operation (psop_ds) (arg_ds (new_page) (num (hex))))
-	(pseudo_operation (psop_ds) (arg_ds (new_page) (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))))
+	(pseudo_operation (psop_ds) (arg_ds (new_page) (data (num))))
+	(pseudo_operation (psop_ds) (arg_ds (new_page) (data (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))))

@@ -8,7 +8,7 @@ line of asterisks AST
 ---
 
 (source_file
-	(pseudo_operation (psop_ast) (arg_ast (num (dec))))
+	(pseudo_operation (psop_ast) (arg_ast (num)))
 	(pseudo_operation (psop_ast) (arg_ast (label_ref (global_label)))))
 
 ===================
@@ -118,8 +118,8 @@ skip lines SKP
 ---
 
 (source_file
-	(pseudo_operation (psop_skp) (arg_skp (num (dec))))
-    (pseudo_operation (psop_skp) (arg_skp (binary_aexpr (binary_aexpr (label_ref (global_label)) (eop_plus) (num (dec))) (eop_plus) (nchar)))))
+	(pseudo_operation (psop_skp) (arg_skp (num)))
+    (pseudo_operation (psop_skp) (arg_skp (binary_aexpr (binary_aexpr (label_ref (global_label)) (eop_plus) (num)) (eop_plus) (nchar)))))
 
 ===================
 truncate TR

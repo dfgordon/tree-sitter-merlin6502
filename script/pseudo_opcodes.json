@@ -23,7 +23,7 @@
     },
     "adr": {
         "alt": [],
-        "args": "seq($._data_aexpr,repeat(seq(',',$._data_aexpr)))",
+        "args": "seq($.data,repeat(seq(',',$.data)))",
         "brief": "define long address",
         "category": "data storage",
         "caveat": null,
@@ -47,7 +47,7 @@
     },
     "adrl": {
         "alt": [],
-        "args": "seq($._data_aexpr,repeat(seq(',',$._data_aexpr)))",
+        "args": "seq($.data,repeat(seq(',',$.data)))",
         "brief": "define long address",
         "category": "data storage",
         "caveat": null,
@@ -195,7 +195,7 @@
         "alt": [
             "dw"
         ],
-        "args": "seq($._data_aexpr,repeat(seq(',',$._data_aexpr)))",
+        "args": "seq($.data,repeat(seq(',',$.data)))",
         "brief": "define address or word",
         "category": "data storage",
         "caveat": null,
@@ -269,7 +269,7 @@
     },
     "ddb": {
         "alt": [],
-        "args": "seq($._data_aexpr,repeat(seq(',',$._data_aexpr)))",
+        "args": "seq($.data,repeat(seq(',',$.data)))",
         "brief": "define double byte",
         "category": "data storage",
         "caveat": null,
@@ -317,7 +317,7 @@
         "alt": [
             "db"
         ],
-        "args": "seq($._data_aexpr,repeat(seq(',',$._data_aexpr)))",
+        "args": "seq($.data,repeat(seq(',',$.data)))",
         "brief": "define byte",
         "category": "data storage",
         "caveat": null,
@@ -366,7 +366,7 @@
     },
     "ds": {
         "alt": [],
-        "args": "choice($._data_aexpr,seq($._data_aexpr,',',$._data_aexpr),$.new_page,seq($.new_page,',',$._data_aexpr))",
+        "args": "choice($.data,seq($.data,',',$.data),$.new_page,seq($.new_page,',',$.data))",
         "brief": "define storage",
         "category": "data storage",
         "caveat": "using \\ in REL file loads next file at page boundary",

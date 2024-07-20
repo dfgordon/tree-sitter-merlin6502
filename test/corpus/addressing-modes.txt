@@ -8,8 +8,8 @@ absolute
 ---
 
 (source_file
-	(operation (op_lda) (arg_lda (addr (num (dec)))))
-	(operation (op_lda) (arg_lda (addr (num (hex))))))
+	(operation (op_lda) (arg_lda (addr (num))))
+	(operation (op_lda) (arg_lda (addr (num)))))
 
 ===================
 absolute indexed indirect
@@ -20,7 +20,7 @@ absolute indexed indirect
 ---
 
 (source_file
-	(operation (op_jmp) (arg_jmp (iaddr_ix (mode) (num (hex)) (mode)))
+	(operation (op_jmp) (arg_jmp (iaddr_ix (mode) (num) (mode)))
 	)
 )
 
@@ -33,7 +33,7 @@ absolute indexed x
 ---
 
 (source_file
-	(operation (op_lda) (arg_lda (addr_x (num (hex)) (mode)))))
+	(operation (op_lda) (arg_lda (addr_x (num) (mode)))))
 
 ===================
 absolute indexed y
@@ -44,7 +44,7 @@ absolute indexed y
 ---
 
 (source_file
-	(operation (op_lda) (arg_lda (addr_y (num (hex)) (mode)))))
+	(operation (op_lda) (arg_lda (addr_y (num) (mode)))))
 
 ===================
 absolute indirect
@@ -55,7 +55,7 @@ absolute indirect
 ---
 
 (source_file
-	(operation (op_lda) (arg_lda (iaddr (mode) (num (hex)) (mode)))))
+	(operation (op_lda) (arg_lda (iaddr (mode) (num) (mode)))))
 
 ===================
 accumulator
@@ -73,13 +73,18 @@ block move
 ===================
 
  MVP $10,$20
+ MVN #$00,#^$01
 
 ---
 
  (source_file
  	(operation
 	 	(op_mvp) (arg_mvp
-		(xyc (num (hex)) (num (hex))))))
+		(xyc (data (num)) (data (num)))))
+ 	(operation
+	 	(op_mvn) (arg_mvn
+		(xyc (data (data_prefix) (num)) (data (data_prefix) (num)))))
+)
 
 ===================
 direct/zp indirect indexed
@@ -90,7 +95,7 @@ direct/zp indirect indexed
 ---
 
  (source_file
- 	(operation (op_lda) (arg_lda (iaddr_y (mode) (num (hex)) (mode)))))
+ 	(operation (op_lda) (arg_lda (iaddr_y (mode) (num) (mode)))))
 
 ===================
 direct indirect long indexed
@@ -101,7 +106,7 @@ direct indirect long indexed
 ---
 
  (source_file
- 	(operation (op_lda) (arg_lda (daddr_y (mode) (num (hex)) (mode)))))
+ 	(operation (op_lda) (arg_lda (daddr_y (mode) (num) (mode)))))
 
 ===================
 direct indirect long
@@ -112,7 +117,7 @@ direct indirect long
 ---
 
  (source_file
- 	(operation (op_lda) (arg_lda (daddr (mode) (num (hex)) (mode)))))
+ 	(operation (op_lda) (arg_lda (daddr (mode) (num) (mode)))))
 
 ===================
 immediate
@@ -124,8 +129,8 @@ immediate
 ---
 
 (source_file
-	(operation (op_lda) (arg_lda (imm (imm_prefix) (num (hex)))))
-	(operation (op_lda) (arg_lda (imm (imm_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (num (dec)))))))
+	(operation (op_lda) (arg_lda (imm (imm_prefix) (num))))
+	(operation (op_lda) (arg_lda (imm (imm_prefix) (binary_aexpr (label_ref (global_label)) (eop_plus) (num))))))
 
 ===================
 implied
@@ -158,7 +163,7 @@ stack
 	(operation (op_pha))
  	(operation
 	 	(op_lda) (arg_lda
-		(iaddr_is_y (mode) (num (dec)) (mode) )))
+		(iaddr_is_y (mode) (num) (mode) )))
 	(operation
 	 	(op_ora) (arg_ora
 		(addr_s (label_ref (global_label)) (mode) )))

@@ -11,13 +11,13 @@ opcodes in labels
 (source_file
 	(operation
 		(op_inc (trailing))
-		(arg_inc (addr (num (dec)))))
+		(arg_inc (addr (num))))
 	(macro_call
 		(macro_ref (global_label))
-		(arg_macro (addr (num (dec)))))
+		(arg_macro (addr (num))))
 	(operation
 		(op_inc)
-		(arg_inc (addr (num (hex))))))
+		(arg_inc (addr (num)))))
 
 ===================
 Trailing characters
@@ -30,9 +30,9 @@ LAB1 EQUA $1000
 ---
 
 (source_file
-	(operation (op_lda (trailing)) (arg_lda (addr (num (hex)))))
-	(operation (op_sta (trailing)) (arg_sta (addr (num (hex)))))
-	(pseudo_operation (label_def (global_label)) (psop_equ (trailing)) (arg_equ (num (hex)))))
+	(operation (op_lda (trailing)) (arg_lda (addr (num))))
+	(operation (op_sta (trailing)) (arg_sta (addr (num))))
+	(pseudo_operation (label_def (global_label)) (psop_equ (trailing)) (arg_equ (num))))
 
 ===================
 Comments
@@ -47,7 +47,31 @@ Comments
 
 (source_file
 	(heading (txt))
-	(operation (op_lda) (arg_lda (addr (num (hex)))) (comment (txt)))
+	(operation (op_lda) (arg_lda (addr (num))) (comment (txt)))
 	(comment (txt))
 	(comment (txt))
+)
+
+=========================
+Optional immediate
+=========================
+
+ pea $8000
+ pea #$8000
+ rep %11110000
+ rep #%11110000
+ sep %11110000
+ sep #%11110000
+ mvp #$00,$01
+
+---
+
+(source_file
+	(operation (op_pea) (arg_pea (data (num))))
+	(operation (op_pea) (arg_pea (data (data_prefix) (num))))
+	(operation (op_rep) (arg_rep (data (num))))
+	(operation (op_rep) (arg_rep (data (data_prefix) (num))))
+	(operation (op_sep) (arg_sep (data (num))))
+	(operation (op_sep) (arg_sep (data (data_prefix) (num))))
+	(operation (op_mvp) (arg_mvp (xyc (data (data_prefix) (num)) (data (num)))))
 )

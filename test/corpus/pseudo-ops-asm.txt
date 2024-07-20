@@ -9,7 +9,7 @@ LAB3 = LAB+LAB2
 ---
 
 (source_file
-	(pseudo_operation (label_def (global_label)) (psop_equ) (arg_equ (num (hex))))
+	(pseudo_operation (label_def (global_label)) (psop_equ) (arg_equ (num)))
 	(pseudo_operation (label_def (global_label)) (psop_equ) (arg_equ (nchar)))
     (pseudo_operation (label_def (global_label)) (psop_equ) (arg_equ (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label))))))
 
@@ -54,7 +54,7 @@ Origin ORG
 ---
 
 (source_file
-	(pseudo_operation (psop_org) (arg_org (num (hex))))
+	(pseudo_operation (psop_org) (arg_org (num)))
 	(pseudo_operation (psop_org) (arg_org (binary_aexpr (label_ref (global_label)) (eop_plus) (label_ref (global_label)))))
 	(pseudo_operation (psop_org)))
 
@@ -79,7 +79,7 @@ Object OBJ
 ---
 
 (source_file
-	(pseudo_operation (psop_obj) (arg_obj (num (hex))))
+	(pseudo_operation (psop_obj) (arg_obj (num)))
 	(pseudo_operation (psop_obj) (arg_obj (label_ref (global_label)))))
 
 ===================
@@ -147,7 +147,7 @@ Variable VAR
 ---
 
 (source_file
-	(pseudo_operation (psop_var) (arg_var (num (dec)) (num (hex)) (label_ref (global_label)))))
+	(pseudo_operation (psop_var) (arg_var (num) (num) (label_ref (global_label)))))
 
 ===================
 SAV DOS 3.3
@@ -187,7 +187,7 @@ File type TYP
 ---
 
 (source_file
-	(pseudo_operation (psop_typ) (arg_typ (num (hex))))
+	(pseudo_operation (psop_typ) (arg_typ (num)))
 	(pseudo_operation (psop_typ) (arg_typ (label_ref (global_label)))))
 
 ===================
@@ -239,7 +239,7 @@ Dummy section DUM
 ---
 
 (source_file
-	(pseudo_operation (psop_dum) (arg_dum (num (hex))))
+	(pseudo_operation (psop_dum) (arg_dum (num)))
 	(pseudo_operation (psop_dum) (arg_dum (binary_aexpr (label_ref (global_label)) (eop_minus) (label_ref (global_label))))))
 
 ===================

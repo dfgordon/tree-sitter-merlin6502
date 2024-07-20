@@ -10,7 +10,7 @@ MYMAC MAC
 
 (source_file
 	(pseudo_operation (macro_def (global_label)) (psop_mac))
-	(operation (op_lda) (arg_lda (imm (imm_prefix) (num (hex)))))
+	(operation (op_lda) (arg_lda (imm (imm_prefix) (num))))
 	(pseudo_operation (psop_eom)))
 
 ===================
@@ -27,9 +27,9 @@ MID MAC
 
 (source_file
 	(pseudo_operation (macro_def (global_label)) (psop_mac))
-	(operation (op_lda) (arg_lda (imm (imm_prefix) (num (hex)))))
+	(operation (op_lda) (arg_lda (imm (imm_prefix) (num))))
 	(pseudo_operation (macro_def (global_label)) (psop_mac))
-	(operation (op_ldx) (arg_ldx (imm (imm_prefix) (num (hex)))))
+	(operation (op_ldx) (arg_ldx (imm (imm_prefix) (num))))
 	(pseudo_operation (psop_eom)))
 
 ===================
@@ -71,7 +71,7 @@ call with 2 args
 ---
 
 (source_file
-	(macro_call (macro_ref (global_label)) (arg_macro (addr (num (hex))) (addr (num (hex))))))
+	(macro_call (macro_ref (global_label)) (arg_macro (addr (num)) (addr (num)))))
 
 ===================
 call with indirect indexed

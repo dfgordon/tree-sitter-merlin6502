@@ -20,9 +20,9 @@ force error ERR
 ---
 
 (source_file
-	(pseudo_operation (psop_err) (arg_err (ptr_check (num (hex)) (num (hex)))))
-	(pseudo_operation (psop_err) (arg_err (binary_aexpr (binary_aexpr (current_addr) (eop_minus) (num (dec))) (eop_div) (num (hex)))))
-	(pseudo_operation (psop_err) (arg_err (num (hex)))))
+	(pseudo_operation (psop_err) (arg_err (ptr_check (num) (num))))
+	(pseudo_operation (psop_err) (arg_err (binary_aexpr (binary_aexpr (current_addr) (eop_minus) (num)) (eop_div) (num))))
+	(pseudo_operation (psop_err) (arg_err (num))))
 
 ===================
 label from keyboard KBD
@@ -48,7 +48,7 @@ loop LUP and --^
 ---
 
 (source_file
-	(pseudo_operation (psop_lup) (arg_lup (num (dec))))
+	(pseudo_operation (psop_lup) (arg_lup (num)))
     (operation (op_asl))
     (pseudo_operation (psop_end_lup)))
 
@@ -65,11 +65,11 @@ long status MX
 ---
 
 (source_file
-	(pseudo_operation (psop_mx) (arg_mx (num (bin))))
-	(pseudo_operation (psop_mx) (arg_mx (num (bin))))
-	(pseudo_operation (psop_mx) (arg_mx (num (bin))))
-	(pseudo_operation (psop_mx) (arg_mx (num (bin))))
-	(pseudo_operation (psop_mx) (arg_mx (num (dec)))))
+	(pseudo_operation (psop_mx) (arg_mx (num)))
+	(pseudo_operation (psop_mx) (arg_mx (num)))
+	(pseudo_operation (psop_mx) (arg_mx (num)))
+	(pseudo_operation (psop_mx) (arg_mx (num)))
+	(pseudo_operation (psop_mx) (arg_mx (num))))
 
 ===================
 pause PAU

@@ -1392,6 +1392,14 @@
         "desc": "jump long",
         "modes": [
             {
+                "addr_mnemonic": "absl",
+                "code": 92,
+                "cycles": 4,
+                "processors": [
+                    "65c816"
+                ]
+            },
+            {
                 "addr_mnemonic": "(abs)",
                 "code": 220,
                 "cycles": 6,
@@ -1487,6 +1495,14 @@
                     "65c816",
                     "6502",
                     "65c02"
+                ]
+            },
+            {
+                "addr_mnemonic": "absl",
+                "code": 34,
+                "cycles": 8,
+                "processors": [
+                    "65c816"
                 ]
             },
             {
@@ -2061,7 +2077,7 @@
         "desc": "push absolute address",
         "modes": [
             {
-                "addr_mnemonic": "abs",
+                "addr_mnemonic": "imm_abs",
                 "code": 244,
                 "cycles": 5,
                 "processors": [
@@ -2095,11 +2111,11 @@
     },
     "per": {
         "alt": [],
-        "brief": "push PC relative address",
-        "desc": "push program counter relative address",
+        "brief": "push long relative address",
+        "desc": "push long relative address",
         "modes": [
             {
-                "addr_mnemonic": "abs",
+                "addr_mnemonic": "rell",
                 "code": 98,
                 "cycles": 6,
                 "processors": [
@@ -2389,7 +2405,7 @@
         "desc": "reset status bits",
         "modes": [
             {
-                "addr_mnemonic": "imm",
+                "addr_mnemonic": "imm_zp",
                 "code": 194,
                 "cycles": 3,
                 "processors": [
@@ -2818,7 +2834,7 @@
         "desc": "set processor status bit",
         "modes": [
             {
-                "addr_mnemonic": "imm",
+                "addr_mnemonic": "imm_zp",
                 "code": 226,
                 "cycles": 3,
                 "processors": [
@@ -2968,6 +2984,25 @@
             "65c816",
             "6502",
             "65c02"
+        ],
+        "status": "--------"
+    },
+    "stp": {
+        "alt": [],
+        "brief": "stop the clock",
+        "desc": "stop the clock",
+        "modes": [
+            {
+                "addr_mnemonic": "impl",
+                "code": 219,
+                "cycles": 3,
+                "processors": [
+                    "65c816"
+                ]
+            }
+        ],
+        "processors": [
+            "65c816"
         ],
         "status": "--------"
     },

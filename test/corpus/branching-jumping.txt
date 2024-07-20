@@ -1,0 +1,29 @@
+===================
+long jumps
+===================
+
+ JMP >$031000
+ JML $031000
+ JML ($8000)
+ JSL $031000
+
+---
+
+(source_file
+	(operation (op_jmp) (arg_jmp (addr (addr_prefix) (num))))
+	(operation (op_jml) (arg_jml (addr (num))))
+	(operation (op_jml) (arg_jml (iaddr (mode) (num) (mode))))
+	(operation (op_jsl) (arg_jsl (addr (num))))
+)
+
+===================
+long branch
+===================
+
+ BRL $8000
+
+---
+
+(source_file
+	(operation (op_brl) (arg_brl (addr (num))))
+)

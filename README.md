@@ -18,7 +18,7 @@ Here is a sample `package.json`:
   "license": "ISC",
   "dependencies": {
     "tree-sitter": "^0.21.1",
-    "@dfgordon/tree-sitter-merlin6502": "^2.3.0"
+    "@dfgordon/tree-sitter-merlin6502": "^3.0.0"
   }
 }
 ```
@@ -45,7 +45,7 @@ console.log(tree.rootNode.toString());
 This should print the syntax tree
 
 ```
-(source_file (operation (label_def (global_label)) (op_lda) (arg_lda (imm (imm_prefix) (num (hex))))))
+(source_file (operation (label_def (global_label)) (op_lda) (arg_lda (imm (imm_prefix) (num)))))
 ```
 
 For more on parsing with node, see the general guidance [here](https://github.com/tree-sitter/node-tree-sitter).

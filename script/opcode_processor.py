@@ -4,7 +4,7 @@ import sys
 import re
 
 def Usage():
-    print('Usage: python script/opcode_processor.py [--help]')
+    print('Usage: python opcode_processor.py [--help]')
 
 flags = ['--help']
 arg_idx = 1
@@ -25,9 +25,13 @@ test_path = proj_path / 'test' / 'corpus'
 addr_modes = ['imm','abs','zp','accum','impl','(zp,x)','(zp),y','zp,x','zp,y','abs,x','abs,y','rel','(abs)','(abs,x)','(zp)']
 # 65C816 modes - re-using 65C02 modes with equivalence zp=d
 addr_modes += ['rell','s','[d]','[d],y','absl','absl,x','d,s','(d,s),y','xyc']
+# unofficial modes (we want to process these like data elements)
+addr_modes += ['imm_zp','imm_abs']
 
 reduction_map = {
     'imm':'imm',
+    'imm_zp': 'data',
+    'imm_abs': 'data',
     'abs':'addr',
     'zp':'addr',
     'accum':'',
@@ -62,10 +66,10 @@ with open(script_path / 'pseudo_opcodes.json','r') as f:
 
 tableString = 'mnemonic'
 for am in addr_modes:
-    tableString += '|' + am + '<br />code|<br />cyc'
+    tableString += '|' + am + '<br />code'
 tableString += '\n' + '---'
 for am in addr_modes:
-    tableString += '|---|---'
+    tableString += '|---'
 tableString += '\n'
 
 for op in obj:
@@ -75,11 +79,11 @@ for op in obj:
         try:
             idx = these.index(am)
             m = obj[op]['modes'][idx]
-            tableString += '|{:02X} '.format(m['code']) + '|'+str(m['cycles'])
+            tableString += '|{:02X} '.format(m['code'])
             if ('6502' not in m['processors']):
                 tableString += '*'
         except ValueError:
-            tableString += '||'
+            tableString += '|'
     tableString += '\n'
 
 with open(script_path / 'opcodes.md','w') as f:

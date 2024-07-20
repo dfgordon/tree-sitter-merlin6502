@@ -91,7 +91,6 @@ module.exports = grammar({
 			$.daddr_y,
 			$.addr_s,
 			$.iaddr_is_y,
-			$.xyc,
 			alias($.dq_str,$.dstring),
 			alias($.sq_str,$.dstring),
 			$.arg_literal,
@@ -170,6 +169,7 @@ module.exports = grammar({
 		op_sei: $ => seq(token(prec(1,caseTS('sei'))),optional($.trailing)),
 		op_sep: $ => seq(token(prec(1,caseTS('sep'))),optional($.trailing)),
 		op_sta: $ => seq(token(prec(1,caseTS('sta'))),optional($.trailing)),
+		op_stp: $ => seq(token(prec(1,caseTS('stp'))),optional($.trailing)),
 		op_stx: $ => seq(token(prec(1,caseTS('stx'))),optional($.trailing)),
 		op_sty: $ => seq(token(prec(1,caseTS('sty'))),optional($.trailing)),
 		op_stz: $ => seq(token(prec(1,caseTS('stz'))),optional($.trailing)),
@@ -214,7 +214,7 @@ module.exports = grammar({
 		arg_dec: $ => choice($.addr,$.addr_x),
 		arg_eor: $ => choice($.addr,$.addr_s,$.addr_x,$.addr_y,$.daddr,$.daddr_y,$.iaddr,$.iaddr_is_y,$.iaddr_ix,$.iaddr_y,$.imm),
 		arg_inc: $ => choice($.addr,$.addr_x),
-		arg_jml: $ => $.iaddr,
+		arg_jml: $ => choice($.addr,$.iaddr),
 		arg_jmp: $ => choice($.addr,$.iaddr,$.iaddr_ix),
 		arg_jsl: $ => $.addr,
 		arg_jsr: $ => choice($.addr,$.iaddr_ix),
@@ -225,14 +225,14 @@ module.exports = grammar({
 		arg_mvn: $ => $.xyc,
 		arg_mvp: $ => $.xyc,
 		arg_ora: $ => choice($.addr,$.addr_s,$.addr_x,$.addr_y,$.daddr,$.daddr_y,$.iaddr,$.iaddr_is_y,$.iaddr_ix,$.iaddr_y,$.imm),
-		arg_pea: $ => $.addr,
+		arg_pea: $ => $.data,
 		arg_pei: $ => $.iaddr,
 		arg_per: $ => $.addr,
-		arg_rep: $ => $.imm,
+		arg_rep: $ => $.data,
 		arg_rol: $ => choice($.addr,$.addr_x),
 		arg_ror: $ => choice($.addr,$.addr_x),
 		arg_sbc: $ => choice($.addr,$.addr_s,$.addr_x,$.addr_y,$.daddr,$.daddr_y,$.iaddr,$.iaddr_is_y,$.iaddr_ix,$.iaddr_y,$.imm),
-		arg_sep: $ => $.imm,
+		arg_sep: $ => $.data,
 		arg_sta: $ => choice($.addr,$.addr_s,$.addr_x,$.addr_y,$.daddr,$.daddr_y,$.iaddr,$.iaddr_is_y,$.iaddr_ix,$.iaddr_y),
 		arg_stx: $ => choice($.addr,$.addr_y),
 		arg_sty: $ => choice($.addr,$.addr_x),
@@ -311,6 +311,7 @@ module.exports = grammar({
 			seq(optional($.label_def), $._sep, $.op_sei, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_sep, $._sep, $.arg_sep, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_sta, $._sep, $.arg_sta, optional(seq($._sep,$.comment)), $._newline),
+			seq(optional($.label_def), $._sep, $.op_stp, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_stx, $._sep, $.arg_stx, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_sty, $._sep, $.arg_sty, optional(seq($._sep,$.comment)), $._newline),
 			seq(optional($.label_def), $._sep, $.op_stz, $._sep, $.arg_stz, optional(seq($._sep,$.comment)), $._newline),
@@ -397,19 +398,19 @@ module.exports = grammar({
 		psop_var: $ => seq(token(prec(1,caseTS('var'))),optional($.trailing)),
 		psop_xc: $ => seq(token(prec(1,caseTS('xc'))),optional($.trailing)),
 
-		arg_adr: $ => seq($._data_aexpr,repeat(seq(',',$._data_aexpr))),
-		arg_adrl: $ => seq($._data_aexpr,repeat(seq(',',$._data_aexpr))),
+		arg_adr: $ => seq($.data,repeat(seq(',',$.data))),
+		arg_adrl: $ => seq($.data,repeat(seq(',',$.data))),
 		arg_asc: $ => choice($.var_mac,choice($._string_operand,$._num_str)),
 		arg_ast: $ => $._aexpr,
 		arg_cas: $ => choice($.var_mac,alias(choice(caseRe('se'),caseRe('in')),$.enum)),
 		arg_cyc: $ => choice($.var_mac,alias(choice(caseRe('off'),caseRe('ave'),caseRe('flags')),$.enum)),
-		arg_da: $ => seq($._data_aexpr,repeat(seq(',',$._data_aexpr))),
+		arg_da: $ => seq($.data,repeat(seq(',',$.data))),
 		arg_dat: $ => $._aexpr,
 		arg_dci: $ => choice($.var_mac,$._string_operand),
-		arg_ddb: $ => seq($._data_aexpr,repeat(seq(',',$._data_aexpr))),
-		arg_dfb: $ => seq($._data_aexpr,repeat(seq(',',$._data_aexpr))),
+		arg_ddb: $ => seq($.data,repeat(seq(',',$.data))),
+		arg_dfb: $ => seq($.data,repeat(seq(',',$.data))),
 		arg_do: $ => $._aexpr,
-		arg_ds: $ => choice($._data_aexpr,seq($._data_aexpr,',',$._data_aexpr),$.new_page,seq($.new_page,',',$._data_aexpr)),
+		arg_ds: $ => choice($.data,seq($.data,',',$.data),$.new_page,seq($.new_page,',',$.data)),
 		arg_dsk: $ => choice($.var_mac,$.filename),
 		arg_dum: $ => $._aexpr,
 		arg_ent: $ => seq($.label_ref,repeat(seq(',',$.label_ref))),
@@ -515,7 +516,6 @@ module.exports = grammar({
 		// For IF, any literal can be on the right, but this would only be expected after expansion.
 		// In other words, the IF is only useful to the programmer if a macro variable is on the right.
 		if_char: $ => seq(ANYCHAR,ANYCHAR,choice($.var_mac,$.arg_literal)),
-		data_prefix: $ => choice('#', '#<', '#>', '#^', '<', '>', '^'),
 		new_page: $ => '\\',
 		ptr_check: $ => seq('(',$.num,')-',$.num),
 
@@ -631,11 +631,11 @@ module.exports = grammar({
 		daddr_y: $ => seq(alias('[',$.mode),$._aexpr,alias(choice('],Y','],y'),$.mode)),
 		addr_s: $ => seq($._aexpr,alias(choice(',S',',s'),$.mode)),
 		iaddr_is_y: $ => seq(alias('(',$.mode),$._aexpr,alias(choice(',S),Y',',s),y',',S),y',',s),Y'),$.mode)),
-		xyc: $ => seq($._aexpr,',',$._aexpr),
+		xyc: $ => seq($.data,',',$.data),
 
 		// Expressions
 
-		_data_aexpr: $ => seq(optional($.data_prefix),$._aexpr),
+		data: $ => seq(optional($.data_prefix),$._aexpr),
 		_addr_aexpr: $ => seq(optional($.addr_prefix),$._aexpr),
 		_aexpr: $ => choice(
 			$.braced_aexpr,
@@ -662,8 +662,8 @@ module.exports = grammar({
 			$.pchar,
 			$.nchar,
 			$.current_addr,
-			$.unary_aexpr_prec,
-			$.binary_aexpr_prec
+			alias($.unary_aexpr_prec,$.unary_aexpr),
+			alias($.binary_aexpr_prec,$.binary_aexpr)
 		),
 		unary_aexpr_prec: $ => prec(5,choice(seq($.eop_plus,$._aexpr_prec),seq($.eop_minus,$._aexpr_prec))),
 		binary_aexpr_prec: $ => choice(
@@ -692,6 +692,7 @@ module.exports = grammar({
 
 		imm_prefix: $ => choice('#','#<','#>','#^'),
 		addr_prefix: $ => choice('<','>','^','|'),
+		data_prefix: $ => choice('#', '#<', '#>', '#^', '<', '>', '^'),
 		hex_data: $ => /[0-9A-Fa-f][0-9A-Fa-f](,?[0-9A-Fa-f][0-9A-Fa-f])*/,
 		filename: $ => choice($.prodos,$.dos33),
 		prodos: $ => seq(optional('/'),repeat(seq($.prodos_filename,'/')),$.prodos_filename),
@@ -700,10 +701,10 @@ module.exports = grammar({
 			optional(/,S[1-7]/),
 			optional(/,D[1-2]/)),
 
-		num: $ => choice($.dec,$.hex,$.bin),
-		dec: $ => repeat1(choice(...'0123456789')),
-		hex: $ => seq('$',repeat1(choice(...'0123456789ABCDEFabcdef'))),
-		bin: $ => seq('%',repeat1(choice(...'01_'))),
+		num: $ => choice($._dec,$._hex,$._bin),
+		_dec: $ => repeat1(choice(...'0123456789')),
+		_hex: $ => seq('$',repeat1(choice(...'0123456789ABCDEFabcdef'))),
+		_bin: $ => seq('%',repeat1(choice(...'01_'))),
 
 		pchar: $ => seq("'",ANYCHAR,optional("'")), // ''' is OK
 		nchar: $ => seq('"',ANYCHAR,optional('"')), // """ is OK

@@ -12,12 +12,12 @@ do if true DO
 ---
 
 (source_file
-	(pseudo_operation (psop_do) (arg_do (num (dec))))
-	(pseudo_operation (psop_do) (arg_do (num (dec))))
+	(pseudo_operation (psop_do) (arg_do (num)))
+	(pseudo_operation (psop_do) (arg_do (num)))
 	(pseudo_operation (psop_do) (arg_do (label_ref (global_label))))
 	(pseudo_operation (psop_do) (arg_do (binary_aexpr (label_ref (global_label)) (eop_div) (label_ref (global_label)))))
 	(pseudo_operation (psop_do) (arg_do (binary_aexpr (label_ref (global_label)) (eop_minus) (label_ref (global_label)))))
-	(pseudo_operation (psop_do) (arg_do (binary_aexpr (label_ref (global_label)) (eop_minus) (num (dec))))))
+	(pseudo_operation (psop_do) (arg_do (binary_aexpr (label_ref (global_label)) (eop_minus) (num)))))
 
 ===================
 else do this ELSE
@@ -48,7 +48,7 @@ if char then do IF
 	(pseudo_operation (psop_if) (arg_if (if_char (var_mac))))
 	(pseudo_operation (psop_if) (arg_if (if_char (arg_literal))))
 	(pseudo_operation (psop_if) (arg_if (if_mx (eop_xor)
-        (binary_aexpr (num (dec)) (eop_div) (num (dec)))))))
+        (binary_aexpr (num) (eop_div) (num))))))
 
 ===================
 Finish FIN
