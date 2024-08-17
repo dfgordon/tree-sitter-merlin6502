@@ -38,6 +38,7 @@ if char then do IF
  IF ",]8
  IF "=]1
  IF A=]something
+ IF MX
  IF MX!3/3
 
 ---
@@ -47,6 +48,7 @@ if char then do IF
 	(pseudo_operation (psop_if) (arg_if (if_char (var_mac))))
 	(pseudo_operation (psop_if) (arg_if (if_char (var_mac))))
 	(pseudo_operation (psop_if) (arg_if (if_char (arg_literal))))
+	(pseudo_operation (psop_if) (arg_if (if_mx)))
 	(pseudo_operation (psop_if) (arg_if (if_mx (eop_xor)
         (binary_aexpr (num) (eop_div) (num))))))
 

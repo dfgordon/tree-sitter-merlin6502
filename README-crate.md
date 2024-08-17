@@ -5,7 +5,7 @@ This is the rust binding for [tree-sitter-merlin6502](https://github.com/dfgordo
 ```toml
 [dependencies]
 tree-sitter = "0.22.4"
-tree-sitter-merlin6502 = "3.0.0"
+tree-sitter-merlin6502 = "3.0.1"
 ```
 Here is a trivial `main.rs` example:
 ```rust

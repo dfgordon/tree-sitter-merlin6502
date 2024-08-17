@@ -1,3 +1,5 @@
+.vscode
+
 # Rust artifacts
 Cargo.lock
 target/

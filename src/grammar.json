@@ -21706,38 +21706,51 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "SYMBOL",
-              "name": "eop_plus"
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "eop_plus"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "eop_minus"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "eop_times"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "eop_div"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "eop_or"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "eop_and"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "eop_xor"
+                    }
+                  ]
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_aexpr"
+                }
+              ]
             },
             {
-              "type": "SYMBOL",
-              "name": "eop_minus"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "eop_times"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "eop_div"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "eop_or"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "eop_and"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "eop_xor"
+              "type": "BLANK"
             }
           ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_aexpr"
         }
       ]
     },

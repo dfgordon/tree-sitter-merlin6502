@@ -18,7 +18,7 @@ Here is a sample `package.json`:
   "license": "ISC",
   "dependencies": {
     "tree-sitter": "^0.21.1",
-    "@dfgordon/tree-sitter-merlin6502": "^3.0.0"
+    "@dfgordon/tree-sitter-merlin6502": "^3.0.1"
   }
 }
 ```
