@@ -1,19 +1,12 @@
-Parser for Merlin 6502 Assembly
-===============================
+# Parser for Merlin 6502 Assembly
 
 ![unit tests](https://github.com/dfgordon/tree-sitter-merlin6502/actions/workflows/node.js.yml/badge.svg)
 
-This is a parser for Merlin assembly language intended for use with language servers.  It is built using the [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) system.  Bindings are available for several languages.  The following pre-built packages are available:
-
-* [Parsing Merlin with C++](https://github.com/dfgordon/tree-sitter-merlin6502/releases)
-* [Parsing Merlin with Rust](https://crates.io/crates/tree-sitter-merlin6502)
-* [Parsing Merlin with WASM](https://github.com/dfgordon/tree-sitter-merlin6502/releases)
-* [Parsing Merlin with Node](https://github.com/dfgordon/tree-sitter-merlin6502/pkgs/npm/tree-sitter-merlin6502)
+This is a parser for Merlin assembly language intended for use with language servers.  It is built using the [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) system.  Bindings are possible for several languages, but only the [rust crate](https://crates.io/crates/tree-sitter-merlin6502) is actively maintained.  There is a [node package](https://github.com/dfgordon/tree-sitter-merlin6502/pkgs/npm/tree-sitter-merlin6502) that can be updated upon request.
 
 For details on parser usage and design see the [wiki](https://github.com/dfgordon/tree-sitter-merlin6502/wiki).
 
-Scope
------
+## Scope
 
 The parser recognizes Merlin 8/16/16+/32 assembly language for the 6502 family of processors, including the 6502, 65C02, and 65816.
 
@@ -32,8 +25,7 @@ There are some syntax errors that have to be detected downstream:
 * Invalid context for local label
 * Specific target limitations
 
-Emulation
----------
+## Emulation
 
 The parser is supposed to produce a syntax tree consistent with the way Merlin 16+ would interpret a given source file.  As of this writing, the following are the only known inconsistencies:
 
@@ -41,8 +33,8 @@ The parser is supposed to produce a syntax tree consistent with the way Merlin 1
 * Labels cannot start with `|` or `^`
 * Delimited strings (dstrings) must always be terminated
 
-References
------------
+## References
+
 * Merlin 8/16 Manual, copyright 1987, Roger Wagner Publishing, Inc.
 * Merlin 16+ Manual, copyright 1988-1989, Roger Wagner Publishing, Inc.
 * [Merlin 32 Documentation](https://brutaldeluxe.fr/products/crossdevtools/merlin/)

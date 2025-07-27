@@ -1,0 +1,40 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "merlin6502",
+      "camelcase": "Merlin6502",
+      "title": "Merlin 6502",
+      "scope": "source.merlin6502",
+      "file-types": [
+        "S",
+        "asm"
+      ],
+      "injection-regex": "^merlin6502$",
+      "class-name": "TreeSitterMerlin6502",
+      "highlights": "queries/highlights.scm"
+    }
+  ],
+  "metadata": {
+    "version": "4.0.0",
+    "license": "MIT",
+    "description": "parser for merlin assembly language",
+    "authors": [
+      {
+        "name": "Daniel Gordon"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/dfgordon/tree-sitter-merlin6502"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": false,
+    "node": false,
+    "python": false,
+    "rust": true,
+    "swift": false,
+    "zig": false
+  }
+}

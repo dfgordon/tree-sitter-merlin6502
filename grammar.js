@@ -515,7 +515,7 @@ module.exports = grammar({
 		if_mx: $ => seq('MX', optional(seq(choice($.eop_plus, $.eop_minus, $.eop_times, $.eop_div, $.eop_or, $.eop_and, $.eop_xor), $._aexpr))),
 		// For IF, any literal can be on the right, but this would only be expected after expansion.
 		// In other words, the IF is only useful to the programmer if a macro variable is on the right.
-		if_char: $ => seq(ANYCHAR,ANYCHAR,choice($.var_mac,$.arg_literal)),
+		if_char: $ => seq(ANYCHAR,ANYCHAR,choice($.var_cnt,$.var_mac,$.arg_literal)),
 		new_page: $ => '\\',
 		ptr_check: $ => seq('(',$.num,')-',$.num),
 

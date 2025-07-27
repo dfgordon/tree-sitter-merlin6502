@@ -1,7 +1,6 @@
-'''Update the parser and build the WASM files
-The emscripten SDK must be activated: `emsdk activate latest`,
-or else the Docker daemon must be running.
-Run from project directory: `python script/build.py`'''
+'''The workflow is to edit `grammar-src.js` and then run this.
+Run from project directory: `python script/build.py`.
+We are typically installing `tree-sitter` with cargo.'''
 
 import subprocess
 import pathlib
@@ -13,6 +12,5 @@ script_dir =  root_dir / 'script'
 os.chdir(script_dir)
 subprocess.run(['python','opcode_processor.py']).check_returncode()
 os.chdir(root_dir)
-subprocess.run('npx tree-sitter generate', shell=True).check_returncode()
-subprocess.run('npx tree-sitter test', shell=True).check_returncode()
-subprocess.run('npx tree-sitter build --wasm .', shell=True).check_returncode()
+subprocess.run('tree-sitter generate', shell=True).check_returncode()
+subprocess.run('tree-sitter test', shell=True).check_returncode()

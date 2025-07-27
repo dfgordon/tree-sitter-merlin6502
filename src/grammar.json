@@ -1,4 +1,5 @@
 {
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "merlin6502",
   "rules": {
     "source_file": {
@@ -21770,6 +21771,10 @@
           "members": [
             {
               "type": "SYMBOL",
+              "name": "var_cnt"
+            },
+            {
+              "type": "SYMBOL",
               "name": "var_mac"
             },
             {
@@ -26024,5 +26029,6 @@
   "precedences": [],
   "externals": [],
   "inline": [],
-  "supertypes": []
+  "supertypes": [],
+  "reserved": {}
 }

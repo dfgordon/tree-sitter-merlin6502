@@ -3197,6 +3197,10 @@
           "named": true
         },
         {
+          "type": "var_cnt",
+          "named": true
+        },
+        {
           "type": "var_mac",
           "named": true
         }
@@ -6803,6 +6807,7 @@
   {
     "type": "source_file",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
